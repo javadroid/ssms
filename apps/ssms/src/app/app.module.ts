@@ -9,16 +9,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-const routes: Routes = [
-  {path: '', component:AppComponent},
+// const routes: Routes = [
+//   {path: '', component:AppComponent},
 
-  {path: 'report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ReportModule)},
-  {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)}
-];
+//   {path: 'report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ReportModule)},
+//   {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)}
+// ];
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [RouterModule.forChild(routes),
+  imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,FormsModule,],
