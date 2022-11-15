@@ -7,54 +7,54 @@ import { VictimInfo,VictimInfoDoc } from '../../schema/victimInfo.schema';
 
 @Injectable()
 export class VictimInfoService {
-    constructor(@InjectModel(VictimInfo.name) private policyInfoModel: Model<VictimInfoDoc>) {}
+    constructor(@InjectModel(VictimInfo.name) private victimInfoModel: Model<VictimInfoDoc>) {}
 
-  async create(createPolicyInfo: PolicyInfoDTO): Promise<PolicyInfo> {
+  async create(createVictimInfo: VictimInfoDTO): Promise<VictimInfo> {
     try {
-      const createdPolicyInfo = await new this.policyInfoModel(createPolicyInfo);
+      const createdVictimInfo = await new this.victimInfoModel(createVictimInfo);
 
-      return await createdPolicyInfo.save();
+      return await createdVictimInfo.save();
     } catch (error) {
       throw new NotAcceptableException(error.message);
     }
   }
 
-  async findAll(): Promise<PolicyInfo[]> {
+  async findAll(): Promise<VictimInfo[]> {
     try {
-      return this.policyInfoModel.find().exec();
+      return this.victimInfoModel.find().exec();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
-  async findbyId(id: any): Promise<PolicyInfo> {
+  async findbyId(id: any): Promise<VictimInfo> {
     try {
-      return this.policyInfoModel.findById(id).exec();
+      return this.victimInfoModel.findById(id).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
-  async findbyAny(id: string, value: string): Promise<PolicyInfo[]> {
+  async findbyAny(id: string, value: string): Promise<VictimInfo[]> {
 
-    const result = await this.policyInfoModel.find({ [id]: value }).exec();
+    const result = await this.victimInfoModel.find({ [id]: value }).exec();
     if (!result) {
       throw new NotFoundException(value+' not found in fleid ' +id);
     }
     return result;
   }
 
-  async update(_id: string, updatePolicyInfo: PolicyInfoDTO): Promise<PolicyInfo> {
+  async update(_id: string, updateVictimInfo: VictimInfoDTO): Promise<VictimInfo> {
     try {
-      return this.policyInfoModel.findByIdAndUpdate({ _id }, updatePolicyInfo).exec();
+      return this.victimInfoModel.findByIdAndUpdate({ _id }, updateVictimInfo).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
-  async delete(_id: string): Promise<PolicyInfo> {
+  async delete(_id: string): Promise<VictimInfo> {
     try {
-      return this.policyInfoModel.findByIdAndDelete({ _id }).exec();
+      return this.victimInfoModel.findByIdAndDelete({ _id }).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
