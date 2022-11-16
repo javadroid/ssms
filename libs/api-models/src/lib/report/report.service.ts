@@ -58,4 +58,12 @@ export class ReportService {
       throw new NotFoundException(error.message);
     }
   }
+
+  async deleteMany(_id:string[]): Promise<any> {
+    try {
+      return this.reportModel.deleteMany({ _id }).exec();
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
 }
