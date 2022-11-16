@@ -58,4 +58,11 @@ export class PolicyInfoService {
       throw new NotFoundException(error.message);
     }
   }
+
+  async deleteMany(_id:string[]): Promise<any> {
+    try {
+      return this.policyInfoModel.deleteMany({ _id }).exec();
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }}
 }

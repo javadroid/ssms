@@ -51,4 +51,9 @@ export class ReportController {
   async delete(@Param('_id') _Id: string) {
     return this.reportService.delete(_Id);
   }
+
+  @Delete()
+  async deleteMany(@Body() _id: string[]) {
+    return this.reportService.deleteMany(_id);
+  }
 }

@@ -48,4 +48,9 @@ export class PolicyInfoController {
   async delete(@Param('_id') _Id: string) {
     return this.policyInfoService.delete(_Id);
   }
+
+  @Delete()
+  async deleteMany(@Body() _id: string[]) {
+    return this.policyInfoService.deleteMany(_id);
+  }
 }
