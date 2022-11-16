@@ -1,0 +1,67 @@
+body{
+    background-color: rgba(247, 248, 245, 0.781);
+}
+
+#head{
+    box-shadow: 0 5px 15px rgba(129, 129, 122, 0.3);
+}
+#head .container-fluid h1{
+     text-align: center;
+     margin-top: 20px;
+     border-bottom: 3px solid rgb(214, 214, 209);
+     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+     font-weight: bold;
+}
+
+#dropdown_menu h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#dropdown_menu .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 170px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#dropdown_menu .container .container .dropdown button{
+    width: 140px;
+    height: auto;
+    margin: 5px;
+}
+
+#input .flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mb-3{
+    width: 80%;
+    height: auto;
+}
+
+.dropdownbar{
+    width: 20%;
+}
+
+ .dropdown {
+    margin-top: 10px;
+   
+}
+
+.flex .mb-3 .text{
+    width: 70%;
+}
+
+
+#input .set .sub{
+    
+    width: 200px;
+    height: 40px;
+}
