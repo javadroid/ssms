@@ -16,9 +16,9 @@ export class NewReportComponent implements OnInit {
 	onSelected(value:string): void {
 		this.selectedTeam = value;
     if(value.toLowerCase()==='crime'){
-      this.reportTime=['murder','robbery',]
+      this.reportTime=['murder','robbery', 'theft', 'rape', 'fraud', 'assault', 'kidnap', 'impersonation', 'overspeeding', 'drinking while driving', 'intrusion', 'trespass',]
     }else if(value.toLowerCase()==='emergency'){
-      this.reportTime=['fire','flood',]
+      this.reportTime=['fire','flood','climate change', 'accident', 'crashes', 'active shooter','terrorism', 'war',]
     }else if(value.toLowerCase()==='others'){
       this.reportTime=['fire','xassa',]
     } else this.reportTime=[]

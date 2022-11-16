@@ -12,7 +12,7 @@
           <div class="col">
             
             <select #report (change)="onSelected(report.value)">
-              <option default>Pick a team</option>
+              <option default>Report Type</option>
               <option>Emergency</option>
               <option>Crime</option>
               <option>Others</option>
@@ -22,7 +22,7 @@
           <div class="col">
             
             <select *ngIf="reportTime.length!==0" #teams (change)="onSelected(teams.value)">
-              <option default>Pick a team</option>
+              <option default>Report Category</option>
               <option *ngFor="let i of reportTime">{{i}}</option>
               
             </select>
@@ -48,15 +48,15 @@
             </div>
 
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fi fi-rr-add folder"></i>
-                </button>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Audio <i class="fi fi-rr-microphone"></i></a></li>
-                <li><a class="dropdown-item" href="#">Video <i class="fi fi-rr-video-camera-alt"></i></a></li>
-                <li><a class="dropdown-item" href="#">Image <i class="fi fi-rr-picture"></i></a></li>
-                <li><input type="file"></li>
-                </ul>
+                
+                <select #report (change)="onSelected(report.value)">
+                  <i class="fi fi-rr-add folder"></i>
+                  <option default>attach file</option>
+                  <option>Audio</option>
+                  <option>Video</option>
+                  <option>Image</option>
+                  <option>Documnet</option>
+                </select>
             </div>
         </div>
 

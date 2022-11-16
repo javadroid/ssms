@@ -12,7 +12,11 @@ body{
      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
      font-weight: bold;
 }
-
+#head .container-fluid h3{
+    margin-top: 30px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    color:black;
+}
 #dropdown_menu h3 {
     text-align: center;
     margin-top: 20px;
@@ -29,10 +33,15 @@ body{
     width: 100%;
 }
 
-#dropdown_menu .container .container .dropdown button{
-    width: 140px;
-    height: auto;
+#dropdown_menu .container .container .col select{
+    width: 160px;
+    height: 40px;
     margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(83, 83, 83);
+    color:white;
+    font-weight: 400;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;;
 }
 
 #input .flex{
@@ -45,6 +54,12 @@ body{
     width: 80%;
     height: auto;
 }
+.mb-3 label{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
 
 .dropdownbar{
     width: 20%;
@@ -52,6 +67,8 @@ body{
 
  .dropdown {
     margin-top: 10px;
+
+
    
 }
 
@@ -64,4 +81,6 @@ body{
     
     width: 200px;
     height: 40px;
+    margin-left: 500px;
+    
 }
