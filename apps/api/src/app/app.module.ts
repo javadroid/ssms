@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { FormsModule } from '@angular/forms';
 
 @Module({
   imports: [ConfigModule.forRoot(),
