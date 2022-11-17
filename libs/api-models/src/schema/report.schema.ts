@@ -18,13 +18,9 @@ export class Report {
     policy: string;
     @Prop()
     crimeCategory: string;
-    @Prop()
-    image:{
-      data:Buffer;
-      contenType: string;
-    }
 
-    url: string;
+
+
 
 }
 

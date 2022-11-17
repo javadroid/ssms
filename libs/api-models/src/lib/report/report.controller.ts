@@ -7,9 +7,21 @@ import {
   Param,
   Patch,
   Post,
+  Req,
+  Res,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ReportDTO } from '../../dto/report.dto';
 import { ReportService } from './report.service';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
+import { diskStorage } from 'multer';
+import { extname } from 'node:path/win32';
+import { join } from 'path/win32';
+import { of } from 'rxjs';
+
 @Controller('report')
 export class ReportController {
   constructor(private reportService: ReportService) {}
@@ -23,10 +35,10 @@ export class ReportController {
     return this.reportService.findAll();
   }
 
-  @Get(':id')
-  async findbyId(@Param('id') id: string) {
-    return this.reportService.findbyId(id);
-  }
+  // @Get(':id')
+  // async findbyId(@Param('id') id: string) {
+  //   return this.reportService.findbyId(id);
+  // }
 
   @Get(':id/:value')
   async findbyAny(@Param('id') id: string, @Param('value') value: string) {
@@ -55,5 +67,82 @@ export class ReportController {
   @Delete()
   async deleteMany(@Body() _id: string[]) {
     return this.reportService.deleteMany(_id);
+  }
+
+  // @Post('file')
+  // @UseInterceptors(
+  //   FileInterceptor('file', {
+  //     storage: diskStorage({
+  //       destination: './uploads',
+  //       filename: (req, file, callback) => {
+  //         const uniqueFilename = Date.now() + Math.round(Math.random() * 1e9);
+  //         const ext = extname(file.originalname);
+  //         const filename = `${uniqueFilename}-${file.originalname}`;
+
+  //         callback(null, filename);
+  //       },
+  //     }),
+  //   })
+  // )
+  // upload(@UploadedFile() file: Express.Multer.File,@Req() req) {
+  //   console.log(file);
+  //   const name = file.originalname.split('.')[0];
+  //   const path = `uploads/${file.path.split('\\')[1]}`;
+  //   // const url = `http://${req.get('host')}/${path}`;
+
+  //   return name;
+  // }
+  @Post('file')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './document',
+        filename: (req, file, cb) => {
+          const fileNameSplit = file.originalname.split('.');
+          const fileExt = fileNameSplit[fileNameSplit.length - 1];
+          cb(null, `${file.originalname.split('.')[0]}.${Date.now()}.${fileExt}`);
+        },
+      }),
+    }),
+  )
+   uploadSingle(
+    @UploadedFile() file: Express.Multer.File,
+    @Req() req,
+
+  ) {
+    const name = file.originalname.split('.')[0];
+    const path = `document/${file.path.split('\\')[1]}`;
+    const url = `http://${req.get('host')}/${path}`;
+
+    return url;
+  }
+
+  @Post('uploads')
+  @UseInterceptors(FilesInterceptor('photos[]', 10, {
+    storage: diskStorage({
+      destination: './document',
+      filename: (req, file, cb) => {
+        const fileNameSplit = file.originalname.split('.');
+        const fileExt = fileNameSplit[fileNameSplit.length - 1];
+
+        cb(null, `${file.originalname.replace(/\./g, "-")}.${Date.now()}.${fileExt}`);
+      },
+    }),
+  }))
+  uploadMultiple(@UploadedFiles() files) {
+    console.log(files);
+  }
+
+
+
+  @Get('file-:id')
+  findFile(@Param('id') id,@Res() res ) {
+    try {
+console.log(id)
+      return res.sendFiles();
+
+    } catch (error) {
+      return 'error';
+    }
   }
 }
