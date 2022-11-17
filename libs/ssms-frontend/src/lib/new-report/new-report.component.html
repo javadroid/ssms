@@ -4,8 +4,11 @@
        <h1>Enter Report</h1>
     </div>
     </section>
+<form [formGroup]="reportForm">   
    <section id="dropdown_menu">
+    
         <h3>choose your report type</h3>
+        
     <div class="container">
         
         <div class="container dropdownbar">
@@ -21,7 +24,7 @@
 
           <div class="col">
             
-            <select *ngIf="reportTime.length!==0" #teams (change)="onSelected(teams.value)">
+            <select *ngIf="reportTime.length!==0" #teams >
               <option default>Report Category</option>
               <option *ngFor="let i of reportTime">{{i}}</option>
               
@@ -34,14 +37,22 @@
         
     </div>
     </div>
+  
    </section>
 
 <section id="input">
     <div class=" container flex">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control text" id="exampleFormControlInput1" placeholder="example: fire outbreak">
-        
+            <input type="text" class="form-control text" id="exampleFormControlInput1" placeholder="example: fire outbreak" formControlName="title">
+            <ng-container *ngIf="reportForm.controls.title.touched && reportForm.controls.title.errors">
+        <div *ngIf="reportForm.controls.title.errors?.['required']"> Title is required</div>
+        <div *ngIf="reportForm.controls.title.errors?.['maxlength']"> value you entered is
+          {{ reportForm.controls.title.errors?.['maxlength'].actualLength}}
+          character long, but it must be most 
+          {{ reportForm.controls.title.errors?.['maxlength'].requiredLength}}
+        </div>
+      </ng-container>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Details</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
@@ -63,7 +74,7 @@
 
         <div class="container dropdownbar">
            <div >
-            <p id="ad">sfs</p>
+             <p id="ad">sfs</p>
             <p id="vd">xcv</p>
             <p id="im">vdv</p>
             <p id="doc">scv</p>
@@ -75,4 +86,7 @@
     <button type="submit" class="btn btn-secondary sub">Submit Report</button>
     </div>
 </section>
-    
+</form>  
+<div>Form Contents:{{reportForm.value | json}}</div>  
+<div>Form is valid: {{ reportForm.valid}}</div>
+<div>Errors around name:{{ reportForm.controls.title.errors | json}}</div>
