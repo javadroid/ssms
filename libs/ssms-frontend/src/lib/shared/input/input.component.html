@@ -4,9 +4,9 @@
     type="text"
     class="form-control text"
     id="exampleFormControlInput1"
-    placeholder="example: fire outbreak"
+    [placeholder]="placeholder"
     [formControl]="control"
-    [ngClass]="{'is-danger':}"
+    
   />
   <ng-container *ngIf="control.touched && control.errors">
     <div *ngIf="control.errors?.['required']">Title is required</div>

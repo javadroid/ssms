@@ -11,20 +11,16 @@ import {
 @Schema({ timestamps: true })
 export class Report {
     @Prop()
-    state: string;
+    location: string;
     @Prop()
-    crimeId: string;
+    title:string;
     @Prop()
-    policy: string;
+    reportCategory: string;
     @Prop()
-    crimeCategory: string;
+    reportType:string;
     @Prop()
-    image:{
-      data:Buffer;
-      contenType: string;
-    }
-
-    url: string;
+    details:string;
+    
 
 }
 

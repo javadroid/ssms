@@ -9,12 +9,13 @@ import {FormControl} from '@angular/forms'
 export class InputComponent implements OnInit {
   
   @Input() control=new FormControl;
+  @Input() placeholder=''
   
   constructor() {}
 
   ngOnInit(): void {}
   
   showErrors(){
-    return control.touched && control.errors;
+    return this.control.touched && this.control.errors;
   }
 }

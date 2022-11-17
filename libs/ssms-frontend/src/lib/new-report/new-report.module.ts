@@ -5,10 +5,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { NewReportRoutingModule } from './new-report-routing.module';
 import {NewReportComponent} from './new-report.component'
 
-import { InputComponent } from '../input/input.component';
+import { InputComponent } from '../shared/input/input.component';
+import { TextareaComponent } from '../shared/textarea/textarea.component';
 
 @NgModule({
-  declarations: [NewReportComponent,InputComponent],
+  declarations: [NewReportComponent,InputComponent,TextareaComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
