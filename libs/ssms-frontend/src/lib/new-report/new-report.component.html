@@ -44,15 +44,8 @@
     <div class=" container flex">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control text" id="exampleFormControlInput1" placeholder="example: fire outbreak" formControlName="title">
-            <ng-container *ngIf="reportForm.controls.title.touched && reportForm.controls.title.errors">
-        <div *ngIf="reportForm.controls.title.errors?.['required']"> Title is required</div>
-        <div *ngIf="reportForm.controls.title.errors?.['maxlength']"> value you entered is
-          {{ reportForm.controls.title.errors?.['maxlength'].actualLength}}
-          character long, but it must be most 
-          {{ reportForm.controls.title.errors?.['maxlength'].requiredLength}}
-        </div>
-      </ng-container>
+          
+            <ssms-input [control]="reportForm.controls.title"></ssms-input>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Details</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
@@ -81,6 +74,7 @@
            </div>
             
             </div>
+
     </div>
     <div class="set">
     <button type="button" class="btn btn-secondary sub">Submit Report</button>

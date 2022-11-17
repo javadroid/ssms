@@ -5,12 +5,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { NewReportRoutingModule } from './new-report-routing.module';
 import {NewReportComponent} from './new-report.component'
 
+import { InputComponent } from '../input/input.component';
+
 @NgModule({
-  declarations: [NewReportComponent],
+  declarations: [NewReportComponent,InputComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    NewReportRoutingModule
+    NewReportRoutingModule,
   ]
 })
 export class NewReportModule { }
