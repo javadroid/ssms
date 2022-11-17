@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'; 
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
@@ -17,13 +17,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // ];
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent, NxWelcomeComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,FormsModule,ReactiveFormsModule],
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppModule {}
