@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
+import{ FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ssms-new-report',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-report.component.css'],
 })
 export class NewReportComponent implements OnInit {
-  constructor() {}
+  reportForm = new FormGroup({
+    title: new FormControl('',
+    [Validators.required,
+    Validators.maxLength(20)
+    ])
+  })
+  constructor() {
+    console.log(this.reportForm.controls.title);
+  }
 
   ngOnInit(): void {}
   reportTime=[]as any[]
   selectedTeam = '';
+   
 
 	onSelected(value:string): void {
 		this.selectedTeam = value;
