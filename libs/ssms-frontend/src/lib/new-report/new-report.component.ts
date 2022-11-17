@@ -15,7 +15,12 @@ export class NewReportComponent implements OnInit {
     reportCategory: new FormControl('Report Category',[]),
     details: new FormControl('',[]),
     location: new FormControl('',[]),
+    
   });
+
+  fileData=new FormData()
+  
+  
   constructor(private http:ServiceApi) {
     console.log(this.reportForm.controls.title);
   }
@@ -64,5 +69,12 @@ export class NewReportComponent implements OnInit {
       console.log(e)
     })
 
+  }
+
+  onFileSelect(){
+
+    // this.fileData.append("uploads[]",)
+  
+console.log(this.fileData)
   }
 }

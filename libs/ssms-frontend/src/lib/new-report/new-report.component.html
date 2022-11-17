@@ -45,16 +45,8 @@
           <ssms-textarea [control]="reportForm.controls.details"></ssms-textarea>
         </div>
 
-        <div class="dropdown">
-          <select #report (change)="onSelected(report.value)">
-            <i class="fi fi-rr-add folder"></i>
-            <option default>attach file</option>
-            <option>Audio</option>
-            <option>Video</option>
-            <option>Image</option>
-            <option>Documnet</option>
-          </select>
-        </div>
+        <input multiple (formdata)="fileData" type="file" class="file-input" (change)="{e=>{onFileSelect()}}"/>
+ 
       </div>
 
       <div class="container dropdownbar">
@@ -67,7 +59,7 @@
       </div>
     </div>
     <div class="set">
-      <button (click)="onSubmit()" class="btn btn-secondary sub">Submit Report</button>
+      <button [disabled]="reportForm.valid" (click)="onSubmit()" class="btn btn-secondary sub">Submit Report</button>
     </div>
   </section>
 </form>
