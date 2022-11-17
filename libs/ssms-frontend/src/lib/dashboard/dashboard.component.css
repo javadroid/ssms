@@ -110,6 +110,6 @@ i.icon:before {
   background: 0 0!important;
 }
 
-, :after, :before {
+ :after, :before {
   box-sizing: inherit;
 }

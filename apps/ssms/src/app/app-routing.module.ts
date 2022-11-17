@@ -7,7 +7,8 @@ const routes: Routes = [
 
   {path: 'dashboard',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.DashboardModule)},
   {path: 'report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ReportModule)},
-  {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)}
+  {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)},
+  {path: 'view-report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ViewReportModule)}
 ];
 
 @NgModule({
