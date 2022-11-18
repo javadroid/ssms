@@ -94,35 +94,12 @@ export class ReportController {
 
   //   return name;
   // }
+
+
   @Post('file')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './document',
-        filename: (req, file, cb) => {
-          const fileNameSplit = file.originalname.split('.');
-          const fileExt = fileNameSplit[fileNameSplit.length - 1];
-          cb(null, `${file.originalname.split('.')[0]}.${Date.now()}.${fileExt}`);
-        },
-      }),
-    }),
-  )
-   uploadSingle(
-    @UploadedFile() file: Express.Multer.File,
-    @Req() req,
-
-  ) {
-    const name = file.originalname.split('.')[0];
-    const path = `document/${file.path.split('\\')[1]}`;
-    const url = `http://${req.get('host')}/${path}`;
-
-    return url;
-  }
-
-  @Post('uploads')
   @UseInterceptors(FilesInterceptor('photos[]', 10, {
     storage: diskStorage({
-      destination: (req,file,cb)=>{console.log(req)},
+      destination: 'document',
       filename: (req, file, cb) => {
         const fileNameSplit = file.originalname.split('.');
         const fileExt = fileNameSplit[fileNameSplit.length - 1];
