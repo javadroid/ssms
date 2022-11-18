@@ -23,6 +23,11 @@ export class NewReportComponent implements OnInit {
   ngOnInit(): void {}
   reportTime = [] as any[];
   selectedTeam = '';
+  selectedFiles?: FileList;
+  progressInfos: any[] = [];
+  message: string[] = [];
+
+  fileInfos?: Observable<any>;
 
   onSelected(value: string): void {
     this.selectedTeam = value;
@@ -64,5 +69,24 @@ export class NewReportComponent implements OnInit {
       console.log(e)
     })
 
+  }
+
+  upload(file: File) {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+
+  }
+
+  selectFiles(event:any): void {
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
   }
 }

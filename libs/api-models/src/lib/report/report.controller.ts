@@ -25,6 +25,8 @@ import { of } from 'rxjs';
 @Controller('report')
 export class ReportController {
   constructor(private reportService: ReportService) {}
+
+
   @Post()
   async create(@Body() createReport: ReportDTO) {
     return this.reportService.create(createReport);
@@ -120,7 +122,7 @@ export class ReportController {
   @Post('uploads')
   @UseInterceptors(FilesInterceptor('photos[]', 10, {
     storage: diskStorage({
-      destination: './document',
+      destination: (req,file,cb)=>{console.log(req)},
       filename: (req, file, cb) => {
         const fileNameSplit = file.originalname.split('.');
         const fileExt = fileNameSplit[fileNameSplit.length - 1];
@@ -129,8 +131,16 @@ export class ReportController {
       },
     }),
   }))
-  uploadMultiple(@UploadedFiles() files) {
-    console.log(files);
+ async uploadMultiple(@UploadedFiles() files,@Body() createReport: ReportDTO) {
+    console.log(createReport);
+    files.forEach(file =>{
+    const name = file.originalname.split('.')[0];
+    const path = `document/${file.path.split('\\')[1]}`;
+    // const url = `http://${file.get('host')}/${path}`;
+
+  return name;
+  })
+
   }
 
 
