@@ -4,5 +4,5 @@ export class ReportDTO{
     reportCategory: string;
     reportType:string;
     details:string;
-    
+    url:string[];
 }

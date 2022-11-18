@@ -24,4 +24,8 @@ export class ServiceApi {
     create(model:string,create:any):Observable<any>{
         return this.http.post(`http://localhost:3333/api/${model}`, create)
       }
+
+      upload(model:string,file:any){
+        return this.http.post(`http://localhost:3333/api/${model}/file`, file)
+      }
 }
