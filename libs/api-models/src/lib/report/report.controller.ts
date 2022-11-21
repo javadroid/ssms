@@ -19,8 +19,7 @@ import { ReportService } from './report.service';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { diskStorage } from 'multer';
-import { extname } from 'node:path/win32';
-import { join } from 'path/win32';
+
 import { of } from 'rxjs';
 import { createReadStream } from 'node:fs';
 
@@ -89,14 +88,16 @@ export class ReportController {
     }),
   }))
  async uploadMultiple(@UploadedFiles() files,) {
+  console.log(files)
   const names=[]
-    files.forEach(file =>{
+    files.forEach((file) =>{
     const name = file.originalname.split('.')[0];
     const path = `document/${file.path.split('\\')[1]}`;
 
    names.push(file.path.split('\\')[1]);
   })
   return names
+  
   }
 
 
@@ -104,8 +105,6 @@ export class ReportController {
   @Get('file')
   findFile(@Body() id:string[],@Res() res ) {
     // console.log(res.File(join(process.cwd(),'document'+id[0])))
-  return res.sendFile(join(process.cwd(),'document'+id[0]))
-
-
+  // return res.sendFile(join(process.cwd(),'document'+id[0]))
   }
 }

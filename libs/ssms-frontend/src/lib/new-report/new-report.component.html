@@ -45,21 +45,18 @@
           <ssms-textarea [control]="reportForm.controls.details"></ssms-textarea>
         </div>
 
-        <input multiple (formdata)="fileData" type="file" class="file-input" (change)="{e=>{onFileSelect()}}"/>
+        <input  multiple (formdata)="fileData" type="file" class="file-input" (change)="selectFiles($event)"/>
 
       </div>
 
-      <div class="container dropdownbar">
-        <div>
-          <p id="ad">sfs</p>
-          <p id="vd">xcv</p>
-          <p id="im">vdv</p>
-          <p id="doc">scv</p>
-        </div>
-      </div>
+      <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+        <ul *ngFor="let msg of message; let i = index">
+            <li>{{msg}}</li>
+        </ul>
+    </div> 
     </div>
     <div class="set">
-      <button [disabled]="reportForm.valid" (click)="onSubmit()" class="btn btn-secondary sub">Submit Report</button>
+      <button [disabled]="!reportForm.valid" (click)="onSubmit()" class="btn btn-secondary sub">Submit Report</button>
     </div>
   </section>
 </form>

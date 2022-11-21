@@ -12,9 +12,9 @@
     <div *ngIf="control.errors?.['required']">Title is required</div>
     <div *ngIf="control.errors?.['maxlength']">
       value you entered is
-      {{ control.errors?.['maxlength'].actualLength}}
+      {{ control.errors['maxlength'].actualLength}}
       character long, but it must be most
-      {{ control.errors?.['maxlength'].requiredLength}}
+      {{ control.errors['maxlength'].requiredLength}}
     </div>
   </ng-container>
 </div>

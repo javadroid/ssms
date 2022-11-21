@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Observable } from 'rxjs';
 import { ServiceApi } from '../shared/service/service-api';
 
 @Component({
@@ -25,14 +27,51 @@ export class NewReportComponent implements OnInit {
     console.log(this.reportForm.controls.title);
   }
 
-  ngOnInit(): void {}
   reportTime = [] as any[];
+  ngOnInit(): void {}
   selectedTeam = '';
   selectedFiles?: FileList;
   progressInfos: any[] = [];
   message: string[] = [];
-
   fileInfos?: Observable<any>;
+
+
+ selectFiles(event:any): void{
+  this.message = [];
+  this.progressInfos = [];
+  this.selectedFiles = event.target.files;
+
+  if(this.selectedFiles) {
+    for(let i=0; i < this.selectedFiles.length; i++){
+      this.message.push(this.selectedFiles[i].name) 
+
+    }
+  }
+ }
+  
+ uploadFiles(): void{
+  this.message = [];
+
+  if(this.selectedFiles) {
+    for(let i=0; i < this.selectedFiles.length; i++){
+      this.upload(i, this.selectedFiles[i]);
+
+    }
+  }
+ }
+upload(idx: number, file:File):void{
+  this.progressInfos[idx] = {value: 0, fileName:file.name};
+
+  if(file){
+    const formdata=new FormData()
+formdata.append('file',file,file.name)
+    this.http.upload("report",formdata).subscribe(e=>{
+      console.log(e)
+    }
+    
+    )
+  }
+}
 
   onSelected(value: string): void {
     this.selectedTeam = value;
@@ -73,33 +112,11 @@ export class NewReportComponent implements OnInit {
     this.http.create('report',this.reportForm.value).subscribe(e=>{
       console.log(e)
     })
+    this.uploadFiles()
 
   }
 
 
-  upload(file: File) {
-    const formData: FormData = new FormData();
-
-    formData.append('file', file);
-
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
 
 
-  }
-
-  selectFiles(event:any): void {
-    this.message = [];
-    this.progressInfos = [];
-    this.selectedFiles = event.target.files;
-  }
-  onFileSelect(){
-
-    // this.fileData.append("uploads[]",)
-
-console.log(this.fileData)
-
-  }
 }
