@@ -20,6 +20,9 @@ export class Report {
     reportType:string;
     @Prop()
     details:string;
+    @Prop()
+    url:string[];
+
 
 
 }

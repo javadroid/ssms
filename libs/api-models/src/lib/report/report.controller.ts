@@ -9,6 +9,7 @@ import {
   Post,
   Req,
   Res,
+  StreamableFile,
   UploadedFile,
   UploadedFiles,
   UseInterceptors,
@@ -21,6 +22,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'node:path/win32';
 import { join } from 'path/win32';
 import { of } from 'rxjs';
+import { createReadStream } from 'node:fs';
 
 @Controller('report')
 export class ReportController {
@@ -71,65 +73,39 @@ export class ReportController {
     return this.reportService.deleteMany(_id);
   }
 
-  // @Post('file')
-  // @UseInterceptors(
-  //   FileInterceptor('file', {
-  //     storage: diskStorage({
-  //       destination: './uploads',
-  //       filename: (req, file, callback) => {
-  //         const uniqueFilename = Date.now() + Math.round(Math.random() * 1e9);
-  //         const ext = extname(file.originalname);
-  //         const filename = `${uniqueFilename}-${file.originalname}`;
 
-  //         callback(null, filename);
-  //       },
-  //     }),
-  //   })
-  // )
-  // upload(@UploadedFile() file: Express.Multer.File,@Req() req) {
-  //   console.log(file);
-  //   const name = file.originalname.split('.')[0];
-  //   const path = `uploads/${file.path.split('\\')[1]}`;
-  //   // const url = `http://${req.get('host')}/${path}`;
-
-  //   return name;
-  // }
 
 
   @Post('file')
-  @UseInterceptors(FilesInterceptor('photos[]', 10, {
+  @UseInterceptors(FilesInterceptor('file', 10, {
     storage: diskStorage({
-      destination: 'document',
+      destination:'./document'    ,
       filename: (req, file, cb) => {
         const fileNameSplit = file.originalname.split('.');
         const fileExt = fileNameSplit[fileNameSplit.length - 1];
-
-        cb(null, `${file.originalname.replace(/\./g, "-")}.${Date.now()}.${fileExt}`);
+        const uniqueFilename = Date.now() + Math.round(Math.random() * 1e9);
+        cb(null, `${file.originalname.replace(/\./g, "-")}-${uniqueFilename}.${fileExt}`);
       },
     }),
   }))
- async uploadMultiple(@UploadedFiles() files,@Body() createReport: ReportDTO) {
-    console.log(createReport);
+ async uploadMultiple(@UploadedFiles() files,) {
+  const names=[]
     files.forEach(file =>{
     const name = file.originalname.split('.')[0];
     const path = `document/${file.path.split('\\')[1]}`;
-    // const url = `http://${file.get('host')}/${path}`;
 
-  return name;
+   names.push(file.path.split('\\')[1]);
   })
-
+  return names
   }
 
 
 
-  @Get('file-:id')
-  findFile(@Param('id') id,@Res() res ) {
-    try {
-console.log(id)
-      return res.sendFiles();
+  @Get('file')
+  findFile(@Body() id:string[],@Res() res ) {
+    // console.log(res.File(join(process.cwd(),'document'+id[0])))
+  return res.sendFile(join(process.cwd(),'document'+id[0]))
 
-    } catch (error) {
-      return 'error';
-    }
+
   }
 }
