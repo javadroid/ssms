@@ -1,0 +1,20 @@
+.card-body{
+    background-color: rgb(233, 231, 231);
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.card{
+    background-color: rgb(233, 231, 231);
+    margin-top: 7px;
+}
+
+.form-label{
+    font-weight: 500;
+    margin-bottom: -1px;
+    color: navy;
+}
+.card-body h2{
+    color:navy;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
