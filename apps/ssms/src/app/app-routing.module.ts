@@ -9,7 +9,9 @@ const routes: Routes = [
   {path: 'report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ReportModule)},
   {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)},
   {path: 'new-report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.NewReportModule)},
-  {path: 'sign-up',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.SignUpModule)}
+  {path: 'sign-up',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.SignUpModule)},
+  {path: 'login',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.LoginModule)},
+  
 ];
 
 @NgModule({

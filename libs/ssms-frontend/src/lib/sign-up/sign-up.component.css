@@ -1,20 +1,202 @@
-.card-body{
-    background-color: rgb(233, 231, 231);
-    border-radius: 25px;
-    margin-top: 10px;
-}
-.card{
-    background-color: rgb(233, 231, 231);
-    margin-top: 7px;
-}
+* {
+    margin-top: 0;
 
-.form-label{
-    font-weight: 500;
-    margin-bottom: -1px;
-    color: navy;
-}
-.card-body h2{
-    color:navy;
-    font-weight: 600;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+    padding: 0; }
+  
+  body {
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    background: #fffefd !important;
+    color: #1b1c1e !important; }
+  
+  .ball {
+    background-image: linear-gradient(to bottom, #d4bdb9, #75087e);
+    filter: blur(5rem);
+    opacity: 0.09 !important;
+    position: fixed;
+    z-index: -1;
+    border-radius: 1000px; }
+  
+  .one {
+    height: 80%;
+    width: 40%;
+    top: -50%;
+    right: 30%; }
+  
+  .two {
+    height: 80%;
+    width: 40%;
+    bottom: -50%;
+    left: -5%;
+    filter: blur(2rem); }
+  
+  .three {
+    height: 40%;
+    width: 20%;
+    top: 15%;
+    right: 2%;
+    filter: blur(2rem); }
+  
+  @font-face {
+    font-family: old_english;
+    src: url(/css/OLD.ttf); }
+  
+  @font-face {
+    font-family: nimbus;
+    src: url(/css/Nimbus.ttf); }
+  
+  @font-face {
+    font-family: flo;
+    src: url(/css/Florens.ttf); }
+  
+  main {
+    max-height: 93%;
+    overflow-y: scroll; }
+  
+  html {
+    font-size: 62.5%; }
+  
+  .right_content {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 2rem 2rem 2rem;
+    position: relative;
+    overflow: hidden; }
+    @media (max-width: 600px) {
+      .right_content {
+        padding: 1rem; } }
+    .right_content .user_nav {
+      width: 100%; }
+    .right_content .ball {
+      background: linear-gradient(to bottom right, #aa076b, #61045f);
+      position: absolute;
+      z-index: -1;
+      opacity: 0.2; }
+      @media (max-width: 600px) {
+        .right_content .ball {
+          display: none; } }
+    .right_content .first_ball {
+      height: 60rem;
+      width: 60rem;
+      border-radius: 10000px;
+      filter: blur(80px);
+      left: 30%;
+      top: -40%; }
+    .right_content .second_ball {
+      height: 30rem;
+      width: 30rem;
+      border-radius: 10000px;
+      filter: blur(80px);
+      right: 10%;
+      top: 20%; }
+    .right_content .third_ball {
+      height: 60rem;
+      width: 60rem;
+      border-radius: 10000px;
+      filter: blur(80px);
+      left: -20%;
+      bottom: -30%; }
+  
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg); }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg); }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg); }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg); }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg); }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg); }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg); }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg); }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg); }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg); }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg); } }
+  
+  .navbar {
+    padding: 1.5rem 2rem; }
+    .navbar .navbar-brand {
+      font-size: 2rem !important; }
+    .navbar .nav-link {
+      font-size: 1.5rem; }
+    .navbar .btn {
+      font-size: 1.4rem;
+      padding: 1rem 1.2rem; }
+  
+  header {
+    height: 100%;
+    width: 100%; }
+    header .carousel-inner .caption_container {
+      width: 35%; }
+      header .carousel-inner .caption_container .main_caption {
+        font-size: 5rem;
+        font-weight: 600; }
+      header .carousel-inner .caption_container .sub_caption {
+        font-size: 1.4rem; }
+      header .carousel-inner .caption_container .btn-success {
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
+        border-radius: 5px; }
+  
+  .access_container {
+    width: 100%;
+    height: 100%; }
+    .access_container .bg {
+      height: 100%;
+      width: 20%;
+      background: url("arrest.webp");
+      background-size: cover;
+      background-position: center auto;
+      background-repeat: no-repeat; }
+    .access_container .form_container {
+      width: 40%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
+      .access_container .form_container .access_form-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; }
+      .access_container .form_container .form_title {
+        font-size: 3rem;
+        font-weight: 600;
+        width: 70%;
+        margin-bottom: 3rem; }
+        .access_container .form_container .form_title span {
+          font-size: 1.3rem;
+          font-weight: normal;
+          color: grey; }
+      .access_container .form_container form {
+        width: 70%; }
+        .access_container .form_container form .input_container label {
+          font-size: 1.3rem; }
+        .access_container .form_container form .input_container input,
+        .access_container .form_container form .input_container select {
+          font-size: 1.3rem; }
+        .access_container .form_container form .alternative {
+          font-size: 1.3rem;
+          font-weight: 600; }
+          .access_container .form_container form .alternative button {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: blue; }
+        .access_container .form_container form .sign_in-btn {
+          margin-top: 2rem;
+          font-size: 1.3rem;
+          padding: 1rem 1.3rem; }
+  

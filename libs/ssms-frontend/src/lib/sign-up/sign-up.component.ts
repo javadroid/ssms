@@ -16,12 +16,17 @@ export class SignUpComponent implements OnInit {
     lastname: new FormControl('', []),
     profession:new FormControl('', []),
     phonenumber:new FormControl('', []),
+    contactaddress:new FormControl('', []),
     email:new FormControl('', []),
-    password:new FormControl('', [])
+    password:new FormControl('', []),
+    confirmpassword: new FormControl('', []),
+    radio: new FormControl('', [])
+
   });
  
   constructor(private http:ServiceApi) {}
 
   ngOnInit(): void {}
   
+
 }

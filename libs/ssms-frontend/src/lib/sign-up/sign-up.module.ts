@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     SignUpRoutingModule,
-  ]
+  ],
+  bootstrap: [SignUpComponent]  
 })
 export class SignUpModule { }
