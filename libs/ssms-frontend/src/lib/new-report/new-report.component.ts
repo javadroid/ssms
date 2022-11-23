@@ -10,6 +10,7 @@ import { ServiceApi } from '../shared/service/service-api';
   templateUrl: './new-report.component.html',
   styleUrls: ['./new-report.component.css'],
 })
+
 export class NewReportComponent implements OnInit {
   reportForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(20)]),
