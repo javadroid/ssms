@@ -1,42 +1,29 @@
-{{loginForm.value | json}}
-<section style="background-color: rgb(247, 244, 244)">
-  <div class="mask d-flex align-items-center h-100% gradient-custom-3">
-    <div class="container h-50">
-      <div class="row d-flex justify-content-center align-items-center h-50">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-5">
-          <div class="card" style="border-radius: 25px; rgb(233, 231, 231); box-shadow:  0 0 0 4px rgb(189, 188, 188);">
-            <div class="card-body p-4">
-              <h2 class="text-uppercase text-center mb-4">Login</h2>
 
-              
-              <form [formGroup]="loginForm">
-                <div class="form-outline mb-1">
-                    <label class="form-label" for="register">Your Email</label>
-                  <input [formControl]="loginForm.controls.email" type="email" id="register" class="form-control form-control-lg" />
-                  
-                </div>
+    <div class="access_container d-flex">
+      <div class="bg w-50"></div>
+      <div class="form_container w-50">
 
-                <div class="form-outline mb-1">
-                    <label class="form-label" for="register">Password</label>
-                  <input [formControl]="loginForm.controls.password" type="password" id="register" class="form-control form-control-lg" />
-                 
-                </div><br/>
-
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body">Login
-                  </button>
-                </div> 
-
-                 <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a routerLink="/sign-up"
-                    class="fw-bold text-body"><u>Signup here</u></a></p>
-               
-              </form>
-
+        <!-- signup_form ends here -->
+        <div class="access_form-container d-flex">
+          <h2 class="form_title">
+            Sign in
+            <span class="d-block">to access your account</span>
+          </h2>
+          <form>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Email</label>
+              <input type="email" class="form-control" placeholder="Email" />
             </div>
-          </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Phone number</label>
+              <input type="password" class="form-control" placeholder="password" />
+            </div>
+
+            <p class="alternative">Don't have an account? <button class="btn">Sign up</button></p>
+
+            <button class="sign_in-btn btn btn-success">Sign in</button>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-</section>
+
