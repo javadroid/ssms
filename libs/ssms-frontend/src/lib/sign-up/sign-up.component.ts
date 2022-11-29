@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   signUpForm=new FormGroup({
     firstname: new FormControl('', []),
     lastname: new FormControl('', []),
-    profession:new FormControl('', []),
+    occupation:new FormControl('', []),
     phonenumber:new FormControl('', []),
     contactaddress:new FormControl('', []),
     email:new FormControl('', []),

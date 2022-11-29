@@ -155,7 +155,7 @@
     .access_container .bg {
       height: 100%;
       width: 20%;
-      background: url("arrest.webp");
+      background: url("../../img/arrest.webp");
       background-size: cover;
       background-position: center auto;
       background-repeat: no-repeat; }
