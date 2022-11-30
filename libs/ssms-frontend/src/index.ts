@@ -6,4 +6,6 @@ export * from './lib/tabs/tabs.module';
 export * from './lib/indexs/indexs.module';
 export * from './lib/sign-up/sign-up.module';
 export * from './lib/login/login.module';
+export * from './lib/organization-signup/organization-signup.module';
+export * from './lib/organization-signin/organization-signin.module';
 

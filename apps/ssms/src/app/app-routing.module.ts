@@ -11,11 +11,13 @@ const routes: Routes = [
   {path: 'new-report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.NewReportModule)},
   {path: 'tabs',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.TabsModule)},
   {path: 'index',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.IndexsModule)},
+  {path: 'organization-signup',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationSignupModule)},
+  {path: 'organization-signin',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationSigninModule)},
 
 
   {path: 'sign-up',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.SignUpModule)},
   {path: 'login',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.LoginModule)},
-  
+
 ];
 
 @NgModule({

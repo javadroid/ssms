@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
   <body>
+
     <div class="staff_reg-form d-flex">
       <div class="bg w-50"></div>
       <div class="form_container w-50">
@@ -23,7 +14,7 @@
             <!-- stepper btn container -->
             <div class="stepper-container">
               <div class="step_count d-flex align-items-center">
-                <button class=" btn step_btn active">
+                <button  class=" btn step_btn active">
                   <span>1</span> Primary information
                 </button>
                 <button class="btn step_btn">
@@ -33,8 +24,7 @@
             </div>
 
             <!-- step 1 (primary information) -->
-
-            <div class="primary_info-container d-none">
+            <div  class="primary_info-container d-none">
               <div class="input_container mb-3">
                 <label for="" class="d-block">Rank</label>
                 <select name="" id="" class="form-control">
@@ -117,7 +107,7 @@
 
             <!-- step 2 (contact information) -->
 
-            <div class="contact_information">
+            <div class="contact_information ">
               <div class="input_container mb-3">
                 <label for="" class="d-block">Email</label>
                 <input type="email" class="form-control" placeholder="Email" />
@@ -158,18 +148,19 @@
             <!-- stepper btn container -->
             <div class="stepper-container">
               <div class="step_count d-flex align-items-center">
-                <button class=" btn step_btn active">
+                <a  (click)="stepper=true; stepperbtnactive=false" class=" btn step_btn active">
                   <span>1</span> Organizational information
-                </button>
-                <button class="btn step_btn">
+                </a>
+                <a (click)="stepper=false; stepperbtnactive=true"  [ngClass]="{'active':stepperbtnactive}" class="btn step_btn">
                   <span>2</span>Contact Person's Information
-                </button>
+                </a>
               </div>
             </div>
+            <!-- <button (click)="stepper=false; stepperbtnactive=true" class="btn btn-success">Next</button> -->
 
             <!-- step 1 (Organization primary information) -->
 
-            <div class="primary_info-container">
+            <div *ngIf="stepper" class="primary_info-container">
               <div
                 class="selection-container d-flex align-items-center justify-content-between"
               >
@@ -222,12 +213,12 @@
                 <label for="" class="d-block">LandLine / Mobile</label>
                 <input type="text" class="form-control" placeholder="LandLine / Mobile" />
               </div>
-              <button class="btn btn-success">Next</button>
+              <button (click)="stepper=false; stepperbtnactive=true" class="btn btn-success">Next</button>
             </div>
 
             <!-- step 2 (Organization contact information) -->
 
-            <div class="contact_information d-none">
+            <div *ngIf="!stepper"  class="contact_information ">
               <div class="d-flex w-100 justify-content-between name_container">
                 <div class="input_container mb-3">
                   <label for="" class="d-block">First name</label>
@@ -272,11 +263,14 @@
               </div>
 
 
+
             <p class="alternative">
-              Already have an account? <button class="btn">Sign in</button>
+              Already have an account? <a routerLink="/organization-signin" >Sign in</a>
             </p>
-            <button class="sign_in-btn btn btn-success">Upload</button>
+            <label class="sign_in-btn btn btn-success" for="actual-btn">Upload</label>
+            <input id="actual-btn" hidden type="file" />
             <button class="sign_in-btn btn btn-success">Sign up</button>
+            </div>
           </form>
         </div>
 
@@ -302,15 +296,13 @@
             </div>
 
             <p class="alternative">
-              Don't have an account? <button class="btn">Sign up</button>
+              Don't have an account? <button  class="btn">Sign up</button>
             </p>
 
             <button class="sign_in-btn btn btn-success">Sign in</button>
           </form>
         </div>
-      </div>
-    </div>
-  </body>
 
-  <script src="sass/vendors/bootstrap.min.js"></script>
-</html>
+    </div>
+  </div>
+</body>
