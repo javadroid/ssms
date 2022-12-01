@@ -1,5 +1,5 @@
   <body>
-
+    {{OrganizationsignUpForm.value | json}}
     <div class="staff_reg-form d-flex">
       <div class="bg w-50"></div>
       <div class="form_container w-50">
@@ -9,7 +9,7 @@
             Sign up
             <span class="d-block">Sign up on this platform to use it</span>
           </h2>
-          <form>
+          <form >
 
             <!-- stepper btn container -->
             <div class="stepper-container">
@@ -35,7 +35,7 @@
               <div class="d-flex w-100 justify-content-between name_container">
                 <div class="input_container mb-3">
                   <label for="" class="d-block">First name</label>
-                  <input
+                  <input [formControl]="OrganizationsignUpForm.controls.firstname"
                     type="text"
                     class="form-control"
                     placeholder="First name"
@@ -51,7 +51,7 @@
                 </div>
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Middle name</label>
-                  <input
+                  <input 
                     type="text"
                     class="form-control"
                     placeholder="Last name"
@@ -166,7 +166,7 @@
               >
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Type of Agency</label>
-                  <select name="" id="" class="form-control selected">
+                  <select [formControl]="OrganizationsignUpForm.controls.typeofagency" name="" id="" class="form-control selected">
                     <option value="">Select</option>
                     <option value="">Public</option>
                     <option value="">Private</option>
@@ -174,7 +174,7 @@
                 </div>
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Category of org.</label>
-                  <select name="" id="" class="form-control selected">
+                  <select [formControl]="OrganizationsignUpForm.controls.categoryofagency" name="" id="" class="form-control selected">
                     <option value="">Select</option>
                     <option value="">security Service</option>
                     <option value="">Intelligence Agency</option>
@@ -185,7 +185,7 @@
 
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Name of Org.</label>
-                  <select name="" id="" class="form-control">
+                  <select [formControl]="OrganizationsignUpForm.controls.nameoforganization" name="" id="" class="form-control">
                     <option value="">Select</option>
                     <option value="">Police, Navy etc.</option>
                     <option value="">NIA, DIA</option>
@@ -197,17 +197,17 @@
 
               <div class="input_container mb-3">
                 <label for="" class="d-block">Address</label>
-                <input type="text" class="form-control" placeholder="Address" />
+                <input [formControl]="OrganizationsignUpForm.controls.address" type="text" class="form-control" placeholder="Address" />
               </div>
 
               <div class="input_container mb-3">
                 <label for="" class="d-block">Description of Role</label>
-                <input type="text" class="form-control" placeholder="Description of Role" />
+                <input [formControl]="OrganizationsignUpForm.controls.descriptionofrole" type="text" class="form-control" placeholder="Description of Role" />
               </div>
 
               <div class="input_container mb-3">
                 <label for="" class="d-block">Organization Email</label>
-                <input type="text" class="form-control" placeholder="Organization Email" />
+                <input [formControl]="OrganizationsignUpForm.controls.organizationsemail" type="text" class="form-control" placeholder="Organization Email" />
               </div>
               <div class="input_container mb-3">
                 <label for="" class="d-block">LandLine / Mobile</label>
@@ -222,7 +222,7 @@
               <div class="d-flex w-100 justify-content-between name_container">
                 <div class="input_container mb-3">
                   <label for="" class="d-block">First name</label>
-                  <input
+                  <input [formControl]="OrganizationsignUpForm.controls.firstname"
                     type="text"
                     class="form-control"
                     placeholder="First name"
@@ -230,7 +230,7 @@
                 </div>
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Last name</label>
-                  <input
+                  <input [formControl]="OrganizationsignUpForm.controls.lastname"
                     type="text"
                     class="form-control"
                     placeholder="Last name"
@@ -238,7 +238,7 @@
                 </div>
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Middle name</label>
-                  <input
+                  <input [formControl]="OrganizationsignUpForm.controls.middlename"
                     type="text"
                     class="form-control"
                     placeholder="Last name"
@@ -247,15 +247,15 @@
               </div>
               <div class="input_container mb-3">
                 <label for="" class="d-block">Rank / Designation</label>
-                <input type="text" class="form-control" placeholder="Rank / Designation" />
+                <input [formControl]="OrganizationsignUpForm.controls.rank" type="text" class="form-control" placeholder="Rank / Designation" />
               </div>
               <div class="input_container mb-3">
                 <label for="" class="d-block">Official_Email</label>
-                <input type="email" class="form-control" placeholder="Official Email" />
+                <input [formControl]="OrganizationsignUpForm.controls.officialemail" type="email" class="form-control" placeholder="Official Email" />
               </div>
               <div class="input_container mb-3">
                 <label for="" class="d-block">Official Phone number</label>
-                <input
+                <input [formControl]="OrganizationsignUpForm.controls.officialphone"
                   type="number"
                   class="form-control"
                   placeholder="Official Phone number"
@@ -275,33 +275,7 @@
         </div>
 
 
-        <!-- signup_form ends here -->
-        <div class="access_form-container d-none">
-          <h2 class="form_title">
-            Sign in
-            <span class="d-block">Sign in to access your account</span>
-          </h2>
-          <form>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Email</label>
-              <input type="email" class="form-control" placeholder="Email" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Phone number</label>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="password"
-              />
-            </div>
-
-            <p class="alternative">
-              Don't have an account? <button  class="btn">Sign up</button>
-            </p>
-
-            <button class="sign_in-btn btn btn-success">Sign in</button>
-          </form>
-        </div>
+        
 
     </div>
   </div>
