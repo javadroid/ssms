@@ -6,17 +6,17 @@
       <!-- signup_form begins here -->
       <div class="access_form-container">
         <h2 class="form_title">
-          Sign up
-          <span class="d-block">Sign up on this platform to use it</span>
+          Login
+          <span class="d-block">Login to this platform to use it</span>
         </h2>
         <form [formGroup]="loginForm">
           <div class="input_container mb-3">
             <label for="" class="d-block">Email</label>
-            <input [formControl]="loginForm.controls.email" type="text" class="form-control" placeholder="Email" />
+            <input [formControl]="loginForm.controls.email" type="text" class="form-control" placeholder="Enter your email" />
           </div>
           <div class="input_container mb-3">
             <label for="" class="d-block">Password</label>
-            <input [formControl]="loginForm.controls.password" type="text" class="form-control" placeholder="Password" />
+            <input [formControl]="loginForm.controls.password" type="text" class="form-control" placeholder="Enter your password" />
           </div>
           
           <p class="alternative">Don't have an account? <button class="btn">Sign up</button></p>

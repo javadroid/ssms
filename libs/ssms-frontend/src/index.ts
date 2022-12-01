@@ -8,4 +8,4 @@ export * from './lib/sign-up/sign-up.module';
 export * from './lib/login/login.module';
 export * from './lib/organization-signup/organization-signup.module';
 export * from './lib/organization-signin/organization-signin.module';
-
+export * from './lib/personnel-register/personnel-register.module';

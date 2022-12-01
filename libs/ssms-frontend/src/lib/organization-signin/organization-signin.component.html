@@ -1,1 +1,282 @@
-<p>organization-signin works!</p>
+<body>
+  {{OrganizationsignInForm.value | json}}
+  <div class="staff_reg-form d-flex">
+    <div class="bg w-50"></div>
+    <div class="form_container w-50">
+      <!-- security personnel registration form (splitted into 2 === primary info and contact info) -->
+      <div class="access_form-container d-none">
+        <h2 class="form_title">
+          Sign up
+          <span class="d-block">Sign up on this platform to use it</span>
+        </h2>
+        <form >
+
+          <!-- stepper btn container -->
+          <div class="stepper-container">
+            <div class="step_count d-flex align-items-center">
+              <button  class=" btn step_btn active">
+                <span>1</span> Primary information
+              </button>
+              <button class="btn step_btn">
+                <span>2</span>Contact information
+              </button>
+            </div>
+          </div>
+
+          <!-- step 1 (primary information) -->
+          <div  class="primary_info-container d-none">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Rank</label>
+              <select name="" id="" class="form-control">
+                <option value="">Select Rank</option>
+              </select>
+            </div>
+
+            <div class="d-flex w-100 justify-content-between name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">First name</label>
+                <input [formControl]="OrganizationsignInForm.controls.email"
+                  type="text"
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Last name</label>
+                <input [formControl]="OrganizationsignInForm.controls.password"
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Middle name</label>
+                <input 
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+
+            <div
+              class="selection-container d-flex align-items-center justify-content-between"
+            >
+              <div class="input_container mb-3">
+                <label for="" class="d-block">State of service</label>
+                <select name="" id="" class="form-control selected">
+                  <option value="">Rivers state</option>
+                </select>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">L.G.A of service</label>
+                <select name="" id="" class="form-control selected">
+                  <option value="">Obio Akpor</option>
+                </select>
+              </div>
+
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Station</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Select station</option>
+                </select>
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Department</label>
+              <select name="" id="" class="form-control">
+                <option value="">Select Department</option>
+              </select>
+            </div>
+
+            <div class="d-flex division justify-content-between">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Branch/division</label>
+                <select name="" id="" class="form-control selected">
+                  <option value="">Select option</option>
+                </select>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Division head</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Select Division head</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- step 2 (contact information) -->
+
+          <div class="contact_information ">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Email</label>
+              <input type="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Phone number</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Phone number"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Ref number(Auto generated)</label>
+              <input type="number" class="form-control" />
+            </div>
+          </div>
+
+          <p class="alternative">
+            Already have an account? <button class="btn">Sign in</button>
+          </p>
+
+          <button class="sign_in-btn btn btn-success">Sign up</button>
+        </form>
+      </div>
+      <!-- security personnel registration form ends here -->
+
+
+      <!-- organization/contact person registration form (splitted into 2 === primary info and contact info) -->
+
+      <div class="access_form-container">
+        <h2 class="form_title">
+          Sign up
+          <span class="d-block">Sign up on this platform to use it</span>
+        </h2>
+        <form>
+
+          <!-- stepper btn container -->
+          <div class="stepper-container">
+            <div class="step_count d-flex align-items-center">
+              <a  class=" btn step_btn active">
+                <span>1</span> Organizational information
+              </a>
+              <a class="btn step_btn">
+                <span>2</span>Contact Person's Information
+              </a>
+            </div>
+          </div>
+          <!-- <button (click)="stepper=false; stepperbtnactive=true" class="btn btn-success">Next</button> -->
+
+          <!-- step 1 (Organization primary information) -->
+
+          <div class="primary_info-container">
+            <div
+              class="selection-container d-flex align-items-center justify-content-between"
+            >
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Type of Agency</label>
+                <select name="" id="" class="form-control selected">
+                  <option value="">Select</option>
+                  <option value="">Public</option>
+                  <option value="">Private</option>
+                </select>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Category of org.</label>
+                <select name="" id="" class="form-control selected">
+                  <option value="">Select</option>
+                  <option value="">security Service</option>
+                  <option value="">Intelligence Agency</option>
+                  <option value="">Law Enforcement</option>
+                  <option value="">Vigilante</option>
+                </select>
+              </div>
+
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Name of Org.</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Select</option>
+                  <option value="">Police, Navy etc.</option>
+                  <option value="">NIA, DIA</option>
+                  <option value="">EFCC, NDLEA</option>
+                  <option value="">AMOTEKUN, OSPAC</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Address</label>
+              <input type="text" class="form-control" placeholder="Address" />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Description of Role</label>
+              <input type="text" class="form-control" placeholder="Description of Role" />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Organization Email</label>
+              <input type="text" class="form-control" placeholder="Organization Email" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">LandLine / Mobile</label>
+              <input type="text" class="form-control" placeholder="LandLine / Mobile" />
+            </div>
+            <button class="btn btn-success">Next</button>
+          </div>
+
+          <!-- step 2 (Organization contact information) -->
+
+          <div class="contact_information ">
+            <div class="d-flex w-100 justify-content-between name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Last name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Middle name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Rank / Designation</label>
+              <input type="text" class="form-control" placeholder="Rank / Designation" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Official_Email</label>
+              <input type="email" class="form-control" placeholder="Official Email" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Official Phone number</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Official Phone number"
+              />
+            </div>
+
+
+
+          <p class="alternative">
+            Already have an account? <a routerLink="/organization-signin" >Sign in</a>
+          </p>
+          <label class="sign_in-btn btn btn-success" for="actual-btn">Upload</label>
+          <input id="actual-btn" hidden type="file" />
+          <button class="sign_in-btn btn btn-success">Sign up</button>
+          </div>
+        </form>
+      </div>
+
+
+      
+
+  </div>
+</div>
+</body>
