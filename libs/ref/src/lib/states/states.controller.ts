@@ -1,4 +1,4 @@
-import { 
+import {
     Body,
     Controller,
     Delete,
@@ -25,12 +25,12 @@ export class StatesController {
     findAll() {
         return this.statesService.findAll();
           }
-  
+
     @Get(':id')
     async findbyId(@Param('id') id: string) {
       return this.statesService.findbyId(id);
     }
-  
+
     @Get(':id/:value')
     async findbyAny(@Param('id') id: string, @Param('value') value: string) {
       if (id === 'nameOfState' || id === 'subscriberId') {
@@ -39,15 +39,15 @@ export class StatesController {
         throw new NotFoundException("fleid '" + id + "' not found");
       }
     }
-  
+
     @Patch(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: StatesDTO) {
       return this.statesService.update(_Id, updated);
     }
-  
+
     @Delete(':_id')
     async delete(@Param('_id') _Id: string) {
       return this.statesService.delete(_Id);
     }
-  
+
 }

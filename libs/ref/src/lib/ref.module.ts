@@ -20,13 +20,54 @@ import { BranchService } from './branch/branch.service';
 import { StationService } from './station/station.service';
 import { LgaService } from './lga/lga.service';
 import { StatesService } from './states/states.service';
-
-
+import { MongooseModule } from '@nestjs/mongoose';
+import {
+  Organizationcategory,
+  OrganizationcategorySchema,
+} from '../schema/organizationcategory.schema';
+import { Station, StationSchema } from '../schema/station.schema';
+import { Department, DepartmentSchema } from '../schema/department.schema';
+import { Organizationname, OrganizationnameSchema } from '../schema/organizationname.schema';
+import { Branch, BranchSchema } from '../schema/branch.schema';
+import { Lga, LgaSchema } from '../schema/lga.schema';
+import { States, StatesSchema } from '../schema/states.schema';
 
 @Module({
-  controllers: [OrganizationcategoryController, DepartmentController, OrganizationnameController, BranchController, StationController, LgaController, StatesController ],
-  providers: [OrganizationcategoryService, DepartmentService, OrganizationnameService, BranchService, StationService, LgaService, StatesService],
+  controllers: [
+    OrganizationcategoryController,
+    DepartmentController,
+    OrganizationnameController,
+    BranchController,
+    StationController,
+    LgaController,
+    StatesController,
+  ],
+  providers: [
+    OrganizationcategoryService,
+    DepartmentService,
+    OrganizationnameService,
+    BranchService,
+    StationService,
+    LgaService,
+    StatesService,
+  ],
   exports: [],
-  imports: [StatesModule, LgaModule, OrganizationcategoryModule, OrganizationnameModule, BranchModule, DepartmentModule, StationModule],
+  imports: [
+    MongooseModule.forFeature([
+      { name: Organizationcategory.name, schema: OrganizationcategorySchema },
+    ]),MongooseModule.forFeature([{ name: Station.name, schema: StationSchema }]),
+    MongooseModule.forFeature([{ name: Department.name, schema: DepartmentSchema }]),
+    MongooseModule.forFeature([{ name: Organizationname.name, schema: OrganizationnameSchema }]),
+    MongooseModule.forFeature([{ name: States.name, schema: StatesSchema }]),
+    MongooseModule.forFeature([{ name: Lga.name, schema: LgaSchema }]),
+    MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }]),
+    StatesModule,
+    LgaModule,
+    OrganizationcategoryModule,
+    OrganizationnameModule,
+    BranchModule,
+    DepartmentModule,
+    StationModule,
+  ],
 })
 export class RefModule {}

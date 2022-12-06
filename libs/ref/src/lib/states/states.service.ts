@@ -17,7 +17,7 @@ export class StatesService {
         throw new NotAcceptableException(error.message);
       }
     }
-  
+
     async findAll(): Promise<States[]> {
       try {
         return this.StatesModel.find().exec();
@@ -25,7 +25,7 @@ export class StatesService {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async findbyId(id: any): Promise<States> {
       try {
         return this.StatesModel.findById(id).exec();
@@ -33,16 +33,16 @@ export class StatesService {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async findbyAny(id: string, value: string): Promise<States[]> {
-  
+
       const result = await this.StatesModel.find({ [id]: value }).exec();
       if (!result) {
         throw new NotFoundException(value+' not found in fleid ' +id);
       }
       return result;
     }
-  
+
     async update(_id: string, updateStates: StatesDTO): Promise<States> {
       try {
         return this.StatesModel.findByIdAndUpdate({ _id }, updateStates).exec();
@@ -50,7 +50,7 @@ export class StatesService {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async delete(_id: string): Promise<States> {
       try {
         return this.StatesModel.findByIdAndDelete({ _id }).exec();

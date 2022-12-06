@@ -17,7 +17,7 @@ export class StationService {
         throw new NotAcceptableException(error.message);
       }
     }
-  
+
     async findAll(): Promise<Station[]> {
       try {
         return this.StationModel.find().exec();
@@ -25,7 +25,7 @@ export class StationService {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async findbyId(id: any): Promise<Station> {
       try {
         return this.StationModel.findById(id).exec();
@@ -33,24 +33,24 @@ export class StationService {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async findbyAny(id: string, value: string): Promise<Station[]> {
-  
+
       const result = await this.StationModel.find({ [id]: value }).exec();
       if (!result) {
         throw new NotFoundException(value+' not found in fleid ' +id);
       }
       return result;
     }
-  
-    async update(_id: string, updateStates: StationDTO): Promise<Station> {
+
+    async update(_id: string, updateStation: StationDTO): Promise<Station> {
       try {
         return this.StationModel.findByIdAndUpdate({ _id }, updateStation).exec();
       } catch (error) {
         throw new NotFoundException(error.message);
       }
     }
-  
+
     async delete(_id: string): Promise<Station> {
       try {
         return this.StationModel.findByIdAndDelete({ _id }).exec();

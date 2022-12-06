@@ -1,5 +1,5 @@
 <body>
- 
+
   <div class="staff_reg-form d-flex">
     <div class="bg w-50"></div>
     <div class="form_container w-50">
@@ -84,6 +84,7 @@
                   class="form-control selected"
                 >
                   <option value="">Obio Akpor</option>
+
                 </select>
               </div>
 
@@ -134,12 +135,12 @@
                   <option value="">Select Division head</option>
                 </select>
               </div>
-              
+
             </div>
             <p class="alternative">
                 Already have an account? <a class="btn">Sign in</a>
               </p>
-    
+
               <a  (click)="stepper=true; stepperactive=true" class="sign_in-btn btn btn-success">Next</a>
           </div>
 
@@ -171,16 +172,16 @@
             <p class="alternative">
                 Already have an account? <a class="btn">Sign in</a>
               </p>
-    
+
               <a  (click)="stepper=true; stepperactive=true" class="sign_in-btn btn btn-success">Submit</a>
           </div>
 
-          
+
         </form>
       </div>
       <!-- security personnel registration form ends here -->
     </div>
   </div>
-  
+
 </body>
 {{ PersonnelRegisterForm.value | json }}
