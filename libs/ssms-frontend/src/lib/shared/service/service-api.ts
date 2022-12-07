@@ -29,4 +29,11 @@ export class ServiceApi {
         return this.http.post(`http://localhost:3333/api/${model}/file`, file)
       }
 
+      login(model:string,login:any):Observable<any>{
+        return this.http.post(`http://localhost:3333/api/${model}/login`, login)
+      }
+      profile(model:string):Observable<any>{
+        return this.http.get(`http://localhost:3333/api/${model}/profile`)
+      }
+
 }

@@ -15,4 +15,10 @@ export class LoginComponent implements OnInit {
   constructor(private http:ServiceApi) {}
 
   ngOnInit(): void {}
+
+onSubmit(){
+  this.http.login('organization', this.loginForm.value).subscribe(e=>{
+    console.log(e)
+  })
+}
 }
