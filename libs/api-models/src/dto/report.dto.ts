@@ -1,7 +1,8 @@
 export class ReportDTO{
-    state: string;
-    crimeId: string;
-    policy: string;
-    crimeCategory: string;
-
+    location: string;
+    title:string;
+    reportCategory: string;
+    reportType:string;
+    details:string;
+    url:string[];
 }

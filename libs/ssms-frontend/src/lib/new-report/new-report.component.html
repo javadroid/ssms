@@ -1,0 +1,62 @@
+<section id="head">
+  <div class="container-fluid">
+    <h1>Enter Report</h1>
+  </div>
+</section>
+<form [formGroup]="reportForm">
+  <section id="dropdown_menu">
+    <h3>choose your report type</h3>
+
+    <div class="container">
+      <div class="container dropdownbar">
+        <div class="col">
+          <select [formControl]="reportForm.controls.reportType" #report (change)="onSelected(reportForm.controls.reportType.value!)">
+            <option default>Report Type</option>
+            <option>Emergency</option>
+            <option>Crime</option>
+            <option>Others</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <select  [formControl]="reportForm.controls.reportCategory"  *ngIf="reportTime.length !== 0" #teams>
+            <option default>Report Category</option>
+            <option *ngFor="let i of reportTime">{{ i }}</option>
+          </select>
+        </div>
+
+        <input type="hidden" id="vote" value="" />
+      </div>
+    </div>
+  </section>
+
+  <section id="input">
+    <div class="container flex">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+
+        <ssms-input [placeholder]="'example: fire outbreak'" [control]="reportForm.controls.title"></ssms-input>
+        <label for="exampleFormControlInput1" class="form-label">Location</label>
+        <ssms-input [placeholder]="'example: port-harcourt Rivers State'" [control]="reportForm.controls.location"></ssms-input>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Details</label
+          >
+          <ssms-textarea [control]="reportForm.controls.details"></ssms-textarea>
+        </div>
+
+        <input  multiple (formdata)="fileData" type="file" class="file-input" (change)="selectFiles($event)"/>
+
+      </div>
+
+      <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+        <ul *ngFor="let msg of message; let i = index">
+            <li>{{msg}}</li>
+        </ul>
+    </div> 
+    </div>
+    <div class="set">
+      <button [disabled]="!reportForm.valid" (click)="onSubmit()" class="btn btn-secondary sub">Submit Report</button>
+    </div>
+  </section>
+</form>

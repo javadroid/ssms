@@ -91,69 +91,28 @@
 <br><br>
 
 <div id="mybutton">
-  <a>
-    <i class="user icon"></i>
-    2 Members
-  </a>
+ 
 <!-- <button  type="button" class="btn btn-success feedback radu"><span style="text-size-adjust: 50px;">+</span></button> -->
-<img   width="64px"  class="feedback" src="assets/add.png" alt="">
+<img  (click)="onAdd()"  width="64px"  class="feedback" src="assets/add.png" alt=""/>
 </div>
-  <div class="card">
+  <div *ngFor="let i of allReport" class="card">
+    
     <div class="card-header">
-      Quote
+      {{i.title}}
     </div>
-    <div class="card-body">
+    <div  class="card-body">
       <blockquote class="blockquote mb-0">
         <p >
-          ..
-          ..
-          ..
+          {{i.details}}
         </p>
+        
         <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
       </blockquote>
+      
     </div>
-
-    <div class="card-header">
-
-    </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p >
-          ..
-          ..
-          ..
-        </p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-      </blockquote>
-    </div>
-
-    <div class="card-header">
-
-    </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p >
-          ..
-          ..
-          ..
-        </p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-      </blockquote>
-    </div>
-
-    <div class="card-header">
-
-    </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p >
-          ..
-          ..
-          ..
-        </p>
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-      </blockquote>
-    </div>
+    <br><br>
+ 
+   
 
   </div>
 </div>

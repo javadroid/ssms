@@ -17,13 +17,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // ];
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent, NxWelcomeComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,FormsModule,],
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppModule {}
