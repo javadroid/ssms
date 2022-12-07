@@ -7,7 +7,7 @@ import { Organization, OrganizationDoc } from '../../schema/organization.schema'
 
 @Injectable()
 export class OrganizationService {
-  constructor(private jwtService: JwtService,@InjectModel(Organization.name) private organizationModel: Model<OrganizationDoc>) {}
+  constructor(@InjectModel(Organization.name) private organizationModel: Model<OrganizationDoc>) {}
 
   async create(createOrganization: OrganizationDTO): Promise<Organization> {
     try {
