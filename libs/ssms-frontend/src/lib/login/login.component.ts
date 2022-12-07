@@ -14,7 +14,14 @@ export class LoginComponent implements OnInit {
   });
   constructor(private http:ServiceApi) {}
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+     await this.http.profile('organization').subscribe(a=>{
+
+
+      console.log("profile",a)
+    })
+
+  }
 
 onSubmit(){
   console.log(this.loginForm.value)

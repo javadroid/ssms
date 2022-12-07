@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceApi {
+  getAuthToken() {
+    return localStorage.getItem('token');
+  }
 
   constructor(private http: HttpClient){}
 
@@ -30,7 +33,7 @@ export class ServiceApi {
       }
 
       login(model:string,login:any):Observable<any>{
-        return this.http.post(`http://localhost:3333/api/${model}/login`, login)
+        return this.http.post(`http://localhost:3333/api/${model}/login`, login).pipe(tap((x:any)=> localStorage.setItem('token',x.access_token)))
       }
       profile(model:string):Observable<any>{
         return this.http.get(`http://localhost:3333/api/${model}/profile`)
