@@ -9,7 +9,7 @@ import {FormGroup, FormControl} from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   loginForm=new FormGroup({
-    email: new FormControl('', []),
+    username: new FormControl('', []),
     password: new FormControl('', [])
   });
   constructor(private http:ServiceApi) {}
@@ -17,8 +17,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
 onSubmit(){
-  this.http.login('organization', this.loginForm.value).subscribe(e=>{
+  console.log(this.loginForm.value)
+  if(this.loginForm.controls.username.value?.split('-')[0]==='ORG'){
+    this.http.login('organization', this.loginForm.value).subscribe(e=>{
+      console.log(e)
+    })
+  }else if(this.loginForm.controls.username.value?.split('-')[0]==='PRE'){
+    this.http.login('personnel', this.loginForm.value).subscribe(e=>{
+      console.log(e)
+    })
+  }else{ this.http.login('personnel', this.loginForm.value).subscribe(e=>{
     console.log(e)
-  })
+  })}
+
 }
 }

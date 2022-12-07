@@ -1,8 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards ,Request} from '@nestjs/common';
 import { PersonnelDTO } from '../../dto/personnel.dto';
-import { JwtAuthGuard } from '../organization/auth/authGuard/jwtAuthGuard';
-import { LocalAuthGuard } from '../organization/auth/authGuard/localAuthGuard';
+
 import { PersonnelAuthService } from './auth/auth/personnel.auth.service';
+import { JwtAuthGuard } from './auth/authGuard/jwtAuthGuard';
+import { LocalAuthGuard } from './auth/authGuard/localAuthGuard';
 import { PersonnelService } from './personnel.service';
 
 @Controller('personnel')

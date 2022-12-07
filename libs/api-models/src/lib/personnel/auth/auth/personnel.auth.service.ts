@@ -9,7 +9,8 @@ export class PersonnelAuthService {
   }
   async validateUser(username: string,password: string): Promise<any>{
 
-    console.log("useruser1",username)
+    console.log("user",username)
+
     const user =await this.personnelService.findbyAny('email',username)
 
 console.log("useruser2",user)
