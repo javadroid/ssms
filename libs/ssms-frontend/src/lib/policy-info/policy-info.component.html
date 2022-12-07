@@ -1,0 +1,96 @@
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2>Order <b>Details</b></h2>
+                    </div>
+                    <div class="col-sm-8">
+                        <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
+                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-filter">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="show-entries">
+                            <span>Show</span>
+                            <select class="form-control">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                                <option>20</option>
+                            </select>
+                            <span>entries</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="filter-group">
+                            <label>for</label>
+                            <input [disabled]="keyValue===''" #event (keyup)="find(event.value)" placeholder="search..." type="text" class="form-control">
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Search in field</label>
+                            <select  #teams (change)="keyValue=(teams.value)" class="form-control">
+                                <option default>Select one</option>
+                                <option *ngFor="let s of key">{{s}}</option>
+
+                            </select>
+                        </div>
+                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><span class="custom-checkbox">
+                            <input type="checkbox" id="checkbox5" name="options[]" value="1">
+                            <label for="checkbox5"></label>
+                        </span></th>
+                        <th *ngFor="let s of key">{{s}}</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let k of dataModel">
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox5" name="options[]" value="1">
+								<label for="checkbox5"></label>
+							</span>
+						</td>
+                       <ng-container >
+                        <td
+
+                        [ngClass]="makeTableClassID(s, dataModel, k)"
+                        *ngFor="let s of key"
+                      >
+                        <input (click)="update($event)" clickable [disabled]="updateInput" [value]="k[s]" type="text" />
+                      </td>
+
+                        </ng-container>
+                        </tr>
+
+
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">6</a></li>
+                    <li class="page-item"><a href="#" class="page-link">7</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
