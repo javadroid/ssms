@@ -1,8 +1,8 @@
 import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { NonCrimeIncidentDto } from '../../dto/nonCrimeIncident.dto';
-import { NonCrimeIncident, NonCrimeIncidentDoc } from '../../schema/nonCrimeIncident.schema';
+import { NonCrimeIncidentDto } from '../../dto/noncrimeincident.dto';
+import { NonCrimeIncident, NonCrimeIncidentDoc } from '../../schema/noncrimeincident.schema';
 
 @Injectable()
 export class NonCrimeIncidentService {
