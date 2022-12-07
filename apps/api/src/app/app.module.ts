@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import {  PolicyInfoModule, ReportModule } from '@ssms/api-models';
+import {  OrganizationModule, PolicyInfoModule, ReportModule } from '@ssms/api-models';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -10,7 +10,7 @@ import { RefModule } from '@ssms/ref';
 @Module({
   imports: [ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGOOSE_LINK),
-    ReportModule,PolicyInfoModule,RefModule],
+    ReportModule,PolicyInfoModule,RefModule,OrganizationModule],
   controllers: [AppController],
   providers: [AppService],
 })
