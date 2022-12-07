@@ -10,7 +10,7 @@ export class OrganizationAuthService {
   async validateUser(username: string,password: string): Promise<any>{
 
     console.log("useruser1",username)
-    username = username.split('-')[1]
+
     const user =await this.organizationService.findbyAny('organizationEmail',username)
 
 console.log("useruser2",user)

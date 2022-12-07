@@ -26,9 +26,7 @@ onSubmit(){
     this.http.login('personnel', this.loginForm.value).subscribe(e=>{
       console.log(e)
     })
-  }else{ this.http.login('personnel', this.loginForm.value).subscribe(e=>{
-    console.log(e)
-  })}
+  }
 
 }
 }

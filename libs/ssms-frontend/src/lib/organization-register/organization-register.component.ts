@@ -48,7 +48,7 @@ export class OrganizationRegisterComponent implements OnInit {
     this.http
       .create('organization', this.OrganizationsignUpForm.value)
       .subscribe((e) => {
-        this.display = [{ email: e.organizationEmail, password: e.password }];
+        this.display = [{ email: 'ORG-'+e.organizationEmail, password: e.password }];
         this.OrganizationsignUpForm.reset();
       });
   }

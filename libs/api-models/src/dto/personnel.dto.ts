@@ -22,5 +22,5 @@ export class PersonnelDTO{
     email: string
     branch: string
     password: string
-    sub : string
+    subcriberID : string
   }
