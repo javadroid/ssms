@@ -15,7 +15,7 @@ export class LocalStrategy extends PassportStrategy(Strategy,"personnel"){
 
     async validate(username: string, password: string): Promise<any>{
       console.log("console.log(users)",username)
-      if(username.split('-')[0]==='PRE'){
+      if(username.split('-')[0]==='PER'){
     username = username.split('-')[1]
           const user=await this.personnelAuthService.validateUser(username, password);
 
