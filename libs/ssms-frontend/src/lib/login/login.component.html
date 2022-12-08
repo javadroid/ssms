@@ -12,16 +12,16 @@
         <form [formGroup]="loginForm">
           <div class="input_container mb-3">
             <label for="" class="d-block">Email</label>
-            <input [formControl]="loginForm.controls.email" type="text" class="form-control" placeholder="Enter your email" />
+            <input [formControl]="loginForm.controls.username" type="text" class="form-control" placeholder="Enter your email" />
           </div>
           <div class="input_container mb-3">
             <label for="" class="d-block">Password</label>
             <input [formControl]="loginForm.controls.password" type="password" class="form-control" placeholder="Enter your password" />
           </div>
 
-          <p class="alternative">Don't have an account? <button class="btn">Sign up</button></p>
 
-          <button class="sign_in-btn btn btn-success">Sign in</button>
+
+          <a (click)="onSubmit()" class="sign_in-btn btn btn-success">Sign in</a>
         </form>
       </div>
     </div>
