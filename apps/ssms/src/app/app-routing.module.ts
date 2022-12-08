@@ -18,6 +18,7 @@ const routes: Routes = [
 
   {path: 'sign-up',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.SignUpModule)},
   {path: 'login',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.LoginModule)},
+  {path: 'ref',loadChildren: () => import('@ssms/ref-front').then(m => m.RefFrontModule)},
 
 ];
 

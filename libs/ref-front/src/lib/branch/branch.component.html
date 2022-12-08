@@ -1,0 +1,34 @@
+<body>
+  {{branchForm.value | json}}
+  <div class="access_container d-flex">
+    <div class="bg w-50"></div>
+    <div class="form_container w-50">
+      <!-- signup_form begins here -->
+      <div class="access_form-container">
+        <h2 class="form_title">
+          Login
+          <span class="d-block">Login to this platform to use it</span>
+        </h2>
+        <form [formGroup]="branchForm">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">subcriberId</label>
+            <input [formControl]="branchForm.controls.subcriberId" type="text" class="form-control" placeholder="Enter your email" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">branchName</label>
+            <input [formControl]="branchForm.controls.branchName" type="password" class="form-control" placeholder="Enter your password" />
+          </div>
+
+
+
+          <a (click)="onCreate()" class="sign_in-btn btn btn-success">Create</a>
+          <a (click)="onEdit()" class="sign_in-btn btn btn-warning">Edit</a>
+          <a (click)="onDelete()" class="sign_in-btn btn btn-danger">Delete</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
