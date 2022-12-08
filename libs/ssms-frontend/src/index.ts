@@ -10,4 +10,5 @@ export * from './lib/organization-signup/organization-signup.module';
 export * from './lib/organization-signin/organization-signin.module';
 export * from './lib/personnel-register/personnel-register.module';
 export * from './lib/organization-register/organization-register.module';
+export * from './lib/organization-update/organization-update.module';
 export * from './lib/shared/service/jwt-interceptor';

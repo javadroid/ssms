@@ -24,7 +24,7 @@ export class BranchComponent implements OnInit {
   }
   onDelete() {
 
-    this.http.delete('branch',)
+    this.http.delete('branch','')
     }
     onEdit() {
     this.http
