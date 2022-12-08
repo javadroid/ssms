@@ -15,11 +15,20 @@ export class LoginComponent implements OnInit {
   constructor(private http:ServiceApi) {}
 
   async ngOnInit(): Promise<void> {
-     await this.http.profile('organization').subscribe(a=>{
+
+    if(localStorage.getItem('email')?.split('-')[0]==='ORG'){
+      await this.http.profile('organization').subscribe(a=>{
 
 
-      console.log("profile",a)
-    })
+        console.log("profile",a)
+      })
+    }else if(localStorage.getItem('email')?.split('-')[0]==='PER'){
+      await this.http.profile('personnel').subscribe(a=>{
+
+
+        console.log("profile",a)
+      })
+    }else console.log('nssssss',localStorage.getItem('email'))
 
   }
 
@@ -29,7 +38,7 @@ onSubmit(){
     this.http.login('organization', this.loginForm.value).subscribe(e=>{
       console.log(e)
     })
-  }else if(this.loginForm.controls.username.value?.split('-')[0]==='PRE'){
+  }else if(this.loginForm.controls.username.value?.split('-')[0]==='PER'){
     this.http.login('personnel', this.loginForm.value).subscribe(e=>{
       console.log(e)
     })
