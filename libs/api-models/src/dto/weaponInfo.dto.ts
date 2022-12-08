@@ -5,3 +5,4 @@ export class WeaponInfoDTO{
     dateOfPurchase: string;
     specification: string;
 }
+

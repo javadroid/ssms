@@ -14,6 +14,8 @@ export class VictimInfo {
     @Prop()
     lastName: string;
     @Prop()
+    middleName: string;
+    @Prop()
     address: string;
     @Prop()
     dateOfBirth: string;

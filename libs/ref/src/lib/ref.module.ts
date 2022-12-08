@@ -31,6 +31,14 @@ import { Organizationname, OrganizationnameSchema } from '../schema/organization
 import { Branch, BranchSchema } from '../schema/branch.schema';
 import { Lga, LgaSchema } from '../schema/lga.schema';
 import { States, StatesSchema } from '../schema/states.schema';
+import { PolicyController } from './policy/policy.controller';
+import { PolicyModule } from './policy/policy.module';
+import { PolicyService } from './policy/policy.service';
+import { Policy, PolicySchema } from '../schema/policy.schema';
+import { WeaponController } from './weapon/weapon.controller';
+import { WeaponModule } from './weapon/weapon.module';
+import { DivisionController } from './division/division.controller';
+import { DivisionModule } from './division/division.module';
 
 @Module({
   controllers: [
@@ -41,6 +49,9 @@ import { States, StatesSchema } from '../schema/states.schema';
     StationController,
     LgaController,
     StatesController,
+    PolicyController,
+    WeaponController,
+    DivisionController,
   ],
   providers: [
     OrganizationcategoryService,
@@ -50,6 +61,7 @@ import { States, StatesSchema } from '../schema/states.schema';
     StationService,
     LgaService,
     StatesService,
+    PolicyService,
   ],
   exports: [],
   imports: [
@@ -61,6 +73,7 @@ import { States, StatesSchema } from '../schema/states.schema';
     MongooseModule.forFeature([{ name: States.name, schema: StatesSchema }]),
     MongooseModule.forFeature([{ name: Lga.name, schema: LgaSchema }]),
     MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }]),
+    MongooseModule.forFeature([{ name: Policy.name, schema: PolicySchema }]),
     StatesModule,
     LgaModule,
     OrganizationcategoryModule,
@@ -68,6 +81,9 @@ import { States, StatesSchema } from '../schema/states.schema';
     BranchModule,
     DepartmentModule,
     StationModule,
+    PolicyModule,
+    WeaponModule,
+    DivisionModule,
   ],
 })
 export class RefModule {}

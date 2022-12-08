@@ -21,7 +21,7 @@ export class Report {
     @Prop()
     details:string;
     @Prop()
-    url:string[];
+    evidence:string[];
 
 
 

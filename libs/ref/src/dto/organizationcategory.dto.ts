@@ -1,4 +1,4 @@
 export class OrganizationcategoryDTO{
-    organizationcategoryId: string;
+    subscriberId: string;
     organizationCategoryName: string;
 }
