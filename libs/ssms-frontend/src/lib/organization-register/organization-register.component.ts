@@ -8,52 +8,74 @@ import { ServiceApi } from '../shared/service/service-api';
   styleUrls: ['./organization-register.component.css'],
 })
 export class OrganizationRegisterComponent implements OnInit {
-  organizationcategory=[]as any[]
-  organizationName=[]as any[]
-  display=[]as any[]
+  organizationcategory = [] as any[];
+  organizationName = [] as any[];
+  display = [] as any[];
 
-  OrganizationsignUpForm=new FormGroup({
-    typeofagency: new FormControl('', []),
-    categoryofagency: new FormControl('', []),
-    nameoforganization:new FormControl('', []),
-    address:new FormControl('', []),
-    descriptionofrole:new FormControl('', []),
-    organizationsemail:new FormControl('', []),
-    landline:new FormControl('', []),
+  OrganizationsignUpForm = new FormGroup({
+    typeOfAgency: new FormControl('', []),
+    categoryOfagency: new FormControl('', []),
+    organizationName: new FormControl('', []),
+    address: new FormControl('', []),
+    descriptionOfRole: new FormControl('', []),
+    organizationEmail: new FormControl('', []),
+    landline: new FormControl('', []),
     firstname: new FormControl('', []),
     lastname: new FormControl('', []),
     middlename: new FormControl('', []),
     rank: new FormControl('', []),
     officialemail: new FormControl('', []),
     officialphone: new FormControl('', []),
-    stateofservice: new FormControl('', []),
-    lgaofservice: new FormControl('', [])
+    state: new FormControl('', []),
+    lga: new FormControl('', []),
+    password: new FormControl('', []),
   });
-  constructor(private http:ServiceApi) {}
+  constructor(private http: ServiceApi) {}
 
   ngOnInit(): void {
+    this.http.find('organizationcategory').subscribe((e) => {
+      this.organizationcategory = e;
+    });
 
-    this.http.find('organizationcategory').subscribe((e)=>{
-      this.organizationcategory=e
-    })
-
-    this.http.find('organizationname').subscribe((e)=>{
-      this.organizationName=e
-    })
-
+    this.http.find('organizationname').subscribe((e) => {
+      this.organizationName = e;
+    });
   }
 
   onSubmit(): void {
-    this.http.create('organization',this.OrganizationsignUpForm.value).subscribe(e=>{
-this.display=[{email:e.organizationEmail,password:e.password}]
-    })
+    this.passwordGenerate();
+
+    this.http
+      .create('organization', this.OrganizationsignUpForm.value)
+      .subscribe((e) => {
+        this.display = [{ email: 'ORG-'+e.organizationEmail, password: e.password }];
+        this.OrganizationsignUpForm.reset();
+      });
   }
 
-  stepper=true
-  stepperbtnactive=false
 
-  makeTableClassID(id:any){
+  makeTableClassID(id: any) {
+    return id;
+  }
 
-    return id
+  passwordGenerate() {
+    const alpha = 'abcdefghijklmnopqrstuvwxyz';
+    const calpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const num = '1234567890';
+    const specials = '!@#$%.&';
+    const options = [alpha, alpha, alpha, calpha, calpha, num, num, specials];
+    let opt, choose;
+let pass = "";
+for ( let i = 0; i < 8; i++ ) {
+  opt = Math.floor(Math.random() * options.length);
+  choose = Math.floor(Math.random() * (options[opt].length));
+  pass = pass + options[opt][choose];
+  options.splice(opt, 1);
+    }
+    console.log(pass);
+
+    this.OrganizationsignUpForm.patchValue({
+      password: pass,
+    });
   }
 }

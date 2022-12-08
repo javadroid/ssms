@@ -10,6 +10,7 @@ export class OrganizationAuthService {
   async validateUser(username: string,password: string): Promise<any>{
 
     console.log("useruser1",username)
+
     const user =await this.organizationService.findbyAny('organizationEmail',username)
 
 console.log("useruser2",user)
@@ -23,7 +24,8 @@ console.log("useruser2",user)
 
   async login(user:any){
     // console.log("users",user)
+
     const payload ={organizationEmail:user.organizationEmail,sub:user._id}
-    return {access_token: this.jwtService.sign(payload), id:user._id}
+    return {access_token: this.jwtService.sign(payload), _id:user._id,user_email:'ORG-'+user.organizationEmail}
   }
 }
