@@ -7,7 +7,7 @@ import { PersonnelAuthService } from "../auth/personnel.auth.service";
 
 
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy){
+export class LocalStrategy extends PassportStrategy(Strategy,"personnel"){
 
     constructor(private personnelAuthService:PersonnelAuthService){
         super()
@@ -15,11 +15,16 @@ export class LocalStrategy extends PassportStrategy(Strategy){
 
     async validate(username: string, password: string): Promise<any>{
       console.log("console.log(users)",username)
-        const user=await this.personnelAuthService.validateUser(username, password);
+      if(username.split('-')[0]==='PER'){
+    username = username.split('-')[1]
+          const user=await this.personnelAuthService.validateUser(username, password);
 
-        if(!user){
-            throw new UnauthorizedException();
-        }
-        return user;
+          if(!user){
+              throw new UnauthorizedException();
+          }
+          return user;
+      }
+      else{throw new UnauthorizedException(); }
+
     }
 }

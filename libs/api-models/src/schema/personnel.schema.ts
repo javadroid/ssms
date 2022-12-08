@@ -56,7 +56,7 @@ export class Personnel {
   @Prop()
   password: string
   @Prop()
-  sub : string
+  subcriberID : string
 
 
 }
