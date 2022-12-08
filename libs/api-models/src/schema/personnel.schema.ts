@@ -50,6 +50,10 @@ export class Personnel {
   @Prop()
   password: string;
   @Prop()
+  refNunmber: string;
+  @Prop()
+  organizationId: string;
+  @Prop()
   subcriberID: string;
 }
 

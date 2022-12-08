@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from '@ssms/ssms-frontend';
 
-
 // const routes: Routes = [
 //   {path: '', component:AppComponent},
 
@@ -18,7 +17,7 @@ import { JwtInterceptor } from '@ssms/ssms-frontend';
 // ];
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, ],
+  declarations: [AppComponent, NxWelcomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,7 +25,9 @@ import { JwtInterceptor } from '@ssms/ssms-frontend';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   exports: [RouterModule],
 })

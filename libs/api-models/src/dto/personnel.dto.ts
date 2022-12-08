@@ -21,5 +21,7 @@ export class PersonnelDTO {
   email: string;
   branch: string;
   password: string;
+  refNunmber: string;
+  organizationId: string;
   sub: string;
 }
