@@ -22,6 +22,7 @@ import { diskStorage } from 'multer';
 
 import { of } from 'rxjs';
 import { createReadStream } from 'node:fs';
+import { join } from 'node:path';
 
 @Controller('report')
 export class ReportController {
@@ -97,14 +98,11 @@ export class ReportController {
    names.push(file.path.split('\\')[1]);
   })
   return names
-  
+
   }
-
-
-
-  @Get('file')
-  findFile(@Body() id:string[],@Res() res ) {
-    // console.log(res.File(join(process.cwd(),'document'+id[0])))
-  // return res.sendFile(join(process.cwd(),'document'+id[0]))
+  @Get('file/:id')
+  findFile(@Param('id') id:string,@Res() res ) {
+    console.log(id)
+  return res.sendFile(join(process.cwd(),'document\\'+id))
   }
 }

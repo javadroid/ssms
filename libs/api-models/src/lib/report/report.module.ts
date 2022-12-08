@@ -6,7 +6,7 @@ import { ReportController } from './report.controller';
 import { ReportService } from './report.service';
 
 @Module({
-  imports:[MongooseModule.forFeature([{ name: Report.name, schema: ReportSchema }]),MulterModule.register({dest:'/uploads'})],
+  imports:[MongooseModule.forFeature([{ name: Report.name, schema: ReportSchema }]),],
   controllers: [ReportController],
   providers: [ReportService]
 })
