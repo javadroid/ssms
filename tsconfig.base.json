@@ -18,6 +18,7 @@
       "@ssms/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@ssms/api-models": ["libs/api-models/src/index.ts"],
       "@ssms/ref": ["libs/ref/src/index.ts"],
+      "@ssms/ref-front": ["libs/ref-front/src/index.ts"],
       "@ssms/ssms-frontend": ["libs/ssms-frontend/src/index.ts"]
     }
   },
