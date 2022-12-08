@@ -49,6 +49,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('@ssms/ssms-frontend').then((m) => m.PersonnelRegisterModule),
   },
+  {
+    path: 'organization-register',
+    loadChildren: () =>
+      import('@ssms/ssms-frontend').then((m) => m.OrganizationRegisterModule),
+  },
+
+  {
+    path: 'sign-up',
+    loadChildren: () =>
+      import('@ssms/ssms-frontend').then((m) => m.SignUpModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('@ssms/ssms-frontend').then((m) => m.LoginModule),
+  },
 
   {
     path: 'sign-up',

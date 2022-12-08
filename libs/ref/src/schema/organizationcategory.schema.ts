@@ -1,6 +1,6 @@
 import{
     Prop,
-    Schema, 
+    Schema,
     SchemaFactory,
 } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
@@ -11,8 +11,8 @@ export class Organizationcategory {
     @Prop()
     OrganizationcategoryId: string;
     @Prop()
-    naOrganizationCategoryName: string;
-     
+    organizationCategoryName: string;
+
 }
 
 export const OrganizationcategorySchema = SchemaFactory.createForClass(Organizationcategory);
