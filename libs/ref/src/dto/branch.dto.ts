@@ -1,4 +1,4 @@
 export class BranchDTO{
-    branchId: string;
-    branchNamee: string;
+    subscriberId: string;
+    branchName: string;
 }

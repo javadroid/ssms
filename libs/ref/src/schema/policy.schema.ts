@@ -5,14 +5,14 @@ import{
 } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type LgaDoc = HydratedDocument<Lga>;
+export type PolicyDoc = HydratedDocument<Policy>;
 @Schema({ timestamps: true })
-export class Lga {
+export class Policy {
     @Prop()
     subscriberId: string;
     @Prop()
-    LgaName: string;
+    policy: string;
      
 }
 
-export const LgaSchema = SchemaFactory.createForClass(Lga);
+export const PolicySchema = SchemaFactory.createForClass(Policy);

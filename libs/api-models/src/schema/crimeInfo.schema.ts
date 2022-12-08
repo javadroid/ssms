@@ -12,13 +12,13 @@ export class CrimeInfo {
     @Prop()
     crimeId: string;
     @Prop()
-    officerId: string;
-    @Prop()
-    securityAppId: string;
+    personnelId: string;
     @Prop()
     weaponId: string;
     @Prop()
     crimeCategory: string;
+    @Prop()
+    crimeType: string;
     @Prop()
     crimeDate: string;
     @Prop()
@@ -28,11 +28,7 @@ export class CrimeInfo {
     @Prop()
     incidentId: string;
     @Prop()
-    crimeEvidence: string;
-    @Prop()
-    policyId: string;
-    @Prop()
-    progressStatus: string;
+    evidence: string;
     @Prop()
     criminalId: string;
     @Prop()
