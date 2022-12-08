@@ -1,8 +1,5 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 
 @Component({
@@ -11,33 +8,56 @@ import { ServiceApi } from '../shared/service/service-api';
   styleUrls: ['./personnel-register.component.css'],
 })
 export class PersonnelRegisterComponent implements OnInit {
-    PersonnelRegisterForm=new FormGroup({
-      typeofagency: new FormControl('', []),
-      categoryofagency: new FormControl('', []),
-      nameoforganization:new FormControl('', []),
-      address:new FormControl('', []),
-      descriptionofrole:new FormControl('', []),
-      department:new FormControl('', []),
-      station:new FormControl('', []),
-      organizationsemail:new FormControl('', []),
-      landline:new FormControl('', []),
-      firstname: new FormControl('', []),
-      lastname: new FormControl('', []),
-      middlename: new FormControl('', []),
-      rank: new FormControl('', []),
-      officialemail: new FormControl('', []),
-      officialphone: new FormControl('', []),
-      stateofservice: new FormControl('', []),
-      lgaofservice: new FormControl('', []),
-      divisionhead: new FormControl('', []),
-      phone: new FormControl('', []),
-      email: new FormControl('', []),
-      branch: new FormControl('', [])
-    });
-  constructor(private http:ServiceApi) {}
+  firstShow = true;
+  showSecond = false;
+  stepper = false;
+  stepperactive = false;
+  PersonnelRegisterForm!: FormGroup;
 
-  ngOnInit(): void {}
-  
-  stepper=false;
-  stepperactive=false
+  constructor(
+    private http: ServiceApi,
+    private personnelformbuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.PersonnelRegisterForm = this.personnelformbuilder.group({
+      typeofagency: [''],
+      categoryofagency: [''],
+      nameoforganization: [''],
+      address: [''],
+      descriptionofrole: [''],
+      department: [''],
+      station: [''],
+      organizationsemail: [''],
+      landline: [''],
+      firstname: [''],
+      lastname: [''],
+      middlename: [''],
+      rank: [''],
+      officialemail: [''],
+      officialphone: [''],
+      stateofservice: [''],
+      lgaofservice: [''],
+      divisionhead: [''],
+      phone: [''],
+      email: [''],
+      branch: [''],
+    });
+  }
+
+  createNew() {
+    this.firstShow = false;
+    this.showSecond = true;
+  }
+  Backward() {
+    this.firstShow = true;
+    this.showSecond = false;
+  }
+  SubmitPersonnel() {
+    const data = this.PersonnelRegisterForm.value;
+
+    this.http.create('personnel', data).subscribe((n) => {
+      console.log('create personel', n);
+    });
+  }
 }
