@@ -15,4 +15,5 @@ export class OrganizationDTO{
     state: string
     lga: string
     password: string
+    status: string
 }

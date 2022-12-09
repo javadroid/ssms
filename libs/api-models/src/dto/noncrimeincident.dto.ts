@@ -1,7 +1,10 @@
 export class NonCrimeIncidentDto {
-    info:string;
+    details:string;
     locationId:string;
-    reportersId: string;
     reportId: string;
+    date: string;
+    time: string;
+    title: string;
     crimeId:string;
+    evidence: string;
  }

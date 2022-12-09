@@ -10,6 +10,8 @@ export class Lga {
   LgaName: string;
   @Prop()
   stateId: string;
+  @Prop()
+  subscriberId: string;
 }
 
 export const LgaSchema = SchemaFactory.createForClass(Lga);

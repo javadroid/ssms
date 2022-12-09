@@ -10,6 +10,8 @@ export class Department {
   departmentName: string;
   @Prop()
   organizationId: string;
+  @Prop()
+  subscriberId: string;
 }
 
 export const DepartmentSchema = SchemaFactory.createForClass(Department);

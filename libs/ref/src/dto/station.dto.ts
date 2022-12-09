@@ -1,4 +1,4 @@
 export class StationDTO{
-    stationId: string;
+    subscriberId: string;
     stationName: string;
 }

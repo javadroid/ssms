@@ -3,19 +3,19 @@ export class CriminalInfoDTO {
     crimeId: string;
     firstName: string;
     lastName: string;
+    middleName: string;
     phoneNumber: string;
     dateOfBirth: string;
     placeOfBirth: string;
     stateOfOrigin: string;
     lgaOfOrigin: string;
     occupation: string;
-    locationId: string;
+    address: string;
     education: string;
     biometrics: string;
     profilePic: string;
     nin: string;
     height: string;
     weight: string;
-    caseFileId: string;
     aliases: string;
 }

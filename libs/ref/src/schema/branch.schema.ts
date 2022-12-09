@@ -10,6 +10,8 @@ export class Branch {
   branchName: string;
   @Prop()
   organizationId: string;
+  @Prop()
+  subscriberId: string;
 }
 
 export const BranchSchema = SchemaFactory.createForClass(Branch);

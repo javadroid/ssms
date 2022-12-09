@@ -18,6 +18,8 @@ export class CriminalInfo {
     @Prop()
     lastName: string;
     @Prop()
+    MiddleNameName: string;
+    @Prop()
     phoneNumber: string;
     @Prop()
     dateOfBirth: string;
@@ -30,7 +32,7 @@ export class CriminalInfo {
     @Prop()
     occupation: string;
     @Prop()
-    locationId: string;
+    address: string;
     @Prop()
     education: string;
     @Prop()
@@ -43,8 +45,6 @@ export class CriminalInfo {
     height: string;
     @Prop()
     weight: string;
-    @Prop()
-    caseFileId: string;
     @Prop()
     aliases: string;
 }

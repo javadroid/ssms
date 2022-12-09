@@ -15,7 +15,10 @@
         "polyfills": "apps/ssms/src/polyfills.ts",
         "tsConfig": "apps/ssms/tsconfig.app.json",
         "assets": ["apps/ssms/src/favicon.ico", "apps/ssms/src/assets"],
-        "styles": ["apps/ssms/src/styles.css"],
+        "styles": [
+          "apps/ssms/src/styles.css",
+          "apps/ssms/src/sass/style.scss"
+        ],
         "scripts": []
       },
       "configurations": {
