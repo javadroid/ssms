@@ -1,4 +1,4 @@
 export class DepartmentDTO{
-    depatmentId: string;
+    subscriberId: string;
     departmentName: string;
 }

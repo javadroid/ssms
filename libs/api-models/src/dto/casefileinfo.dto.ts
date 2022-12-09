@@ -3,10 +3,8 @@ export class CaseFileInfoDTO {
     criminalId: string;
     crimeCategory: string;
     dateOfReport:string;
-    reportMedium:string;
-    divisionId:string;
-    criminalCategory:string;
-    officerId:string;
+    division:string;
+    personnelId:string;
     progressStatus:string;
     victimId:string;
     incidentId:string;

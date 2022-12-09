@@ -1,4 +1,4 @@
 export class LgaDTO{
-    lgaId: string;
+    subscriberId: string;
     lgaName: string;
 }

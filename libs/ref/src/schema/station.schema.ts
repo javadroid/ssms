@@ -9,7 +9,7 @@ export type StationDoc = HydratedDocument<Station>;
 @Schema({ timestamps: true })
 export class Station {
     @Prop()
-    stationId: string;
+    subscriberId: string;
     @Prop()
     stationName: string;
      

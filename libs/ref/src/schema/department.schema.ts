@@ -9,7 +9,7 @@ export type DepartmentDoc = HydratedDocument<Department>;
 @Schema({ timestamps: true })
 export class Department {
     @Prop()
-    departmentId: string;
+    subscriberId: string;
     @Prop()
     departmentName: string;
      

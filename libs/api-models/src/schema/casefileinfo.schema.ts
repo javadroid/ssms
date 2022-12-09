@@ -16,23 +16,17 @@ export class CaseFileInfo {
     @Prop()
     crimeCategory: string;
     @Prop()
-    dateOfReport: string;
+    dateOfReport:string;
     @Prop()
-    reportMedium: string;
+    division:string;
     @Prop()
-    divisionId: string;
+    personnelId:string;
     @Prop()
-    criminalCategory: string;
+    progressStatus:string;
     @Prop()
-    officerId: string;
+    victimId:string;
     @Prop()
-    progressStatus: string;
-    @Prop()
-    victimId: string;
-    @Prop()
-    incidentId: string;
-    
- 
+    incidentId:string;
 }
 
 export const CaseFileInfoSchema = SchemaFactory.createForClass(CaseFileInfo);

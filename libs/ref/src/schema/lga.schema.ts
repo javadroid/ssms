@@ -9,7 +9,7 @@ export type LgaDoc = HydratedDocument<Lga>;
 @Schema({ timestamps: true })
 export class Lga {
     @Prop()
-    lgaId: string;
+    subscriberId: string;
     @Prop()
     LgaName: string;
      
