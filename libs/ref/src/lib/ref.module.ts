@@ -39,6 +39,8 @@ import { WeaponController } from './weapon/weapon.controller';
 import { WeaponModule } from './weapon/weapon.module';
 import { DivisionController } from './division/division.controller';
 import { DivisionModule } from './division/division.module';
+import { WeaponService } from './weapon/weapon.service';
+import { Weapon, WeaponSchema } from '../schema/weapon.schema';
 
 @Module({
   controllers: [
@@ -62,6 +64,7 @@ import { DivisionModule } from './division/division.module';
     LgaService,
     StatesService,
     PolicyService,
+    WeaponService
   ],
   exports: [],
   imports: [
@@ -74,6 +77,7 @@ import { DivisionModule } from './division/division.module';
     MongooseModule.forFeature([{ name: Lga.name, schema: LgaSchema }]),
     MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }]),
     MongooseModule.forFeature([{ name: Policy.name, schema: PolicySchema }]),
+    MongooseModule.forFeature([{ name: Weapon.name, schema: WeaponSchema }]),
     StatesModule,
     LgaModule,
     OrganizationcategoryModule,

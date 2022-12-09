@@ -4,7 +4,8 @@ import { BranchComponent } from './branch/branch.component';
 
 
 const routes: Routes = [
-  {path: '', component:BranchComponent}
+  {path: '', component:BranchComponent},
+  {path: 'victim', component:BranchComponent},
 ];
 
 @NgModule({
