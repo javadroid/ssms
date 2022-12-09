@@ -31,7 +31,7 @@ export class ServiceApi {
   }
 
   upload(model: string, file: any): Observable<any> {
-    return this.http.post(`http://localhost:3333/api/${model}/file`, file);
+    return this.http.post(`http://localhost:3333/api/${model}`, file);
   }
 
   login(model: string, login: any): Observable<any> {

@@ -139,6 +139,8 @@
                     name=""
                     id=""
                     class="form-control"
+                    #state
+                    (change)="onStateChange($event.target)"
                   >
                     <option value="">Select State</option>
                     <option
@@ -159,6 +161,13 @@
                     class="form-control"
                   >
                     <option value="">Select L.G.A</option>
+                    <option
+                      value=""
+                      *ngFor="let lga of lgaDetails"
+                      [value]="lga._id"
+                    >
+                      {{ lga.lgaName }}
+                    </option>
                   </select>
                 </div>
                 <div class="input_container mb-3">
@@ -170,6 +179,13 @@
                     class="form-control"
                   >
                     <option value="">Select Department</option>
+                    <option
+                      value=""
+                      *ngFor="let dept of departmentDetails"
+                      [value]="dept._id"
+                    >
+                      {{ dept.departmentName }}
+                    </option>
                   </select>
                 </div>
                 <div class="input_container mb-3">
@@ -187,9 +203,37 @@
                 </div>
                 <div class="input_container mb-3">
                   <label for="" class="d-block">Branch/Division</label>
-                  <select name="" id="" class="form-control">
+                  <select
+                    name=""
+                    id=""
+                    class="form-control"
+                    formControlName="divisionhead"
+                  >
                     <option value="">Select Branch/Division</option>
+                    <option
+                      value=""
+                      *ngFor="let branch of branchDetails"
+                      [value]="branch._id"
+                    >
+                      {{ branch.branchName }}
+                    </option>
                   </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Personnel Image</label>
+                  <input
+                    (formdata)="(fileData)"
+                    (change)="upload($event)"
+                    type="file"
+                    class="form-control"
+                    placeholder="Phone number"
+                  />
+                  <img
+                    [src]="personnelImag"
+                    *ngIf="personnelImag"
+                    height="200"
+                    class="passport"
+                  />
                 </div>
               </div>
               <a (click)="SubmitPersonnel()" class="sign_in-btn btn btn-success"

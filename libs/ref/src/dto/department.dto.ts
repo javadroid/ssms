@@ -1,4 +1,5 @@
-export class DepartmentDTO{
-    depatmentId: string;
-    departmentName: string;
+export class DepartmentDTO {
+  depatmentId: string;
+  departmentName: string;
+  organizationId: string;
 }

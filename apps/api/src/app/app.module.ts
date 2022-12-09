@@ -9,8 +9,6 @@ import {
   ReportModule,
 } from '@ssms/api-models';
 
-
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -28,9 +26,15 @@ import { RefModule } from '@ssms/ref';
     RefModule,
     OrganizationModule,
     PersonnelModule,
-  ]
 
-    ReportModule,PolicyInfoModule,RefModule,OrganizationModule,PersonnelModule,CriminalInfoModule,FileuploadModule],
+    ReportModule,
+    PolicyInfoModule,
+    RefModule,
+    OrganizationModule,
+    PersonnelModule,
+    CriminalInfoModule,
+    FileuploadModule,
+  ],
 
   controllers: [AppController],
   providers: [AppService],

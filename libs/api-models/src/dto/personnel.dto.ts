@@ -23,5 +23,6 @@ export class PersonnelDTO {
   password: string;
   refNunmber: string;
   organizationId: string;
+  personnelImage: string;
   sub: string;
 }

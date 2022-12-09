@@ -17,6 +17,13 @@ export class PersonnelRegisterComponent implements OnInit {
   organizationID = '6391b7664a233b1ce3185e04';
   PersonnelDetail: any[] = [];
   stateDetails: any[] = [];
+  lgaDetails: any[] = [];
+  departmentDetails: any[] = [];
+  branchDetails: any[] = [];
+  fileData = new FormData();
+  fileSelected!: File;
+  images!: string;
+  personnelImag!: any;
   constructor(
     private http: ServiceApi,
     private personnelformbuilder: FormBuilder
@@ -49,6 +56,7 @@ export class PersonnelRegisterComponent implements OnInit {
       refNunmber: [''],
       organizationId: [this.organizationID],
       id: [''],
+      personnelImage: [''],
     });
   }
   LoadAllpersonnel() {
@@ -59,16 +67,44 @@ export class PersonnelRegisterComponent implements OnInit {
       );
     });
   }
-
+  loadDepartment() {
+    this.http.find('department').subscribe((m) => {
+      this.departmentDetails = m.filter(
+        (n: { organizationId: string }) =>
+          n.organizationId === this.organizationID
+      );
+    });
+  }
+  loadBanch() {
+    this.http.find('branch').subscribe((m) => {
+      this.branchDetails = m.filter(
+        (n: { organizationId: string }) =>
+          n.organizationId === this.organizationID
+      );
+    });
+  }
   loadState() {
-    this.http.find('state').subscribe((m) => {
+    this.http.find('states').subscribe((m) => {
+      console.log('state', m);
       this.stateDetails = m;
     });
   }
-
+  onStateChange(event: any) {
+    this.loadLGA(event.value);
+  }
+  loadLGA(stateId: any) {
+    this.http.find('lga').subscribe((m) => {
+      this.lgaDetails = m.filter(
+        (n: { stateId: any }) => n.stateId === stateId
+      );
+      console.log('state', this.stateDetails);
+    });
+  }
   LoadAll() {
     this.loadState();
     this.LoadAllpersonnel();
+    this.loadDepartment();
+    this.loadBanch();
   }
 
   createNew() {
@@ -90,30 +126,68 @@ export class PersonnelRegisterComponent implements OnInit {
     });
     console.log('reaching..', this.PersonnelRegisterForm.value);
     this.PersonnelRegisterForm.patchValue(data);
+    this.personnelImag = data.personnelImage;
     this.firstShow = false;
     this.showSecond = true;
   }
+
+  upload(event: any): void {
+    this.fileSelected = event.target.files[0];
+    const reader = new FileReader();
+    // this.personnelImag = reader.result;
+    const size = Math.round(event.target.files[0].size / 1024);
+    if (size > 100) {
+      Swal.fire(
+        'Warning!',
+        `The passport exceeded the maximum size, you provided ${size} KB, and the required size is 100 KB`,
+        'warning'
+      );
+      return;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.personnelImag = reader.result;
+    };
+    console.log(this.fileSelected);
+
+    this.fileData.append('file', this.fileSelected, this.fileSelected.name);
+  }
+
   SubmitPersonnel() {
-    this.PersonnelRegisterForm.patchValue({
-      organizationId: this.organizationID,
-    });
+    let path = '';
+
+    console.log(this.PersonnelRegisterForm.value);
     const data = this.PersonnelRegisterForm.value;
-    console.log('reaching..', data);
+
     if (data.id) {
-      this.http.update('personnel', data.id, data).subscribe((n) => {
-        Swal.fire('Success!', 'Update successfully.', 'success');
-        this.PersonnelRegisterForm.reset();
-        this.LoadAllpersonnel();
-        this.firstShow = true;
-        this.showSecond = false;
+      this.http.upload('document', this.fileData).subscribe((uploadUrl) => {
+        this.images = uploadUrl[0];
+        data.personnelImage = this.images;
+        data.organizationId = this.organizationID;
+
+        console.log('path1:', data);
+        this.http.update('personnel', data.id, data).subscribe((n) => {
+          Swal.fire('Success!', 'Update successfully.', 'success');
+          this.PersonnelRegisterForm.reset();
+          this.LoadAllpersonnel();
+          this.firstShow = true;
+          this.showSecond = false;
+        });
       });
     } else {
-      this.http.create('personnel', data).subscribe((n) => {
-        Swal.fire('Success!', 'successfully.', 'success');
-        this.PersonnelRegisterForm.reset();
-        this.LoadAllpersonnel();
-        this.firstShow = true;
-        this.showSecond = false;
+      this.http.upload('document', this.fileData).subscribe((uploadUrl) => {
+        this.images = uploadUrl[0];
+
+        this.PersonnelRegisterForm.value.personnelImage = this.images;
+        this.PersonnelRegisterForm.value.organizationId = this.organizationID;
+        this.http.create('personnel', data).subscribe((n) => {
+          Swal.fire('Success!', 'successfully.', 'success');
+          console.log(n);
+          this.PersonnelRegisterForm.reset();
+          this.LoadAllpersonnel();
+          this.firstShow = true;
+          this.showSecond = false;
+        });
       });
     }
   }

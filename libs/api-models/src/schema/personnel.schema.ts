@@ -54,6 +54,8 @@ export class Personnel {
   @Prop()
   organizationId: string;
   @Prop()
+  personnelImage: string;
+  @Prop()
   subcriberID: string;
 }
 
