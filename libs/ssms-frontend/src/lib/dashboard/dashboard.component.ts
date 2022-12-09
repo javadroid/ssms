@@ -8,18 +8,26 @@ import { ServiceApi } from '../shared/service/service-api';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  allReport=[]as any[]
-  constructor(private http:ServiceApi,private route: Router) {}
+  subcriber = localStorage.getItem('id');
+  newOrg = false;
+  constructor(private http: ServiceApi, private route: Router) {}
 
   ngOnInit(): void {
-    this.http.find('report').subscribe(e=>{
-    this.allReport=e
-    })
+    // console.log(e);
+        console.log(this.subcriber);
+    if (this.subcriber) {
+      this.http.findOne('organization', this.subcriber).subscribe((e) => {
+        console.log(e);
+        console.log(this.subcriber);
+        if (e.status === 'INACTIVE') {
+          this.newOrg = true;
+        }
+      });
+    }
   }
 
-  onAdd(){
-    console.log("yes")
-    this.route.navigate(['/new-report'])
+  onAdd() {
+    console.log('yes');
+    this.route.navigate(['/new-report']);
   }
-
 }

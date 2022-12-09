@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceApi } from '../shared/service/service-api';
 import {FormGroup, FormControl} from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ssms-login',
@@ -12,21 +13,21 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', []),
     password: new FormControl('', [])
   });
-  constructor(private http:ServiceApi) {}
+  constructor(private http:ServiceApi,private route:Router) {}
 
   async ngOnInit(): Promise<void> {
 
     if(localStorage.getItem('email')?.split('-')[0]==='ORG'){
-      await this.http.profile('organization').subscribe(a=>{
-
-
+       this.http.profile('organization').subscribe(a=>{
+        localStorage.setItem('id', a.userId);
+        this.route.navigate(['/dashboard'])
         console.log("profile",a)
       })
     }else if(localStorage.getItem('email')?.split('-')[0]==='PER'){
-      await this.http.profile('personnel').subscribe(a=>{
+       this.http.profile('personnel').subscribe(a=>{
 
 
-        console.log("profile",a)
+                console.log("profile",a)
       })
     }else console.log('nssssss',localStorage.getItem('email'))
 
@@ -37,6 +38,8 @@ onSubmit(){
   if(this.loginForm.controls.username.value?.split('-')[0]==='ORG'){
     this.http.login('organization', this.loginForm.value).subscribe(e=>{
       console.log(e)
+      localStorage.setItem('id', e._id);
+      this.route.navigate(['/dashboard'])
     })
   }else if(this.loginForm.controls.username.value?.split('-')[0]==='PER'){
     this.http.login('personnel', this.loginForm.value).subscribe(e=>{

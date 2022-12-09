@@ -22,6 +22,13 @@ export class ServiceApi {
     );
   }
 
+
+  findOne(model: string, id: string): Observable<any> {
+    return this.http.get(
+      `http://localhost:3333/api/${model}/${id}`
+    );
+  }
+
   update(model: string, id: string, update: any): Observable<any> {
     return this.http.patch(`http://localhost:3333/api/${model}/${id}`, update);
   }
@@ -40,7 +47,7 @@ export class ServiceApi {
       .pipe(
         tap((x: any) => {
           localStorage.setItem('token', x.access_token);
-          localStorage.setItem('email', x.user_email);
+          localStorage.setItem('id', x.user_id);
         })
       );
   }
