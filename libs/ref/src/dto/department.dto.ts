@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 export class DepartmentDTO {
   depatmentId: string;
   departmentName: string;
   organizationId: string;
+  subscriberId: string;
 }
-=======
-export class DepartmentDTO{
-    subscriberId: string;
-    departmentName: string;
-}
->>>>>>> favour

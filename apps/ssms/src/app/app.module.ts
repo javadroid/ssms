@@ -31,7 +31,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
         border: '1px solid #713200',
         padding: '16px',
         color: '#713200',
-        fontSize: '20px',
+        // fontSize: '20px',
       },
     }),
   ],
