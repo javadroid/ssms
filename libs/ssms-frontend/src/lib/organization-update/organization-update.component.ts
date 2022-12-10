@@ -24,8 +24,9 @@ export class OrganizationUpdateComponent {
   });
 
   step = 'organizationInfo';
-
   steps = ['organizationInfo', 'contactInfo'];
+
+  subcriber= localStorage.getItem('id');
 
   constructor(
     private apiService: ServiceApi,
@@ -37,6 +38,7 @@ export class OrganizationUpdateComponent {
     }
 
   onSubmit() {
+    if(this.subcriber){
     if(this.organizationForm.invalid) {
       this.toast.success('Please fill the required fields!', {
         duration: 5000,
@@ -51,14 +53,17 @@ export class OrganizationUpdateComponent {
       return
     }
 
-    this.apiService.create('organization', this.organizationForm.value).pipe(
+    this.apiService.update('organization',this.subcriber ,this.organizationForm.value).pipe(
       this.toast.observe({
         loading: 'Updating organization...',
         success: 'Proceed to dashboard!',
         error: 'Could not update organization.',
       }),
-    ).subscribe();
+    ).subscribe(
+      e=>{console.log(e)}
+    );
 
   }
+}
 
 }

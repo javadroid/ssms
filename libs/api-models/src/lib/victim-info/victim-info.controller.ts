@@ -8,12 +8,13 @@ import {Body,
         Post, } from '@nestjs/common';
 import { VictimInfoDTO } from '../../dto/victimInfo.dto';
 import { VictimInfoService } from './victim-info.service';
-import { VictimInfoDoc } from '../../schema/victimInfo.schema';
+
+
 @Controller('victim-info')
 export class VictimInfoController {
     constructor(private victimInfoService: VictimInfoService) {}
   @Post()
-  async create(@Body() createVictimInfo: VictimInfoDoc) {
+  async create(@Body() createVictimInfo: VictimInfoDTO) {
     return this.victimInfoService.create(createVictimInfo);
   }
 

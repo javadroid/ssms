@@ -7,6 +7,7 @@ import {
   PersonnelModule,
   PolicyInfoModule,
   ReportModule,
+  SendMailModule,
 } from '@ssms/api-models';
 
 import { AppController } from './app.controller';
@@ -35,6 +36,7 @@ import { RefModule } from '@ssms/ref';
     PersonnelModule,
     CriminalInfoModule,
     FileuploadModule,
+    SendMailModule
   ],
 
   controllers: [AppController],

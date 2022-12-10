@@ -54,4 +54,8 @@ export class ServiceApi {
   profile(model: string): Observable<any> {
     return this.http.get(`http://localhost:3333/api/${model}/profile`);
   }
+
+  users(id: string): Observable<any> {
+    return this.http.get(`https://dummyjson.com/users/${id}`);
+  }
 }
