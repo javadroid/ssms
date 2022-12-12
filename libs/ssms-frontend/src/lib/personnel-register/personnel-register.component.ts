@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 import Swal from 'sweetalert2';
+import { eventNames } from 'process';
 
 @Component({
   selector: 'ssms-personnel-register',
@@ -24,6 +25,14 @@ export class PersonnelRegisterComponent implements OnInit {
   fileSelected!: File;
   images!: string;
   personnelImag!: any;
+  stepperFirstInfo = false;
+  showFilter = false;
+  step = 'PrimaryInfo';
+  showfiltercriteria = false;
+  selectindex!: any;
+  showViewDetails = false;
+  showAllViewDetails: any;
+  steps = ['PrimaryInfo', 'contactInfo'];
   constructor(
     private http: ServiceApi,
     private personnelformbuilder: FormBuilder
@@ -58,6 +67,36 @@ export class PersonnelRegisterComponent implements OnInit {
       id: [''],
       personnelImage: [''],
     });
+  }
+  showFilterList() {
+    this.showFilter = !this.showFilter;
+  }
+  outerclick(event: any) {
+    console.log('see event', this.showfiltercriteria, this.selectindex, event);
+
+    event.stopPropagation();
+  }
+  View(dataview: any) {
+    this.showViewDetails = true;
+    this.firstShow = false;
+    this.selectindex = null;
+    this.showAllViewDetails = dataview;
+    this.personnelImag = dataview.personnelImage;
+  }
+  showmenu(index: any) {
+    this.selectindex = index;
+    console.log('selected', this.selectindex, index);
+    if (index === this.selectindex) {
+      this.showfiltercriteria = true;
+    }
+  }
+  onNext(step: string) {
+    this.step = step;
+    if (step === this.steps[1]) {
+      this.stepperFirstInfo = true;
+    } else {
+      this.stepperFirstInfo = false;
+    }
   }
   LoadAllpersonnel() {
     this.http.find('personnel').subscribe((m) => {
@@ -114,11 +153,13 @@ export class PersonnelRegisterComponent implements OnInit {
   }
   SendPassword(data: any) {
     const email = data.email;
+    this.selectindex = null;
     Swal.fire('Password Sent!', 'successfully to' + ' ' + email, 'success');
   }
   Backward() {
     this.firstShow = true;
     this.showSecond = false;
+    this.showViewDetails = false;
   }
   Edit(data: any) {
     this.PersonnelRegisterForm.patchValue({
@@ -129,6 +170,7 @@ export class PersonnelRegisterComponent implements OnInit {
     this.personnelImag = data.personnelImage;
     this.firstShow = false;
     this.showSecond = true;
+    this.selectindex = null;
   }
 
   upload(event: any): void {
@@ -184,6 +226,7 @@ export class PersonnelRegisterComponent implements OnInit {
           Swal.fire('Success!', 'successfully.', 'success');
           console.log(n);
           this.PersonnelRegisterForm.reset();
+          this.personnelImag = '';
           this.LoadAllpersonnel();
           this.firstShow = true;
           this.showSecond = false;
