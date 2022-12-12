@@ -1,0 +1,206 @@
+<body>
+  <div class="staff_reg-form d-flex"  *ngIf="!formList">
+    <div class="bg w-50"></div>
+    <div class="form_container w-80">
+      <div class="access_form-container">
+        <h2 class="form_title">
+          Criminal Information
+        </h2>
+        <form [formGroup]="criminalInfoForm">
+
+          <div class="stepper-container">
+            <div class="step_count d-flex align-items-center">
+              <a (click)="stepper=true; stepperbtnactive=false" class=" btn step_btn active">
+               <span>1</span>Organizational information
+              </a>
+              <a (click)="stepper=false; stepperbtnactive=true"  [ngClass]="{'active':stepperbtnactive}" class="btn step_btn">
+                <span>2</span>Other information
+              </a>
+            </div>
+          </div>
+
+          <div class="primary_info-container"  *ngIf="stepper">
+            <div
+              class="selection-container d-flex align-items-center justify-content-between"
+            >
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">First Name</label>
+              <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Last Name</label>
+              <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Phone Number</label>
+              <input type="number" class="form-control" placeholder="Phone Number" formControlName="phoneNumber"/>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Date Of Birth</label>
+              <input type="date" class="form-control" placeholder="Date Of Birth" formControlName="dateOfBirth" />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Place of Birth</label>
+              <input type="text" class="form-control" placeholder="Place Of Birth" formControlName="placeOfBirth" />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">State of Origin</label>
+              <select id="state" class="form-control" formControlName="stateOfOrigin" #data (change)="getLga(data.value)">
+                <option selected="selected">Select State of Origin</option>
+                <option *ngFor="let data of allState" [value]="data">{{data}}</option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">LGA of Origin</label>
+              <select id="lga" class="form-control" formControlName="lgaOfOrigin">
+                <option selected="selected">Select LGA of Origin</option>
+                <option *ngFor="let data of filteredState" [value]="data">{{data}}</option>
+              </select>
+            </div>
+            <button (click)="stepper=false; stepperbtnactive=true" class="btn btn-success">Next</button>
+
+          </div>
+
+          <!-- step 2 (Organization contact information) -->
+
+          <div class="contact_information"  *ngIf="!stepper">
+            <div class="d-flex w-100 justify-content-between name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Occupation</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Occupation"
+                  formControlName="occupation"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Location"
+                  formControlName="locationId"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Education</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Education"
+                  formControlName="education"
+                />
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Biometrics</label>
+              <input type="text" class="form-control" placeholder="Biometrics" formControlName="biometrics" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Profile Pic</label>
+              <input
+                (formdata)="(fileData)"
+                (change)="upload($event)"
+                type="file"
+                class="form-control"
+                placeholder="Profile Pic"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">NIN</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="NIN"
+                formControlName="nin"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Height</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Height"
+                formControlName="height"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Weight</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Weight"
+                formControlName="weight"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Case file</label>
+              <input type="email" class="form-control" placeholder="Case file" formControlName="caseFileId" />
+
+              <!-- <input
+                (formdata)="(fileData)"
+                (change)="upload($event)"
+                type="file"
+                class="form-control"
+                placeholder="Case file"
+              /> -->
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Alias</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Alias"
+                formControlName="aliases"
+              />
+            </div>
+        
+          <input id="actual-btn" hidden type="file" />
+          <button class="sign_in-btn btn btn-success" (click)="saveCriminalInfoForm()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="formList">
+    <!-- <table class="table" width="100">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">firstName</th>
+          <th scope="col">lastName</th>
+
+          <th scope="col">phoneNumber</th>
+          <th scope="col">dateOfBirth</th>
+          <th scope="col">placeOfBirth</th>
+          <th scope="col">stateOfOrigin</th>
+          <th scope="col">Job Information</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          title="click to view"
+          *ngFor="let value of environmentalreports; index as i"
+
+        >
+          <td>{{ value.FromDate | date: 'shortDate' }}</td>
+          <td></td>
+
+          <td>{{ value.ToDate | date: 'shortDate' }}</td>
+          <td></td>
+
+          <td>{{ value.Clients[0].ClientName }}</td>
+          <td></td>
+
+          <td>{{ value.Clients[0].JobInformation }}</td>
+          <td><button class="btn btn-secondary" type="submit" (click)="viewEnvironment(value)">view</button></td>
+        </tr>
+      </tbody>
+    </table> -->
+  </div>
+</body>

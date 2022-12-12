@@ -11,4 +11,5 @@ export * from './lib/security-apparatus/security-apparatus.module';
 export * from './lib/case-file-info/case-file-info.module';
 export * from './lib/organization/organization.module';
 export * from './lib/personnel/personnel.module';
+export * from './lib/criminal-info/criminal-info.module';
 
