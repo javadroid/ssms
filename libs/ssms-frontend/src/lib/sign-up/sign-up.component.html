@@ -1,63 +1,33 @@
-  <body>
-    {{signUpForm.value | json}}
-    <div class="access_container d-flex">
-      <div class="bg w-50"></div>
-      <div class="form_container w-50">
-        <!-- signup_form begins here -->
-        <div class="access_form-container">
-          <h2 class="form_title">
-            Sign up
-            <span class="d-block">Sign up on this platform to use it</span>
-          </h2>
-          <form [formGroup]="signUpForm">
-            <div class="input_container mb-3">
-              <label for="" class="d-block">First name</label>
-              <input [formControl]="signUpForm.controls.firstname" type="text" class="form-control" placeholder="First name" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Last name</label>
-              <input [formControl]="signUpForm.controls.lastname" type="text" class="form-control" placeholder="Last name" />
-            </div>
+<div class="ui six doubling  cards ss border-none">
 
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Occupation</label>
-              <select [formControl]="signUpForm.controls.occupation" name="" id="" class="form-control">
-                <option value="Select occupation">Select occupation</option>
-                <option value="Mechanic">Mechanic</option>
-                <option value="Preacher">Preacher</option>
-                <option value="Teacher">Teacher</option>
-                <option value="House Wife">House Wife</option>
-                <option value="Developer">Mechanic</option>
-              </select>
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Address</label>
-              <input [formControl]="signUpForm.controls.contactaddress" type="text" class="form-control" placeholder="Address" />
-            </div>
-
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Phone number</label>
-              <input [formControl]="signUpForm.controls.phonenumber" type="number" class="form-control" placeholder="Phone number" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Email</label>
-              <input [formControl]="signUpForm.controls.email" type="email" class="form-control" placeholder="Email" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Password</label>
-              <input [formControl]="signUpForm.controls.password" type="password" class="form-control" placeholder="Password" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Confirm Password</label>
-              <input [formControl]="signUpForm.controls.confirmpassword" type="password" class="form-control" placeholder="Confirm Password" />
-            </div>
-            <p class="alternative">Already have an account? <button class="btn">Sign in</button></p>
-
-          <button class="sign_in-btn btn btn-success">Sign up</button>
-        </form>
-      </div>
-      <!-- signup_form ends here -->
-
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image" src="/assets/legal.jpg"> Matt
     </div>
   </div>
-</body>
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image" src="/assets/legal.jpg"> Matt
+    </div>
+  </div>
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image" src="/assets/legal.jpg"> Matt
+    </div>
+  </div>
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image" src="/assets/legal.jpg"> Matt
+    </div>
+  </div>
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image" src="/assets/legal.jpg"> Matt
+    </div>
+  </div>
+  <div class="ss card">
+    <div class="right floated author">
+      <img class="ui avatar image " src="/assets/legal.jpg"> Matt
+    </div>
+  </div>
+</div>

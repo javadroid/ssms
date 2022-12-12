@@ -13,7 +13,13 @@
       <button class="btn menu_btn">Dashboard</button>
     </div>
   </aside>
-  <main class="main_dashboard"></main>
+  <main class="main_dashboard">
+    <ssms-sign-up></ssms-sign-up>
 
-  <ssms-organization-update *ngIf="newOrg" ></ssms-organization-update>
+  </main>
+
+  <ssms-organization-update *ngIf="newOrg" (closechild)="onClose($event)" ></ssms-organization-update>
+
 </div>
+
+
