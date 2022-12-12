@@ -8,6 +8,7 @@ import {
   PolicyInfoModule,
   ReportModule,
   SendMailModule,
+  VictimInfoModule,
 } from '@ssms/api-models';
 
 import { AppController } from './app.controller';
@@ -16,6 +17,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { FormsModule } from '@angular/forms';
 import { RefModule } from '@ssms/ref';
+
 
 
 @Module({
@@ -36,7 +38,8 @@ import { RefModule } from '@ssms/ref';
     PersonnelModule,
     CriminalInfoModule,
     FileuploadModule,
-    SendMailModule
+    SendMailModule,
+    VictimInfoModule
   ],
 
   controllers: [AppController],

@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   subcriber = localStorage.getItem('id');
   newOrg = false;
   constructor(private http: ServiceApi, private route: Router) {}
+  chi=''
 
   ngOnInit(): void {
     // console.log(e);
@@ -24,6 +25,11 @@ export class DashboardComponent implements OnInit {
         }
       });
     }
+  }
+
+
+  onClose(event:any){
+    this.newOrg=event
   }
 
   onAdd() {

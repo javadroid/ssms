@@ -6,9 +6,10 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { OrganizationUpdateComponent } from '../organization-update/organization-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [DashboardComponent, OrganizationUpdateComponent],
+  declarations: [DashboardComponent, OrganizationUpdateComponent,SignUpComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

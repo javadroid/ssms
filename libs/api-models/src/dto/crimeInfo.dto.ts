@@ -1,20 +1,20 @@
 export class CrimeInfoDTO{
     crimeId: string;
-    personnelId: string;
-    weapon: string;
+    personnelId: [];
+    weapon: [];
     crimeCategory: string;
     crimeType:string;
     crimeDate: string;
     crimeTime: string;
     statementOfOffense: string;
-    incidentId: string;
-    evidence: string;
-    policy: string;
+    incidentId: [];
+    evidence: [];
+    policy: [];
     progressStatus: string;
-    criminalId: string;
+    criminalId: [];
     motive: string;
-    victimId: string;
-    vehicleId: string;
-    reportId: string;
-    locationId: string;
+    victimId: [];
+    vehicleId: [];
+    reportId: [];
+    locationId: [];
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 import { HotToastService } from '@ngneat/hot-toast';
+
 
 @Component({
   selector: 'ssms-organization-update',
@@ -27,6 +28,9 @@ export class OrganizationUpdateComponent {
   steps = ['organizationInfo', 'contactInfo'];
 
   subcriber= localStorage.getItem('id');
+  @Output() closechild=new EventEmitter<boolean>()
+
+
 
   constructor(
     private apiService: ServiceApi,
@@ -38,6 +42,9 @@ export class OrganizationUpdateComponent {
     }
 
   onSubmit() {
+
+
+
     if(this.subcriber){
     if(this.organizationForm.invalid) {
       this.toast.success('Please fill the required fields!', {
@@ -60,7 +67,12 @@ export class OrganizationUpdateComponent {
         error: 'Could not update organization.',
       }),
     ).subscribe(
-      e=>{console.log(e)}
+      e=>{console.log(e)
+
+        this.closechild.emit(false)
+      }
+
+
     );
 
   }

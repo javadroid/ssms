@@ -15,7 +15,7 @@ import { OrganizationAuthService } from './auth/auth/organization.auth.service';
   imports:[MongooseModule.forFeature([{ name: Organization.name, schema: OrganizationSchema }]),PassportModule,
   JwtModule.register({
   secret:process.env.JWT_CONSTANT_ORG,
-  signOptions:{expiresIn:'120s'}
+  signOptions:{expiresIn:'120000s'}
 }),PassportModule
 ],
 

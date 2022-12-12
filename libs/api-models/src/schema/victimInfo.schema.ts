@@ -9,25 +9,58 @@ import {
 
   @Schema({ timestamps: true })
 export class VictimInfo {
-    @Prop()
-    firstName: string;
-    @Prop()
-    lastName: string;
-    @Prop()
-    middleName: string;
-    @Prop()
-    address: string;
-    @Prop()
-    dateOfBirth: string;
-    @Prop()
-    age: string;
-    @Prop()
-    occupation: string;
-    @Prop()
-    nin: string;
-    @Prop()
-    locationId: string;
-    
+  @Prop()
+  id: string
+  @Prop()
+  case: [{
+      crimeId: string
+      criminal: boolean
+      victim: boolean
+  }]
+  @Prop()
+  firstName: string
+  @Prop()
+  lastName: string
+  @Prop()
+  maidenName: string
+  @Prop()
+  age: number
+  @Prop()
+  gender: string
+  @Prop()
+  email: string
+  @Prop()
+  phone: string
+  @Prop()
+  birthDate: string
+  @Prop()
+  image: string
+  @Prop()
+  height: number
+  @Prop()
+  weight: number
+  @Prop()
+  eyeColor: string
+  @Prop()
+  hair: [{
+    color: string
+    type: string
+  }]
+  @Prop()
+  address: [{
+    address: string
+    lga: string
+    start: string
+    country: string
+    coordinates: {
+      lat: number
+      lng: number
+    }
+
+    postalCode: number
+
+  }]
+
 }
 
 export const victimInfoSchema = SchemaFactory.createForClass(VictimInfo);

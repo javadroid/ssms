@@ -11,22 +11,11 @@ import { ServiceApi } from '../shared/service/service-api';
 })
 
 export class SignUpComponent implements OnInit {
-  signUpForm=new FormGroup({
-    firstname: new FormControl('', []),
-    lastname: new FormControl('', []),
-    occupation:new FormControl('', []),
-    phonenumber:new FormControl('', []),
-    contactaddress:new FormControl('', []),
-    email:new FormControl('', []),
-    password:new FormControl('', []),
-    confirmpassword: new FormControl('', []),
-    radio: new FormControl('', [])
 
-  });
- 
+
   constructor(private http:ServiceApi) {}
 
   ngOnInit(): void {}
-  
+
 
 }
