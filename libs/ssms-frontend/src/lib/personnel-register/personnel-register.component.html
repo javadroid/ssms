@@ -1,21 +1,103 @@
+<!-- {{ PersonnelRegisterForm.value | json }} -->
+
 <body>
-  <div class="staff_reg-form d-flex">
-    <div class="bg w-50"></div>
-    <div class="form_container w-50">
-      <!-- security personnel registration form (splitted into 2 === primary info and contact info) -->
-      <div class="access_form-container d-flex">
-        <h2 class="form_title">
-          Personnel Management
-          <!-- <span class="d-block">Sign up on this platform to use it</span> -->
-        </h2>
-        <div>
+  <div class="dashboard_container">
+    <aside class="dashboard_nav">
+      <div class="logo_container">
+        <h2 class="logo">SSMS</h2>
+      </div>
+
+      <div class="menu_container">
+        <button class="btn menu_btn active">Dashboard</button>
+        <button class="btn menu_btn">Personnel management</button>
+        <button class="btn menu_btn">Crime management</button>
+        <button class="btn menu_btn">Incident management</button>
+        <button class="btn menu_btn">Report management</button>
+        <button class="btn menu_btn">Report monitoring</button>
+      </div>
+    </aside>
+
+    <main class="main_dashboard d-none">
+      <div class="top_nav d-flex align-items-center">
+        <h3 class="user">NIGERIAN POLICE FORCE</h3>
+        <div class="search_container d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
+
+      <div class="stat_container">
+        <div class="stat_card">
+          <p class="stat_title">Total personnel</p>
+          <div class="digit">20.3K</div>
+        </div>
+        <div class="stat_card">
+          <p class="stat_title">Registered Districts</p>
+          <div class="digit">20.3K</div>
+        </div>
+        <div class="stat_card">
+          <p class="stat_title">Total personnel</p>
+          <div class="digit">20.3K</div>
+        </div>
+        <div class="stat_card">
+          <p class="stat_title">Total personnel</p>
+          <div class="digit">20.3K</div>
+        </div>
+
+        <button class="btn border-success">Edit Account</button>
+      </div>
+    </main>
+
+    <!-- PERSONNEL MANAGEMENT BEGINS HERE -->
+
+    <div class="personnel_management">
+      <div class="top_nav d-flex align-items-center">
+        <h3 class="user">NIGERIAN POLICE FORCE</h3>
+        <div class="search_container d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
+      <!-- PERSONNEL LIST BEGINS HERE===========PERSONNEL LIST BEGINS HERE -->
+
+      <div class="personnel_list-container">
+        <div class="filter_section">
+          <button class="btn btn-secondary" (click)="showFilterList()">
+            <img src="images/filter_list_white_24dp.svg" alt="" />Filter list
+          </button>
+
+          <div class="filter_container" *ngIf="showFilter">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Select state</label>
+              <select name="" id="">
+                <option value="">Select option</option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Select district</label>
+              <select name="" id="">
+                <option value="">Select option</option>
+              </select>
+            </div>
+            <button class="btn btn-primary">Filter</button>
+          </div>
+
           <button
+            class="btn btn-success m-lg-2"
             *ngIf="firstShow"
-            style="float: left"
             (click)="createNew()"
-            class="sign_in-btn btn btn-success"
           >
-            Create New
+            Create Personnel
           </button>
           <button
             *ngIf="showSecond"
@@ -25,122 +107,136 @@
           >
             Back
           </button>
+          <button
+            *ngIf="showViewDetails"
+            style="float: right"
+            (click)="Backward()"
+            class="sign_in-btn btn btn-success"
+          >
+            Back
+          </button>
         </div>
-        <br />
-        <table class="table" *ngIf="firstShow">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Staff Ref Number</th>
-              <th scope="col">Staff Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone Number</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of PersonnelDetail; let i = index">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{ item.refNunmber }}</td>
-              <td>
-                {{ item.firstname }} {{ item.middlename }} {{ item.lastname }}
-              </td>
-              <td>{{ item.email }}</td>
-              <td>{{ item.phone }}</td>
-              <td>
-                <span>
-                  <a class="btn btn-primary" (click)="Edit(item)">Edit</a>
-                  <a class="btn btn-success">View</a>
-                  <a class="btn btn-danger" (click)="SendPassword(item)"
-                    >Send Password</a
-                  >
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <form [formGroup]="PersonnelRegisterForm">
-          <div class="card" *ngIf="showSecond">
-            <h5 class="card-header">Register Personnel</h5>
-            <div class="card-body">
-              <div class="primary_info-container">
-                <div
-                  class="d-flex w-100 justify-content-between name_container"
-                >
-                  <div class="input_container mb-3">
-                    <label for="" class="d-block">First name</label>
-                    <input
-                      formControlName="firstname"
-                      type="text"
-                      class="form-control"
-                      placeholder="First Name"
-                    />
-                  </div>
+        <div class="table-responsive" *ngIf="firstShow">
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Staff Ref Number</th>
+                <th scope="col">First name</th>
+                <th scope="col">Middle name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
 
-                  <div class="input_container mb-3">
-                    <label for="" class="d-block">Middle name</label>
-                    <input
-                      formControlName="middlename"
-                      type="text"
-                      class="form-control"
-                      placeholder="Middle Name"
-                    />
-                  </div>
-                  <div class="input_container mb-3">
-                    <label for="" class="d-block">Last name</label>
-                    <input
-                      formControlName="lastname"
-                      type="text"
-                      class="form-control"
-                      placeholder="Last Name"
-                    />
-                  </div>
-                </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Ref Number</label>
-                  <input
-                    type="text"
-                    formControlName="refNunmber"
-                    class="form-control"
-                  />
-                </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Email</label>
-                  <input
-                    formControlName="email"
-                    type="email"
-                    class="form-control"
-                    placeholder="Email"
-                  />
-                </div>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of PersonnelDetail; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.refNunmber }}</td>
+                <td>{{ item.firstname }}</td>
+                <td>{{ item.middlename }}</td>
+                <td>{{ item.lastname }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.phone }}</td>
+                <td>
+                  <button class="btn p-0" (click)="showmenu(i)">
+                    <img src="../assets/more_vert_black_24dp.svg" alt="" />
+                  </button>
 
+                  <div class="actions" *ngIf="selectindex === i">
+                    <button id="" class="btn" (click)="View(item)">View</button>
+                    <button class="btn" (click)="Edit(item)">Edit</button>
+                    <button class="btn" (click)="SendPassword(item)">
+                      Send Password
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PERSONNEL CREATION BEGINS HERE===========PERSONNEL CREATION BEGINS HERE -->
+
+      <div class="personnel_reg-form d-flex" *ngIf="showSecond">
+        <div class="stepper-container">
+          <div class="step_count d-flex align-items-center">
+            <button
+              class="btn step_btn"
+              [ngClass]="step === steps[0] ? 'active' : ''"
+              (click)="onNext(steps[0])"
+            >
+              <span>1</span> Primary information
+            </button>
+            <button
+              class="btn step_btn"
+              [ngClass]="step === steps[1] ? 'active' : ''"
+              (click)="onNext(steps[1])"
+            >
+              <span>2</span>Contact Information / Upload
+            </button>
+          </div>
+        </div>
+        <div class="form_container">
+          <!-- signup_form begins here -->
+
+          <h2 class="form_title">User Creation</h2>
+
+          <form [formGroup]="PersonnelRegisterForm">
+            <div class="step_1" *ngIf="!stepperFirstInfo">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Rank</label>
+                <select name="" id="" class="form-control">
+                  <option value="">Select Rank</option>
+                </select>
+              </div>
+
+              <div class="d-flex w-100 justify-content-between name_container">
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">Phone number</label>
+                  <label for="" class="d-block">First name</label>
                   <input
-                    formControlName="phone"
-                    type="number"
-                    class="form-control"
-                    placeholder="Phone number"
-                  />
-                </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Home Address</label>
-                  <input
-                    formControlName="address"
+                    formControlName="firstname"
                     type="text"
                     class="form-control"
-                    placeholder="Phone number"
+                    placeholder="First name"
+                  />
+                </div>
+
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Middle name</label>
+                  <input
+                    formControlName="middlename"
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
                   />
                 </div>
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">State</label>
+                  <label for="" class="d-block">Last name</label>
+                  <input
+                    formControlName="lastname"
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="selection-container d-flex align-items-center justify-content-between"
+              >
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">State of service</label>
                   <select
-                    formControlName="stateofservice"
                     name=""
                     id=""
                     class="form-control"
                     #state
                     (change)="onStateChange($event.target)"
+                    formControlName="stateofservice"
                   >
                     <option value="">Select State</option>
                     <option
@@ -153,14 +249,13 @@
                   </select>
                 </div>
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">L.G.A</label>
+                  <label for="" class="d-block">L.G.A of service</label>
                   <select
-                    formControlName="lgaofservice"
                     name=""
                     id=""
-                    class="form-control"
+                    formControlName="lgaofservice"
+                    class="form-control selected"
                   >
-                    <option value="">Select L.G.A</option>
                     <option
                       value=""
                       *ngFor="let lga of lgaDetails"
@@ -170,46 +265,43 @@
                     </option>
                   </select>
                 </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Department</label>
-                  <select
-                    formControlName="department"
-                    name=""
-                    id=""
-                    class="form-control"
-                  >
-                    <option value="">Select Department</option>
-                    <option
-                      value=""
-                      *ngFor="let dept of departmentDetails"
-                      [value]="dept._id"
-                    >
-                      {{ dept.departmentName }}
-                    </option>
-                  </select>
-                </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Rank</label>
-                  <select name="" id="" class="form-control">
-                    <option value="">Select Rank</option>
-                  </select>
-                </div>
 
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">Supervisor</label>
+                  <label for="" class="d-block">Station</label>
                   <select name="" id="" class="form-control">
-                    <option value="">Select Supervisor</option>
+                    <option value="">Select station</option>
                   </select>
                 </div>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Department</label>
+                <select
+                  name=""
+                  id=""
+                  formControlName="department"
+                  class="form-control"
+                >
+                  <option value="">Select Department</option>
+                  <option
+                    value=""
+                    *ngFor="let dept of departmentDetails"
+                    [value]="dept._id"
+                  >
+                    {{ dept.departmentName }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="d-flex division justify-content-between">
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">Branch/Division</label>
+                  <label for="" class="d-block">Branch/division</label>
                   <select
                     name=""
                     id=""
-                    class="form-control"
                     formControlName="divisionhead"
+                    class="form-control selected"
                   >
-                    <option value="">Select Branch/Division</option>
+                    <option value="">Select Division head</option>
                     <option
                       value=""
                       *ngFor="let branch of branchDetails"
@@ -219,33 +311,147 @@
                     </option>
                   </select>
                 </div>
-                <div class="input_container mb-3">
-                  <label for="" class="d-block">Personnel Image</label>
-                  <input
-                    (formdata)="(fileData)"
-                    (change)="upload($event)"
-                    type="file"
-                    class="form-control"
-                    placeholder="Phone number"
-                  />
-                  <img
-                    [src]="personnelImag"
-                    *ngIf="personnelImag"
-                    height="200"
-                    class="passport"
-                  />
-                </div>
+                <!-- <div class="input_container mb-3">
+                  <label for="" class="d-block">Division head</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">Select Division head</option>
+                  </select>
+                </div> -->
               </div>
-              <a (click)="SubmitPersonnel()" class="sign_in-btn btn btn-success"
-                >Submit</a
+              <button
+                class="sign_in-btn btn btn-success"
+                (click)="onNext(steps[1])"
               >
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                Next
+              </button>
+            </div>
+
+            <div class="step_2 contact_info" *ngIf="stepperFirstInfo">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Ref number</label>
+                <input
+                  type="text"
+                  formControlName="refNunmber"
+                  class="form-control"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Phone number</label>
+                <input
+                  formControlName="phone"
+                  type="number"
+                  class="form-control"
+                  placeholder="Phone number"
+                />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Home Address</label>
+                <input
+                  formControlName="address"
+                  type="number"
+                  class="form-control"
+                  placeholder="home address"
+                />
+              </div>
+
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Image upload</label>
+                <input
+                  (formdata)="(fileData)"
+                  (change)="upload($event)"
+                  type="file"
+                  class="form-control"
+                />
+                <img
+                  [src]="personnelImag"
+                  *ngIf="personnelImag"
+                  height="200"
+                  class="passport"
+                />
+              </div>
+
+              <button
+                class="sign_in-btn btn btn-success"
+                (click)="SubmitPersonnel()"
+              >
+                Submit
+              </button>
+              <button
+                class="sign_in-btn btn border-success"
+                (click)="onNext(steps[0])"
+              >
+                Previous
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- VIEW PERSONNEL ============== VIEW PERSONNEL========= VIEW PERSONNEL -->
+
+      <div class="personnel_profile" *ngIf="showViewDetails">
+        <div class="first_row">
+          <div class="user_img-container">
+            <img [src]="personnelImag" alt="" />
+          </div>
+
+          <div class="user_primary-info">
+            <div class="user_info-container">
+              <p class="info_label">First name</p>
+              <p class="data">{{ showAllViewDetails.firstname }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Middle name</p>
+              <p class="data">{{ showAllViewDetails.middlename }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Last name</p>
+              <p class="data">{{ showAllViewDetails.lastname }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Phone number</p>
+              <p class="data">{{ showAllViewDetails.phone }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Home address</p>
+              <p class="data">{{ showAllViewDetails.address }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">State</p>
+              <p class="data">Rivers State</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">L.G.A</p>
+              <p class="data">Obio Akpor</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Department</p>
+              <p class="data">Forensics</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Rank</p>
+              <p class="data">Detective</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Supervisor</p>
+              <p class="data">Joel Mbakwe Uzor</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Branch/Division</p>
+              <p class="data">Obio Akpor</p>
             </div>
           </div>
-        </form>
+        </div>
       </div>
-      <!-- security personnel registration form ends here -->
     </div>
   </div>
 </body>
-<!-- {{ PersonnelRegisterForm.value | json }} -->
