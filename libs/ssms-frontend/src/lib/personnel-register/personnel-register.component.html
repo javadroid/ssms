@@ -1,187 +1,251 @@
 <body>
-
   <div class="staff_reg-form d-flex">
     <div class="bg w-50"></div>
     <div class="form_container w-50">
       <!-- security personnel registration form (splitted into 2 === primary info and contact info) -->
       <div class="access_form-container d-flex">
         <h2 class="form_title">
-          Sign up
-          <span class="d-block">Sign up on this platform to use it</span>
+          Personnel Management
+          <!-- <span class="d-block">Sign up on this platform to use it</span> -->
         </h2>
-        <form>
-          <!-- stepper btn container -->
-          <div class="stepper-container">
-            <div class="step_count d-flex align-items-center">
-              <a  (click)="stepper=false; stepperactive=false" class="btn step_btn active ">
-                <span>1</span> Personal information
-              </a>
-              <a [ngClass]="{'active': stepperactive}" (click)="stepper=true; stepperactive=true"class="btn step_btn">
-                <span>2</span>Contact Information
-              </a>
-            </div>
-          </div>
-
-          <!-- step 1 (primary information) -->
-          <div class="primary_info-container" *ngIf="!stepper">
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Rank</label>
-              <select name="" id="" class="form-control">
-                <option value="">Select Rank</option>
-              </select>
-            </div>
-
-            <div class="d-flex w-100 justify-content-between name_container">
-              <div class="input_container mb-3">
-                <label for="" class="d-block">First name</label>
-                <input
-                  [formControl]="PersonnelRegisterForm.controls.firstname"
-                  type="text"
-                  class="form-control"
-                  placeholder="First name"
-                />
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Last name</label>
-                <input
-                  [formControl]="PersonnelRegisterForm.controls.lastname"
-                  type="text"
-                  class="form-control"
-                  placeholder="Last name"
-                />
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Middle name</label>
-                <input
-                  [formControl]="PersonnelRegisterForm.controls.middlename"
-                  type="text"
-                  class="form-control"
-                  placeholder="Last name"
-                />
-              </div>
-            </div>
-
-            <div
-              class="selection-container d-flex align-items-center justify-content-between"
-            >
-              <div class="input_container mb-3">
-                <label for="" class="d-block">State of service</label>
-                <select
-                  [formControl]="PersonnelRegisterForm.controls.stateofservice"
-                  name=""
-                  id=""
-                  class="form-control selected"
+        <div>
+          <button
+            *ngIf="firstShow"
+            style="float: left"
+            (click)="createNew()"
+            class="sign_in-btn btn btn-success"
+          >
+            Create New
+          </button>
+          <button
+            *ngIf="showSecond"
+            style="float: right"
+            (click)="Backward()"
+            class="sign_in-btn btn btn-success"
+          >
+            Back
+          </button>
+        </div>
+        <br />
+        <table class="table" *ngIf="firstShow">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Staff Ref Number</th>
+              <th scope="col">Staff Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of PersonnelDetail; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.refNunmber }}</td>
+              <td>
+                {{ item.firstname }} {{ item.middlename }} {{ item.lastname }}
+              </td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.phone }}</td>
+              <td>
+                <span>
+                  <a class="btn btn-primary" (click)="Edit(item)">Edit</a>
+                  <a class="btn btn-success">View</a>
+                  <a class="btn btn-danger" (click)="SendPassword(item)"
+                    >Send Password</a
+                  >
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <form [formGroup]="PersonnelRegisterForm">
+          <div class="card" *ngIf="showSecond">
+            <h5 class="card-header">Register Personnel</h5>
+            <div class="card-body">
+              <div class="primary_info-container">
+                <div
+                  class="d-flex w-100 justify-content-between name_container"
                 >
-                  <option value="">Rivers state</option>
-                </select>
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">L.G.A of service</label>
-                <select
-                  [formControl]="PersonnelRegisterForm.controls.lgaofservice"
-                  name=""
-                  id=""
-                  class="form-control selected"
-                >
-                  <option value="">Obio Akpor</option>
+                  <div class="input_container mb-3">
+                    <label for="" class="d-block">First name</label>
+                    <input
+                      formControlName="firstname"
+                      type="text"
+                      class="form-control"
+                      placeholder="First Name"
+                    />
+                  </div>
 
-                </select>
-              </div>
+                  <div class="input_container mb-3">
+                    <label for="" class="d-block">Middle name</label>
+                    <input
+                      formControlName="middlename"
+                      type="text"
+                      class="form-control"
+                      placeholder="Middle Name"
+                    />
+                  </div>
+                  <div class="input_container mb-3">
+                    <label for="" class="d-block">Last name</label>
+                    <input
+                      formControlName="lastname"
+                      type="text"
+                      class="form-control"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Ref Number</label>
+                  <input
+                    type="text"
+                    formControlName="refNunmber"
+                    class="form-control"
+                  />
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Email</label>
+                  <input
+                    formControlName="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                  />
+                </div>
 
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Station</label>
-                <select
-                  [formControl]="PersonnelRegisterForm.controls.station"
-                  name=""
-                  id=""
-                  class="form-control"
-                >
-                  <option value="">Select station</option>
-                </select>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Phone number</label>
+                  <input
+                    formControlName="phone"
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone number"
+                  />
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Home Address</label>
+                  <input
+                    formControlName="address"
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone number"
+                  />
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">State</label>
+                  <select
+                    formControlName="stateofservice"
+                    name=""
+                    id=""
+                    class="form-control"
+                    #state
+                    (change)="onStateChange($event.target)"
+                  >
+                    <option value="">Select State</option>
+                    <option
+                      value=""
+                      *ngFor="let state of stateDetails"
+                      [value]="state._id"
+                    >
+                      {{ state.nameOfState }}
+                    </option>
+                  </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">L.G.A</label>
+                  <select
+                    formControlName="lgaofservice"
+                    name=""
+                    id=""
+                    class="form-control"
+                  >
+                    <option value="">Select L.G.A</option>
+                    <option
+                      value=""
+                      *ngFor="let lga of lgaDetails"
+                      [value]="lga._id"
+                    >
+                      {{ lga.lgaName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Department</label>
+                  <select
+                    formControlName="department"
+                    name=""
+                    id=""
+                    class="form-control"
+                  >
+                    <option value="">Select Department</option>
+                    <option
+                      value=""
+                      *ngFor="let dept of departmentDetails"
+                      [value]="dept._id"
+                    >
+                      {{ dept.departmentName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Rank</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">Select Rank</option>
+                  </select>
+                </div>
+
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Supervisor</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">Select Supervisor</option>
+                  </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Branch/Division</label>
+                  <select
+                    name=""
+                    id=""
+                    class="form-control"
+                    formControlName="divisionhead"
+                  >
+                    <option value="">Select Branch/Division</option>
+                    <option
+                      value=""
+                      *ngFor="let branch of branchDetails"
+                      [value]="branch._id"
+                    >
+                      {{ branch.branchName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Personnel Image</label>
+                  <input
+                    (formdata)="(fileData)"
+                    (change)="upload($event)"
+                    type="file"
+                    class="form-control"
+                    placeholder="Phone number"
+                  />
+                  <img
+                    [src]="personnelImag"
+                    *ngIf="personnelImag"
+                    height="200"
+                    class="passport"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Department</label>
-              <select
-                [formControl]="PersonnelRegisterForm.controls.department"
-                name=""
-                id=""
-                class="form-control"
+              <a (click)="SubmitPersonnel()" class="sign_in-btn btn btn-success"
+                >Submit</a
               >
-                <option value="">Select Department</option>
-              </select>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
-
-            <div class="d-flex division justify-content-between">
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Branch/division</label>
-                <select
-                  [formControl]="PersonnelRegisterForm.controls.branch"
-                  name=""
-                  id=""
-                  class="form-control selected"
-                >
-                  <option value="">Select option</option>
-                </select>
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Division head</label>
-                <select
-                  [formControl]="PersonnelRegisterForm.controls.divisionhead"
-                  name=""
-                  id=""
-                  class="form-control"
-                >
-                  <option value="">Select Division head</option>
-                </select>
-              </div>
-
-            </div>
-            <p class="alternative">
-                Already have an account? <a class="btn">Sign in</a>
-              </p>
-
-              <a  (click)="stepper=true; stepperactive=true" class="sign_in-btn btn btn-success">Next</a>
           </div>
-
-          <!-- step 2 (contact information) -->
-
-          <div class="contact_information  " *ngIf="stepper" >
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Email</label>
-              <input
-                [formControl]="PersonnelRegisterForm.controls.email"
-                type="email"
-                class="form-control"
-                placeholder="Email"
-              />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Phone number</label>
-              <input
-                [formControl]="PersonnelRegisterForm.controls.phone"
-                type="number"
-                class="form-control"
-                placeholder="Phone number"
-              />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Ref number(Auto generated)</label>
-              <input type="number" class="form-control" />
-            </div>
-            <p class="alternative">
-                Already have an account? <a class="btn">Sign in</a>
-              </p>
-
-              <a  (click)="stepper=true; stepperactive=true" class="sign_in-btn btn btn-success">Submit</a>
-          </div>
-
-
         </form>
       </div>
       <!-- security personnel registration form ends here -->
     </div>
   </div>
-
 </body>
-{{ PersonnelRegisterForm.value | json }}
+<!-- {{ PersonnelRegisterForm.value | json }} -->

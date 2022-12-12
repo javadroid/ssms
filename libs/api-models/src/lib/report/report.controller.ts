@@ -27,7 +27,6 @@ import { createReadStream } from 'node:fs';
 export class ReportController {
   constructor(private reportService: ReportService) {}
 
-
   @Post()
   async create(@Body() createReport: ReportDTO) {
     return this.reportService.create(createReport);
@@ -72,39 +71,40 @@ export class ReportController {
     return this.reportService.deleteMany(_id);
   }
 
-
-
-
   @Post('file')
-  @UseInterceptors(FilesInterceptor('file', 10, {
-    storage: diskStorage({
-      destination:'./document'    ,
-      filename: (req, file, cb) => {
-        const fileNameSplit = file.originalname.split('.');
-        const fileExt = fileNameSplit[fileNameSplit.length - 1];
-        const uniqueFilename = Date.now() + Math.round(Math.random() * 1e9);
-        cb(null, `${file.originalname.replace(/\./g, "-")}-${uniqueFilename}.${fileExt}`);
-      },
-    }),
-  }))
- async uploadMultiple(@UploadedFiles() files,) {
-  console.log(files)
-  const names=[]
-    files.forEach((file) =>{
-    const name = file.originalname.split('.')[0];
-    const path = `document/${file.path.split('\\')[1]}`;
+  @UseInterceptors(
+    FilesInterceptor('file', 10, {
+      storage: diskStorage({
+        destination: './document',
+        filename: (req, file, cb) => {
+          const fileNameSplit = file.originalname.split('.');
+          const fileExt = fileNameSplit[fileNameSplit.length - 1];
+          const uniqueFilename = Date.now() + Math.round(Math.random() * 1e9);
+          cb(
+            null,
+            `${file.originalname.replace(
+              /\./g,
+              '-'
+            )}-${uniqueFilename}.${fileExt}`
+          );
+        },
+      }),
+    })
+  )
+  async uploadMultiple(@UploadedFiles() files) {
+    console.log(files);
+    const names = [];
+    files.forEach((file) => {
+      const name = file.originalname.split('.')[0];
+      const path = `document/${file.path.split('\\')[1]}`;
 
-   names.push(file.path.split('\\')[1]);
-  })
-  return names
-  
+      names.push(file.path.split('\\')[1]);
+    });
+    return names;
   }
-
-
-
-  @Get('file')
-  findFile(@Body() id:string[],@Res() res ) {
-    // console.log(res.File(join(process.cwd(),'document'+id[0])))
-  // return res.sendFile(join(process.cwd(),'document'+id[0]))
+  @Get('file/:id')
+  findFile(@Param('id') id: string, @Res() res) {
+    console.log(id);
+    // return res.sendFile(join(process.cwd(),'document\\'+id))
   }
 }

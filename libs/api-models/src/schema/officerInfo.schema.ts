@@ -15,6 +15,12 @@ export class officeInfo {
     @Prop()
     lastName: string;
     @Prop()
+    middleName: string;
+    @Prop()
+    stateOfService: string;
+    @Prop()
+    LgaOfService: string;
+    @Prop()
     divisionId: string;
     @Prop()
     stationId: string;
@@ -23,16 +29,15 @@ export class officeInfo {
     @Prop()
     stationAddress: string;
     @Prop()
-    rank: string;
+    rank:string;
     @Prop()
-    actions: string;
+    actions:string;
     @Prop()
-    policyId: string;
+    policyId:string;
     @Prop()
     nin: string;
     @Prop()
-    officerType: string;
- 
+    officerType: string; 
 }
 
 export const officeInfoSchema = SchemaFactory.createForClass(officeInfo);

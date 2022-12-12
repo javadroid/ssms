@@ -11,16 +11,22 @@ export type NonCrimeIncidentDoc = HydratedDocument<NonCrimeIncident>;
 
 @Schema({ timestamps: true })
 export class NonCrimeIncident {
-  @Prop()
-  info: string;
-  @Prop()
-  locationId: string;
-  @Prop()
-  reportersId: string;
-  @Prop()
-  reportId: string;
-  @Prop()
-  crimeId: string
+    @Prop()
+    details:string;
+    @Prop()
+    locationId:string;
+    @Prop()
+    reportId: string;
+    @Prop()
+    date: string;
+    @Prop()
+    time: string;
+    @Prop()
+    title: string;
+    @Prop()
+    crimeId:string;
+    @Prop()
+    evidence: string;
 
 }
 

@@ -1,132 +1,19 @@
-
-  <body>
-
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">ssms</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="navbar-nav">
-
-    <div class="dropdown text-end">
-
-      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="false">
-        <span style="color: white;">Favour Emmanuel</span>  <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-      </a>
+<div class="dashboard_container">
+  <aside class="dashboard_nav">
+    <div class="logo_container">
+      <h2 class="logo">SSMS</h2>
     </div>
 
-  </div>
-</header>
-
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home" class="align-text-bottom"></span>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file" class="align-text-bottom"></span>
-              Profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart" class="align-text-bottom"></span>
-              Hot lines
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users" class="align-text-bottom"></span>
-              History
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users" class="align-text-bottom"></span>
-              ..
-            </a>
-          </li>
-
-
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-          <span>logout</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-
-      </div>
-    </nav>
-
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
-          </div>
-        </div>
-
-      </div>
-      <div>
-        <span>Search from </span>
-      <input type="date"  placeholder="Search..." aria-label="Search">
-      <span> To </span>
-      <input type="date"  placeholder="Search..." aria-label="Search">
-</div>
-
-<div>
-<br><br>
-
-<div id="mybutton">
- 
-<!-- <button  type="button" class="btn btn-success feedback radu"><span style="text-size-adjust: 50px;">+</span></button> -->
-<img  (click)="onAdd()"  width="64px"  class="feedback" src="assets/add.png" alt=""/>
-</div>
-  <div *ngFor="let i of allReport" class="card">
-    
-    <div class="card-header">
-      {{i.title}}
+    <div class="menu_container">
+      <button class="btn menu_btn active">Dashboard</button>
+      <button class="btn menu_btn">Personnel management</button>
+      <button class="btn menu_btn">Dashboard</button>
+      <button class="btn menu_btn">Dashboard</button>
+      <button class="btn menu_btn">Dashboard</button>
+      <button class="btn menu_btn">Dashboard</button>
     </div>
-    <div  class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p >
-          {{i.details}}
-        </p>
-        
-        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-      </blockquote>
-      
-    </div>
-    <br><br>
- 
-   
+  </aside>
+  <main class="main_dashboard"></main>
 
-  </div>
+  <ssms-organization-update *ngIf="newOrg" ></ssms-organization-update>
 </div>
-
-
-
-
-    </main>
-  </div>
-</div>
-
-
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  </body>
-

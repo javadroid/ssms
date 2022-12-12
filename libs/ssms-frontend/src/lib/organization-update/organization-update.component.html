@@ -1,0 +1,143 @@
+
+  <div class="getting_started">
+    <div class="white_card">
+      <!-- <div class="top_part">
+        <h2 class="text">Getting Started</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> -->
+      <div class="main_reg">
+        <div class="top_greeting">
+          <h1 class="welcome">Welcome to SSMS!</h1>
+          <p class="info">
+            To provide you with the best experience on our platform we would like to know you a bit better
+          </p>
+        </div>
+
+        <div class="stepper-container">
+          <div class="step_count d-flex align-items-center">
+            <button class="btn step_btn" [ngClass]="step === steps[0] ? 'active' : ''" (click)="onNext(steps[0])"><span>1</span> Organizational information</button>
+            <button class="btn step_btn" [ngClass]="step === steps[1] ? 'active' : ''" (click)="onNext(steps[1])"><span>2</span>Contact Person's Information</button>
+          </div>
+        </div>
+        <form [formGroup]="organizationForm"  #f="ngForm">
+          <ng-container [ngSwitch]="step">
+          <div class="org_info" *ngSwitchCase="'organizationInfo'">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Address</label>
+              <input type="text" formControlName="address" class="form-control"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('address')?.errors ? 'is-invalid' : ''"
+               placeholder="Address" />
+              <div class="invalid-feedback">
+                Please provide address.
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Description of Role</label>
+              <input type="text" class="form-control"
+              formControlName="descriptionOfRole"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('descriptionOfRole')?.errors ? 'is-invalid' : ''"
+               placeholder="Description of Role" />
+               <div class="invalid-feedback">
+                Please provide role.
+              </div>
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Organization Email</label>
+              <input type="text" class="form-control" formControlName="organizationEmail"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('organizationEmail')?.errors ? 'is-invalid' : ''"
+              placeholder="Organization Email" />
+              <div class="invalid-feedback">
+                Please provide email.
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">LandLine / Mobile</label>
+              <input type="text" class="form-control" formControlName="landline"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('landline')?.errors ? 'is-invalid' : ''"
+              placeholder="LandLine / Mobile" />
+              <div class="invalid-feedback">
+                Please provide landline/mobile.
+              </div>
+            </div>
+            <button class="btn btn-success" (click)="onNext(steps[1])">Next</button>
+          </div>
+
+          <!-- step 2 (Organization contact information) -->
+
+          <div class="contact_information" *ngSwitchCase="'contactInfo'">
+            <div class="d-flex w-100 justify-content-between name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">First name</label>
+                <input type="text" class="form-control" formControlName="firstname"
+                [ngClass]="
+                f.submitted &&
+                organizationForm.get('firstname')?.errors ? 'is-invalid' : ''"
+                placeholder="First name" />
+                <div class="invalid-feedback">
+                  Please provide first name.
+                </div>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Last name</label>
+                <input type="text" class="form-control" formControlName="lastname"
+                [ngClass]="
+                f.submitted &&
+                organizationForm.get('lastname')?.errors ? 'is-invalid' : ''"
+                placeholder="Last name" />
+                <div class="invalid-feedback">
+                  Please provide last name.
+                </div>
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Middle name</label>
+                <input type="text" class="form-control" formControlName="middlename"
+                [ngClass]="
+                f.submitted &&
+                organizationForm.get('middlename')?.errors ? 'is-invalid' : ''"
+                placeholder="Last name" />
+                <div class="invalid-feedback">
+                  Please provide middle name.
+                </div>
+              </div>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Rank / Designation</label>
+              <input type="text" class="form-control" formControlName="rank"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('rank')?.errors ? 'is-invalid' : ''"
+              placeholder="Rank / Designation" />
+              <div class="invalid-feedback">
+                Please provide rank.
+              </div>
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Official Phone number</label>
+              <input type="text" class="form-control" formControlName="officialphone"
+              [ngClass]="
+              f.submitted &&
+              organizationForm.get('officialphone')?.errors ? 'is-invalid' : ''"
+              placeholder="Official Phone number" />
+              <div class="invalid-feedback">
+                Please provide official phone.
+              </div>
+            </div>
+            <button class="btn border-success" (click)="onNext(steps[0])">Previous</button>
+            <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+          </div>
+        </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+

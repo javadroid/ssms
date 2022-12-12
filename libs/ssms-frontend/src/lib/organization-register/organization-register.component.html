@@ -148,7 +148,7 @@
           <!-- stepper btn container -->
           <div class="stepper-container">
             <div class="step_count d-flex align-items-center">
-              <a  (click)="stepper=true; stepperbtnactive=false" class=" btn step_btn active">
+              <a  class=" btn step_btn active">
                 <span>1</span> Organizational information
               </a>
             </div>
@@ -157,13 +157,13 @@
 
           <!-- step 1 (Organization primary information) -->
 
-          <div *ngIf="stepper" class="primary_info-container">
+          <div  class="primary_info-container">
             <div
               class="selection-container d-flex align-items-center justify-content-between"
             >
               <div class="input_container mb-3">
                 <label for="" class="d-block">Type of Agency</label>
-                <select [formControl]="OrganizationsignUpForm.controls.typeofagency" name="" id="" class="form-control selected">
+                <select [formControl]="OrganizationsignUpForm.controls.typeOfAgency" name="" id="" class="form-control selected">
                   <option value="">Select</option>
                   <option value="">Public</option>
                   <option value="">Private</option>
@@ -171,7 +171,7 @@
               </div>
               <div class="input_container mb-3">
                 <label for="" class="d-block">Category of org.</label>
-                <select [formControl]="OrganizationsignUpForm.controls.categoryofagency" name="" id="" class="form-control selected">
+                <select [formControl]="OrganizationsignUpForm.controls.categoryOfagency" name="" id="" class="form-control selected">
                   <option  value="">Select</option>
                   <option  *ngFor="let category of organizationcategory" [value]="category.organizationCategoryName">{{category.organizationCategoryName}}</option>
                   <!-- <option value="">Intelligence Agency</option>
@@ -182,7 +182,7 @@
 
               <div class="input_container mb-3">
                 <label for="" class="d-block">Name of Org.</label>
-                <select [formControl]="OrganizationsignUpForm.controls.nameoforganization" name="" id="" class="form-control">
+                <select [formControl]="OrganizationsignUpForm.controls.organizationName" name="" id="" class="form-control">
                   <option value="">Select</option>
                   <option *ngFor="let name of organizationName" [value]="name.organizationName">{{name.organizationName}}</option>
                   <!-- <option value="">NIA, DIA</option>
@@ -192,23 +192,25 @@
               </div>
             </div>
 
-            <div class="input_container mb-3">
+            <!-- <div class="input_container mb-3">
               <label for="" class="d-block">Address</label>
               <input [formControl]="OrganizationsignUpForm.controls.address" type="text" class="form-control" placeholder="Address" />
             </div>
 
             <div class="input_container mb-3">
               <label for="" class="d-block">Description of Role</label>
-              <input [formControl]="OrganizationsignUpForm.controls.descriptionofrole" type="text" class="form-control" placeholder="Description of Role" />
+              <input [formControl]="OrganizationsignUpForm.controls.descriptionOfRole" type="text" class="form-control" placeholder="Description of Role" />
             </div>
 
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Organization Email</label>
-              <input [formControl]="OrganizationsignUpForm.controls.organizationsemail" type="text" class="form-control" placeholder="Organization Email" />
-            </div>
+
             <div class="input_container mb-3">
               <label for="" class="d-block">LandLine / Mobile</label>
               <input type="text" class="form-control" placeholder="LandLine / Mobile" />
+            </div> -->
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Organization Email</label>
+              <input [formControl]="OrganizationsignUpForm.controls.organizationEmail" type="text" class="form-control" placeholder="Organization Email" />
             </div>
 
           </div>

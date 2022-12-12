@@ -1,66 +1,62 @@
-import {
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
-import  { HydratedDocument,  } from 'mongoose';
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
 export type PersonnelDoc = HydratedDocument<Personnel>;
 
 @Schema({ timestamps: true })
 export class Personnel {
-
   @Prop()
-  typeofagency: string
+  typeofagency: string;
   @Prop()
-  categoryofagency: string
+  categoryofagency: string;
   @Prop()
-  nameoforganization:string
+  nameoforganization: string;
   @Prop()
-  address:string
+  address: string;
   @Prop()
-  descriptionofrole:string
+  descriptionofrole: string;
   @Prop()
-  department:string
+  department: string;
   @Prop()
-  station:string
+  station: string;
   @Prop()
-  organizationsemail:string
+  organizationsemail: string;
   @Prop()
-  landline:string
+  landline: string;
   @Prop()
-  firstname: string
+  firstname: string;
   @Prop()
-  lastname: string
+  lastname: string;
   @Prop()
-  middlename: string
+  middlename: string;
   @Prop()
-  rank: string
+  rank: string;
   @Prop()
-  officialemail: string
+  officialemail: string;
   @Prop()
-  officialphone: string
+  officialphone: string;
   @Prop()
-  stateofservice: string
+  stateofservice: string;
   @Prop()
-  lgaofservice: string
+  lgaofservice: string;
   @Prop()
-  divisionhead: string
+  divisionhead: string;
   @Prop()
-  phone: string
+  phone: string;
   @Prop()
-  email: string
+  email: string;
   @Prop()
-  branch: string
+  branch: string;
   @Prop()
-  password: string
+  password: string;
   @Prop()
-  sub : string
-
-
+  refNunmber: string;
+  @Prop()
+  organizationId: string;
+  @Prop()
+  personnelImage: string;
+  @Prop()
+  subcriberID: string;
 }
 
 export const PersonnelSchema = SchemaFactory.createForClass(Personnel);
-
-
