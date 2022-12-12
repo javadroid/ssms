@@ -70,7 +70,7 @@ export class CriminalInfoComponent implements OnInit {
         data.criminalId = this.criminalID;
 
         console.log('path1:', data);
-        this.http.update('document', data.id, data).subscribe((n) => {
+        this.http.update('criminal-info', data.id, data).subscribe((n) => {
           swal.fire('Success!', 'Update successfully.', 'success');
           this.criminalInfoForm.reset();
           // this.LoadAllpersonnel();
