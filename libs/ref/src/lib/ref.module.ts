@@ -41,6 +41,10 @@ import { DivisionController } from './division/division.controller';
 import { DivisionModule } from './division/division.module';
 import { WeaponService } from './weapon/weapon.service';
 import { Weapon, WeaponSchema } from '../schema/weapon.schema';
+import { RankController } from './rank/rank.controller';
+import { RankService } from './rank/rank.service';
+import { Rank, RankSchema } from '../schema/rank.schema';
+
 
 @Module({
   controllers: [
@@ -54,6 +58,7 @@ import { Weapon, WeaponSchema } from '../schema/weapon.schema';
     PolicyController,
     WeaponController,
     DivisionController,
+    RankController
   ],
   providers: [
     OrganizationcategoryService,
@@ -64,7 +69,8 @@ import { Weapon, WeaponSchema } from '../schema/weapon.schema';
     LgaService,
     StatesService,
     PolicyService,
-    WeaponService
+    WeaponService,
+    RankService
   ],
   exports: [],
   imports: [
@@ -78,6 +84,7 @@ import { Weapon, WeaponSchema } from '../schema/weapon.schema';
     MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }]),
     MongooseModule.forFeature([{ name: Policy.name, schema: PolicySchema }]),
     MongooseModule.forFeature([{ name: Weapon.name, schema: WeaponSchema }]),
+    MongooseModule.forFeature([{ name: Rank.name, schema: RankSchema }]),
     StatesModule,
     LgaModule,
     OrganizationcategoryModule,
@@ -88,6 +95,7 @@ import { Weapon, WeaponSchema } from '../schema/weapon.schema';
     PolicyModule,
     WeaponModule,
     DivisionModule,
+
   ],
 })
 export class RefModule {}

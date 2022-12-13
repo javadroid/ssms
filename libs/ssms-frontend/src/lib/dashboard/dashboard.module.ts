@@ -7,9 +7,11 @@ import { RouterModule } from '@angular/router';
 import { OrganizationUpdateComponent } from '../organization-update/organization-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { PersonnelRegisterComponent } from '../personnel-register/personnel-register.component';
+import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
 
 @NgModule({
-  declarations: [DashboardComponent, OrganizationUpdateComponent,SignUpComponent],
+  declarations: [DashboardComponent, OrganizationUpdateComponent,SignUpComponent,PersonnelRegisterComponent,MainDashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

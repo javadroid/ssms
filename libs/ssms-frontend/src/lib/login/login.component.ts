@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
       })
     }else if(localStorage.getItem('email')?.split('-')[0]==='PER'){
        this.http.profile('personnel').subscribe(a=>{
-
+        localStorage.setItem('id', a.userId);
+        this.route.navigate(['/home'])
 
                 console.log("profile",a)
       })
@@ -43,6 +44,8 @@ onSubmit(){
     })
   }else if(this.loginForm.controls.username.value?.split('-')[0]==='PER'){
     this.http.login('personnel', this.loginForm.value).subscribe(e=>{
+      localStorage.setItem('id', e.userId);
+      this.route.navigate(['/home'])
       console.log(e)
     })
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@ssms/api-interfaces';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'ssms-root',
@@ -8,6 +9,11 @@ import { Message } from '@ssms/api-interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: Router) {
+
+console.log( " http.getCurrentNavigation()",http.url)
+  }
+
+
 }

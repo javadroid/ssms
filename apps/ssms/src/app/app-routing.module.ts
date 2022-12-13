@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OrganizationAuthGuard, PersonnelAuthGuard } from '@ssms/ssms-frontend';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
 
   {
+    canActivate: [OrganizationAuthGuard],
     path: 'dashboard',
     loadChildren: () =>
       import('@ssms/ssms-frontend').then((m) => m.DashboardModule),
+    // children: [{ path: 'cc', component:AppComponent }],
+  },
+  {
+    canActivate: [PersonnelAuthGuard],
+    path: 'home',
+    loadChildren: () =>
+      import('@ssms/ssms-frontend').then((m) => m.PersonnelDashboardModule),
   },
   {
     path: 'report',
@@ -44,24 +53,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('@ssms/ssms-frontend').then((m) => m.OrganizationSigninModule),
   },
-  {
-    path: 'personnel-register',
-    loadChildren: () =>
-      import('@ssms/ssms-frontend').then((m) => m.PersonnelRegisterModule),
-  },
+
   {
     path: 'organization-register',
     loadChildren: () =>
       import('@ssms/ssms-frontend').then((m) => m.OrganizationRegisterModule),
   },
 
-
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('@ssms/ssms-frontend').then((m) => m.LoginModule),
-  },
-
+  // {
+  //   path: './**', redirectTo: 'dashboard', pathMatch: 'full'
+  //  },
 
   {
     path: 'login',

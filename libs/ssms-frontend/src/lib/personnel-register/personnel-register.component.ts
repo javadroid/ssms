@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 import Swal from 'sweetalert2';
-import { eventNames } from 'process';
 
 @Component({
   selector: 'ssms-personnel-register',
@@ -15,7 +14,6 @@ export class PersonnelRegisterComponent implements OnInit {
   stepper = false;
   stepperactive = false;
   PersonnelRegisterForm!: FormGroup;
-  organizationID = '6391b7664a233b1ce3185e04';
   PersonnelDetail: any[] = [];
   stateDetails: any[] = [];
   lgaDetails: any[] = [];
@@ -33,13 +31,17 @@ export class PersonnelRegisterComponent implements OnInit {
   showViewDetails = false;
   showAllViewDetails: any;
   steps = ['PrimaryInfo', 'contactInfo'];
+  organizationData=[] as any
+  organizationID=this.organizationData[0]?._id;
   constructor(
     private http: ServiceApi,
     private personnelformbuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.organizationID=this.organizationData[0]?._id;
     this.LoadAll();
+
     this.PersonnelRegisterForm = this.personnelformbuilder.group({
       typeofagency: [''],
       categoryofagency: [''],
@@ -67,6 +69,8 @@ export class PersonnelRegisterComponent implements OnInit {
       id: [''],
       personnelImage: [''],
     });
+
+    console.log(this.organizationData)
   }
   showFilterList() {
     this.showFilter = !this.showFilter;
@@ -87,8 +91,12 @@ export class PersonnelRegisterComponent implements OnInit {
     this.selectindex = index;
     console.log('selected', this.selectindex, index);
     if (index === this.selectindex) {
-      this.showfiltercriteria = true;
+
+      this.showfiltercriteria =  !this.showfiltercriteria ;
     }
+  }
+  onCloseMenu(){
+    this.showfiltercriteria =  false;
   }
   onNext(step: string) {
     this.step = step;
@@ -104,6 +112,7 @@ export class PersonnelRegisterComponent implements OnInit {
         (n: { organizationId: string }) =>
           n.organizationId === this.organizationID
       );
+      // console.log("this.organizationID",this.organizationData[0]?._id)
     });
   }
   loadDepartment() {
@@ -126,6 +135,13 @@ export class PersonnelRegisterComponent implements OnInit {
     this.http.find('states').subscribe((m) => {
       console.log('state', m);
       this.stateDetails = m;
+    });
+  }
+  loadRank() {
+    this.http.find('rank').subscribe((m) => {
+      console.log('rank', m);
+
+      this.stateDetails = m.filter((sub: { organizationId: string }) =>sub.organizationId===this.organizationID);
     });
   }
   onStateChange(event: any) {

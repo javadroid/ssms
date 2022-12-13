@@ -1,21 +1,3 @@
-<!-- {{ PersonnelRegisterForm.value | json }} -->
-
-<body>
-  <div class="dashboard_container">
-    <aside class="dashboard_nav">
-      <div class="logo_container">
-        <h2 class="logo">SSMS</h2>
-      </div>
-
-      <div class="menu_container">
-        <button class="btn menu_btn active">Dashboard</button>
-        <button class="btn menu_btn">Personnel management</button>
-        <button class="btn menu_btn">Crime management</button>
-        <button class="btn menu_btn">Incident management</button>
-        <button class="btn menu_btn">Report management</button>
-        <button class="btn menu_btn">Report monitoring</button>
-      </div>
-    </aside>
 
     <main class="main_dashboard d-none">
       <div class="top_nav d-flex align-items-center">
@@ -55,19 +37,8 @@
 
     <!-- PERSONNEL MANAGEMENT BEGINS HERE -->
 
-    <div class="personnel_management">
-      <div class="top_nav d-flex align-items-center">
-        <h3 class="user">NIGERIAN POLICE FORCE</h3>
-        <div class="search_container d-flex">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </div>
-      </div>
+    <div (click)="onCloseMenu()" class="personnel_management">
+
       <!-- PERSONNEL LIST BEGINS HERE===========PERSONNEL LIST BEGINS HERE -->
 
       <div class="personnel_list-container">
@@ -141,11 +112,11 @@
                 <td>{{ item.email }}</td>
                 <td>{{ item.phone }}</td>
                 <td>
-                  <button class="btn p-0" (click)="showmenu(i)">
+                  <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">
                     <img src="../assets/more_vert_black_24dp.svg" alt="" />
                   </button>
 
-                  <div class="actions" *ngIf="selectindex === i">
+                  <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
                     <button id="" class="btn" (click)="View(item)">View</button>
                     <button class="btn" (click)="Edit(item)">Edit</button>
                     <button class="btn" (click)="SendPassword(item)">
@@ -188,7 +159,7 @@
           <form [formGroup]="PersonnelRegisterForm">
             <div class="step_1" *ngIf="!stepperFirstInfo">
               <div class="input_container mb-3">
-                <label for="" class="d-block">Rank</label>
+                <label  for="" class="d-block">Rank</label>
                 <select name="" id="" class="form-control">
                   <option value="">Select Rank</option>
                 </select>
@@ -453,5 +424,3 @@
         </div>
       </div>
     </div>
-  </div>
-</body>

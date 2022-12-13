@@ -1,16 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceApi {
+
+  signedOrg$= new BehaviorSubject(true)
+  signedPer$= new BehaviorSubject(false)
   getAuthToken() {
     return localStorage.getItem('token');
   }
 
   constructor(private http: HttpClient) {}
+
 
   find(model: string): Observable<any> {
     return this.http.get(`http://localhost:3333/api/${model}/`);
@@ -48,14 +52,29 @@ export class ServiceApi {
         tap((x: any) => {
           localStorage.setItem('token', x.access_token);
           localStorage.setItem('id', x.user_id);
+          if(x.user==='organization')this.signedOrg$.next(x.isAuthenticated)
+          if(x.user==='personnel ')this.signedPer$.next(x.isAuthenticated)
         })
       );
   }
   profile(model: string): Observable<any> {
-    return this.http.get(`http://localhost:3333/api/${model}/profile`);
+    return this.http.get(`http://localhost:3333/api/${model}/profile`).pipe(
+      tap((x: any) => {
+
+        if(x.user==='organization')this.signedOrg$=new BehaviorSubject(true)
+        if(x.user==='personnel ')this.signedPer$=new BehaviorSubject(true)
+
+      }));
   }
+
+  // isAuthenticated(){
+
+  //   return this.isLoggedIn;
+  // }
 
   users(id: string): Observable<any> {
     return this.http.get(`https://dummyjson.com/users/${id}`);
   }
+
+
 }

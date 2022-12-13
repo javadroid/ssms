@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PersonnelDTO } from '../../dto/personnel.dto';
-// import { JwtAuthGuard } from '../organization/auth/authGuard/jwtAuthGuard';
+
 
 import { PersonnelAuthService } from './auth/auth/personnel.auth.service';
 import { JwtAuthGuard } from './auth/authGuard/jwtAuthGuard';
@@ -25,14 +25,14 @@ export class PersonnelController {
     private personnelAuthService: PersonnelAuthService
   ) {}
 
-  // @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
     return this.personnelAuthService.login(req.user);
     // return req.user;
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;

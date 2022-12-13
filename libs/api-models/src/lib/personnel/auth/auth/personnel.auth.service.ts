@@ -25,6 +25,6 @@ console.log("useruser2",user)
   async login(user:any){
     console.log("users",user)
     const payload ={personnelEmail:user.email,sub:user._id}
-    return {access_token: this.jwtService.sign(payload), id:user._id,user_email:'PER-'+user.email}
+    return {access_token: this.jwtService.sign(payload), id:user._id,user_email:'PER-'+user.email,isAuthenticated:true,user:'personnel'}
   }
 }

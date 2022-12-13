@@ -5,6 +5,7 @@ import {
   Get,
   NotFoundException,
   Param,
+  Response,
   Patch,
   Post,
   Request,
@@ -32,6 +33,14 @@ constructor(private organizationService:OrganizationService, private organizatio
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('logout')
+  logout(@Request() req, @Response()res) {
+     req.logout();
+
+  res.redirect('/');
   }
   @Post()
   async create(@Body() createOrganization: OrganizationDTO) {

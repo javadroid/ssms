@@ -7,7 +7,7 @@ import { OrganizationAuthService } from "../auth/organization.auth.service";
 
 
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy,"custom"){
+export class LocalStrategy extends PassportStrategy(Strategy,"custom1"){
 
     constructor(private organizationAuthService:OrganizationAuthService){
         super()

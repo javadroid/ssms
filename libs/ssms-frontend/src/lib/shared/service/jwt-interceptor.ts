@@ -1,17 +1,18 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { ServiceApi } from './service-api';
 
 @Injectable()
 export class JwtInterceptor  implements HttpInterceptor {
 
-  constructor(private http: ServiceApi) { }
+  constructor(private http: ServiceApi,private route:Router) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const token = this.http.getAuthToken();
 
-console.log(token)
+// console.log(token)
       if (token) {
         // If we have a token, we set it to the header
         request = request.clone({
@@ -19,13 +20,13 @@ console.log(token)
         });
      }
 
-     return next.handle(request).pipe(tap(x=> console.log('yes')),
+     return next.handle(request).pipe(
        catchError((err:any) => {
          if (err instanceof HttpErrorResponse) {
              if (err.status === 401) {
-           console.log('oooooooooo')
+           this.route.navigate(['/login']);
 
-           localStorage.setItem('token','')
+           localStorage.clear()
           }
        }
        return throwError(err);
