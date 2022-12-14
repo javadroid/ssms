@@ -95,7 +95,15 @@ export class OrganizationManagementComponent implements OnInit {
   SendPassword(data: any) {
     const email = data.organizationEmail;
     this.selectindex = null;
-    Swal.fire('Password Sent!', 'successfully to' + ' ' + email, 'success');
+    this.OrganizationsignUpForm.patchValue(data)
+    this.OrganizationsignUpForm.patchValue({id:data._id})
+    this.passwordGenerate()
+    console.log(this.OrganizationsignUpForm.value)
+    this.http.resetpassword('organization',{password:this.OrganizationsignUpForm.value}).subscribe(e=>{
+      Swal.fire('Password Sent!', 'successfully to' + ' ' + e.organizationEmail +'   '+this.OrganizationsignUpForm.value.password, 'success');
+console.log(e)
+
+    })
   }
   Backward() {
     this.firstShow = true;

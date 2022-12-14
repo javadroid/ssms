@@ -81,5 +81,10 @@ export class ServiceApi {
     return this.http.get(`https://dummyjson.com/users/${id}`);
   }
 
+  resetpassword(model: string,pass: any): Observable<any> {
+return this.http.patch(`http://localhost:3333/api/${model}/resetpassword`, pass)
+
+  }
+
 
 }

@@ -15,6 +15,7 @@ export class PersonnelRegisterComponent implements OnInit {
   stepperactive = false;
   PersonnelRegisterForm!: FormGroup;
   PersonnelDetail: any[] = [];
+
   stateDetails: any[] = [];
   lgaDetails: any[] = [];
   departmentDetails: any[] = [];
@@ -42,6 +43,7 @@ export class PersonnelRegisterComponent implements OnInit {
     this.organizationID=this.organizationData[0]?._id;
     this.LoadAll();
 
+
     this.PersonnelRegisterForm = this.personnelformbuilder.group({
       typeofagency: [''],
       categoryofagency: [''],
@@ -65,8 +67,9 @@ export class PersonnelRegisterComponent implements OnInit {
       email: [''],
       branch: [''],
       refNunmber: [''],
-      organizationId: [this.organizationID],
+      organizationId: [this.organizationData[0]?._id],
       id: [''],
+       password:[''],
       personnelImage: [''],
     });
 
@@ -112,7 +115,7 @@ export class PersonnelRegisterComponent implements OnInit {
         (n: { organizationId: string }) =>
           n.organizationId === this.organizationID
       );
-      // console.log("this.organizationID",this.organizationData[0]?._id)
+      console.log("this.organizationID",this.PersonnelDetail,m,this.organizationData[0]?._id,this.organizationID)
     });
   }
   loadDepartment() {
@@ -170,7 +173,15 @@ export class PersonnelRegisterComponent implements OnInit {
   SendPassword(data: any) {
     const email = data.email;
     this.selectindex = null;
-    Swal.fire('Password Sent!', 'successfully to' + ' ' + email, 'success');
+
+    this.PersonnelRegisterForm.patchValue(data)
+    this.PersonnelRegisterForm.patchValue({id:data._id})
+    this.passwordGenerate()
+    this.http.resetpassword('organization',{password:this.PersonnelRegisterForm.value}).subscribe(e=>{
+      Swal.fire('Password Sent!', 'successfully to' + ' ' + e.email +'   '+this.PersonnelRegisterForm.value.password, 'success');
+console.log(e)
+
+    })
   }
   Backward() {
     this.firstShow = true;
@@ -210,14 +221,27 @@ export class PersonnelRegisterComponent implements OnInit {
 
     this.fileData.append('file', this.fileSelected, this.fileSelected.name);
   }
+  onDelete(item: any) {
+    this.http.delete('personnel', item._id).subscribe((e) => {
+      Swal.fire(
+        'Deleted!',
+         e.email,
+        'success'
+      );
+    });
+
+     this.LoadAllpersonnel();
+  }
 
   SubmitPersonnel() {
-    let path = '';
 
-    console.log(this.PersonnelRegisterForm.value);
+
     const data = this.PersonnelRegisterForm.value;
-
+    this.passwordGenerate()
     if (data.id) {
+      this.PersonnelRegisterForm.removeControl('Password')
+      this.PersonnelRegisterForm.removeControl('organizationId')
+      console.log(this.PersonnelRegisterForm.value);
       this.http.upload('document', this.fileData).subscribe((uploadUrl) => {
         this.images = uploadUrl[0];
         data.personnelImage = this.images;
@@ -237,10 +261,14 @@ export class PersonnelRegisterComponent implements OnInit {
         this.images = uploadUrl[0];
 
         this.PersonnelRegisterForm.value.personnelImage = this.images;
-        this.PersonnelRegisterForm.value.organizationId = this.organizationID;
-        this.http.create('personnel', data).subscribe((n) => {
-          Swal.fire('Success!', 'successfully.', 'success');
-          console.log(n);
+        this.PersonnelRegisterForm.patchValue({
+          personnelImage:this.images,
+          organizationId:this.organizationData[0]?._id
+        })
+        console.log(this.PersonnelRegisterForm.value);
+        this.http.create('personnel', this.PersonnelRegisterForm.value).subscribe((n) => {
+          Swal.fire('Success!', n.email +'   '+this.PersonnelRegisterForm.value.password, 'success');
+          console.log("ersonnelRegisterForm.",n);
           this.PersonnelRegisterForm.reset();
           this.personnelImag = '';
           this.LoadAllpersonnel();
@@ -249,5 +277,26 @@ export class PersonnelRegisterComponent implements OnInit {
         });
       });
     }
+  }
+
+  passwordGenerate() {
+    const alpha = 'abcdefghijklmnopqrstuvwxyz';
+    const calpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const num = '1234567890';
+    const specials = '!@#$%.&';
+    const options = [alpha, alpha, alpha, calpha, calpha, num, num, specials];
+    let opt, choose;
+    let pass = '';
+    for (let i = 0; i < 8; i++) {
+      opt = Math.floor(Math.random() * options.length);
+      choose = Math.floor(Math.random() * options[opt].length);
+      pass = pass + options[opt][choose];
+      options.splice(opt, 1);
+    }
+    console.log(pass);
+
+    this.PersonnelRegisterForm.patchValue({
+      password: pass,
+    });
   }
 }
