@@ -177,9 +177,10 @@ export class PersonnelRegisterComponent implements OnInit {
     this.PersonnelRegisterForm.patchValue(data)
     this.PersonnelRegisterForm.patchValue({id:data._id})
     this.passwordGenerate()
-    this.http.resetpassword('organization',{password:this.PersonnelRegisterForm.value}).subscribe(e=>{
+    this.http.resetpassword('personnel',{password:this.PersonnelRegisterForm.value}).subscribe(e=>{
+      console.log(";jb/jbn/kjb;ku",e)
       Swal.fire('Password Sent!', 'successfully to' + ' ' + e.email +'   '+this.PersonnelRegisterForm.value.password, 'success');
-console.log(e)
+
 
     })
   }
