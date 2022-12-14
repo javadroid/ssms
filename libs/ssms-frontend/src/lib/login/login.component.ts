@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private http:ServiceApi,private route:Router) {}
 
   async ngOnInit(): Promise<void> {
-
+console.log('xs',localStorage.getItem('email'))
     if(localStorage.getItem('email')?.split('-')[0]==='ORG'){
        this.http.profile('organization').subscribe(a=>{
         localStorage.setItem('id', a.userId);

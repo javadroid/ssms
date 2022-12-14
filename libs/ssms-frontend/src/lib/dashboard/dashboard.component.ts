@@ -45,4 +45,9 @@ export class DashboardComponent implements OnInit {
   onOutletLoaded(component:any) {
     component.organizationData=this.organizationData
 }
+
+logout(){
+  localStorage.clear()
+  this.route.navigate(['/login'])
+}
 }

@@ -52,6 +52,7 @@ export class ServiceApi {
         tap((x: any) => {
           localStorage.setItem('token', x.access_token);
           localStorage.setItem('id', x.user_id);
+          localStorage.setItem('email', x.user_email);
           if(x.user==='organization')this.signedOrg$.next(x.isAuthenticated)
           if(x.user==='personnel ')this.signedPer$.next(x.isAuthenticated)
         })

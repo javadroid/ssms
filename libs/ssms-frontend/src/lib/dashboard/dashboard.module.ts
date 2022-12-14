@@ -9,9 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { PersonnelRegisterComponent } from '../personnel-register/personnel-register.component';
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
+import { CriminalManagementComponent } from '../criminal-management/criminal-management.component';
 
 @NgModule({
-  declarations: [DashboardComponent, OrganizationUpdateComponent,SignUpComponent,PersonnelRegisterComponent,MainDashboardComponent],
+  declarations: [DashboardComponent,CriminalManagementComponent, OrganizationUpdateComponent,SignUpComponent,PersonnelRegisterComponent,MainDashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
