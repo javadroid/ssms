@@ -54,9 +54,7 @@ export class OrganizationRegisterComponent implements OnInit {
   }
 
 
-  makeTableClassID(id: any) {
-    return id;
-  }
+
 
   passwordGenerate() {
     const alpha = 'abcdefghijklmnopqrstuvwxyz';

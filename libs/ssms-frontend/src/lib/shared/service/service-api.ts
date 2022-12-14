@@ -45,6 +45,10 @@ export class ServiceApi {
     return this.http.post(`http://localhost:3333/api/${model}`, file);
   }
 
+  delete(model: string, id: string): Observable<any> {
+    return this.http.delete(`http://localhost:3333/api/${model}/${id}`);
+  }
+
   login(model: string, login: any): Observable<any> {
     return this.http
       .post(`http://localhost:3333/api/${model}/login`, login)
