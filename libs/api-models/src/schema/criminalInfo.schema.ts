@@ -18,9 +18,11 @@ export class CriminalInfo {
     @Prop()
     lastName: string;
     @Prop()
-    MiddleNameName: string;
+    middleName: string;
     @Prop()
     phoneNumber: string;
+    @Prop()
+    email: string;
     @Prop()
     dateOfBirth: string;
     @Prop()

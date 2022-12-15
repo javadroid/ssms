@@ -5,6 +5,7 @@ export class CriminalInfoDTO {
     lastName: string;
     middleName: string;
     phoneNumber: string;
+    email: string;
     dateOfBirth: string;
     placeOfBirth: string;
     stateOfOrigin: string;

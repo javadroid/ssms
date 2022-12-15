@@ -13,3 +13,4 @@ export * from './lib/organization-register/organization-register.module';
 export * from './lib/shared/service/jwt-interceptor';
 export * from './lib/shared/guard/organization-auth.guard';
 export * from './lib/shared/guard/personnel-auth.guard';
+export * from './lib/criminal-info/criminal-info.module';

@@ -1,0 +1,486 @@
+<body>
+  <div class="criminal_mgt ">
+    <div class="search_container">
+      <div class="top_nav d-flex align-items-center">
+        <ng-container *ngIf="createModal===false">
+            <div (click)="createNew()" class="btn btn-success">Create profile
+          </div>
+        </ng-container>
+        <ng-container *ngIf="createModal===true">
+            <div (click)="cancelCreate()" class="btn btn-danger">Cancel Create profile </div>
+        </ng-container>
+
+        <div class="search_container d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
+
+
+      <div class="table-responsive"  *ngIf="!edits">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name of Cirminal</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Date Of Birth</th>
+              <th scope="col">Place Of Birth</th>
+              <th scope="col">State of Origin</th>
+              <th scope="col">Occupation</th>
+              <th scope="col">Education</th>
+              <th scope="col">Height</th>
+              <th scope="col">NIN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of criminalData; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.firstName + '' + item.lastName }}</td>
+              <td>{{ item.phoneNumber }}</td>
+              <td>{{ item.dateOfBirth }}</td>
+              <td>{{ item.placeOfBirth }}</td>
+              <td>{{ item.stateOfOrigin }}</td>
+              <td>{{ item.occupation }}</td>
+              <td>{{ item.education }}</td>
+              <td>{{ item.height }}</td>
+              <td>{{ item.nin }}</td>
+              <td>
+                <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">
+                  <img src="../assets/more_vert_black_24dp.svg" alt="" />
+                </button>
+                <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                  <button class="btn" (click)="Edit(item)">Edit</button>
+                  <button class="btn " (click)="onDelete(item)">Delete!</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- VIEW CRIMINAL PROFILE AFTER SEARCH ============== VIEW CRIMINAL PROFILE AFTER SEARCH========= VIEW CRIMINAL PROFILE AFTER SEARCH -->
+
+      <div class="criminal_profile d-none">
+        <div class="first_row">
+          <div class="user_img-container">
+            <img src="images/3. Black Man.png" alt="" />
+          </div>
+
+          <!-- SEARCH RESULT ================= SEARCH RESULT -->
+          <div class="criminal_info">
+            <div class="user_primary-info">
+              <div class="user_info-container">
+                <p class="info_label">First name</p>
+                <p class="data">Lucy Paul Edwards</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Middle name</p>
+                <p class="data">Paul</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Last name</p>
+                <p class="data">Edwards</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Alias</p>
+                <p class="data">Anini</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Date of Birth</p>
+                <p class="data">10/10/1976</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Place of Birth</p>
+                <p class="data">Rumuokoro General hospital</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">State</p>
+                <p class="data">Rivers State</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">L.G.A</p>
+                <p class="data">Obio Akpor</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Occupation</p>
+                <p class="data">Sales Representative</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Location</p>
+                <p class="data">30 East-west road rumuodara</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Education</p>
+                <p class="data">SSCE</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">NIN</p>
+                <p class="data">232030939489348903</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Height</p>
+                <p class="data">5'3</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Weight</p>
+                <p class="data">96KG</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Phone number</p>
+                <p class="data">07074893710</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Email</p>
+                <p class="data">johndoe@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="title-container">
+              <h2 class="section_title">Criminal Record <span>2</span></h2>
+
+              <button class="create_record btn btn-success">Create record</button>
+            </div>
+
+            <div class="case_list">
+              <div class="case d-flex closed">
+                <span class="crime">Arson</span>
+                <p class="crime_info">Offense date: <span>10/10/2022</span></p>
+                <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+                <p class="status">Closed</p>
+                <button class="see_detail">See detail</button>
+              </div>
+              <div class="case d-flex indicator active">
+                <span class="crime">Cyber Crime</span>
+                <p class="crime_info">Offense date: <span>10/10/2022</span></p>
+                <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+                <p class="status">Active</p>
+                <button class="see_detail">See detail</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW CASE DETAIL MODAL=============VIEW CASE DETAIL MODAL -->
+
+      <div class="case_modal d-none">
+        <div class="case_card">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="section">
+            <h1 class="crime_type">Arson <span class="status">Closed</span></h1>
+            <div class="sub_info d-flex">
+              <p class="crime_info">Offense date: <span>10/10/2022</span></p>
+              <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+              <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+              <p class="crime_info">Closed on: <span>20/12/2022</span></p>
+              <p class="crime_info">Officer Assigned: <span>Det. matthew Johnson</span></p>
+            </div>
+            <p class="statement">
+              Statement:
+              <span class="d-block"
+                >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita porro quasi saepe minima debitis
+                perspiciatis quaerat commodi veritatis blanditiis? Illo quas dolorum assumenda impedit libero odio
+                veniam, magnam facere cum nisi distinctio deleniti nam! Non quidem dignissimos aspernatur eaque
+                atque magni? Dolorem itaque esse commodi eos cum mollitia praesentium. Officia, voluptates quisquam
+                fuga laborum ab, inventore fugit nesciunt at et quasi excepturi quo alias voluptatum delectus aut.
+                Veniam sit voluptatum veritatis vero cumque sapiente quasi ut at voluptatem, libero placeat illo
+                impedit explicabo ullam doloribus quas magnam perspiciatis numquam doloremque beatae maiores ratione
+                molestias praesentium. Totam in consequuntur labore veritatis, necessitatibus numquam, rerum velit
+                dicta beatae nam aliquid blanditiis perferendis unde perspiciatis dolore libero eum, autem
+                recusandae fuga obcaecati harum magni? Voluptatibus deserunt veritatis corrupti voluptatem, eaque
+                labore nulla eligendi repellat molestiae explicabo veniam excepturi repellendus delectus accusamus
+                quis, sit porro ratione inventore odit dignissimos dolorem doloribus! Dicta praesentium quas vero
+                deserunt ea? Similique perferendis doloremque eius distinctio magnam, assumenda fugit nihil qui odio
+                voluptate voluptatum ipsam amet. Aperiam est rem in tempore impedit pariatur reprehenderit nemo
+                repudiandae cupiditate. Numquam minus quaerat deserunt qui repellendus repudiandae. Architecto ea,
+                possimus ullam natus aliquam eaque culpa fugiat, accusantium, aspernatur distinctio exercitationem
+                corporis.</span
+              >
+            </p>
+          </div>
+
+          <div class="section">
+            <h4 class="section_title">Suspect and Accomplice(s)</h4>
+
+            <div class="suspect_list">
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe (Gunman)</p>
+              </div>
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe (Gunman)</p>
+              </div>
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe (Gunman)</p>
+              </div>
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe (Gunman)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h4 class="section_title">Victim(s)</h4>
+
+            <div class="suspect_list">
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe</p>
+              </div>
+              <div class="suspect">
+                <img src="images/3. Black Man.png" alt="" class="sus_img" />
+                <p class="name">John Doe</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h4 class="section_title">Vehicle</h4>
+
+            <div class="vehicle_list">
+              <div class="vehicle">
+                <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
+                <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h4 class="section_title">Weapon</h4>
+
+            <div class="vehicle_list">
+              <div class="vehicle">
+                <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
+                <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h4 class="section_title">Vehicle</h4>
+
+            <div class="vehicle_list">
+              <div class="vehicle">
+                <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h4 class="section_title">Evidence Recovered</h4>
+
+            <div class="vehicle_list">
+              <div class="vehicle">
+                <p class="vehicle_info">
+                  <span class="d-block">Glock 17 Gen4 (Pistol)</span>
+                  <span class="d-block">Boots covered in petrol</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREATE CRIMINAL PROFILE ===============CREATE CRIMINAL PROFILE -->
+    <div *ngIf="createModal && edits" class="main_reg ">
+      <div class="stepper-container">
+        <div class="step_count d-flex align-items-center">
+          <a [ngClass]="{'active':stepper===0}" (click)="stepper=0" class="btn step_btn "><span>1</span>Primary information</a>
+          <a [ngClass]="{'active':stepper===1}" (click)="stepper=1" class="btn step_btn"><span>2</span>Contact</a>
+          <a [ngClass]="{'active':stepper===2}" (click)="stepper=2" class="btn step_btn"><span>3</span>Physical Features</a>
+        </div>
+      </div>
+      <form action="" [formGroup]="criminalInfoForm">
+        <!-- Primary info starts here -->
+        <div *ngIf="stepper===0" class="primary_info">
+          <div class="d-flex w-100 justify-content-between name_container">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">First name</label>
+              <input type="text" class="form-control" placeholder="First name" formControlName="firstName"/>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Last name</label>
+              <input type="text" class="form-control" placeholder="Last name" formControlName="lastName" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Middle name</label>
+              <input type="text" class="form-control" placeholder="Middle name" formControlName="middleName" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Alias</label>
+              <input type="text" class="form-control" placeholder="Alias" formControlName="aliases" />
+            </div>
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Date of Birth</label>
+            <input type="date" class="form-control" placeholder="Date of Birth" formControlName="dateOfBirth" />
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Place of Birth</label>
+            <input type="text" class="form-control" placeholder="Place of Birth" formControlName="placeOfBirth" />
+          </div>
+
+          <div class="d-flex origin">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">State of Origin</label>
+              <select id="state" class="form-control" formControlName="stateOfOrigin" #data (change)="getLga(data.value)">
+                <option selected="selected">Select State of Origin</option>
+                <option *ngFor="let data of allState" [value]="data">{{data}}</option>
+              </select>
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">LGA of Origin</label>
+              <select id="lga" class="form-control" formControlName="lgaOfOrigin">
+                <option selected="selected">Select LGA of Origin</option>
+                <option *ngFor="let data of filteredState" [value]="data">{{data}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex w-100 justify-content-between occupation">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Occupation</label>
+              <input type="text" class="form-control" placeholder="Occupation" formControlName="occupation" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Location</label>
+              <input type="text" class="form-control" placeholder="Location" formControlName="locationId" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Highest Education</label>
+              <input type="text" class="form-control" placeholder="Highest Education" formControlName="education" />
+            </div>
+          </div>
+
+          <a (click)="stepper=stepper+1" class="btn btn-success">Next</a>
+        </div>
+
+        <!-- step 2 (contact information) -->
+
+        <div *ngIf="stepper===1" class="contact_information ">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">NIN</label>
+            <input type="number" class="form-control" placeholder="NIN" formControlName="nin" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Email</label>
+            <input type="email" class="form-control" placeholder=" Email" formControlName="email"/>
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Phone number</label>
+            <input type="number" class="form-control" placeholder="Phone number" formControlName="phoneNumber" />
+          </div>
+          <a (click)="stepper=stepper-1"  class="btn border-success">Previous</a>
+          <a (click)="stepper=stepper+1"  class="btn btn-success">Next</a>
+        </div>
+
+        <!-- step 3 (Physical Attribute) -->
+
+        <div *ngIf="stepper===2" class="contact_information ">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Height</label>
+            <input type="text" class="form-control" placeholder="Height" formControlName="height" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Weight</label>
+            <input type="text" class="form-control" placeholder="Weight" formControlName="weight" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Photo capture</label>
+            <input
+                (formdata)="(fileData)"
+                (change)="uploadProfile($event)"
+                type="file"
+                class="form-control"
+                placeholder="Photo capture"
+              />
+          </div>
+          <a (click)="Backward()" class="btn border-success">Previous</a>
+          <a (click)="saveCriminalInfoForm()" class="btn btn-success">Submit</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="personnel_list-container d-none">
+    <div class="filter_section">
+      <!-- <button class="btn btn-secondary" (click)="showFilterList()">
+        <img src="images/filter_list_white_24dp.svg" alt="" />Filter list
+      </button>
+
+      <div class="filter_container" *ngIf="showFilter">
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Select state</label>
+          <select name="" id="">
+            <option value="">Select option</option>
+          </select>
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Select district</label>
+          <select name="" id="">
+            <option value="">Select option</option>
+          </select>
+        </div>
+        <button class="btn btn-primary">Filter</button>
+      </div> -->
+
+      <button
+        class="btn btn-success m-lg-2"
+        *ngIf="!edits"
+        (click)="createNew()"
+      >
+        Create Criminal Info
+      </button>
+     
+     
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name of Cirminal</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Place Of Birth</th>
+            <th scope="col">State of Origin</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Education</th>
+            <th scope="col">Height</th>
+            <th scope="col">NIN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of criminalData; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item.firstName + '' + item.lastName }}</td>
+            <td>{{ item.phoneNumber }}</td>
+            <td>{{ item.dateOfBirth }}</td>
+            <td>{{ item.placeOfBirth }}</td>
+            <td>{{ item.stateOfOrigin }}</td>
+            <td>{{ item.occupation }}</td>
+            <td>{{ item.education }}</td>
+            <td>{{ item.height }}</td>
+            <td>{{ item.nin }}</td>
+            <td>
+              <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">
+                <img src="../assets/more_vert_black_24dp.svg" alt="" />
+              </button>
+              <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                <button class="btn" (click)="Edit(item)">Edit</button>
+                <button class="btn " (click)="onDelete(item)">Delete!</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
