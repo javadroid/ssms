@@ -33,7 +33,6 @@ export class CriminalInfoComponent implements OnInit {
       this.allState.push(data);
     }
     this.criminalInfoForm = this.fb.group({
-      criminalId: [''],
       crimeId: [''],
       firstName: [''],
       lastName: [''],
@@ -67,7 +66,7 @@ export class CriminalInfoComponent implements OnInit {
       this.http.upload('document', this.fileData).subscribe((uploadUrl) => {
         this.images = uploadUrl[0];
         data.profilePic = this.images;
-        data.criminalId = this.criminalID;
+        data.crimeId = this.criminalID;
 
         console.log('path1:', data);
         this.http.update('criminal-info', data.id, data).subscribe((n) => {
@@ -83,7 +82,7 @@ export class CriminalInfoComponent implements OnInit {
         this.images = uploadUrl[0];
 
         this.criminalInfoForm.value.profilePic = this.images;
-        this.criminalInfoForm.value.criminalId = this.criminalID;
+        this.criminalInfoForm.value.crimeId = this.criminalID;
         this.http.create('criminal-info', data).subscribe((n) => {
           swal.fire('Success!', 'successfully.', 'success');
           console.log(n);
