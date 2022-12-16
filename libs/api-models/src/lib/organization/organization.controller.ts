@@ -29,6 +29,13 @@ constructor(private organizationService:OrganizationService, private organizatio
     // return req.user;
   }
 
+
+  @Patch('resetpassword')
+  async reset(@Body() pass:any) {
+    return this.organizationService.resetpassword(pass.password)
+    // return req.user;
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {

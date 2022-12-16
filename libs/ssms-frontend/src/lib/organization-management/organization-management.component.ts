@@ -11,32 +11,21 @@ import { ServiceApi } from '../shared/service/service-api';
 export class OrganizationManagementComponent implements OnInit {
   firstShow = true;
   showSecond = false;
-  stepper = false;
-  stepperactive = false;
-  PersonnelRegisterForm!: FormGroup;
-  PersonnelDetail: any[] = [];
-  stateDetails: any[] = [];
-  lgaDetails: any[] = [];
-  departmentDetails: any[] = [];
-  branchDetails: any[] = [];
   fileData = new FormData();
   fileSelected!: File;
   images!: string;
   personnelImag!: any;
-  stepperFirstInfo = false;
   showFilter = false;
-  step = 'PrimaryInfo';
   showfiltercriteria = false;
   selectindex!: any;
   showViewDetails = false;
   showAllViewDetails: any;
-  steps = ['PrimaryInfo', 'contactInfo'];
   organizationData = [] as any;
   organizationID = this.organizationData[0]?._id;
   organizationcategory = [] as any[];
   organizationName = [] as any[];
   display = [] as any[];
-  edits=false;
+  edits = false;
   constructor(private http: ServiceApi) {}
 
   OrganizationsignUpForm = new FormGroup({
@@ -95,51 +84,81 @@ export class OrganizationManagementComponent implements OnInit {
   SendPassword(data: any) {
     const email = data.organizationEmail;
     this.selectindex = null;
-    Swal.fire('Password Sent!', 'successfully to' + ' ' + email, 'success');
+    this.OrganizationsignUpForm.patchValue(data);
+    this.OrganizationsignUpForm.patchValue({ id: data._id });
+    this.passwordGenerate();
+
+    this.http
+      .resetpassword('organization', {
+        password: this.OrganizationsignUpForm.value,
+      })
+      .subscribe((e) => {
+        Swal.fire(
+          'Password Sent!',
+          'successfully to' +
+            ' ' +
+            e.organizationEmail +
+            '   ' +
+            this.OrganizationsignUpForm.value.password,
+          'success'
+        );
+
+        this.http
+          .sendMail('send-mail', {
+            name: e.organizationName,
+            email: e.organizationEmail,
+            password: this.OrganizationsignUpForm.value.password,
+          })
+          .subscribe((e1) => {
+            console.log('this.OrganizationsignUpForm.value', e1);
+          });
+      });
   }
   Backward() {
     this.firstShow = true;
     this.showSecond = false;
     this.showViewDetails = false;
-    this.edits=false
+    this.edits = false;
   }
 
   Edit(data: any) {
     this.OrganizationsignUpForm.patchValue({
       id: data._id,
     });
-    console.log('reaching..', this.OrganizationsignUpForm.value);
+
     this.OrganizationsignUpForm.patchValue(data);
     this.personnelImag = data.personnelImage;
     this.firstShow = false;
 
     this.selectindex = null;
-this.edits=true
-     this.LoadAllpersonnel();
-
+    this.edits = true;
   }
 
-  update(){
-    if(!this.OrganizationsignUpForm.controls.id.value){
-      return
+  update() {
+    if (!this.OrganizationsignUpForm.controls.id.value) {
+      return;
     }
-    this.http.update('organization',this.OrganizationsignUpForm.controls.id.value,this.OrganizationsignUpForm.value).subscribe(e=>{
-      Swal.fire('Updated!',  e.organizationEmail,  'success');
-      this.edits=false
-      this.firstShow = true;
-    })
+    this.http
+      .update(
+        'organization',
+        this.OrganizationsignUpForm.controls.id.value,
+        this.OrganizationsignUpForm.value
+      )
+      .subscribe((e) => {
+        this.LoadAllpersonnel();
+        Swal.fire('Updated!', e.organizationEmail, 'success');
+        this.edits = false;
+
+        this.firstShow = true;
+      });
   }
 
   onDelete(item: any) {
     this.http.delete('organization', item._id).subscribe((e) => {
-      Swal.fire(
-        'Deleted!',
-         e.organizationEmail,
-        'success'
-      );
+      Swal.fire('Deleted!', e.organizationEmail, 'success');
     });
 
-     this.LoadAllpersonnel();
+    this.LoadAllpersonnel();
   }
 
   // upload(event: any): void {
@@ -182,8 +201,8 @@ this.edits=true
         );
         this.OrganizationsignUpForm.reset();
 
-         this.LoadAllpersonnel();
-         this.firstShow = true;;
+        this.LoadAllpersonnel();
+        this.firstShow = true;
       });
   }
 

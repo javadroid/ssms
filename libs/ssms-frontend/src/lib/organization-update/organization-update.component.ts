@@ -14,7 +14,7 @@ export class OrganizationUpdateComponent {
   organizationForm = new FormGroup({
     address:new FormControl('', [Validators.required]),
     descriptionOfRole:new FormControl('', [Validators.required]),
-    organizationEmail:new FormControl('', [Validators.required, Validators.email]),
+
     landline:new FormControl('', [Validators.required]),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),

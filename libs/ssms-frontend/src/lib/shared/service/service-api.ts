@@ -6,15 +6,13 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ServiceApi {
-
-  signedOrg$= new BehaviorSubject(true)
-  signedPer$= new BehaviorSubject(false)
+  signedOrg$ = new BehaviorSubject(true);
+  signedPer$ = new BehaviorSubject(false);
   getAuthToken() {
     return localStorage.getItem('token');
   }
 
   constructor(private http: HttpClient) {}
-
 
   find(model: string): Observable<any> {
     return this.http.get(`http://localhost:3333/api/${model}/`);
@@ -26,11 +24,8 @@ export class ServiceApi {
     );
   }
 
-
   findOne(model: string, id: string): Observable<any> {
-    return this.http.get(
-      `http://localhost:3333/api/${model}/${id}`
-    );
+    return this.http.get(`http://localhost:3333/api/${model}/${id}`);
   }
 
   update(model: string, id: string, update: any): Observable<any> {
@@ -57,19 +52,21 @@ export class ServiceApi {
           localStorage.setItem('token', x.access_token);
           localStorage.setItem('id', x.user_id);
           localStorage.setItem('email', x.user_email);
-          if(x.user==='organization')this.signedOrg$.next(x.isAuthenticated)
-          if(x.user==='personnel ')this.signedPer$.next(x.isAuthenticated)
+          if (x.user === 'organization')
+            this.signedOrg$.next(x.isAuthenticated);
+          if (x.user === 'personnel ') this.signedPer$.next(x.isAuthenticated);
         })
       );
   }
   profile(model: string): Observable<any> {
     return this.http.get(`http://localhost:3333/api/${model}/profile`).pipe(
       tap((x: any) => {
-
-        if(x.user==='organization')this.signedOrg$=new BehaviorSubject(true)
-        if(x.user==='personnel ')this.signedPer$=new BehaviorSubject(true)
-
-      }));
+        if (x.user === 'organization')
+          this.signedOrg$ = new BehaviorSubject(true);
+        if (x.user === 'personnel ')
+          this.signedPer$ = new BehaviorSubject(true);
+      })
+    );
   }
 
   // isAuthenticated(){
@@ -81,5 +78,14 @@ export class ServiceApi {
     return this.http.get(`https://dummyjson.com/users/${id}`);
   }
 
+  resetpassword(model: string, pass: any): Observable<any> {
+    return this.http.patch(
+      `http://localhost:3333/api/${model}/resetpassword`,
+      pass
+    );
+  }
 
+  sendMail(model: string,data:any): Observable<any>{
+    return this.http.post(`http://localhost:3333/api/${model}`,data)
+  }
 }

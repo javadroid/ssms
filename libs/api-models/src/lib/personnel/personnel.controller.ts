@@ -38,6 +38,13 @@ export class PersonnelController {
     return req.user;
   }
 
+  @UseGuards(AuthGuard('jwt1'))
+  @Patch('resetpassword')
+  async reset(@Body() pass:any) {
+    return this.personnelService.resetpassword(pass.password)
+    // return req.user;
+  }
+
   // @UseGuards(AuthGuard('custom'))
   @Post()
   async create(@Body() createPersonnel: PersonnelDTO) {
@@ -80,7 +87,7 @@ export class PersonnelController {
     return this.personnelService.update(_Id, updated);
   }
 
-  @UseGuards(AuthGuard('custom'))
+  @UseGuards(AuthGuard('jwt1'))
   @Delete(':_id')
   async delete(@Param('_id') _Id: string) {
     return this.personnelService.delete(_Id);

@@ -6,17 +6,20 @@ import { MailerService } from "@nestjs-modules/mailer";
 export class SendMailService {
   constructor(private mailerService: MailerService){}
 
-  async sendMail(email: string, name: string) {
-    console.log(email)
-    await this.mailerService.sendMail({
-        to: email,
+  async sendMail(body:any) {
+    console.log(body.email)
+  const res=  await this.mailerService.sendMail({
+        to: body.email,
         subject: 'Greeting from NestJS NodeMailer',
-        html: '<p>Hi {{name}}</p>'+
-        '<p>Hello from NestJS NodeMailer</p>',
+        html: `<p>Hi ${body.email} </p>`+
+        `<p>Your password is ${body.password}</p>`,
         context: {
-            name: name
+            name:  body.name
         }
     })
+    console.log( res);
+     return res
+
 }
 
 
