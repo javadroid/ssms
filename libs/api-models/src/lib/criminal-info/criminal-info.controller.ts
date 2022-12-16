@@ -32,31 +32,31 @@ export class CriminalInfoController {
 
   @Get(':id/:value')
   async findbyAny(@Param('id') id: string, @Param('value') value: string) {
-    if (
-      id === 'aliases' ||
-      id === 'caseFile' ||
-      id === 'weight' ||
-      id === 'height' ||
-      id === 'nin' ||
-      id === 'profilePic' ||
-      id === 'biometrics' ||
-      id === 'education' ||
-      id === 'locationId' ||
-      id === 'occupation' ||
-      id === 'lgaOfOrigin' ||
-      id === 'stateOfOrigin' ||
-      id === 'placeOfBirth' ||
-      id === 'dateOfBirth' ||
-      id === 'phoneNumber' ||
-      id === 'lastName' ||
-      id === 'firstName' ||
-      id === 'crimeId' ||
-      id === 'criminalId'
-    ) {
+    // if (
+    //   id === 'aliases' ||
+    //   id === 'caseFile' ||
+    //   id === 'weight' ||
+    //   id === 'height' ||
+    //   id === 'nin' ||
+    //   id === 'profilePic' ||
+    //   id === 'biometrics' ||
+    //   id === 'education' ||
+    //   id === 'locationId' ||
+    //   id === 'occupation' ||
+    //   id === 'lgaOfOrigin' ||
+    //   id === 'stateOfOrigin' ||
+    //   id === 'placeOfBirth' ||
+    //   id === 'dateOfBirth' ||
+    //   id === 'phoneNumber' ||
+    //   id === 'lastName' ||
+    //   id === 'firstName' ||
+    //   id === 'crimeId' ||
+    //   id === 'criminalId'
+    // ) {
       return this.criminalInfoService.findbyAny(id, value);
-    } else {
+    // } else {
       throw new NotFoundException("fleid '" + id + "' not found");
-    }
+    // }
   }
 
   @Patch(':_id')
