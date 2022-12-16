@@ -3,16 +3,18 @@ import{
     Schema,
     SchemaFactory,
 } from '@nestjs/mongoose';
-import { HydratedDocument, } from 'mongoose';
+import { Date, HydratedDocument, } from 'mongoose';
 
 export type CriminalInfoDoc = HydratedDocument<CriminalInfo>;
 
 @Schema ({ timestamps:true })
 export class CriminalInfo {
     @Prop()
-    criminalId: string;
+    dateOfBirth: string;
     @Prop()
-    crimeId: string;
+    caseId: string[];
+    @Prop()
+    victimId: string[];
     @Prop()
     firstName: string;
     @Prop()
@@ -34,20 +36,50 @@ export class CriminalInfo {
     @Prop()
     occupation: string;
     @Prop()
-    address: string;
-    @Prop()
-    education: string;
-    @Prop()
-    biometrics: string;
-    @Prop()
-    profilePic: string;
-    @Prop()
     nin: string;
+    @Prop()
+    gender: string;
+    @Prop()
+    email: string;
+    @Prop()
+    phone: string;
+    @Prop()
+    birthPlace: string;
+    @Prop()
+    image: string;
     @Prop()
     height: string;
     @Prop()
     weight: string;
     @Prop()
-    aliases: string;
+    eyeColor: string;
+    @Prop()
+    hairColor: string;
+    @Prop()
+    address: string;
+    @Prop()
+    biometrics: string;
+    @Prop()
+    lga: string;
+    @Prop()
+    state: string;
+    @Prop()
+    country: string;
+    @Prop()
+    lgaOfOrigin: string;
+    @Prop()
+    stateOfOrigin: string;
+    @Prop()
+    countryOfOrigin: string;
+    @Prop()
+    postalCode: string;
+    @Prop({default: '!ALLOW'})
+    updated:string
+
+    @Prop()
+    education:string
+    @Prop()
+    alias:string
+
 }
 export const CriminalInfoSchema = SchemaFactory.createForClass(CriminalInfo);

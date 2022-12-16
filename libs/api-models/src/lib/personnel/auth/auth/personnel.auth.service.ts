@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PersonnelService } from '../../personnel.service';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class PersonnelAuthService {
   constructor(private jwtService: JwtService, private personnelService:PersonnelService){
@@ -12,9 +12,13 @@ export class PersonnelAuthService {
     console.log("user",username)
 
     const user =await this.personnelService.findbyAny('email',username)
+    console.log("useruser2",user)
+    if(!user[0]){
+      throw new NotFoundException("User not found")
+    }
+const isMatch = user[0]? await bcrypt.compare(password, user[0].password) :null;
 
-console.log("useruser2",user)
-    if(user[0] && user[0].password === password){
+  if(user[0] && isMatch){
 
       return user[0]
     }

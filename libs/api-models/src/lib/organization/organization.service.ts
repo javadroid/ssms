@@ -4,20 +4,58 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { OrganizationDTO } from '../../dto/organization.dto';
 import { Organization, OrganizationDoc } from '../../schema/organization.schema';
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class OrganizationService {
   constructor(@InjectModel(Organization.name) private organizationModel: Model<OrganizationDoc>) {}
 
   async create(createOrganization: OrganizationDTO): Promise<Organization> {
+
+    const saltOrRounds = 10;
+    const password = createOrganization.password;
+    const hash = await bcrypt.hash(password, saltOrRounds);
+
     try {
-      const createdOrganization = await new this.organizationModel(createOrganization);
+      const createdOrganization = await new this.organizationModel(
+
+        {  typeOfAgency: createOrganization.typeOfAgency,
+          categoryOfagency: createOrganization.categoryOfagency,
+          organizationName: createOrganization.organizationName,
+          address: createOrganization.address,
+          descriptionOfRole: createOrganization.descriptionOfRole,
+          organizationEmail: createOrganization.organizationEmail,
+          landline: createOrganization.landline,
+          firstname: createOrganization.firstname,
+          lastname: createOrganization.lastname,
+          middlename: createOrganization.middlename,
+          rank: createOrganization.rank,
+          officialemail: createOrganization.officialemail,
+          officialphone: createOrganization.officialphone,
+          state: createOrganization.state,
+          lga: createOrganization.lga,
+          password: hash,
+          status: createOrganization.status}
+      );
 
       return await createdOrganization.save();
     } catch (error) {
       throw new NotAcceptableException(error.message);
     }
   }
+
+  async resetpassword(password:any): Promise<Organization> {
+    const saltOrRounds = 17;
+    const pass =password.password;
+    // console.log(_id,password)
+    const hash = await bcrypt.hash(pass, saltOrRounds);
+    console.log(hash)
+    try {
+      return this.organizationModel.findByIdAndUpdate({ _id:password.id }, {password:hash}).exec();
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }}
 
   async findAll(): Promise<Organization[]> {
     try {
@@ -59,6 +97,8 @@ export class OrganizationService {
       throw new NotFoundException(error.message);
     }
   }
+
+
 
 
 
