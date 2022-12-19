@@ -22,6 +22,36 @@
       </div>
     </div>
 
+      <!-- Search response=============Search response===============search response -->
+
+      <div *ngIf="suspect_list" class="suspect_list ">
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+      </div>
+
     <!-- VIEW CRIMINAL PROFILE AFTER SEARCH ============== VIEW CRIMINAL PROFILE AFTER SEARCH========= VIEW CRIMINAL PROFILE AFTER SEARCH -->
 
     <div *ngIf="criminal_profile" class="criminal_profile">
@@ -150,6 +180,7 @@
     <div class="case_modal " *ngIf="case_modal">
       <div class="case_card">
         <button
+        (click)="case_modal=false"
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"

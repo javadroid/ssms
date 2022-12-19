@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CriminalManagementComponent } from '../criminal-management/criminal-management.component';
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
+import { ManageRefComponent } from '../manage-ref/manage-ref.component';
 import { PersonnelRegisterComponent } from '../personnel-register/personnel-register.component';
 import { CanAuth } from '../shared/guard/can.guard';
 import { DashboardComponent } from './dashboard.component';
@@ -11,8 +12,6 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-
-
       {
         path: 'main',
         component: MainDashboardComponent,
@@ -20,8 +19,14 @@ const routes: Routes = [
       {
         path: 'personnel',
         component: PersonnelRegisterComponent,
-      },{
-        path:'criminal',component:CriminalManagementComponent
+      },
+      {
+        path: 'criminal',
+        component: CriminalManagementComponent,
+      },
+      {
+        path: 'ref',
+        component: ManageRefComponent,
       },
 
       {
@@ -30,7 +35,6 @@ const routes: Routes = [
         pathMatch: 'full',
       },
     ],
-
   },
 
   {

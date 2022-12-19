@@ -13,7 +13,7 @@
         <a [routerLink]="['./criminal']"  [routerLinkActive]="['active']"  class="btn menu_btn">Criminal Management</a>
         <a class="btn menu_btn">Incident management</a>
         <a class="btn menu_btn">Report management</a>
-        <a class="btn menu_btn">Report monitoring</a>
+        <a [routerLink]="['./ref']"  [routerLinkActive]="['active']" class="btn menu_btn">Ref management</a>
         <a (click)="logout()" class="btn menu_btn btn-outline-danger">Logout</a>
       </div>
     </aside>

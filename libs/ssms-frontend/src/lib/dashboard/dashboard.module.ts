@@ -10,9 +10,10 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 import { PersonnelRegisterComponent } from '../personnel-register/personnel-register.component';
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
 import { CriminalManagementComponent } from '../criminal-management/criminal-management.component';
+import { ManageRefComponent } from '../manage-ref/manage-ref.component';
 
 @NgModule({
-  declarations: [DashboardComponent,CriminalManagementComponent, OrganizationUpdateComponent,SignUpComponent,PersonnelRegisterComponent,MainDashboardComponent],
+  declarations: [DashboardComponent,ManageRefComponent,CriminalManagementComponent, OrganizationUpdateComponent,SignUpComponent,PersonnelRegisterComponent,MainDashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

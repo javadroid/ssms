@@ -19,6 +19,7 @@ export class CriminalManagementComponent implements OnInit {
   criminalData:any
   crimeData=[] as any[]
   oneCrime:any
+  suspect_list=true
 
   imageurl=''
   CriminalInfo = new FormGroup({
