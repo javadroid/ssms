@@ -1,0 +1,310 @@
+<div class="dashboard_container">
+      <aside class="dashboard_nav">
+        <div class="logo_container">
+          <h2 class="logo">SSMS</h2>
+        </div>
+
+        <div class="menu_container">
+          <button class="btn menu_btn active">Dashboard</button>
+          <button class="btn menu_btn">Personnel management</button>
+          <button class="btn menu_btn">Crime management</button>
+          <button class="btn menu_btn">Incident management</button>
+          <button class="btn menu_btn">Report management</button>
+          <button class="btn menu_btn">Report monitoring</button>
+        </div>
+      </aside>
+
+    <!-- CASE MANAGEMENT ================ CASE MANAGEMENT ========= CASE MANAGEMENT -->
+    <div class="case_management">
+
+        <ssms-crime-header></ssms-crime-header>
+
+      <!-- CASE PREVIEW AFTER SEARCH HAS BEEN MADE =========== CASE PREVIEW AFTER SEARCH HAS BEEN MADE -->
+
+      <div class="case_preview d-none">
+        <div class="section">
+          <h1 class="crime_type">Arson <span class="status">Closed</span></h1>
+          <div class="sub_info d-flex">
+            <p class="crime_info">Offense date: <span>10/10/2022</span></p>
+            <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+            <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+            <p class="crime_info">Closed on: <span>20/12/2022</span></p>
+            <p class="crime_info">Officer Assigned: <span>Det. matthew Johnson</span></p>
+          </div>
+          <p class="statement">
+            Statement:
+            <span class="d-block"
+              >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita porro quasi saepe minima debitis
+              perspiciatis quaerat commodi veritatis blanditiis? Illo quas dolorum assumenda impedit libero odio
+              veniam, magnam facere cum nisi distinctio deleniti nam! Non quidem dignissimos aspernatur eaque atque
+              magni? Dolorem itaque esse commodi eos cum mollitia praesentium. Officia, voluptates quisquam fuga
+              laborum ab, inventore fugit nesciunt at et quasi excepturi quo alias voluptatum delectus aut. Veniam sit
+              voluptatum veritatis vero cumque sapiente quasi ut at voluptatem, libero placeat illo impedit explicabo
+              ullam doloribus quas magnam perspiciatis numquam doloremque beatae maiores ratione molestias
+              praesentium. Totam in consequuntur labore veritatis, necessitatibus numquam, rerum velit dicta beatae
+              nam aliquid blanditiis perferendis unde perspiciatis dolore libero eum, autem recusandae fuga obcaecati
+              harum magni? Voluptatibus deserunt veritatis corrupti voluptatem, eaque labore nulla eligendi repellat
+              molestiae explicabo veniam excepturi repellendus delectus accusamus quis, sit porro ratione inventore
+              odit dignissimos dolorem doloribus! Dicta praesentium quas vero deserunt ea? Similique perferendis
+              doloremque eius distinctio magnam, assumenda fugit nihil qui odio voluptate voluptatum ipsam amet.
+              Aperiam est rem in tempore impedit pariatur reprehenderit nemo repudiandae cupiditate. Numquam minus
+              quaerat deserunt qui repellendus repudiandae. Architecto ea, possimus ullam natus aliquam eaque culpa
+              fugiat, accusantium, aspernatur distinctio exercitationem corporis.</span
+            >
+          </p>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Suspect and Accomplice(s)</h4>
+
+          <div class="suspect_list">
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe (Gunman)</p>
+            </div>
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe (Gunman)</p>
+            </div>
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe (Gunman)</p>
+            </div>
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe (Gunman)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Victim(s)</h4>
+
+          <div class="suspect_list">
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe</p>
+            </div>
+            <div class="suspect">
+              <img src="images/3. Black Man.png" alt="" class="sus_img" />
+              <p class="name">John Doe</p>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h4 class="section_title">Evidence - Vehicle</h4>
+
+          <div class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
+              <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Evidence - Weapon</h4>
+
+          <div class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h4 class="section_title">Evidence - Clothing</h4>
+
+          <div class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">Boots covered in petrol</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main_reg d-none">
+        <div class="stepper-container">
+          <div class="step_count d-flex align-items-center">
+            <button class="btn step_btn active"><span>1</span> Primary information</button>
+            <button class="btn step_btn"><span>2</span>Case suspect</button>
+            <button class="btn step_btn"><span>3</span>Victims</button>
+            <button class="btn step_btn"><span>4</span>Evidence</button>
+          </div>
+        </div>
+        <form action="">
+          <div class="org_info d-none">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Date</label>
+              <input type="date" class="form-control date" placeholder="Date" />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Time</label>
+              <input type="time" class="form-control date" placeholder="Time" />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Crime Type</label>
+              <select>
+                <option value="">Select option</option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Statement</label>
+              <textarea name="" id="" cols="30" rows="7"></textarea>
+            </div>
+
+            <button class="btn btn-success">Next</button>
+          </div>
+
+          <!-- step 2 (criminal/suspect info) -->
+
+          <div class="contact_information d-none">
+            <div class="search_nin-container d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search with NIN" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Add</button>
+            </div>
+
+            <div class="criminal_list">
+              <div class="criminal_card">
+                <button class="btn more_btn">
+                  <img src="images/more_vert_black_24dp.svg" alt="" class="more" />
+                </button>
+                <div class="more_container">
+                  <button class="btn">Edit</button>
+                  <button class="btn">Delete</button>
+                </div>
+                <img src="images/3. Black Man.png" class="sus_img" alt="" />
+                <h5 class="name">John Doe</h5>
+              </div>
+              <div class="criminal_card">
+                <button class="btn more_btn">
+                  <img src="images/more_vert_black_24dp.svg" alt="" class="more" />
+                </button>
+                <div class="more_container">
+                  <button class="btn">Edit</button>
+                  <button class="btn">Delete</button>
+                </div>
+                <img src="images/3. Black Man.png" class="sus_img" alt="" />
+                <h5 class="name">John Doe</h5>
+              </div>
+            </div>
+
+            <button class="btn border-success">Previous</button>
+            <button class="btn btn-success">Submit</button>
+          </div>
+
+          <!-- step 3 (Victims info) -->
+
+          <div class="contact_information d-none">
+            <div class="search_nin-container d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search with NIN" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Add</button>
+            </div>
+            <!-- <div class="d-flex w-100 justify-content-between align-items-center name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">capture/upload image</label>
+                <input type="file" class="form-control" />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">First name</label>
+                <input type="text" class="form-control" placeholder="Last name" />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Last name</label>
+                <input type="text" class="form-control" placeholder="Last name" />
+              </div>
+            </div> -->
+
+            <div class="criminal_list">
+              <div class="criminal_card">
+                <button class="btn more_btn">
+                  <img src="images/more_vert_black_24dp.svg" alt="" class="more" />
+                </button>
+                <div class="more_container">
+                  <button class="btn">Edit</button>
+                  <button class="btn">Delete</button>
+                </div>
+                <img src="images/3. Black Man.png" class="sus_img" alt="" />
+                <h5 class="name">John Doe</h5>
+              </div>
+              <div class="criminal_card">
+                <button class="btn more_btn">
+                  <img src="images/more_vert_black_24dp.svg" alt="" class="more" />
+                </button>
+                <div class="more_container">
+                  <button class="btn">Edit</button>
+                  <button class="btn">Delete</button>
+                </div>
+                <img src="images/3. Black Man.png" class="sus_img" alt="" />
+                <h5 class="name">John Doe</h5>
+              </div>
+            </div>
+
+            <button class="btn border-success">Previous</button>
+            <button class="btn btn-success">Submit</button>
+          </div>
+
+          <!-- step 4 (Create Evidence) -->
+
+          <div class="contact_information">
+            <!-- evidence selection=============evidence selection -->
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Select item</label>
+              <select name="" id="">
+                <option value=""></option>
+              </select>
+            </div>
+
+            <!-- describe evidence(based on what was earlier selected) -->
+            <div class="d-flex w-100 justify-content-between name_container">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Brand</label>
+                <input type="text" class="form-control" placeholder="Brand" />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">License</label>
+                <input type="text" class="form-control" placeholder="License" />
+              </div>
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Model No</label>
+                <input type="text" class="form-control" placeholder="Model No" />
+              </div>
+            </div>
+
+            <div class="evidence_list">
+              <div class="evidence">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
+                <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              </div>
+              <div class="evidence">
+                <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <button class="btn border-success">Previous</button>
+            <button class="btn btn-success">Submit</button>
+          </div>
+
+          <!-- NOT FOUND ===============NOT FOUND===========NOT FOUND -->
+          <div class="case_modal d-none">
+            <div class="case_card d-flex justify-content-center align-items-center flex-column">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <p class="message">
+                Suspect not found in database, would you like to save your entries to draft while you create this
+                suspect?
+              </p>
+              <div class="">
+                <button class="btn">No</button>
+                <button class="btn btn-primary">Yes</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>

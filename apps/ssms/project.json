@@ -19,7 +19,10 @@
           "apps/ssms/src/styles.css",
           "apps/ssms/src/sass/style.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "sweetalert2"
+       ]
       },
       "configurations": {
         "production": {
