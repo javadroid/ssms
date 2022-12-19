@@ -28,13 +28,13 @@ export class CrimeInfo {
     @Prop()
     incidentId: string;
     @Prop()
-    evidence: string;
+    evidence: Evidence[];
     @Prop()
-    criminalId: string;
+    criminalId: string[];
     @Prop()
     motive: string;
     @Prop()
-    victimId: string;
+    victimId: string[];
     @Prop()
     vehicleId: string;
     @Prop()
@@ -42,4 +42,20 @@ export class CrimeInfo {
     @Prop()
     locationId: string;
 }
+
+class Evidence {
+  @Prop()
+  type: string;
+  @Prop()
+  vehicleId: string;
+  @Prop()
+  brand: string;
+  @Prop()
+  license: string;
+  @Prop()
+  modelNo: string;
+  @Prop()
+  file: string;
+}
+
 export const CrimeInfoSchema = SchemaFactory.createForClass(CrimeInfo);
