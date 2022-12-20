@@ -20,6 +20,7 @@ export class OrganizationManagementComponent implements OnInit {
   selectindex!: any;
   showViewDetails = false;
   showAllViewDetails: any;
+
   organizationData = [] as any;
   organizationID = this.organizationData[0]?._id;
   organizationcategory = [] as any[];
@@ -49,6 +50,15 @@ export class OrganizationManagementComponent implements OnInit {
   });
 
   ngOnInit(): void {
+
+
+    this.http.find('organizationName').subscribe(e=>{
+      this.organizationName=e
+    })
+
+    this.http.find('organizationcategory').subscribe(e=>{
+      this.organizationcategory=e
+    })
     this.LoadAll();
   }
   showFilterList() {
@@ -73,6 +83,7 @@ export class OrganizationManagementComponent implements OnInit {
   }
 
   LoadAll() {
+
     this.LoadAllpersonnel();
   }
 

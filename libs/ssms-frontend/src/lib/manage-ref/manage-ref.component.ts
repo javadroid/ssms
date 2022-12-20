@@ -18,7 +18,8 @@ export class ManageRefComponent implements OnInit {
   rank = [] as any;
   station = [] as any;
   organizationData=[]as any[]
- section=['branch', 'department', 'division', 'organizationCategory', 'policy','rank', 'station', 'organizationName']
+  crimetype=[]as any[]
+ section=['branch', 'department', 'division', 'organizationCategory', 'policy','rank', 'station', 'organizationName','crimetype']
   show='branch'
 
   Form = new FormGroup({
@@ -27,6 +28,7 @@ export class ManageRefComponent implements OnInit {
     divisionName: new FormControl(''),
     departmentName: new FormControl(''),
     policy: new FormControl(''),
+    crimetype: new FormControl(''),
     rank: new FormControl(''),
     stationName: new FormControl(''),
     organizationCategoryName: new FormControl(''),
@@ -34,18 +36,19 @@ export class ManageRefComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.http.find('organizationName').subscribe(e=>{this.organizationName=e })
+    this.http.find('organizationCategory').subscribe(e=>{this.organizationCategory=e })
 
     this.Form.patchValue({
       subscriberId:this.organizationData[0]._id
     })
+    this.http.find('crime-type').subscribe(e=>{this.crimetype=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('branch').subscribe(e=>{this.branch=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('division-info').subscribe(e=>{this.division=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('department').subscribe(e=>{this.department=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('policy').subscribe(e=>{this.policy=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('rank').subscribe(e=>{this.rank=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('station').subscribe(e=>{this.station=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
-    this.http.find('organizationName').subscribe(e=>{this.organizationName=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
-    this.http.find('organizationCategory').subscribe(e=>{this.organizationCategory=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
   }
 
   onselect(event:any){
@@ -63,6 +66,17 @@ export class ManageRefComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  createcrimetype() {
+    this.Form.patchValue({
+     subscriberId:this.organizationData[0]._id
+   })
+   this.http.create('crime-type', this.Form.value).subscribe((e) => {
+
+     console.log(e)
+     this.ngOnInit();
+   });
+ }
 
   createstation() {
      this.Form.patchValue({
@@ -93,9 +107,7 @@ export class ManageRefComponent implements OnInit {
     });
   }
   createorganizationName() {
-     this.Form.patchValue({
-      subscriberId:this.organizationData[0]._id
-    })
+
     this.http.create('organizationName', this.Form.value).subscribe((e) => {
       console.log(e)
       this.ngOnInit();
@@ -103,9 +115,7 @@ export class ManageRefComponent implements OnInit {
   }
 
   createorganizationCategory() {
-     this.Form.patchValue({
-      subscriberId:this.organizationData[0]._id
-    })
+
     this.http.create('organizationCategory', this.Form.value).subscribe((e) => {
       console.log(e)
       this.ngOnInit();
@@ -133,6 +143,13 @@ export class ManageRefComponent implements OnInit {
 
   deletebranch(id:string) {
     this.http.delete('branch', id).subscribe((e) => {
+      console.log(e)
+      this.ngOnInit();
+    });
+  }
+
+  deletecrimetype(id:string) {
+    this.http.delete('crime-type', id).subscribe((e) => {
       console.log(e)
       this.ngOnInit();
     });

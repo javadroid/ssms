@@ -44,6 +44,9 @@ import { Weapon, WeaponSchema } from '../schema/weapon.schema';
 import { RankController } from './rank/rank.controller';
 import { RankService } from './rank/rank.service';
 import { Rank, RankSchema } from '../schema/rank.schema';
+import { CrimeTypeController } from './crime-type/crime-type.controller';
+import { CrimeTypeService } from './crime-type/crime-type.service';
+import { CrimeType, CrimeTypeSchema } from '../schema/crimeType.schema';
 
 
 @Module({
@@ -58,7 +61,8 @@ import { Rank, RankSchema } from '../schema/rank.schema';
     PolicyController,
     WeaponController,
     DivisionController,
-    RankController
+    RankController,
+    CrimeTypeController
   ],
   providers: [
     OrganizationcategoryService,
@@ -70,7 +74,8 @@ import { Rank, RankSchema } from '../schema/rank.schema';
     StatesService,
     PolicyService,
     WeaponService,
-    RankService
+    RankService,
+    CrimeTypeService
   ],
   exports: [],
   imports: [
@@ -85,6 +90,7 @@ import { Rank, RankSchema } from '../schema/rank.schema';
     MongooseModule.forFeature([{ name: Policy.name, schema: PolicySchema }]),
     MongooseModule.forFeature([{ name: Weapon.name, schema: WeaponSchema }]),
     MongooseModule.forFeature([{ name: Rank.name, schema: RankSchema }]),
+    MongooseModule.forFeature([{ name: CrimeType.name, schema: CrimeTypeSchema }]),
     StatesModule,
     LgaModule,
     OrganizationcategoryModule,

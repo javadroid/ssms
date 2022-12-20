@@ -63,7 +63,8 @@
             <div class="input_container mb-3">
               <label for="" class="d-block">Crime Type</label>
               <select formControlName="crimeType">
-                <option value="">Select option</option>
+                <option >Select option</option>
+                <option *ngFor="let item of crimetype" [value]="item.crimetype">{{item.crimetype}}</option>
               </select>
             </div>
             <div class="input_container mb-3">

@@ -15,7 +15,8 @@ export class PersonnelRegisterComponent implements OnInit {
   stepperactive = false;
   PersonnelRegisterForm!: FormGroup;
   PersonnelDetail: any[] = [];
-
+  rankDetails: any[] = [];
+stationDetails: any[] = [];
   stateDetails: any[] = [];
   lgaDetails: any[] = [];
   departmentDetails: any[] = [];
@@ -121,16 +122,24 @@ export class PersonnelRegisterComponent implements OnInit {
   loadDepartment() {
     this.http.find('department').subscribe((m) => {
       this.departmentDetails = m.filter(
-        (n: { organizationId: string }) =>
-          n.organizationId === this.organizationID
+        (n: { subscriberId: string }) =>
+          n.subscriberId === this.organizationID
       );
     });
   }
   loadBanch() {
     this.http.find('branch').subscribe((m) => {
       this.branchDetails = m.filter(
-        (n: { organizationId: string }) =>
-          n.organizationId === this.organizationID
+        (n: { subscriberId: string }) =>
+          n.subscriberId === this.organizationID
+      );
+    });
+  }
+  loadStation() {
+    this.http.find('station').subscribe((m) => {
+      this.stationDetails = m.filter(
+        (n: { subscriberId: string }) =>
+          n.subscriberId === this.organizationID
       );
     });
   }
@@ -141,11 +150,9 @@ export class PersonnelRegisterComponent implements OnInit {
     });
   }
   loadRank() {
-    this.http.find('rank').subscribe((m) => {
-      console.log('rank', m);
 
-      this.stateDetails = m.filter((sub: { organizationId: string }) =>sub.organizationId===this.organizationID);
-    });
+    this.http.find('rank').subscribe(e=>{this.rankDetails =e.filter((id:any)=>{ return id.subscriberId===this.organizationID}); })
+
   }
   onStateChange(event: any) {
     this.loadLGA(event.value);
@@ -163,6 +170,8 @@ export class PersonnelRegisterComponent implements OnInit {
     this.LoadAllpersonnel();
     this.loadDepartment();
     this.loadBanch();
+    this.loadStation()
+    this.loadRank()
   }
 
   createNew() {
