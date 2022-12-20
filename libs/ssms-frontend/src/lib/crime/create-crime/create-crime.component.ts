@@ -224,7 +224,7 @@ export class CreateCrimeComponent implements OnInit {
               })
             )
             .subscribe((e) => {
-              e._id = e.id;
+
 
               setTimeout(() => {
                 this.apiService
@@ -246,13 +246,15 @@ export class CreateCrimeComponent implements OnInit {
 
                     alias: e.username,
                   })
-                  .subscribe((e) => {
-                    console.log('suspectsmmm', e);
+                  .subscribe((ae) => {
+                    console.log('suspectsmmm', ae);
+
+                    e._id=ae._id
                   });
               }, 1000);
 
               const existSuspect = this.suspects.find(
-                (suspect) => suspect._id === e._id
+                (suspect) => suspect._id === e.id
               );
 
               if (existSuspect) {
@@ -334,7 +336,7 @@ export class CreateCrimeComponent implements OnInit {
               })
             )
             .subscribe((e) => {
-              e._id = e.id;
+
 
               setTimeout(() => {
                 this.apiService
@@ -356,12 +358,14 @@ export class CreateCrimeComponent implements OnInit {
 
                     alias: e.username,
                   })
-                  .subscribe((e) => {
-                    console.log('suspectsmmm', e);
+                  .subscribe((ae) => {
+                    console.log('suspectsmmm', ae);
+
+                    e._id=ae._id
                   });
               }, 1000);
               const existVictim = this.suspects.find(
-                (victim) => victim._id === e._id
+                (victim) => victim._id === e.id
               );
 
               if (existVictim) {
