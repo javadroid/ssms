@@ -9,9 +9,8 @@
 
         <div class="menu_container">
           <a [routerLink]="['./main']" [routerLinkActive]="['active']"  class="btn menu_btn ">Dashboard</a>
-          <a [routerLink]="['./personnel']"  [routerLinkActive]="['active']" class="btn menu_btn">Personnel management</a>
-          <a  class="btn menu_btn">Crime management</a>
-          <a class="btn menu_btn">Incident management</a>
+          <a [routerLink]="['./crime']"  [routerLinkActive]="['active']" class="btn menu_btn">Crime management</a>
+          <a [routerLink]="['./criminal']"  [routerLinkActive]="['active']" class="btn menu_btn">Criminal management</a>
           <a class="btn menu_btn">Report management</a>
           <a class="btn menu_btn">Report monitoring</a>
           <a (click)="logout()" class="btn btn-outline-danger">Logout</a>
@@ -22,6 +21,10 @@
 
       <!-- PERSONNEL MANAGEMENT BEGINS HERE -->
       <main class="main_dashboard">
+        <div class="top_nav d-flex align-items-center">
+          <h3  class="user">{{organizationData[0].organizationName}} ({{personnelData[0].lastname +' '+personnelData[0].firstname}})</h3>
+
+        </div>
 
         <router-outlet (activate)="onOutletLoaded($event)" ></router-outlet>
 

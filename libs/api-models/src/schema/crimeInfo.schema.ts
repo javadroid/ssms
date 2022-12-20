@@ -48,6 +48,12 @@ export class CrimeInfo {
     reportId: [];
     @Prop()
     locationId: [];
+    @Prop()
+    media: [];
+    @Prop()
+    status: string;
+    @Prop()
+    subcriberId!: string;
 
 }
 export const CrimeInfoSchema = SchemaFactory.createForClass(CrimeInfo);

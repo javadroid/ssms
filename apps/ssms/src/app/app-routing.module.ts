@@ -16,8 +16,22 @@ const routes: Routes = [
   // {path: 'personnel-register' ,loadChildren:() => import('@ssms/ssms-frontend').then(m=> m.PersonnelRegisterModule)},
   {path: 'organization-register',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationRegisterModule)},
 
-  // {path: 'sign-up',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.LoginModule)},
-  {path: 'login',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.LoginModule)},
+  // {
+  //   path: 'crime',
+  //   loadChildren: () =>
+  //     import('@ssms/ssms-frontend').then((m) => m.CrimeModule),
+  // },
+  // {
+  //   path: 'personnel-register',
+  //   loadChildren: () =>
+  //     import('@ssms/ssms-frontend').then((m) => m.PersonnelRegisterModule),
+  // },
+
+  {
+    path: 'organization-register',
+    loadChildren: () =>
+      import('@ssms/ssms-frontend').then((m) => m.OrganizationRegisterModule),
+  },
 
 ];
 

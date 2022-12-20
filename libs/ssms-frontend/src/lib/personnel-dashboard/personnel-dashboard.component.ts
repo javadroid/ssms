@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceApi } from '../shared/service/service-api';
 
 @Component({
   selector: 'ssms-personnel-dashboard',
@@ -7,12 +8,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./personnel-dashboard.component.css'],
 })
 export class PersonnelDashboardComponent implements OnInit {
-  constructor(private route:Router) {}
+  constructor(private route:Router,private http:ServiceApi) {}
+  personnelData=[] as any
+  organizationData=[] as any
+  id = localStorage.getItem('id');
+  ngOnInit(): void {
 
-  ngOnInit(): void {}
+    console.log(this.id);
+    if (this.id) {
+      this.http.findOne('personnel', this.id).subscribe((e) => {
+        console.log("e",e);
+        this.personnelData=[e]
+        this.http.findOne('organization', e.organizationId).subscribe(a=>{
+          this.organizationData=[a]
+        })
+
+
+      });
+    }
+  }
 
   onOutletLoaded(component:any) {
-   console.log(component)
+    component.personnelData=this.personnelData
+    component.organizationData=this.organizationData
+  //  console.log(component)
 
   }
 
