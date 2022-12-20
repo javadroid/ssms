@@ -54,11 +54,11 @@ const routes: Routes = [
       import('@ssms/ssms-frontend').then((m) => m.OrganizationSigninModule),
   },
 
-  {
-    path: 'crime',
-    loadChildren: () =>
-      import('@ssms/ssms-frontend').then((m) => m.CrimeModule),
-  },
+  // {
+  //   path: 'crime',
+  //   loadChildren: () =>
+  //     import('@ssms/ssms-frontend').then((m) => m.CrimeModule),
+  // },
   // {
   //   path: 'personnel-register',
   //   loadChildren: () =>

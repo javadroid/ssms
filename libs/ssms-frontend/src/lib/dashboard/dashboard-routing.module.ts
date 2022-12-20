@@ -6,6 +6,8 @@ import { ManageRefComponent } from '../manage-ref/manage-ref.component';
 import { PersonnelRegisterComponent } from '../personnel-register/personnel-register.component';
 import { CanAuth } from '../shared/guard/can.guard';
 import { DashboardComponent } from './dashboard.component';
+import { CrimeComponent } from '../crime/crime/crime.component';
+import { CreateCrimeComponent } from '../crime/create-crime/create-crime.component';
 
 const routes: Routes = [
   {
@@ -30,16 +32,16 @@ const routes: Routes = [
       },
 
       {
+        path: 'crime',
+        component: CrimeComponent,
+      },
+      { path: 'create-crime', component: CreateCrimeComponent },
+      {
         path: '**',
         redirectTo: 'main',
         pathMatch: 'full',
       },
     ],
-  },
-
-  {
-    path: 'can',
-    component: MainDashboardComponent,
   },
 ];
 

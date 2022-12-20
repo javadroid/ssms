@@ -1,18 +1,4 @@
-<div class="dashboard_container">
-      <aside class="dashboard_nav">
-        <div class="logo_container">
-          <h2 class="logo">SSMS</h2>
-        </div>
 
-        <div class="menu_container">
-          <button class="btn menu_btn active">Dashboard</button>
-          <button class="btn menu_btn">Personnel management</button>
-          <button class="btn menu_btn">Crime management</button>
-          <button class="btn menu_btn">Incident management</button>
-          <button class="btn menu_btn">Report management</button>
-          <button class="btn menu_btn">Report monitoring</button>
-        </div>
-      </aside>
 
     <!-- CASE MANAGEMENT ================ CASE MANAGEMENT ========= CASE MANAGEMENT -->
     <div class="case_management">
@@ -23,14 +9,14 @@
 
       <!-- CASE PREVIEW AFTER SEARCH HAS BEEN MADE =========== CASE PREVIEW AFTER SEARCH HAS BEEN MADE -->
 
-      <div class="case_preview " *ngIf="(crime$ | async) as crime">
+      <div class="case_preview " *ngIf="crimeSearch">
         <div class="section">
-          <h1 class="crime_type">Arson <span class="status">Closed</span></h1>
+          <h1 class="crime_type">{{crime?.crimeType}} <span class="status">{{crime?.status}}</span></h1>
           <div class="sub_info d-flex">
             <p class="crime_info">Offense date: <span>{{crime?.crimeDate}}</span></p>
             <p class="crime_info">Offense Time: <span>{{crime?.crimeTime}}</span></p>
-            <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
-            <p class="crime_info">Closed on: <span>20/12/2022</span></p>
+            <p class="crime_info">Last Updated Time: <span>10:15 PM</span></p>
+            <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
             <p class="crime_info">Officer Assigned: <span>Det. matthew Johnson</span></p>
           </div>
           <p class="statement">
@@ -44,47 +30,32 @@
         <div class="section">
           <h4 class="section_title">Suspect and Accomplice(s)</h4>
 
-          <div class="suspect_list">
+          <div *ngFor="let i of criminal" class="suspect_list">
             <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
+              <img [src]="i.image" alt="" class="sus_img" />
+              <p class="name">{{i.firstName+' '+i.lastName}}</p>
             </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
+
           </div>
         </div>
 
         <div class="section">
           <h4 class="section_title">Victim(s)</h4>
 
-          <div class="suspect_list">
+          <div *ngFor=" let i of victim "class="suspect_list">
             <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe</p>
+              <img [src]="i.image" alt="" class="sus_img" />
+              <p class="name">{{i.firstName+' '+i.lastName}}</p>
             </div>
           </div>
         </div>
         <div class="section">
           <h4 class="section_title">Evidence - Vehicle</h4>
 
-          <div class="vehicle_list">
+          <div  *ngFor=" let i of vehicle " class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
-              <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
             </div>
           </div>
         </div>
@@ -92,18 +63,20 @@
         <div class="section">
           <h4 class="section_title">Evidence - Weapon</h4>
 
-          <div class="vehicle_list">
+          <div  *ngFor=" let i of weapon" class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h4 class="section_title">Evidence - Clothing</h4>
+        <div  class="section">
+          <h4   class="section_title">Evidence - Media files</h4>
 
-          <div class="vehicle_list">
+          <div *ngFor=" let i of media"class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Boots covered in petrol</p>
+              <p class="vehicle_info">{{i.name }}</p>
+              <img  [src]="i.image" [alt]="" class="sus_img" />
             </div>
           </div>
         </div>
@@ -111,4 +84,3 @@
     </div>
 
 
-  </div>

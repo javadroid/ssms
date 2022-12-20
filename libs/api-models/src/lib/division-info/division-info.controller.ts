@@ -8,13 +8,13 @@ import {Body,
         Post, } from '@nestjs/common';
 import { DivisionInfoDTO } from '../../dto/divisionInfo.dto';
 import { DivisionInfoService } from './division-info.service';
-import { DivisionInfoDoc } from '../../schema/divisionInfo.schema';
+
 
 @Controller('division-info')
 export class DivisionInfoController {
     constructor(private divisionInfoService: DivisionInfoService) {}
   @Post()
-  async create(@Body() createDivisionInfo: DivisionInfoDoc) {
+  async create(@Body() createDivisionInfo: DivisionInfoDTO) {
     return this.divisionInfoService.create(createDivisionInfo);
   }
 

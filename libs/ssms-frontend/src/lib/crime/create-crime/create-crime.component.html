@@ -1,209 +1,363 @@
-<div class="dashboard_container">
-    <aside class="dashboard_nav">
-      <div class="logo_container">
-        <h2 class="logo">SSMS</h2>
-      </div>
 
-      <div class="menu_container">
-        <button class="btn menu_btn active">Dashboard</button>
-        <button class="btn menu_btn">Personnel management</button>
-        <button class="btn menu_btn">Crime management</button>
-        <button class="btn menu_btn">Incident management</button>
-        <button class="btn menu_btn">Report management</button>
-        <button class="btn menu_btn">Report monitoring</button>
-      </div>
-    </aside>
 
   <!-- CASE MANAGEMENT ================ CASE MANAGEMENT ========= CASE MANAGEMENT -->
+
   <div class="case_management">
 
-
-
-
-    <div class="main_reg ">
+    <div class="main_reg">
+      <div class="btn btn-success" routerLink="../crime">Back</div>
       <div class="stepper-container">
         <div class="step_count d-flex align-items-center">
-          <button class="btn step_btn" [ngClass]="step === steps[0] ? 'active' : ''" (click)="onNext(steps[0])"><span>1</span> Primary information</button>
-          <button class="btn step_btn" [ngClass]="step === steps[1] ? 'active' : ''" (click)="onNext(steps[1])"><span>2</span>Case suspect</button>
-          <button class="btn step_btn" [ngClass]="step === steps[2] ? 'active' : ''" (click)="onNext(steps[2])"><span>3</span>Victims</button>
-          <button class="btn step_btn" [ngClass]="step === steps[3] ? 'active' : ''" (click)="onNext(steps[3])"><span>4</span>Evidence</button>
+          <button
+            class="btn step_btn"
+            [ngClass]="step === steps[0] ? 'active' : ''"
+            (click)="onNext(steps[0])"
+          >
+            <span>1</span> Primary information
+          </button>
+          <button
+            class="btn step_btn"
+            [ngClass]="step === steps[1] ? 'active' : ''"
+            (click)="onNext(steps[1])"
+          >
+            <span>2</span>Case suspect
+          </button>
+          <button
+            class="btn step_btn"
+            [ngClass]="step === steps[2] ? 'active' : ''"
+            (click)="onNext(steps[2])"
+          >
+            <span>3</span>Victims
+          </button>
+          <button
+            class="btn step_btn"
+            [ngClass]="step === steps[3] ? 'active' : ''"
+            (click)="onNext(steps[3])"
+          >
+            <span>4</span>Evidence
+          </button>
         </div>
       </div>
       <form [formGroup]="crimeForm">
         <ng-container [ngSwitch]="step">
-        <div class="org_info" *ngSwitchCase="steps[0]">
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Date</label>
-            <input type="date" formControlName="crimeDate" class="form-control date" placeholder="Date" />
-          </div>
-
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Time</label>
-            <input type="time" formControlName="crimeTime" class="form-control date" placeholder="Time" />
-          </div>
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Crime Type</label>
-            <select formControlName="crimeType">
-              <option value="">Select option</option>
-            </select>
-          </div>
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Statement</label>
-            <textarea formControlName="statementOfOffense" cols="30" rows="7"></textarea>
-          </div>
-
-          <button class="btn btn-success" (click)="onNext(steps[1])">Next</button>
-        </div>
-
-        <!-- step 2 (criminal/suspect info) -->
-
-        <div class="contact_information" *ngSwitchCase="steps[1]">
-          <div class="search_nin-container d-flex">
-            <input class="form-control me-2" type="search" [formControl]="searchSuspect" placeholder="Search with NIN" aria-label="Search" />
-            <button class="btn btn-outline-success" (click)="onAddSuspect()">Add</button>
-          </div>
-
-          <div class="criminal_list" >
-            <ng-container *ngFor="let suspect of suspects">
-            <div class="criminal_card">
-              <button class="btn more_btn" (click)="OpenSuspect(suspect._id)">
-                <img src="assets/more_vert.jpeg" alt="" class="more" />
-              </button>
-             <ng-container *ngIf="isOpenSuspect && selectedSuspectId === suspect._id">
-                <div class="more_container">
-                    <!-- <button class="btn">Edit</button> -->
-                    <button class="btn" (click)="onDeleteSuspect(suspect._id)">Delete</button>
-                  </div>
-             </ng-container>
-              <img src="assets/avatar.jpeg" class="sus_img" alt="" />
-              <h5 class="name">{{suspect?.fullName}}</h5>
-            </div>
-          </ng-container>
-          </div>
-
-          <button class="btn border-success" (click)="onNext(steps[0])">Previous</button>
-          <button class="btn btn-success" (click)="onNext(steps[2])">Next</button>
-        </div>
-
-        <!-- step 3 (Victims info) -->
-
-        <div class="contact_information" *ngSwitchCase="steps[2]">
-          <div class="search_nin-container d-flex">
-            <input class="form-control me-2" [formControl]="searchVictim" type="search" placeholder="Search with NIN" aria-label="Search" />
-            <button class="btn btn-outline-success" (click)="onAddVictim()">Add</button>
-          </div>
-
-          <div class="criminal_list" >
-            <ng-container *ngFor="let victim of victims">
-            <div class="criminal_card">
-              <button class="btn more_btn" (click)="OpenVictim(victim._id)">
-                <img src="assets/more_vert.jpeg" alt="" class="more" />
-              </button>
-             <ng-container *ngIf="isOpenVictim && selectedVictimId === victim._id">
-                <div class="more_container">
-                    <!-- <button class="btn">Edit</button> -->
-                    <button class="btn" (click)="onDeleteVictim(victim._id)">Delete</button>
-                  </div>
-             </ng-container>
-              <img src="assets/avatar.jpeg" class="sus_img" alt="" />
-              <h5 class="name">{{victim?.fullName}}</h5>
-            </div>
-          </ng-container>
-          </div>
-
-          <button class="btn border-success" (click)="onNext(steps[1])">Previous</button>
-          <button class="btn btn-success" (click)="onNext(steps[3])">Next</button>
-        </div>
-
-        <!-- step 4 (Create Evidence) -->
-
-        <div class="contact_information" *ngSwitchCase="steps[3]">
-          <!-- evidence selection=============evidence selection -->
-          <ng-container formGroupName="evidence">
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Select item</label>
-            <select formControlName="type" (change)="onSelectEvidenceType($event.target)">
-              <option value="">Select item</option>
-              <option *ngFor="let evidence of evidenceTypes" [value]="evidence?._id">{{evidence?.name}}</option>
-            </select>
-          </div>
-
-          <!-- describe evidence(based on what was earlier selected) -->
-          <div class="d-flex w-100 justify-content-between name_container" *ngIf="showVehicleDetails">
+          <div class="org_info" *ngSwitchCase="steps[0]">
             <div class="input_container mb-3">
-              <label for="" class="d-block">Brand</label>
-              <input type="text" formControlName="brand" class="form-control" placeholder="Brand" />
+              <label for="" class="d-block">Date</label>
+              <input
+                type="date"
+                formControlName="crimeDate"
+                class="form-control date"
+                placeholder="Date"
+              />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Time</label>
+              <input
+                type="time"
+                formControlName="crimeTime"
+                class="form-control date"
+                placeholder="Time"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Crime Type</label>
+              <select formControlName="crimeType">
+                <option value="">Select option</option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Statement</label>
+              <textarea
+                formControlName="statementOfOffense"
+                cols="30"
+                rows="7"
+              ></textarea>
+            </div>
+
+            <button class="btn btn-success" (click)="onNext(steps[1])">
+              Next
+            </button>
+          </div>
+
+          <!-- step 2 (criminal/suspect info) -->
+
+          <div class="contact_information" *ngSwitchCase="steps[1]">
+            <div class="search_nin-container d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                [formControl]="searchSuspect"
+                placeholder="Search with NIN"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" (click)="onAddSuspect()">
+                Add
+              </button>
+            </div>
+
+            <div class="criminal_list">
+              <ng-container *ngFor="let suspect of suspects">
+                <div class="criminal_card">
+                  <button
+                    class="btn more_btn"
+                    (click)="OpenSuspect(suspect._id)"
+                  >
+                    <img src="assets/more_vert.jpeg" alt="" class="more" />
+                  </button>
+                  <ng-container
+                    *ngIf="isOpenSuspect && selectedSuspectId === suspect._id"
+                  >
+                    <div (click)="openSuspect(suspect)" class="more_container">
+                      <!-- <button class="btn">Edit</button> -->
+                      <button
+                        class="btn"
+                        (click)="onDeleteSuspect(suspect._id)"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </ng-container>
+                  <img [src]="suspect?.image" class="sus_img" [alt]=" suspect?.firstName +' '+suspect?.lastName " />
+                  <h5 class="name">{{ suspect?.firstName }} {{ suspect?.lastName }}</h5>
+                </div>
+              </ng-container>
+            </div>
+
+            <button class="btn border-success" (click)="onNext(steps[0])">
+              Previous
+            </button>
+            <button class="btn btn-success" (click)="onNext(steps[2])">
+              Next
+            </button>
+          </div>
+
+          <!-- step 3 (Victims info) -->
+
+          <div class="contact_information" *ngSwitchCase="steps[2]">
+            <div class="search_nin-container d-flex">
+              <input
+                class="form-control me-2"
+                [formControl]="searchVictim"
+                type="search"
+                placeholder="Search with NIN"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" (click)="onAddVictim()">
+                Add
+              </button>
+            </div>
+
+            <div class="criminal_list">
+              <ng-container *ngFor="let victim of victims">
+                <div (click)="openSuspect(victim)" class="criminal_card">
+                  <button class="btn more_btn" (click)="OpenVictim(victim._id)">
+                    <img src="assets/more_vert.jpeg" alt="" class="more" />
+                  </button>
+                  <ng-container
+                    *ngIf="isOpenVictim && selectedVictimId === victim._id"
+                  >
+                    <div class="more_container">
+                      <!-- <button class="btn">Edit</button> -->
+                      <button class="btn" (click)="onDeleteVictim(victim._id)">
+                        Delete
+                      </button>
+                    </div>
+                  </ng-container>
+                  <img [src]="victim.image" class="sus_img" [alt]="victim.firstName+' '+victim.lastName " />
+                  <h5 class="name">{{ victim.firstName+' '+victim.lastName }}</h5>
+                </div>
+              </ng-container>
+            </div>
+
+            <button class="btn border-success" (click)="onNext(steps[1])">
+              Previous
+            </button>
+            <button class="btn btn-success" (click)="onNext(steps[3])">
+              Next
+            </button>
+          </div>
+
+          <!-- step 4 (Create Evidence) -->
+
+          <div class="contact_information" *ngSwitchCase="steps[3]">
+            <!-- evidence selection=============evidence selection -->
+            <ng-container formGroupName="evidence">
+              <div class="input_container mb-3">
+                <label for="" class="d-block">Select item</label>
+                <select
+                  formControlName="type"
+                  (change)="onSelectEvidenceType($event.target)"
+                >
+                  <option value="">Select item</option>
+                  <option
+                    *ngFor="let evidence of evidenceTypes"
+                    [value]="evidence?._id"
+                  >
+                    {{ evidence?.name }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- describe evidence(based on what was earlier selected) -->
+              <div
+                class="d-flex w-100 justify-content-between name_container"
+                *ngIf="showVehicleDetails"
+              >
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Brand</label>
+                  <input
+                    type="text"
+                    formControlName="brand"
+                    class="form-control"
+                    placeholder="Brand"
+                  />
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">License</label>
+                  <input
+                    type="text"
+                    formControlName="license"
+                    class="form-control"
+                    placeholder="License"
+                  />
+                </div>
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Model No</label>
+                  <input
+                    type="text"
+                    formControlName="modelNo"
+                    class="form-control"
+                    placeholder="Model No"
+                  />
+                </div>
+              </div>
+
+                   <!-- describe evidence(based on what was earlier selected) -->
+          <div class="d-flex w-100 justify-content-between name_container" *ngIf="showWeaponDetails">
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Weapon name</label>
+              <input type="text" formControlName="brand" class="form-control" placeholder="Weapon name" />
             </div>
             <div class="input_container mb-3">
               <label for="" class="d-block">License</label>
               <input type="text" formControlName="license" class="form-control" placeholder="License" />
             </div>
             <div class="input_container mb-3">
-              <label for="" class="d-block">Model No</label>
-              <input type="text" formControlName="modelNo" class="form-control" placeholder="Model No" />
-            </div>
-
-          </div>
-          <div class="d-flex w-100 justify-content-between name_container" *ngIf="showFileInput">
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Model No</label>
-              <input type="file" formControlName="file" class="form-control"  />
+              <label for="" class="d-block">Weapon Type</label>
+              <input type="text" formControlName="modelNo" class="form-control" placeholder="Gun Type" />
             </div>
           </div>
-          <button class="btn btn-primary" (click)="onAdddEvidence()">Save</button>
+              <div
+                class="d-flex w-100 justify-content-between name_container"
+                *ngIf="showFileInput"
+              >
+                <div class="input_container mb-3">
+                  <label for="" class="d-block">Model No</label>
+                  <input
+                  (formdata)="(fileData)"
+            (change)="upload($event)"
+                    type="file"
+                    formControlName="file"
+                    class="form-control"
+                  />
 
+                </div>
+              </div>
+              <button
+                class="btn btn-primary"
+                [disabled]="evidencetype"
+                (click)="onAdddEvidence()"
+              >
+                Save
+              </button>
 
-          <div class="evidence_list">
-            <div class="evidence" *ngFor="let evidence of evidences">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onDeleteEvidence(evidence?._id)"></button>
-              <p class="vehicle_info">{{evidence?.brand}}</p>
-              <p class="vehicle_info">{{evidence?.license}} <span>{{evidence?.modelNo}}</span></p>
-            </div>
-            <!-- <div class="evidence">
+              <div class="evidence_list">
+                <div class="evidence" *ngFor="let evidence of evidences  index as i">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    (click)="onDeleteEvidence(i)"
+                  ></button>
+                  <h4>{{evidence?.name}}:  <p class="vehicle_info">{{ evidence?.brand }}</p> </h4>
+
+                  <p class="vehicle_info">
+                    {{ evidence?.license }} <span>{{ evidence?.modelNo }}</span>
+                  </p>
+                  <img
+                  [src]="evidence.file"
+                  *ngIf="evidence.file"
+                 [alt]="fileName"
+                  height="200"
+                  class="passport"
+                />
+                </div>
+                <!-- <div class="evidence">
               <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div> -->
+              </div>
+            </ng-container>
+
+            <button class="btn border-success" (click)="onNext(steps[2])">
+              Previous
+            </button>
+            <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+          </div>
+
+          <!-- NOT FOUND ===============NOT FOUND===========NOT FOUND -->
+          <div class="case_modal" *ngIf="isOpenNotFoundSuspect">
+            <div
+              class="case_card d-flex justify-content-center align-items-center flex-column"
+            >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="closeNotFoundSuspect()"
+              ></button>
+
+              <p class="message">
+                Suspect not found in database, would you like to save your
+                entries to draft while you create this suspect?
+              </p>
+              <div class="">
+                <button class="btn" (click)="closeNotFoundSuspect()">No</button>
+                <button class="btn btn-primary" (click)="onProceedToAdd()">
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="case_modal" *ngIf="isOpenNotFoundVictim">
+            <div
+              class="case_card d-flex justify-content-center align-items-center flex-column"
+            >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="closeNotFoundSuspect()"
+              ></button>
+
+              <p class="message">
+                Victim not found in database, would you like to save your
+                entries to draft while you create this suspect?
+              </p>
+              <div class="">
+                <button class="btn" (click)="closeNotFoundSuspect()">No</button>
+                <button class="btn btn-primary" (click)="onProceedToAdd()">
+                  Yes
+                </button>
+              </div>
+            </div>
           </div>
         </ng-container>
-
-          <button class="btn border-success" (click)="onNext(steps[2])">Previous</button>
-          <button class="btn btn-success" (click)="onSubmit()">Submit</button>
-        </div>
-
-        <!-- NOT FOUND ===============NOT FOUND===========NOT FOUND -->
-        <div class="case_modal" *ngIf="isOpenNotFoundSuspect">
-          <div class="case_card d-flex justify-content-center align-items-center flex-column">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeNotFoundSuspect()"></button>
-
-            <p class="message">
-              Suspect not found in database, would you like to save your entries to draft while you create this
-              suspect?
-            </p>
-            <div class="">
-              <button class="btn" (click)="closeNotFoundSuspect()">No</button>
-              <button class="btn btn-primary" (click)="onProceedToAdd()">Yes</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="case_modal" *ngIf="isOpenNotFoundVictim">
-          <div class="case_card d-flex justify-content-center align-items-center flex-column">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeNotFoundSuspect()"></button>
-
-            <p class="message">
-              Victim not found in database, would you like to save your entries to draft while you create this
-              suspect?
-            </p>
-            <div class="">
-              <button class="btn" (click)="closeNotFoundSuspect()">No</button>
-              <button class="btn btn-primary" (click)="onProceedToAdd()">Yes</button>
-            </div>
-          </div>
-        </div>
-    </ng-container>
       </form>
     </div>
   </div>
-
-
-</div>

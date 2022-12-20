@@ -44,7 +44,7 @@ onSubmit(){
     })
   }else if(this.loginForm.controls.username.value?.split('-')[0]==='PER'){
     this.http.login('personnel', this.loginForm.value).subscribe(e=>{
-      localStorage.setItem('id', e.userId);
+      localStorage.setItem('id', e.id);
       this.route.navigate(['/home'])
       console.log(e)
     })

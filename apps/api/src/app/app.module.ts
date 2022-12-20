@@ -10,6 +10,7 @@ import {
   CrimeInfoModule,
   SendMailModule,
   VictimInfoModule,
+  DivisionInfoModule,
 } from '@ssms/api-models';
 
 import { AppController } from './app.controller';
@@ -38,6 +39,7 @@ import { RefModule } from '@ssms/ref';
     FileuploadModule,
     SendMailModule,
     CrimeInfoModule,
+    DivisionInfoModule
   ],
 
   controllers: [AppController],

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ssms-crime-header',
@@ -8,9 +8,12 @@ import { FormControl } from '@angular/forms';
 })
 export class CrimeHeaderComponent {
   @Output() searchEmit = new EventEmitter<string>();
- search = new FormControl('');
+ search = new FormControl('',[Validators.required]);
 
   onSubmit() {
+    if(this.search.value ===''){
+      return
+    }
     this.searchEmit.emit(this.search.value as string);
   }
 }
