@@ -1,12 +1,13 @@
 <div class="top_nav d-flex align-items-center">
-    <div class="btn btn-success">Create new case</div>
+    <div class="btn btn-success" routerLink="/crime/create">Create new case</div>
     <div class="search_container d-flex">
       <input
         class="form-control me-2"
         type="search"
+        [formControl]="search"
         placeholder="Search with an existing case ID"
         aria-label="Search"
       />
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-outline-success" type="submit" (click)="onSubmit()">Search</button>
     </div>
   </div>

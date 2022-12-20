@@ -33,6 +33,11 @@ export class ApiService {
     return this.http.post(`http://localhost:3333/api/${model}`, create);
   }
 
+
+  search(model: string, query: string): Observable<any> {
+    return this.http.post(`http://localhost:3333/api/${model}/search`, { query });
+  }
+
   delete(model: string, id: any): Observable<any> {
     return this.http.delete(`http://localhost:3333/api/${model}/${id}`);
   }

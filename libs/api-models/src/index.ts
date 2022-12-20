@@ -14,4 +14,4 @@ export * from './lib/personnel/personnel.module';
 export * from './lib/criminal-info/criminal-info.module';
 export * from './lib/Fileupload/Fileupload.module';
 export * from './lib/send-mail/send-mail.module';
-
+export * from './lib/crime-info/crime-info.module';

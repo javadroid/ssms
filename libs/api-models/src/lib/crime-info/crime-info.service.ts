@@ -58,5 +58,22 @@ export class CrimeInfoService {
       throw new NotFoundException(error.message);
     }
   }
+
+  async search(args: string): Promise<CrimeInfo> {
+
+    try {
+      return this.crimeInfoModel
+      .findOne({
+        $or: [
+          { crimeId: { $regex: args, $options: 'i' } },
+        ],
+      })
+      .exec();
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
+
+
 }
 
