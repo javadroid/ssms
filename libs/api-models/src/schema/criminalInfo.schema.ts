@@ -25,8 +25,7 @@ export class CriminalInfo {
     phoneNumber: string;
     @Prop()
     email: string;
-    @Prop()
-    dateOfBirth: string;
+    
     @Prop()
     placeOfBirth: string;
     @Prop()
@@ -39,8 +38,7 @@ export class CriminalInfo {
     nin: string;
     @Prop()
     gender: string;
-    @Prop()
-    email: string;
+   
     @Prop()
     phone: string;
     @Prop()
@@ -65,10 +63,8 @@ export class CriminalInfo {
     state: string;
     @Prop()
     country: string;
-    @Prop()
-    lgaOfOrigin: string;
-    @Prop()
-    stateOfOrigin: string;
+   
+   
     @Prop()
     countryOfOrigin: string;
     @Prop()

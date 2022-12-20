@@ -294,6 +294,34 @@
   }
 
   .criminal_mgt {
+    .suspect_list {
+      display: flex;
+      padding: 2rem 3rem;
+      width: 100%;
+      flex-wrap: wrap;
+
+      .suspect {
+        text-align: center;
+        background: white;
+        box-shadow: 0 0 10px #eee;
+        width: 19%;
+        .sus_img {
+          width: 20rem;
+          height: 23rem;
+          object-fit: contain;
+        }
+
+        .name {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+
+        .crime {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
     .main_reg {
       padding: 2rem 5rem;
       display: flex;
@@ -865,6 +893,95 @@
         span {
           background: green;
           color: #fefefe;
+        }
+      }
+    }
+  }
+
+  .all_crime {
+    height: 95vh;
+    .input_container {
+      input,
+      select {
+        font-size: 1.4rem;
+        background: #eee;
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1.4rem;
+        border-radius: 5px;
+      }
+    }
+
+    .case_table {
+      padding: 0 3rem;
+      height: 90%;
+      .table {
+        tr {
+          padding: 1rem;
+          td,
+          th {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+  .reference_container {
+    height: 90vh;
+    width: 100%;
+
+    .reference {
+      padding: 2rem 3rem;
+      .new_ref {
+        button {
+          font-size: 1.3rem;
+          padding: 1rem;
+        }
+      }
+
+      .input_container {
+        width: 25%;
+        margin-right: 1rem;
+        label {
+          font-size: 1.3rem;
+        }
+
+        input,
+        select {
+          font-size: 1.4rem;
+          background: #eee;
+          padding: 1rem;
+          border: none;
+          width: 100%;
+        }
+        .selected {
+          border: none;
+          color: rgb(0, 0, 34);
+          cursor: pointer;
+          font-weight: 700;
+          padding: 0;
+          background: rgb(245, 245, 245);
+          padding: 0.375rem 0.75rem;
+        }
+      }
+
+      .reference_table {
+        height: 85%;
+        width: 100%;
+
+        .table {
+          tr {
+            padding: 1rem;
+            td,
+            th {
+              font-size: 1.3rem;
+            }
+          }
         }
       }
     }

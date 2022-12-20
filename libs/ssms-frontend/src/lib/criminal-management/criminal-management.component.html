@@ -3,12 +3,16 @@
   <div class="search_container">
     <div class="top_nav d-flex align-items-center">
       <ng-container *ngIf="createModal === false">
-        <div (click)="createModal = true" class="btn btn-success">
+        <!-- <div (click)="createModal = true" class="btn btn-success">
+          Create profile
+        </div> -->
+        <div (click)="createNew()" class="btn btn-success">
           Create profile
         </div>
       </ng-container>
       <ng-container *ngIf="createModal === true">
-        <div (click)="createModal = false" class="btn btn-danger">Back</div>
+        <!-- <div (click)="createModal = false" class="btn btn-danger">Back</div> -->
+        <div (click)="cancelCreate()" class="btn btn-danger">Cancel Create profile </div>
       </ng-container>
 
       <div class="search_container d-flex">
@@ -17,9 +21,82 @@
           type="search"
           placeholder="Search"
           aria-label="Search"
+          #item
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit" (click)="searchItem(item.value)">Search</button>
       </div>
+    </div>
+<br>
+<br>
+<br>
+<div class="suspect_list" *ngIf="!edits">
+  <div class="suspect" *ngFor="let item of filteredCriminalData; let i = index">
+    <img [src]="item.image" alt="" class="sus_img" />
+    <p class="name">{{ item.firstName + ' ' + item.lastName }}</p>
+    <p class="crime"><span>Murder, Fraud, Arson</span></p>
+    <div>
+      <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">
+        <img src="../assets/more_vert_black_24dp.svg" alt="" />
+      </button>
+      <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+        <button class="btn" (click)="Edit(item)">Edit</button>
+      </div>
+      <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+        <button class="btn " (click)="onDelete(item)">Delete!</button>
+      </div>
+      <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+        <button class="btn" (click)="onView(item)">View Record</button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+    <div class="table-responsive d-none">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name of Cirminal</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Place Of Birth</th>
+            <th scope="col">State of Origin</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Education</th>
+            <th scope="col">Height</th>
+            <th scope="col">NIN</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredCriminalData; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item.firstName + ' ' + item.lastName }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.dateOfBirth }}</td>
+            <td>{{ item.birthPlace }}</td>
+            <td>{{ item.stateOfOrigin }}</td>
+            <td>{{ item.occupation }}</td>
+            <td>{{ item.education }}</td>
+            <td>{{ item.height }}</td>
+            <td>{{ item.nin }}</td>
+            <td>
+              <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">
+                <img src="../assets/more_vert_black_24dp.svg" alt="" />
+              </button>
+              <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                <button class="btn" (click)="Edit(item)">Edit</button>
+              </div>
+              <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                <button class="btn " (click)="onDelete(item)">Delete!</button>
+              </div>
+              <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                <button class="btn" (click)="onView(item)">View Record</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- VIEW CRIMINAL PROFILE AFTER SEARCH ============== VIEW CRIMINAL PROFILE AFTER SEARCH========= VIEW CRIMINAL PROFILE AFTER SEARCH -->
@@ -27,95 +104,96 @@
     <div *ngIf="criminal_profile" class="criminal_profile">
       <div class="first_row">
         <div class="user_img-container">
-          <img src="{{ criminalData.image }}" alt="" />
+          <img src="{{ criminalRecord.image }}" alt="" />
         </div>
 
         <!-- SEARCH RESULT ================= SEARCH RESULT -->
         <div class="criminal_info">
+          <i class="ti-close" style="color: red; cursor: pointer;" (click)="closeCriminal()"><strong> X </strong></i>
           <div class="user_primary-info">
             <div class="user_info-container">
               <p class="info_label">First name</p>
-              <p class="data">{{ criminalData.firstName }}</p>
+              <p class="data">{{ criminalRecord.firstName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Middle name</p>
-              <p class="data">{{ criminalData.lastName }}</p>
+              <p class="data">{{ criminalRecord.lastName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Last name</p>
-              <p class="data">{{ criminalData.middleName }}</p>
+              <p class="data">{{ criminalRecord.middleName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Alias</p>
-              <p class="data">{{ criminalData.alias }}</p>
+              <p class="data">{{ criminalRecord.alias }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Gender</p>
-              <p class="data">{{ criminalData.gender }}</p>
+              <p class="data">{{ criminalRecord.gender }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Date of Birth</p>
-              <p class="data">{{ criminalData.dateOfBirth }}</p>
+              <p class="data">{{ criminalRecord.dateOfBirth }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Place of Birth</p>
-              <p class="data">{{criminalData.birthPlace}}</p>
+              <p class="data">{{criminalRecord.birthPlace}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">State</p>
-              <p class="data">{{ criminalData.stateOfOrigin }}</p>
+              <p class="data">{{ criminalRecord.stateOfOrigin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">L.G.A</p>
-              <p class="data">{{ criminalData.lgaOfOrigin }}</p>
+              <p class="data">{{ criminalRecord.lgaOfOrigin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Occupation</p>
-              <p class="data">{{ criminalData.occupation }}</p>
+              <p class="data">{{ criminalRecord.occupation }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Location</p>
               <p class="data">
-                {{ criminalData.address }} ,{{ criminalData.lga }}, {{
-                  criminalData.state
+                {{ criminalRecord.address }} ,{{ criminalRecord.lga }}, {{
+                  criminalRecord.state
                 }}
               </p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Education</p>
-              <p class="data">{{ criminalData.education }}</p>
+              <p class="data">{{ criminalRecord.education }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">NIN</p>
-              <p class="data">{{ criminalData.nin }}</p>
+              <p class="data">{{ criminalRecord.nin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Eye Color</p>
-              <p class="data">{{criminalData.eyeColor}}</p>
+              <p class="data">{{criminalRecord.eyeColor}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Hair Color</p>
-              <p class="data">{{criminalData.hairColor}}</p>
+              <p class="data">{{criminalRecord.hairColor}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Height</p>
-              <p class="data">{{ criminalData.height }}</p>
+              <p class="data">{{ criminalRecord.height }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Weight</p>
-              <p class="data">{{criminalData.weight}}</p>
+              <p class="data">{{criminalRecord.weight}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Phone number</p>
-              <p class="data">{{ criminalData.phone }}</p>
+              <p class="data">{{ criminalRecord.phone }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Email</p>
-              <p class="data">{{ criminalData.email }}</p>
+              <p class="data">{{ criminalRecord.email }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Country</p>
-              <p class="data">{{ criminalData.countryOfOrigin }}</p>
+              <p class="data">{{ criminalRecord.countryOfOrigin }}</p>
             </div>
           </div>
 
@@ -150,6 +228,7 @@
     <div class="case_modal " *ngIf="case_modal">
       <div class="case_card">
         <button
+        (click)="case_modal=false"
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
@@ -282,7 +361,7 @@
   </div>
 
   <!-- CREATE CRIMINAL PROFILE ===============CREATE CRIMINAL PROFILE -->
-  <div *ngIf="createModal" class="main_reg">
+  <div *ngIf="createModal && edits" class="main_reg">
     <div class="stepper-container">
       <div class="step_count d-flex align-items-center">
         <a
@@ -305,7 +384,7 @@
         >
       </div>
     </div>
-    <form [formGroup]="CriminalInfo" action="">
+    <form [formGroup]="criminalInfoForm" action="">
       <!-- Primary info starts here -->
       <div *ngIf="stepper === 0" class="primary_info">
         <div class="d-flex w-100 justify-content-between name_container">
@@ -351,7 +430,7 @@
           <label for="" class="d-block">Date of Birth</label>
           <input
             formControlName="dateOfBirth"
-            type="text"
+            type="date"
             class="form-control"
             placeholder="Date of Birth"
           />
@@ -369,14 +448,29 @@
 
         <div class="d-flex w-100 justify-content-between occupation">
           <div class="input_container mb-3">
+            <label for="" class="d-block">Country</label>
+            <select
+              formControlName="countryOfOrigin" #data (change)="selectedCountry(data.value)"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option [defaultSelected]="'Nigeria'" value="">Select</option>
+              <option *ngFor="let data of allCountries" [value]="data">{{data}}</option>
+              <!-- <option value="">Nigeria</option> -->
+            </select>
+          </div>
+          
+          <div class="input_container mb-3">
             <label for="" class="d-block">State of Origin</label>
             <select
-              formControlName="stateOfOrigin"
+            formControlName="stateOfOrigin" #state (change)="getOriginLga(state.value)"
               name=""
               id=""
               class="form-control selected"
             >
               <option value="">Select</option>
+              <option *ngFor="let data of allState" [value]="data">{{data}}</option>
             </select>
           </div>
 
@@ -389,23 +483,10 @@
               class="form-control selected"
             >
               <option value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
+              <option *ngFor="let data of filteredStateOrigin" [value]="data">{{data}}</option>
             </select>
           </div>
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Country</label>
-            <select
-              formControlName="countryOfOrigin"
-              name=""
-              id=""
-              class="form-control selected"
-            >
-              <option [defaultSelected]="'Nigeria'" value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
-            </select>
-          </div>
+         
         </div>
 
         <div class="d-flex origin">
@@ -472,33 +553,32 @@
             placeholder=" Address"
           />
         </div>
-        <div class="d-flex origin">
-          <div class="input_container mb-3">
-            <label for="" class="d-block">State</label>
-            <select
-              formControlName="state"
-              name=""
-              id=""
-              class="form-control selected"
-            >
-              <option value="">Select</option>
-            </select>
-          </div>
-
-          <div class="input_container mb-3">
-            <label for="" class="d-block">LGA</label>
-            <select
-              formControlName="lga"
-              name=""
-              id=""
-              class="form-control selected"
-            >
-              <option value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
-            </select>
-          </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">State</label>
+          <select
+          formControlName="state" #lga (change)="getLga(lga.value)"
+            name=""
+            id=""
+            class="form-control selected"
+          >
+            <option value="">Select</option>
+            <option *ngFor="let data of allState" [value]="data">{{data}}</option>
+          </select>
         </div>
+
+        <div class="input_container mb-3">
+          <label for="" class="d-block">LGA</label>
+          <select
+            formControlName="lga"
+            name=""
+            id=""
+            class="form-control selected"
+          >
+            <option value="">Select</option>
+            <option *ngFor="let data of filteredState" [value]="data">{{data}}</option>
+          </select>
+        </div>
+        
         <a (click)="stepper = stepper - 1" class="btn border-success"
           >Previous</a
         >
@@ -510,18 +590,22 @@
       <div *ngIf="stepper === 2" class="contact_information">
         <div class="input_container mb-3">
           <label for="" class="d-block">Gender</label>
-          <input
-            formControlName="gender"
-            type="text"
-            class="form-control"
-            placeholder="Hair Color"
-          />
+          <select
+          formControlName="gender"
+          name=""
+          id=""
+          class="form-control selected"
+        >
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
         </div>
         <div class="input_container mb-3">
           <label for="" class="d-block">Hair Color</label>
           <input
             formControlName="hairColor"
-            type="text"
+            type="color"
             class="form-control"
             placeholder="Hair Color"
           />
@@ -530,7 +614,7 @@
           <label for="" class="d-block">Eye Color</label>
           <input
             formControlName="eyeColor"
-            type="text"
+            type="color"
             class="form-control"
             placeholder="Eye Color"
           />
@@ -547,7 +631,7 @@
         <div class="input_container mb-3">
           <label for="" class="d-block">Weight</label>
           <input
-            formControlName="height"
+            formControlName="weight"
             type="text"
             class="form-control"
             placeholder="Weight"
@@ -570,10 +654,14 @@
           />
         </div>
 
-        <a (click)="stepper = stepper - 1" class="btn border-success"
+        <!-- <a (click)="stepper = stepper - 1" class="btn border-success"
+          >Previous</a
+        > -->
+        <a (click)="Backward()" class="btn border-success"
           >Previous</a
         >
-        <a (click)="onCreate()" class="btn btn-success">Submit</a>
+        <!-- <a (click)="onCreate()" class="btn btn-success">Submit</a> -->
+        <a (click)="saveCriminalInfoForm()" class="btn btn-success">Submit</a>
       </div>
     </form>
   </div>
