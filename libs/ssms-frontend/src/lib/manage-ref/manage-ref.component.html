@@ -442,4 +442,58 @@
       </table>
     </div>
   </div>
+
+  <div *ngIf="show === 'crimetype'" class="reference">
+    <div class="d-flex w-100 new_ref align-items-center">
+      <div class="input_container mb-3">
+        <label for="" class="d-block">crimetype</label>
+        <input
+          [formControl]="Form.controls.crimetype"
+          type="text"
+          class="form-control"
+          placeholder="crimetype"
+        />
+      </div>
+      <!-- <div class="input_container mb-3">
+          <label for="" class="d-block">Last name</label>
+          <select>
+            <option value="">Select option</option>
+          </select>
+        </div> -->
+      <!-- <div class="input_container mb-3">
+          <label for="" class="d-block">Middle name</label>
+          <input type="text" class="form-control" placeholder="Last name" />
+        </div> -->
+
+      <button (click)="createcrimetype()" class="btn btn-primary">Add</button>
+    </div>
+
+    <div class="reference_table table-responsive">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">crimetype</th>
+            <!-- <th scope="col">Last</th>
+              <th scope="col">Handle</th> -->
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of crimetype">
+            <th scope="row">1</th>
+            <td>{{ i.crimetype }}</td>
+            <!-- <td>Otto</td>
+              <td>@mdo</td> -->
+            <td>
+              <button (click)="deletecrimetype(i._id)" class="btn p-0">
+                <!-- <img src="assets/more_vert_black_24dp.svg" alt="" /> -->
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

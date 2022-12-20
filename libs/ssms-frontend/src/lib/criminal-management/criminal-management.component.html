@@ -13,12 +13,13 @@
 
       <div class="search_container d-flex">
         <input
+          [formControl]="searchID"
           class="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button (click)="onSearch()" class="btn btn-outline-success" type="submit">Search</button>
       </div>
     </div>
 
@@ -57,7 +58,7 @@
     <div *ngIf="criminal_profile" class="criminal_profile">
       <div class="first_row">
         <div class="user_img-container">
-          <img src="{{ criminalData.image }}" alt="" />
+          <img src="{{ criminalData[0].image }}" alt="" />
         </div>
 
         <!-- SEARCH RESULT ================= SEARCH RESULT -->
@@ -65,87 +66,87 @@
           <div class="user_primary-info">
             <div class="user_info-container">
               <p class="info_label">First name</p>
-              <p class="data">{{ criminalData.firstName }}</p>
+              <p class="data">{{ criminalData[0].firstName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Middle name</p>
-              <p class="data">{{ criminalData.lastName }}</p>
+              <p class="data">{{ criminalData[0].lastName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Last name</p>
-              <p class="data">{{ criminalData.middleName }}</p>
+              <p class="data">{{ criminalData[0].middleName }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Alias</p>
-              <p class="data">{{ criminalData.alias }}</p>
+              <p class="data">{{ criminalData[0].alias }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Gender</p>
-              <p class="data">{{ criminalData.gender }}</p>
+              <p class="data">{{ criminalData[0].gender }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Date of Birth</p>
-              <p class="data">{{ criminalData.dateOfBirth }}</p>
+              <p class="data">{{ criminalData[0].dateOfBirth }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Place of Birth</p>
-              <p class="data">{{criminalData.birthPlace}}</p>
+              <p class="data">{{criminalData[0].birthPlace}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">State</p>
-              <p class="data">{{ criminalData.stateOfOrigin }}</p>
+              <p class="data">{{ criminalData[0].stateOfOrigin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">L.G.A</p>
-              <p class="data">{{ criminalData.lgaOfOrigin }}</p>
+              <p class="data">{{ criminalData[0].lgaOfOrigin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Occupation</p>
-              <p class="data">{{ criminalData.occupation }}</p>
+              <p class="data">{{ criminalData[0].occupation }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Location</p>
               <p class="data">
-                {{ criminalData.address }} ,{{ criminalData.lga }}, {{
-                  criminalData.state
+                {{ criminalData[0].address }} ,{{ criminalData[0].lga }}, {{
+                  criminalData[0].state
                 }}
               </p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Education</p>
-              <p class="data">{{ criminalData.education }}</p>
+              <p class="data">{{ criminalData[0].education }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">NIN</p>
-              <p class="data">{{ criminalData.nin }}</p>
+              <p class="data">{{ criminalData[0].nin }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Eye Color</p>
-              <p class="data">{{criminalData.eyeColor}}</p>
+              <p class="data">{{criminalData[0].eyeColor}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Hair Color</p>
-              <p class="data">{{criminalData.hairColor}}</p>
+              <p class="data">{{criminalData[0].hairColor}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Height</p>
-              <p class="data">{{ criminalData.height }}</p>
+              <p class="data">{{ criminalData[0].height }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Weight</p>
-              <p class="data">{{criminalData.weight}}</p>
+              <p class="data">{{criminalData[0].weight}}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Phone number</p>
-              <p class="data">{{ criminalData.phone }}</p>
+              <p class="data">{{ criminalData[0].phone }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Email</p>
-              <p class="data">{{ criminalData.email }}</p>
+              <p class="data">{{ criminalData[0].email }}</p>
             </div>
             <div class="user_info-container">
               <p class="info_label">Country</p>
-              <p class="data">{{ criminalData.countryOfOrigin }}</p>
+              <p class="data">{{ criminalData[0].countryOfOrigin }}</p>
             </div>
           </div>
 

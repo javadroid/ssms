@@ -29,13 +29,14 @@ export class CreateCrimeComponent implements OnInit {
   isOpenSuspect = false;
   selectedSuspectId = '';
   isOpenNotFoundSuspect = false;
-
+  crimetype = [] as any[];
   searchVictim = new FormControl();
   victims: any[] = [];
   isOpenVictim = false;
   selectedVictimId = '';
+  personnelData = [] as any[];
   isOpenNotFoundVictim = false;
-   cri= []as any
+  cri = [] as any;
   showVehicleDetails = false;
   showFileInput = false;
   evidences: any[] = [];
@@ -116,6 +117,17 @@ export class CreateCrimeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.apiService.find('crime-type').subscribe((e) => {
+      this.crimetype = e.filter((id: any) => {
+        return id.subscriberId === this.personnelData[0].organizationId;
+      });
+      console.log(
+        'first',
+        this.crimetype,
+        this.personnelData[0].organizationId
+      );
+    });
+
     const foundCrimeForm =
       JSON.parse(localStorage.getItem('crimeForm') as string) || null;
     const foundSuspects =
@@ -214,38 +226,30 @@ export class CreateCrimeComponent implements OnInit {
             .subscribe((e) => {
               e._id = e.id;
 
+              setTimeout(() => {
+                this.apiService
+                  .create('criminal-info', {
+                    dateOfBirth: e.birthDate,
+                    firstName: e.firstName,
+                    lastName: e.lastName,
+                    middleName: e.middleName,
+                    nin: e.id,
+                    gender: e.gender,
+                    email: e.email,
+                    phone: e.phone,
+                    image: e.image,
+                    height: e.height,
+                    weight: e.weight,
+                    eyeColor: e.eyeColor,
+                    address: e.address.address,
+                    state: e.state,
 
-              this.cri['dateOfBirth']=e.birthDate
-
-              this.cri['firstName']=e.firstName
-              this.cri['lastName']=e.lastName
-              this.cri['middleName']=e.maidenName
-
-              this.cri['nin']=e.id
-              this.cri['gender']=e.gender
-              this.cri['email']=e.email
-              this.cri['phone']=e.phone
-
-              this.cri['image']=e.image
-              this.cri['height']=e.height
-              this.cri['weight']=e.weight
-              this.cri['eyeColor']=e.eyeColor
-              this.cri['hairColor']=e.hair.color
-              this.cri['address']=e.address.address +' '+e.address.city
-
-
-              this.cri['state']=e.state,
-
-  this.cri['postalCode']=e.postalCode,
-  this.cri['updated']= '!ALLOW'
-
-              this.cri['alias']=e.username
-console.log('y', this.cri);
-setTimeout(() => {
-  this.apiService.create('criminal-info',this.cri).subscribe(e=>{
-    console.log('suspectsmmm', e);
-  })
-}, 1000);
+                    alias: e.username,
+                  })
+                  .subscribe((e) => {
+                    console.log('suspectsmmm', e);
+                  });
+              }, 1000);
 
               const existSuspect = this.suspects.find(
                 (suspect) => suspect._id === e._id
@@ -331,35 +335,31 @@ setTimeout(() => {
             )
             .subscribe((e) => {
               e._id = e.id;
-const cri= []as any
 
-cri['dateOfBirth']=e.birthDate
+              setTimeout(() => {
+                this.apiService
+                  .create('criminal-info', {
+                    dateOfBirth: e.birthDate,
+                    firstName: e.firstName,
+                    lastName: e.lastName,
+                    middleName: e.middleName,
+                    nin: e.id,
+                    gender: e.gender,
+                    email: e.email,
+                    phone: e.phone,
+                    image: e.image,
+                    height: e.height,
+                    weight: e.weight,
+                    eyeColor: e.eyeColor,
+                    address: e.address.address,
+                    state: e.state,
 
-cri['firstName']=e.firstName
-cri['lastName']=e.lastName
-cri['middleName']=e.maidenName
-
-cri['nin']=e.id
-cri['gender']=e.gender
-cri['email']=e.email
-cri['phone']=e.phone
-
-cri['image']='e.image'
-cri['height']=e.height
-cri['weight']=e.weight
-cri['eyeColor']=e.eyeColor
-cri['hairColor']=e.hair.color
-cri['address']=e.address.address +' '+e.address.city
-
-
-cri['state']=e.state,
-
-cri['postalCode']=e.postalCode,
-cri['updated']= '!ALLOW'
-
-cri['alias']=e.username
-
-
+                    alias: e.username,
+                  })
+                  .subscribe((e) => {
+                    console.log('suspectsmmm', e);
+                  });
+              }, 1000);
               const existVictim = this.suspects.find(
                 (victim) => victim._id === e._id
               );
@@ -379,10 +379,7 @@ cri['alias']=e.username
                 return;
               }
               this.victims.push(e);
-              console.log('suspects', cri);
-              this.apiService.create('criminal-info',this.cri).subscribe(e=>{
-                console.log('suspectsmmm', e);
-              })
+
               // localStorage.clear()
               this.searchVictim.reset();
             });
@@ -476,45 +473,59 @@ cri['alias']=e.username
     crimeForm['victimId'] = victimIds;
     crimeForm['evidence'] = this.evidences.filter((s: any) => {
       return s.type !== '3';
-    })
+    });
     crimeForm['media'] = files;
-
 
     this.evidences.forEach((evidence: any) => {
       if (evidence.type === '3') {
         this.apiService.upload('document', evidence.files).subscribe((e) => {
-         files.push(e[0]);
-
+          files.push(e[0]);
         });
-
       }
     });
-  crimeForm['media'] = files;
+    crimeForm['media'] = files;
 
-      setTimeout(() => {
-        console.log("crimeForm",crimeForm.media.length);
+    setTimeout(() => {
+      console.log('crimeForm', crimeForm.media.length);
+
+      this.apiService
+        .create('crime-info', crimeForm)
+        .pipe(
+          this.toast.observe({
+            loading: 'Creating crime information...',
+            success: 'Successfully created crime information',
+            error: 'Could not create crime information.',
+          })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        )
+        .subscribe((data) => {
+          console.log('data', data);
+          const id=data._id;
 
 
-    this.apiService
-      .create('crime-info', crimeForm)
-      .pipe(
-        this.toast.observe({
-          loading: 'Creating crime information...',
-          success: 'Successfully created crime information',
-          error: 'Could not create crime information.',
-        })
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      )
-      .subscribe((data) => {
-        console.log("data",data);
+          for (let i = 0; i < data.criminalId.length; i++) {
+            console.log('it works', id)
+            this.apiService.update('criminal-info', data.criminalId[i],{ $push:{caseId:id}}).subscribe(a=>{
+              console.log('it works', a)
 
-        localStorage.removeItem('crimeForm');
-        localStorage.removeItem('suspects');
-        localStorage.removeItem('victims');
-        localStorage.removeItem('step');
-        this.router.navigateByUrl('/crime');
-      });
-      }, 1000);
+            })
+          }
+
+          for (let i = 0; i < data.victimId.length; i++) {
+            this.apiService.update('criminal-info', data.victimId[i],{ $push:{caseId:id}}).subscribe(a=>{
+              console.log('it works', a)
+            })
+
+          }
+          localStorage.removeItem('crimeForm');
+          localStorage.removeItem('suspects');
+          localStorage.removeItem('victims');
+          localStorage.removeItem('step');
+          // this.router.navigate(['../crime']);
+        });
+    }, 1000);
+
+
 
   }
 }
