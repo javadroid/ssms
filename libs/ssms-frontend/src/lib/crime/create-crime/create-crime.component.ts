@@ -121,7 +121,11 @@ export class CreateCrimeComponent implements OnInit {
       this.crimetype = e.filter((id: any) => {
         return id.subscriberId === this.personnelData[0].organizationId;
       });
-      console.log("first",this.crimetype,this.personnelData[0].organizationId)
+      console.log(
+        'first',
+        this.crimetype,
+        this.personnelData[0].organizationId
+      );
     });
 
     const foundCrimeForm =
@@ -222,8 +226,6 @@ export class CreateCrimeComponent implements OnInit {
             .subscribe((e) => {
               e._id = e.id;
 
-
-
               setTimeout(() => {
                 this.apiService
                   .create('criminal-info', {
@@ -241,7 +243,6 @@ export class CreateCrimeComponent implements OnInit {
                     eyeColor: e.eyeColor,
                     address: e.address.address,
                     state: e.state,
-
 
                     alias: e.username,
                   })
@@ -335,7 +336,6 @@ export class CreateCrimeComponent implements OnInit {
             .subscribe((e) => {
               e._id = e.id;
 
-
               setTimeout(() => {
                 this.apiService
                   .create('criminal-info', {
@@ -353,7 +353,6 @@ export class CreateCrimeComponent implements OnInit {
                     eyeColor: e.eyeColor,
                     address: e.address.address,
                     state: e.state,
-
 
                     alias: e.username,
                   })
@@ -501,13 +500,32 @@ export class CreateCrimeComponent implements OnInit {
         )
         .subscribe((data) => {
           console.log('data', data);
+          const id=data._id;
 
+
+          for (let i = 0; i < data.criminalId.length; i++) {
+            console.log('it works', id)
+            this.apiService.update('criminal-info', data.criminalId[i],{ $push:{caseId:id}}).subscribe(a=>{
+              console.log('it works', a)
+
+            })
+          }
+
+          for (let i = 0; i < data.victimId.length; i++) {
+            this.apiService.update('criminal-info', data.victimId[i],{ $push:{caseId:id}}).subscribe(a=>{
+              console.log('it works', a)
+            })
+
+          }
           localStorage.removeItem('crimeForm');
           localStorage.removeItem('suspects');
           localStorage.removeItem('victims');
           localStorage.removeItem('step');
-          this.router.navigateByUrl('/crime');
+          // this.router.navigate(['../crime']);
         });
     }, 1000);
+
+
+
   }
 }
