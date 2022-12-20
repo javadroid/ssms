@@ -196,7 +196,7 @@ export class OrganizationManagementComponent implements OnInit {
           'Created',
           'successfully ' +
             ' ' +
-            `email: ORG-${e.organizationEmail}, password: ${e.password} `,
+            `email: ORG-${e.organizationEmail}, password: ${this.OrganizationsignUpForm.value.password} `,
           'success'
         );
         this.OrganizationsignUpForm.reset();
