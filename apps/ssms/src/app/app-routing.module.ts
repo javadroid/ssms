@@ -4,7 +4,7 @@ import { OrganizationAuthGuard, PersonnelAuthGuard } from '@ssms/ssms-frontend';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', redirectTo: 'index', pathMatch: 'full'},
 
   {
     canActivate: [OrganizationAuthGuard],

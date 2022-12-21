@@ -9,11 +9,11 @@
         </div>
 
         <div class="report_type-container">
-          <button (click)="reporttype('Emergency')" class="card_type">
+          <button [ngClass]="{'select':pickone==='Emergency'}" (click)="reporttype('Emergency')" class="card_type ">
             <img src="assets/572-5724817_flat-warning-icon-png-transparent-png.png" alt="" />
             <p class="title">Emergency</p>
           </button>
-          <button  (click)="reporttype('Crime')"class="card_type">
+          <button [ngClass]="{'select':pickone==='Crime'}"  (click)="reporttype('Crime')"class="card_type">
             <img src="assets/572-5724817_flat-warning-icon-png-transparent-png.png" alt="" />
             <p class="title">Crime</p>
           </button>
@@ -22,7 +22,7 @@
         <!-- report category -->
         <div class="report_type-container">
           <p class="sec_title">please select the category of this report</p>
-          <button (click)="addreportCategories(item)" *ngFor="let item of reportCategories" class="card_type">
+          <button  (click)="addreportCategories(item)" *ngFor="let item of reportCategories" class="card_type">
             <img src="assets/images.jpg" alt="" />
             <p class="title">{{item}}</p>
           </button>

@@ -15,6 +15,8 @@ export class ReportComponent implements OnInit {
   selectedFiles!:any
   message!:any
   step='TYPE'
+  pickone=''
+  addreport=''
 reportType=[] as any
 reportCategories=[] as any
 state=[] as any[]
@@ -43,7 +45,7 @@ this.state=e
   }
 
   reporttype(type:string){
-
+this.pickone=type
 
     if(type==='Crime'){
       this.reportCategories=[
@@ -80,6 +82,7 @@ this.state=e
       this.reportType= this.reportType.filter((e:any) => e !== item);
     }else if(!this.reportType.includes(item)){
       this.reportType.push(item)
+      this.addreport=item
       this.reportForm.patchValue({reportType:this.reportType})
     console.log("this.reportType",this.reportType)
     }
