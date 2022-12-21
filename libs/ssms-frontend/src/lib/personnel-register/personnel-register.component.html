@@ -242,9 +242,9 @@
 
             <div class="input_container mb-3">
               <label for="" class="d-block">Station</label>
-              <select *ngFor="let item of stationDetails"  name="" id="" class="form-control">
+              <select name="" id="" class="form-control">
                 <option>Select station</option>
-                <option [value]="item.stationName">{{ item.stationName }}</option>
+                <option  *ngFor="let item of stationDetails"  [value]="item.stationName">{{ item.stationName }}</option>
               </select>
             </div>
           </div>
