@@ -15,7 +15,9 @@ export class CrimeInfo {
     @Prop()
     crimeId: string;
     @Prop()
-    personnelId: [];
+    personnelId!: string;
+    @Prop()
+    personnelIds: [];
     @Prop()
     weapon: [];
     @Prop()
@@ -53,7 +55,7 @@ export class CrimeInfo {
     @Prop()
     status: string;
     @Prop()
-    subcriberId!: string;
+    subscriberId!: string;
 
 }
 export const CrimeInfoSchema = SchemaFactory.createForClass(CrimeInfo);

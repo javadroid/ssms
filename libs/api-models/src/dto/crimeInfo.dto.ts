@@ -1,6 +1,7 @@
 export class CrimeInfoDTO{
     crimeId!: string;
-    personnelId!: [];
+    personnelId!: string;
+    personnelIds:[]
     weapon!: [];
     crimeCategory!: string;
     crimeType!:string;
@@ -17,7 +18,8 @@ export class CrimeInfoDTO{
     vehicleId!: [];
     reportId!: [];
     locationId!: [];
-    subcriberId!: string;
+
     status!:string
     media!: [];
+    subscriberId:string
 }
