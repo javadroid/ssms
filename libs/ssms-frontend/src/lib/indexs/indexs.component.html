@@ -1,75 +1,74 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse w-75" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Feature</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Documentation</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Download
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">API</a></li>
+              <li><a class="dropdown-item" href="#">Research</a></li>
+            </ul>
+          </li>
+        </ul>
 
-  <div class="getting_started ">
-    <div class="white_card">
-      <div class="main_reg">
-        <div class="top_greeting">
-          <h1 class="welcome">Welcome to SSMS!</h1>
-          <p class="info">
-            To provide you with the best experience on our platform we would like to know you a bit better
+        <button routerLink="../login" class="btn btn-success me-2">Sign in</button>
+        <button class="btn btn-outline-success">Make contact</button>
+      </div>
+    </div>
+  </nav>
+  <div id="" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active d-lg-flex justify-content-lg-center align-items-lg-center">
+        <div class="caption_container">
+          <h1 class="main_caption">Main Caption <span class="d-block">Goes Here</span></h1>
+          <p class="sub_caption">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum earum, totam incidunt deserunt tempora
+            necessitatibus hic provident doloribus nam tenetur!
           </p>
+          <button routerLink="../report" class="btn btn-success mt-5">Report anonymously</button>
         </div>
-
-        <div class="stepper-container">
-          <div class="step_count d-flex align-items-center">
-            <button class="btn step_btn active"><span>1</span> Organizational information</button>
-            <button class="btn step_btn"><span>2</span>Contact Person's Information</button>
-          </div>
-        </div>
-        <form action="">
-          <div class="org_info d-none">
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Address</label>
-              <input type="text" class="form-control" placeholder="Address" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Description of Role</label>
-              <input type="text" class="form-control" placeholder="Description of Role" />
-            </div>
-
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Organization Email</label>
-              <input type="text" class="form-control" placeholder="Organization Email" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">LandLine / Mobile</label>
-              <input type="text" class="form-control" placeholder="LandLine / Mobile" />
-            </div>
-            <button class="btn btn-success">Next</button>
-          </div>
-
-          <!-- step 2 (Organization contact information) -->
-
-          <div class="contact_information">
-            <div class="d-flex w-100 justify-content-between name_container">
-              <div class="input_container mb-3">
-                <label for="" class="d-block">First name</label>
-                <input type="text" class="form-control" placeholder="First name" />
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Last name</label>
-                <input type="text" class="form-control" placeholder="Last name" />
-              </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Middle name</label>
-                <input type="text" class="form-control" placeholder="Last name" />
-              </div>
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Rank / Designation</label>
-              <input type="text" class="form-control" placeholder="Rank / Designation" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Official_Email</label>
-              <input type="email" class="form-control" placeholder="Official Email" />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Official Phone number</label>
-              <input type="number" class="form-control" placeholder="Official Phone number" />
-            </div>
-            <button class="btn border-success">Previous</button>
-            <button class="btn btn-success">Submit</button>
-          </div>
-        </form>
+        <img src="assets/Animated-3.svg" class="d-block w-50 mt-3" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
       </div>
     </div>
   </div>
+</header>

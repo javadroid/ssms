@@ -18,7 +18,11 @@ export class CriminalManagementComponent implements OnInit {
   fileSelected!: File;
   criminalImg!: any;
   criminalData: any;
-
+  criminalDatas: any;
+  victimDatas:any;
+  weapon = [] as any;
+  vehicle = [] as any;
+  media = [] as any;
   searchID=new FormControl('')
 
   crimeData = [] as any[];
@@ -121,6 +125,39 @@ export class CriminalManagementComponent implements OnInit {
   viewDetail(item: any) {
     this.case_modal = true;
     console.log(item);
-    this.crimeData.length;
+    this.oneCrime=item
+    const crime=[] as any;
+    const victim=[] as any;
+    for (let i = 0; i < item.criminalId.length; i++) {
+      this.http.findOne('criminal-info',item.criminalId[i]).subscribe(e=> {
+        crime.push(e);
+      })
+      this.criminalDatas=crime
+    }
+
+    for (let i = 0; i < item.victimId.length; i++) {
+      this.http.findOne('criminal-info',item.victimId[i]).subscribe(e=> {
+        victim.push(e);
+      })
+      this.victimDatas=victim
+    }
+
+
+    this.vehicle = item.evidence.filter((name: any) => {
+      return name.name === 'Vehicle';
+    });
+    this.weapon = item.evidence.filter((name: any) => {
+      return name.name === 'Weapon';
+    });
+    // console.log(this.crime);
+    let s = [] as any;
+    for (let i = 0; i < item.media.length; i++) {
+      s = {
+        image: item.media[i],
+        name: item.media[i].split('http://localhost:3333/api/document/')[1],
+      };
+      this.media.push(s);
+
+    }
   }
 }

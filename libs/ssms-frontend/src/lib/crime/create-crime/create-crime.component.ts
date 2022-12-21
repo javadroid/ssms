@@ -66,8 +66,11 @@ export class CreateCrimeComponent implements OnInit {
     criminalId: new FormArray<any>([]),
     victimId: new FormArray<any>([]),
     media: new FormArray<any>([]),
+    subscriberId: new FormControl(),
+      personnelId: new FormControl(),
     evidence: new FormGroup<any>({
       type: new FormControl(''),
+
       vehicleId: new FormControl(''),
       brand: new FormControl(''),
       weaponName: new FormControl(''),
@@ -123,8 +126,8 @@ export class CreateCrimeComponent implements OnInit {
       });
       console.log(
         'first',
-        this.crimetype,
-        this.personnelData[0].organizationId
+
+        this.personnelData
       );
     });
 
@@ -224,8 +227,6 @@ export class CreateCrimeComponent implements OnInit {
               })
             )
             .subscribe((e) => {
-
-
               setTimeout(() => {
                 this.apiService
                   .create('criminal-info', {
@@ -249,7 +250,7 @@ export class CreateCrimeComponent implements OnInit {
                   .subscribe((ae) => {
                     console.log('suspectsmmm', ae);
 
-                    e._id=ae._id
+                    e._id = ae._id;
                   });
               }, 1000);
 
@@ -336,8 +337,6 @@ export class CreateCrimeComponent implements OnInit {
               })
             )
             .subscribe((e) => {
-
-
               setTimeout(() => {
                 this.apiService
                   .create('criminal-info', {
@@ -361,7 +360,7 @@ export class CreateCrimeComponent implements OnInit {
                   .subscribe((ae) => {
                     console.log('suspectsmmm', ae);
 
-                    e._id=ae._id
+                    e._id = ae._id;
                   });
               }, 1000);
               const existVictim = this.suspects.find(
@@ -488,6 +487,9 @@ export class CreateCrimeComponent implements OnInit {
       }
     });
     crimeForm['media'] = files;
+    crimeForm['personnelId']=this.personnelData[0]._id
+    crimeForm['subscriberId']=this.personnelData[0].organizationId
+
 
     setTimeout(() => {
       console.log('crimeForm', crimeForm.media.length);
@@ -504,32 +506,34 @@ export class CreateCrimeComponent implements OnInit {
         )
         .subscribe((data) => {
           console.log('data', data);
-          const id=data._id;
-
+          const id = data._id;
 
           for (let i = 0; i < data.criminalId.length; i++) {
-            console.log('it works', id)
-            this.apiService.update('criminal-info', data.criminalId[i],{ $push:{caseId:id}}).subscribe(a=>{
-              console.log('it works', a)
-
-            })
+            console.log('it works', id);
+            this.apiService
+              .update('criminal-info', data.criminalId[i], {
+                $push: { caseId: id },
+              })
+              .subscribe((a) => {
+                console.log('it works', a);
+              });
           }
 
           for (let i = 0; i < data.victimId.length; i++) {
-            this.apiService.update('criminal-info', data.victimId[i],{ $push:{caseId:id}}).subscribe(a=>{
-              console.log('it works', a)
-            })
-
+            this.apiService
+              .update('criminal-info', data.victimId[i], {
+                $push: { victimId: id },
+              })
+              .subscribe((a) => {
+                console.log('it works', a);
+              });
           }
           localStorage.removeItem('crimeForm');
           localStorage.removeItem('suspects');
           localStorage.removeItem('victims');
           localStorage.removeItem('step');
-          // this.router.navigate(['../crime']);
+          this.router.navigate(['../crime']);
         });
     }, 1000);
-
-
-
   }
 }

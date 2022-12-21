@@ -157,20 +157,20 @@
           </div>
 
           <div *ngFor="let item of crimeData" class="case_list">
-            <div [ngClass]="item.status==='closed'? 'closed':'active'" class="case d-flex ">
+            <div [ngClass]="item.status==='CLOSED'? 'closed':'active'" class="case d-flex ">
               <span class="crime">{{item.crimeType}}</span>
-              <p class="crime_info">Offense date: <span>10/10/2022</span></p>
-              <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+              <p class="crime_info">Offense date: <span>{{item.crimeDate}}</span></p>
+              <p class="crime_info">Offense Time: <span>{{item.crimeTime}}</span></p>
               <p class="status">{{item.status}}</p>
               <button (click)="viewDetail(item)" class="see_detail">See detail</button>
             </div>
-            <div class="case d-flex  ">
+            <!-- <div class="case d-flex  ">
               <span class="crime">Cyber Crime</span>
               <p class="crime_info">Offense date: <span>10/10/2022</span></p>
               <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
               <p class="status">Active</p>
               <button class="see_detail">See detail</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -190,10 +190,10 @@
         <div class="section">
           <h1 class="crime_type">{{oneCrime.crimeType}} <span class="status">{{oneCrime.status}}</span></h1>
           <div class="sub_info d-flex">
-            <p class="crime_info">Offense date: <span>10/10/2022</span></p>
-            <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
-            <p class="crime_info">Last Updated: <span>10/10/2022</span></p>
-            <p class="crime_info">Closed on: <span>20/12/2022</span></p>
+            <p class="crime_info">Offense date: <span>{{oneCrime.crimeDate}}</span></p>
+            <p class="crime_info">Offense Time: <span>{{oneCrime.crimeTime}}</span></p>
+            <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt}}</span></p>
+            <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
             <p class="crime_info">
               Officer Assigned: <span>{{oneCrime.personnelId}}</span>
             </p>
@@ -201,32 +201,7 @@
           <p class="statement">
             Statement:
             <span class="d-block"
-              >Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Expedita porro quasi saepe minima debitis perspiciatis quaerat
-              commodi veritatis blanditiis? Illo quas dolorum assumenda impedit
-              libero odio veniam, magnam facere cum nisi distinctio deleniti
-              nam! Non quidem dignissimos aspernatur eaque atque magni? Dolorem
-              itaque esse commodi eos cum mollitia praesentium. Officia,
-              voluptates quisquam fuga laborum ab, inventore fugit nesciunt at
-              et quasi excepturi quo alias voluptatum delectus aut. Veniam sit
-              voluptatum veritatis vero cumque sapiente quasi ut at voluptatem,
-              libero placeat illo impedit explicabo ullam doloribus quas magnam
-              perspiciatis numquam doloremque beatae maiores ratione molestias
-              praesentium. Totam in consequuntur labore veritatis,
-              necessitatibus numquam, rerum velit dicta beatae nam aliquid
-              blanditiis perferendis unde perspiciatis dolore libero eum, autem
-              recusandae fuga obcaecati harum magni? Voluptatibus deserunt
-              veritatis corrupti voluptatem, eaque labore nulla eligendi
-              repellat molestiae explicabo veniam excepturi repellendus delectus
-              accusamus quis, sit porro ratione inventore odit dignissimos
-              dolorem doloribus! Dicta praesentium quas vero deserunt ea?
-              Similique perferendis doloremque eius distinctio magnam, assumenda
-              fugit nihil qui odio voluptate voluptatum ipsam amet. Aperiam est
-              rem in tempore impedit pariatur reprehenderit nemo repudiandae
-              cupiditate. Numquam minus quaerat deserunt qui repellendus
-              repudiandae. Architecto ea, possimus ullam natus aliquam eaque
-              culpa fugiat, accusantium, aspernatur distinctio exercitationem
-              corporis.</span
+              >{{oneCrime.statementOfOffense}}</span
             >
           </p>
         </div>
@@ -235,21 +210,9 @@
           <h4 class="section_title">Suspect and Accomplice(s)</h4>
 
           <div class="suspect_list">
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe (Gunman)</p>
+            <div *ngFor="let item of criminalDatas" class="suspect">
+              <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+              <p class="name">{{item.firstName +' '+item.lastName}}</p>
             </div>
           </div>
         </div>
@@ -258,54 +221,41 @@
           <h4 class="section_title">Victim(s)</h4>
 
           <div class="suspect_list">
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe</p>
-            </div>
-            <div class="suspect">
-              <img src="images/3. Black Man.png" alt="" class="sus_img" />
-              <p class="name">John Doe</p>
+            <div *ngFor="let item of criminalDatas" class="suspect">
+              <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+              <p class="name">{{item.firstName +' '+item.lastName}}</p>
+
             </div>
           </div>
         </div>
         <div class="section">
-          <h4 class="section_title">Vehicle</h4>
+          <h4 class="section_title">Evidence - Vehicle</h4>
 
-          <div class="vehicle_list">
+          <div  *ngFor=" let i of vehicle " class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
-              <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h4 class="section_title">Weapon</h4>
 
-          <div class="vehicle_list">
+        <div class="section">
+          <h4 class="section_title">Evidence - Weapon</h4>
+
+          <div  *ngFor=" let i of weapon" class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Dodge Challenger R/T 2011 (Black)</p>
-              <p class="vehicle_info">Number Plate <span>LAG-20128</span></p>
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h4 class="section_title">Vehicle</h4>
+        <div  class="section">
+          <h4   class="section_title">Evidence - Media files</h4>
 
-          <div class="vehicle_list">
+          <div *ngFor=" let i of media"class="vehicle_list">
             <div class="vehicle">
-              <p class="vehicle_info">Glock 17 Gen4 (Pistol)</p>
-            </div>
-          </div>
-        </div>
-        <div class="section">
-          <h4 class="section_title">Evidence Recovered</h4>
-
-          <div class="vehicle_list">
-            <div class="vehicle">
-              <p class="vehicle_info">
-                <span class="d-block">Glock 17 Gen4 (Pistol)</span>
-                <span class="d-block">Boots covered in petrol</span>
-              </p>
+              <p class="vehicle_info">{{i.name }}</p>
+              <img  [src]="i.image" [alt]="" class="sus_img" />
             </div>
           </div>
         </div>

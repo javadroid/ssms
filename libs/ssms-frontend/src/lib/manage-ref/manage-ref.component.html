@@ -13,9 +13,15 @@
     </div>
   </div>
 
-  <select (change)="onselect($event)" name="" id="">
-    <option *ngFor="let item of section" [value]="item">{{ item }}</option>
-  </select>
+
+    <div class="input_container mb-3">
+          <label for="" class="d-block">Select Ref</label>
+          <select (change)="onselect($event)" name="" id="">
+            <option *ngFor="let item of section" [value]="item">{{ item }}</option>
+          </select>
+        </div>
+      <div class="input_container mb-3">
+        </div>
 
 
   <div *ngIf="show === 'branch'" class="reference">
@@ -188,16 +194,7 @@
           placeholder="station"
         />
       </div>
-      <!-- <div class="input_container mb-3">
-          <label for="" class="d-block">Last name</label>
-          <select>
-            <option value="">Select option</option>
-          </select>
-        </div> -->
-      <!-- <div class="input_container mb-3">
-          <label for="" class="d-block">Middle name</label>
-          <input type="text" class="form-control" placeholder="Last name" />
-        </div> -->
+
 
       <button (click)="createstation()" class="btn btn-primary">Add</button>
     </div>
