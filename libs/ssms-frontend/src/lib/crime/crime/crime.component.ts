@@ -36,6 +36,8 @@ export class CrimeComponent {
       });
       console.log(this.crime);
       let s = [] as any;
+      const crime=[] as any;
+    const victim=[] as any;
       for (let i = 0; i < e.media.length; i++) {
         s = {
           image: e.media[i],
@@ -46,20 +48,17 @@ export class CrimeComponent {
       }
 
       for (let i = 0; i < e.criminalId.length; i++) {
-        this.apiService
-          .findAny('criminal-info','nin', e.criminalId[i])
-          .subscribe((a) => {
-            this.criminal = a;
-            console.log( this.criminal)
-          });
+        this.apiService.findOne('criminal-info',e.criminalId[i]).subscribe(a=> {
+          crime.push(a);
+        })
+        this.criminal=crime
       }
 
       for (let i = 0; i < e.victimId.length; i++) {
-        this.apiService
-          .findAny('criminal-info','nin', e.victimId[i])
-          .subscribe((a) => {
-            this.victim = a;
-          });
+        this.apiService.findOne('criminal-info',e.victimId[i]).subscribe(a=> {
+          victim.push(a);
+        })
+        this.victim=victim
       }
     });
   }

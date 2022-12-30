@@ -1,8 +1,12 @@
 export class ReportDTO{
-    location: string;
-    title:string;
-    reportCategory: string;
-    reportType:string;
-    details:string;
-    evidence:string[];
+
+    title: string
+    details: string
+    location: string
+    state: string
+    media:[]
+    reportType:[]
+    lga: string
+    phone: string
+    email: string
 }

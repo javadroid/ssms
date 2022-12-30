@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'index',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.IndexsModule)},
   {path: 'organization-signup',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationSignupModule)},
   {path: 'organization-signin',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationSigninModule)},
-  // {path: 'personnel-register' ,loadChildren:() => import('@ssms/ssms-frontend').then(m=> m.PersonnelRegisterModule)},
+  {path: 'personnel-register' ,loadChildren:() => import('@ssms/ssms-frontend').then(m=> m.PersonnelRegisterModule)},
   {path: 'organization-register',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.OrganizationRegisterModule)},
 
   // {
