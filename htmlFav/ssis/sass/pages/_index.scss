@@ -1,0 +1,40 @@
+header {
+  height: 100%;
+  width: 100%;
+
+  .carousel-inner {
+    .caption_container {
+      width: 35%;
+      .main_caption {
+        font-size: 5rem;
+        font-weight: 600;
+      }
+
+      .sub_caption {
+        font-size: 1.4rem;
+      }
+
+      .btn-success {
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.staff_reg-form {
+  width: 100%;
+  height: 100%;
+
+  .bg {
+    height: 100%;
+    width: 50%;
+    background: url('/images/arrest.webp');
+    background-size: cover;
+    background-position: center auto;
+    background-repeat: no-repeat;
+  }
+
+  
+}

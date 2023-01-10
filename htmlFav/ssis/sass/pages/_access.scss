@@ -1,0 +1,137 @@
+.form_container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .access_form-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form_title {
+      font-size: 3rem;
+      font-weight: 600;
+      width: 70%;
+      margin-bottom: 3rem;
+
+      span {
+        font-size: 1.3rem;
+        font-weight: normal;
+        color: grey;
+      }
+    }
+
+    form {
+      width: 70%;
+
+      .stepper-container{
+        .step_count{
+            width:70%;
+            margin-bottom: 2rem;
+            .step_btn{
+                padding:0;
+                white-space: nowrap;
+                color:rgb(146, 146, 146);
+                display: flex;
+                align-items: center;
+                &:not(:last-of-type){
+                    &::after{
+                        content: '';
+                        height:.1rem;
+                        width:8rem;
+                        background: rgb(0, 128, 32);
+                        display: inline-block;
+                        margin: 0 1rem;
+                    }
+                }
+                
+                span{
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // padding: .5rem;
+                    border-radius: 100px;
+                    background:rgb(230, 230, 230);
+                    color:#2c2c2c;
+                    margin-right: .5rem;
+                }
+            }
+
+            .active{
+                color:green;
+                span{
+                    background:green;
+                    color:#fefefe;  
+
+                }
+            }
+        }
+      }
+
+      .input_container {
+        label {
+          font-size: 1.3rem;
+        }
+
+        input,
+        select {
+          font-size: 1.3rem;
+        }
+        .selected {
+          border: none;
+          color: rgb(0, 0, 34);
+          cursor: pointer;
+          font-weight: 700;
+          padding: 0;
+          background: rgb(245, 245, 245);
+          padding: 0.375rem 0.75rem;
+        }
+      }
+
+      .name_container {
+        .input_container {
+          width: 33%;
+        }
+      }
+
+      .division {
+        .input_container {
+          width: 53%;
+        }
+      }
+
+      .selection-container {
+        border: 1px solid #ced4da;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        .input_container {
+          width: 33%;
+        }
+      }
+
+      .alternative {
+        font-size: 1.3rem;
+        font-weight: 600;
+        button {
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: blue;
+        }
+      }
+
+      .sign_in-btn {
+        margin-top: 2rem;
+        font-size: 1.3rem;
+        padding: .7rem 1.3rem;
+      }
+    }
+  }

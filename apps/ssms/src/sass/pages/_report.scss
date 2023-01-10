@@ -1,0 +1,122 @@
+.report {
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+  .steps_container {
+    width: 50%;
+    max-width: 70%;
+    .top_greeting {
+      width: 100%;
+      padding: 1rem;
+      .welcome {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      .info {
+        font-size: 1.3rem;
+        color: grey;
+      }
+    }
+
+    .report_type-container {
+      width: 100%;
+
+      .sec_title {
+        font-size: 1.5rem;
+        padding-left: 1rem;
+        margin-top: 3rem;
+      }
+
+      .card_type {
+        width: 12rem;
+        height: 12rem;
+        background: white;
+        border: none;
+        outline: none;
+        box-shadow: 0 0 10px #eee;
+        border-radius: 5px;
+        margin: 1rem;
+
+        img {
+          width: 7rem;
+          height: 7rem;
+          object-fit: contain;
+        }
+
+        .title {
+          font-size: 1.3rem;
+        }
+      }
+
+      .select{
+        border:2px solid rgb(40, 193, 254);
+      }
+    }
+    .button_holder {
+      padding-left: 1rem;
+
+      .btn {
+        font-size: 1.3rem;
+      }
+    }
+
+    .input_container {
+      label {
+        font-size: 1.2rem;
+      }
+      input,
+      select,
+      textarea {
+        font-size: 1.4rem;
+        background: #eee;
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1.4rem;
+        border-radius: 5px;
+      }
+    }
+    .location_selection {
+      padding-left: 1rem;
+
+      .agency_list {
+        .info {
+          font-size: 1.3rem;
+        }
+
+        .agencies {
+          height: 60vh;
+          overflow-y: auto;
+          button {
+            display: block;
+            font-size: 1.3rem;
+            padding: 1rem 0.5rem;
+            width: 100%;
+            text-align: left;
+
+            &:hover {
+              background: rgb(241, 241, 241);
+            }
+
+            &:not(:last-of-type) {
+              border-bottom: 1px solid rgb(204, 204, 204);
+            }
+          }
+        }
+      }
+    }
+  }
+}

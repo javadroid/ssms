@@ -1,0 +1,25 @@
+<body >
+  <div  class="dashboard_container">
+    <aside class="dashboard_nav">
+      <div class="logo_container">
+        <h2 class="logo">SSMS</h2>
+      </div>
+
+      <div class="menu_container">
+        <a routerLink="./main" routerLinkActive="active" class="btn menu_btn ">Dashboard</a>
+        <a  routerLink="./list" routerLinkActive="active"  class="btn menu_btn "> Organization management</a>
+        <a  routerLink="./ref" routerLinkActive="active"  class="btn menu_btn">Ref Management</a>
+        <a class="btn menu_btn">Incident management</a>
+        <a class="btn menu_btn">Report management</a>
+        <a class="btn menu_btn">Report monitoring</a>
+        <!-- <a (click)="logout()" class="btn menu_btn btn-outline-danger">Logout</a> -->
+      </div>
+    </aside>
+
+    <main class="main_dashboard">
+
+       <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+    </main>
+
+  </div>
+</body>

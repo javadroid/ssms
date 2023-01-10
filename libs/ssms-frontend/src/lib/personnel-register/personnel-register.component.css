@@ -1,0 +1,62 @@
+.staff_reg-form {
+  width: 100%;
+  height: 100%;
+}
+.staff_reg-form .bg {
+  height: 100%;
+  width: 20%;
+  background: url('../../img/arrest.webp');
+  background-size: cover;
+  background-position: center auto;
+  background-repeat: no-repeat;
+}
+.staff_reg-form .form_container {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.staff_reg-form .form_container .access_form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.staff_reg-form .form_container .form_title {
+  font-size: 3rem;
+  font-weight: 600;
+  width: 70%;
+  margin-bottom: 3rem;
+}
+.staff_reg-form .form_container .form_title span {
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: grey;
+}
+.staff_reg-form .form_container form {
+  width: 90%;
+}
+.staff_reg-form .form_container form .input_container label {
+  font-size: 1.3rem;
+}
+.staff_reg-form .form_container form .input_container input,
+.staff_reg-form .form_container form .input_container select {
+  font-size: 1.3rem;
+}
+.staff_reg-form .form_container form .alternative {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.staff_reg-form .form_container form .alternative button {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: blue;
+}
+.staff_reg-form .form_container form .sign_in-btn {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  padding: 1rem 1.3rem;
+}

@@ -1,0 +1,137 @@
+
+    <!-- MAKE REPORT BEGINS HERE -->
+    <div class="report ">
+      <!-- REPORT TYPE SELECTION =========== REPORT TYPE SELECTION -->
+      <div  *ngIf="step==='TYPE'" class="steps_container">
+        <div class="top_greeting">
+          <h1 class="welcome">Select Report Type and Category</h1>
+          <p class="info">Please select report type</p>
+        </div>
+
+        <div class="report_type-container">
+          <button [ngClass]="{'select':pickone==='Emergency'}" (click)="reporttype('Emergency')" class="card_type ">
+            <img src="assets/572-5724817_flat-warning-icon-png-transparent-png.png" alt="" />
+            <p class="title">Emergency</p>
+          </button>
+          <button [ngClass]="{'select':pickone==='Crime'}"  (click)="reporttype('Crime')"class="card_type">
+            <img src="assets/572-5724817_flat-warning-icon-png-transparent-png.png" alt="" />
+            <p class="title">Crime</p>
+          </button>
+        </div>
+
+        <!-- report category -->
+        <div class="report_type-container">
+          <p class="sec_title">please select the category of this report</p>
+          <button  (click)="addreportCategories(item)" *ngFor="let item of reportCategories" class="card_type">
+            <img src="assets/images.jpg" alt="" />
+            <p class="title">{{item}}</p>
+          </button>
+
+        </div>
+
+        <div class="button_holder">
+          <button (click)="step='LOCATION'" class="btn btn-primary">Next</button>
+          <button routerLink="../index" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <!-- lOCATION OF INCIDENT==============LOCATION OF INCIDENT -->
+      <div *ngIf="step==='LOCATION'" class="steps_container ">
+        <div class="top_greeting">
+          <h1 class="welcome">Location of Incident</h1>
+          <p class="info">Please specify the location of selected incident</p>
+        </div>
+
+        <div class="location_selection">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Location of incident</label>
+            <input [formControl]="reportForm.controls.location" type="text" class="form-control" placeholder="Location of incident" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">State</label>
+            <select [formControl]="reportForm.controls.state">
+              <option value="">Select option</option>
+              <option *ngFor="let item of state" [value]="item.state">{{item.state}}</option>
+            </select>
+
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">LGA</label>
+            <select  [formControl]="reportForm.controls.lga">
+              <option value="">Select option</option>
+              <option *ngFor="let item of lga" [value]="item.lga">{{item.lga}}</option>
+            </select>
+
+          </div>
+
+          <!-- <div class="agency_list">
+            <p class="info text-primary">
+              There are 2 agencies around the location of this incident which of them do you want to send this report?
+            </p>
+
+            <div class="agencies">
+              <button class="btn agency">Elimgbu Police Station - 09027364739</button>
+              <button class="btn agency">Eneka Police Station - 09027364739</button>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="button_holder">
+          <button (click)="step='DETAIL'"  class="btn btn-primary">Next</button>
+          <button (click)="step='TYPE'"  class="btn btn-secondary">Previous</button>
+          <button routerLink="../index" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <!-- INCIDENT DETAIL = =============INCIDENT DETAIL -->
+      <div *ngIf="step==='DETAIL'" class="steps_container  ">
+        <div class="top_greeting">
+          <h1 class="welcome">Incident Detail</h1>
+          <p class="info">Please enter details of this incident in the form below</p>
+        </div>
+
+        <div class="detail_container">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Title</label>
+            <input [formControl]="reportForm.controls.title" type="text" class="form-control" placeholder="Title: example Fire Outbreak" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Detail of Incident</label>
+            <textarea [formControl]="reportForm.controls.details" name="" id="" cols="30" rows="10"></textarea>
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Email </label>
+            <input [formControl]="reportForm.controls.email" type="email" class="form-control" placeholder="Optional" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Phone no.</label>
+            <input [formControl]="reportForm.controls.phone" type="tel" class="form-control" placeholder="Optional" />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Upload file(s) related to incident</label>
+            <input
+            multiple
+            (formdata)="(fileData)"
+            type="file"
+            class="form-control"
+            (change)="selectFiles($event)"
+          />
+          <div
+        *ngIf="message.length"
+        class="alert alert-secondary my-3"
+        role="alert"
+      >
+        <ul *ngFor="let msg of message; let i = index">
+          <li>{{ msg }}</li>
+        </ul>
+      </div>
+          </div>
+        </div>
+
+        <div class="button_holder">
+          <button  (click)="onSubmit()" class="btn btn-primary">Submit</button>
+          <button (click)="step='LOCATION'"class="btn btn-secondary">Previous</button>
+          <button routerLink="../index" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
