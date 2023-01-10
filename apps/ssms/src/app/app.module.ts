@@ -10,13 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from '@ssms/ssms-frontend';
 
 
-// const routes: Routes = [
-//   {path: '', component:AppComponent},
-
-//   {path: 'report',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.ReportModule)},
-//   {path: 'policy-info',loadChildren: () => import('@ssms/ssms-frontend').then(m => m.PolicyInfoModule)}
-// ];
-
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent, ],
   imports: [

@@ -11,17 +11,23 @@ import {
 @Schema({ timestamps: true })
 export class Report {
     @Prop()
-    location: string;
+    title: string
     @Prop()
-    title:string;
+    details: string
     @Prop()
-    reportCategory: string;
+    location: string
     @Prop()
-    reportType:string;
+    state: string
     @Prop()
-    details:string;
+    media:[]
     @Prop()
-    url:string[];
+    reportType:[]
+    @Prop()
+    lga: string
+    @Prop()
+    phone: string
+    @Prop()
+    email: string
 
 
 

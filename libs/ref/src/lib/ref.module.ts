@@ -31,6 +31,23 @@ import { Organizationname, OrganizationnameSchema } from '../schema/organization
 import { Branch, BranchSchema } from '../schema/branch.schema';
 import { Lga, LgaSchema } from '../schema/lga.schema';
 import { States, StatesSchema } from '../schema/states.schema';
+import { PolicyController } from './policy/policy.controller';
+import { PolicyModule } from './policy/policy.module';
+import { PolicyService } from './policy/policy.service';
+import { Policy, PolicySchema } from '../schema/policy.schema';
+import { WeaponController } from './weapon/weapon.controller';
+import { WeaponModule } from './weapon/weapon.module';
+import { DivisionController } from './division/division.controller';
+import { DivisionModule } from './division/division.module';
+import { WeaponService } from './weapon/weapon.service';
+import { Weapon, WeaponSchema } from '../schema/weapon.schema';
+import { RankController } from './rank/rank.controller';
+import { RankService } from './rank/rank.service';
+import { Rank, RankSchema } from '../schema/rank.schema';
+import { CrimeTypeController } from './crime-type/crime-type.controller';
+import { CrimeTypeService } from './crime-type/crime-type.service';
+import { CrimeType, CrimeTypeSchema } from '../schema/crimeType.schema';
+
 
 @Module({
   controllers: [
@@ -41,6 +58,11 @@ import { States, StatesSchema } from '../schema/states.schema';
     StationController,
     LgaController,
     StatesController,
+    PolicyController,
+    WeaponController,
+    DivisionController,
+    RankController,
+    CrimeTypeController
   ],
   providers: [
     OrganizationcategoryService,
@@ -50,6 +72,10 @@ import { States, StatesSchema } from '../schema/states.schema';
     StationService,
     LgaService,
     StatesService,
+    PolicyService,
+    WeaponService,
+    RankService,
+    CrimeTypeService
   ],
   exports: [],
   imports: [
@@ -61,6 +87,10 @@ import { States, StatesSchema } from '../schema/states.schema';
     MongooseModule.forFeature([{ name: States.name, schema: StatesSchema }]),
     MongooseModule.forFeature([{ name: Lga.name, schema: LgaSchema }]),
     MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }]),
+    MongooseModule.forFeature([{ name: Policy.name, schema: PolicySchema }]),
+    MongooseModule.forFeature([{ name: Weapon.name, schema: WeaponSchema }]),
+    MongooseModule.forFeature([{ name: Rank.name, schema: RankSchema }]),
+    MongooseModule.forFeature([{ name: CrimeType.name, schema: CrimeTypeSchema }]),
     StatesModule,
     LgaModule,
     OrganizationcategoryModule,
@@ -68,6 +98,10 @@ import { States, StatesSchema } from '../schema/states.schema';
     BranchModule,
     DepartmentModule,
     StationModule,
+    PolicyModule,
+    WeaponModule,
+    DivisionModule,
+
   ],
 })
 export class RefModule {}

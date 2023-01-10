@@ -3,22 +3,27 @@ import{
     Schema,
     SchemaFactory,
 } from '@nestjs/mongoose';
+
 import { HydratedDocument, } from 'mongoose';
 
+
 export type CrimeInfoDoc = HydratedDocument<CrimeInfo>;
+
 
 @Schema ({ timestamps:true })
 export class CrimeInfo {
     @Prop()
     crimeId: string;
     @Prop()
-    officerId: string;
+    personnelId!: string;
     @Prop()
-    securityAppId: string;
+    personnelIds: [];
     @Prop()
-    weaponId: string;
+    weapon: [];
     @Prop()
     crimeCategory: string;
+    @Prop()
+    crimeType:string;
     @Prop()
     crimeDate: string;
     @Prop()
@@ -26,24 +31,32 @@ export class CrimeInfo {
     @Prop()
     statementOfOffense: string;
     @Prop()
-    incidentId: string;
+    incidentId: [];
     @Prop()
-    crimeEvidence: string;
+    evidence: [];
     @Prop()
-    policyId: string;
+    policy: [];
     @Prop()
     progressStatus: string;
     @Prop()
-    criminalId: string;
+    criminalId: [];
     @Prop()
     motive: string;
     @Prop()
-    victimId: string;
+    victimId: [];
     @Prop()
-    vehicleId: string;
+    vehicleId: [];
     @Prop()
-    reportId: string;
+    reportId: [];
     @Prop()
-    locationId: string;
+    locationId: [];
+    @Prop()
+    media: [];
+    @Prop()
+    status: string;
+    @Prop()
+    subscriberId!: string;
+
 }
 export const CrimeInfoSchema = SchemaFactory.createForClass(CrimeInfo);
+

@@ -4,8 +4,8 @@ import {
     SchemaFactory,
   } from '@nestjs/mongoose';
   import  { HydratedDocument,  } from 'mongoose';
-  
-  
+
+
   export type DivisionInfoDoc = HydratedDocument<divisionInfo>;
 
 @Schema({ timestamps: true })
@@ -24,7 +24,9 @@ export class divisionInfo {
     rank: string;
     @Prop()
     caseFileId: string;
-    
+    @Prop()
+    subscriberId: string;
+
 }
 
 export const divisionInfoSchema = SchemaFactory.createForClass(divisionInfo);

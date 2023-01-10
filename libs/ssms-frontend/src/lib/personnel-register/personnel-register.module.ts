@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonnelRegisterComponent } from './personnel-register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonnelRegisterRoutingModule } from './personnel-register.routing.module';
-
-
 
 @NgModule({
   declarations: [PersonnelRegisterComponent],
@@ -12,8 +10,8 @@ import { PersonnelRegisterRoutingModule } from './personnel-register.routing.mod
     CommonModule,
     ReactiveFormsModule,
     PersonnelRegisterRoutingModule,
-    
+    FormsModule,
   ],
-  bootstrap:[PersonnelRegisterComponent]
+  bootstrap: [PersonnelRegisterComponent],
 })
-export class PersonnelRegisterModule { }
+export class PersonnelRegisterModule {}

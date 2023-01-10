@@ -1,4 +1,6 @@
-export class BranchDTO{
-    branchId: string;
-    branchNamee: string;
+export class BranchDTO {
+  branchId: string;
+  branchName: string;
+  organizationId: string;
+  subscriberId: string;
 }

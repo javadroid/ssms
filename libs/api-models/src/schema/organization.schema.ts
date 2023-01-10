@@ -45,6 +45,9 @@ export class Organization {
      @Prop()
     password: string
 
+    @Prop({default: 'INACTIVE'})
+    status: string
+
 }
 
 export const OrganizationSchema = SchemaFactory.createForClass(Organization);

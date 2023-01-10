@@ -1,21 +1,61 @@
 export class CriminalInfoDTO {
-    criminalId: string;
-    crimeId: string;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
+
     dateOfBirth: string;
-    placeOfBirth: string;
-    stateOfOrigin: string;
-    lgaOfOrigin: string;
+
+    caseId: string[];
+
+    victimId: string[];
+
+    firstName: string;
+
+    lastName: string;
+
+    middleName: string;
+
     occupation: string;
-    locationId: string;
-    education: string;
-    biometrics: string;
-    profilePic: string;
+
     nin: string;
+
+    gender: string;
+
+    email: string;
+
+    phone: string;
+
+    birthPlace: string;
+
+    image: string;
+
     height: string;
+
     weight: string;
-    caseFileId: string;
-    aliases: string;
+
+    eyeColor: string;
+
+    hairColor: string;
+
+    address: string;
+
+    biometrics: string;
+
+    lga: string;
+
+    state: string;
+
+    country: string;
+
+    lgaOfOrigin: string;
+
+    stateOfOrigin: string;
+
+    countryOfOrigin: string;
+
+    postalCode: string;
+
+    updated:string
+
+
+    education:string
+
+    alias:string
 }

@@ -11,7 +11,7 @@ export class OrganizationRegisterComponent implements OnInit {
   organizationcategory = [] as any[];
   organizationName = [] as any[];
   display = [] as any[];
-
+  section=[ 'organizationCategory', 'organizationName']
   OrganizationsignUpForm = new FormGroup({
     typeOfAgency: new FormControl('', []),
     categoryOfagency: new FormControl('', []),
@@ -54,9 +54,10 @@ export class OrganizationRegisterComponent implements OnInit {
   }
 
 
-  makeTableClassID(id: any) {
-    return id;
-  }
+  onOutletLoaded(component:any) {
+    component.section=this.section
+    component.show='organizationCategory'
+}
 
   passwordGenerate() {
     const alpha = 'abcdefghijklmnopqrstuvwxyz';

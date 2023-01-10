@@ -15,8 +15,8 @@ import { LocalStrategy } from './auth/strategy/local.strategy';
 
   imports:[MongooseModule.forFeature([{ name: Personnel.name, schema: PersonnelSchema }]),PassportModule,
   JwtModule.register({
-  secret:process.env.JWT_CONSTANT_PRE,
-  signOptions:{expiresIn:'120s'}
+  secret:process.env.JWT_CONSTANT_PER,
+  signOptions:{expiresIn:'12000s'}
 }),PassportModule
 ],
 

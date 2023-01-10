@@ -1,17 +1,29 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards ,Request} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PersonnelDTO } from '../../dto/personnel.dto';
-// import { JwtAuthGuard } from '../organization/auth/authGuard/jwtAuthGuard';
+
 
 import { PersonnelAuthService } from './auth/auth/personnel.auth.service';
-import { JwtAuthGuard  }  from './auth/authGuard/jwtAuthGuard' ;
+import { JwtAuthGuard } from './auth/authGuard/jwtAuthGuard';
 import { LocalAuthGuard } from './auth/authGuard/localAuthGuard';
 import { PersonnelService } from './personnel.service';
 
 @Controller('personnel')
 export class PersonnelController {
-
-  constructor(private personnelService:PersonnelService, private personnelAuthService:PersonnelAuthService){}
+  constructor(
+    private personnelService: PersonnelService,
+    private personnelAuthService: PersonnelAuthService
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -26,25 +38,32 @@ export class PersonnelController {
     return req.user;
   }
 
-  @UseGuards(AuthGuard('custom'))
+  @UseGuards(AuthGuard('jwt1'))
+  @Patch('resetpassword')
+  async reset(@Body() pass:any) {
+    return this.personnelService.resetpassword(pass.password)
+    // return req.user;
+  }
+
+  // @UseGuards(AuthGuard('custom'))
   @Post()
   async create(@Body() createPersonnel: PersonnelDTO) {
     return this.personnelService.create(createPersonnel);
   }
 
-  @UseGuards(AuthGuard('custom'))
+  // @UseGuards(AuthGuard('custom'))
   @Get()
   findAll() {
     return this.personnelService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findbyId(@Param('id') id: string) {
     return this.personnelService.findbyId(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get(':id/:value')
   async findbyAny(@Param('id') id: string, @Param('value') value: string) {
     // if (
@@ -56,22 +75,21 @@ export class PersonnelController {
     //   id.toLowerCase() === 'phoneNo' ||
     //   id.toLowerCase() === 'image'
     // ) {
-      return this.personnelService.findbyAny(id, value);
+    return this.personnelService.findbyAny(id, value);
     // } else {
     //   throw new NotFoundException("fleid '" + id + "' not found");
     // }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Patch(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: PersonnelDTO) {
     return this.personnelService.update(_Id, updated);
   }
 
-  @UseGuards(AuthGuard('custom'))
+  @UseGuards(AuthGuard('jwt1'))
   @Delete(':_id')
   async delete(@Param('_id') _Id: string) {
-
     return this.personnelService.delete(_Id);
   }
 }

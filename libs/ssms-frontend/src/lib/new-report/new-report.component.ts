@@ -10,21 +10,18 @@ import { ServiceApi } from '../shared/service/service-api';
   templateUrl: './new-report.component.html',
   styleUrls: ['./new-report.component.css'],
 })
-
 export class NewReportComponent implements OnInit {
   reportForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    reportType: new FormControl('Report Type',[]),
-    reportCategory: new FormControl('Report Category',[]),
-    details: new FormControl('',[]),
-    location: new FormControl('',[]),
-
+    reportType: new FormControl('Report Type', []),
+    reportCategory: new FormControl('Report Category', []),
+    details: new FormControl('', []),
+    location: new FormControl('', []),
   });
 
-  fileData=new FormData()
+  fileData = new FormData();
 
-
-  constructor(private http:ServiceApi) {
+  constructor(private http: ServiceApi) {
     console.log(this.reportForm.controls.title);
   }
 
@@ -36,43 +33,38 @@ export class NewReportComponent implements OnInit {
   message: string[] = [];
   fileInfos?: Observable<any>;
 
+  selectFiles(event: any): void {
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
 
- selectFiles(event:any): void{
-  this.message = [];
-  this.progressInfos = [];
-  this.selectedFiles = event.target.files;
-
-  if(this.selectedFiles) {
-    for(let i=0; i < this.selectedFiles.length; i++){
-      this.message.push(this.selectedFiles[i].name) 
-
+    if (this.selectedFiles) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.message.push(this.selectedFiles[i].name);
+      }
     }
   }
- }
-  
- uploadFiles(): void{
-  this.message = [];
 
-  if(this.selectedFiles) {
-    for(let i=0; i < this.selectedFiles.length; i++){
-      this.upload(i, this.selectedFiles[i]);
+  uploadFiles(): void {
+    this.message = [];
 
+    if (this.selectedFiles) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.upload(i, this.selectedFiles[i]);
+      }
     }
   }
- }
-upload(idx: number, file:File):void{
-  this.progressInfos[idx] = {value: 0, fileName:file.name};
+  upload(idx: number, file: File): void {
+    this.progressInfos[idx] = { value: 0, fileName: file.name };
 
-  if(file){
-    const formdata=new FormData()
-formdata.append('file',file,file.name)
-    this.http.upload("report",formdata).subscribe(e=>{
-      console.log(e)
+    if (file) {
+      const formdata = new FormData();
+      formdata.append('file', file, file.name);
+      this.http.upload('document', formdata).subscribe((e) => {
+        console.log(e);
+      });
     }
-    
-    )
   }
-}
 
   onSelected(value: string): void {
     this.selectedTeam = value;
@@ -109,15 +101,10 @@ formdata.append('file',file,file.name)
     console.log(this.reportTime.length);
   }
 
-  onSubmit(){
-    this.http.create('report',this.reportForm.value).subscribe(e=>{
-      console.log(e)
-    })
-    this.uploadFiles()
-
+  onSubmit() {
+    this.http.create('report', this.reportForm.value).subscribe((e) => {
+      console.log(e);
+    });
+    this.uploadFiles();
   }
-
-
-
-
 }

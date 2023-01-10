@@ -1,0 +1,45 @@
+<div class="view_report-sec">
+  <div *ngIf="showList" class="reference_table table-responsive ">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Title</th>
+
+          <th scope="col">Category</th>
+          <th scope="col">Reported location</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)="ShowView(item)" *ngFor="let item of reports">
+          <th scope="row">{{item.title}}</th>
+
+          <td >{{item.reportType[0]}}</td>
+          <td>{{item.location}}</td>
+          <td>{{item.details}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SINGLE REPORT VIEW============SINGLE REPORT VIEW -->
+
+  <div  *ngIf="showView" class="the_view">
+    <div class="uploads_container">
+      <img *ngFor="let item of report.media" [src]="item" [alt]="item" />
+    </div>
+
+    <h2 class="crime_title">{{report.title}}</h2>
+    <div class="primary_detail d-flex">
+
+      <p class="tag">Report Category: <span class="info">{{report.reportType[0]}}</span></p>
+      <p class="tag">Location: <span class="info">{{report.location}}</span></p>
+    </div>
+    <p class="detail">
+      {{report.details}}
+    </p>
+
+    <button class="btn btn-primary">Escalate this case</button>
+    <button (click)=" showList = true;showView = false;" class="btn close">Close</button>
+  </div>
+</div>

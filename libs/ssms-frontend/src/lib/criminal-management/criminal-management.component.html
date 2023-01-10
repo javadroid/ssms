@@ -1,0 +1,562 @@
+<!-- Criminal record management -->
+<div class="criminal_mgt">
+  <div class="search_container">
+    <div class="top_nav d-flex align-items-center">
+      <ng-container *ngIf="createModal === false">
+        <div (click)="createModal = true" class="btn btn-success">
+          Create profile
+        </div>
+      </ng-container>
+      <ng-container *ngIf="createModal === true">
+        <div (click)="createModal = false" class="btn btn-danger">Back</div>
+      </ng-container>
+
+      <div class="search_container d-flex">
+        <input
+          [formControl]="searchID"
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button (click)="onSearch()" class="btn btn-outline-success" type="submit">Search</button>
+      </div>
+    </div>
+
+      <!-- Search response=============Search response===============search response -->
+
+      <div *ngIf="suspect_list" class="suspect_list ">
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+        <div class="suspect">
+          <img src="images/3. Black Man.png" alt="" class="sus_img" />
+          <p class="name">John Doe (Gunman)</p>
+          <p class="crime"><span>Murder, Fraud, Arson</span></p>
+        </div>
+      </div>
+
+    <!-- VIEW CRIMINAL PROFILE AFTER SEARCH ============== VIEW CRIMINAL PROFILE AFTER SEARCH========= VIEW CRIMINAL PROFILE AFTER SEARCH -->
+
+    <div *ngIf="criminal_profile" class="criminal_profile">
+      <div class="first_row">
+        <div class="user_img-container">
+          <img src="{{ criminalData[0].image }}" alt="" />
+        </div>
+
+        <!-- SEARCH RESULT ================= SEARCH RESULT -->
+        <div class="criminal_info">
+          <div class="user_primary-info">
+            <div class="user_info-container">
+              <p class="info_label">First name</p>
+              <p class="data">{{ criminalData[0].firstName }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Middle name</p>
+              <p class="data">{{ criminalData[0].lastName }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Last name</p>
+              <p class="data">{{ criminalData[0].middleName }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Alias</p>
+              <p class="data">{{ criminalData[0].alias }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Gender</p>
+              <p class="data">{{ criminalData[0].gender }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Date of Birth</p>
+              <p class="data">{{ criminalData[0].dateOfBirth }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Place of Birth</p>
+              <p class="data">{{criminalData[0].birthPlace}}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">State</p>
+              <p class="data">{{ criminalData[0].stateOfOrigin }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">L.G.A</p>
+              <p class="data">{{ criminalData[0].lgaOfOrigin }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Occupation</p>
+              <p class="data">{{ criminalData[0].occupation }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Location</p>
+              <p class="data">
+                {{ criminalData[0].address }} ,{{ criminalData[0].lga }}, {{
+                  criminalData[0].state
+                }}
+              </p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Education</p>
+              <p class="data">{{ criminalData[0].education }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">NIN</p>
+              <p class="data">{{ criminalData[0].nin }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Eye Color</p>
+              <p class="data">{{criminalData[0].eyeColor}}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Hair Color</p>
+              <p class="data">{{criminalData[0].hairColor}}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Height</p>
+              <p class="data">{{ criminalData[0].height }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Weight</p>
+              <p class="data">{{criminalData[0].weight}}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Phone number</p>
+              <p class="data">{{ criminalData[0].phone }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Email</p>
+              <p class="data">{{ criminalData[0].email }}</p>
+            </div>
+            <div class="user_info-container">
+              <p class="info_label">Country</p>
+              <p class="data">{{ criminalData[0].countryOfOrigin }}</p>
+            </div>
+          </div>
+
+          <div class="title-container">
+            <h2 class="section_title">Criminal Record <span>{{crimeData.length}}</span></h2>
+
+            <button disabled class="create_record btn btn-success">Create record</button>
+          </div>
+
+          <div *ngFor="let item of crimeData" class="case_list">
+            <div [ngClass]="item.status==='CLOSED'? 'closed':'active'" class="case d-flex ">
+              <span class="crime">{{item.crimeType}}</span>
+              <p class="crime_info">Offense date: <span>{{item.crimeDate}}</span></p>
+              <p class="crime_info">Offense Time: <span>{{item.crimeTime}}</span></p>
+              <p class="status">{{item.status}}</p>
+              <button (click)="viewDetail(item)" class="see_detail">See detail</button>
+            </div>
+            <!-- <div class="case d-flex  ">
+              <span class="crime">Cyber Crime</span>
+              <p class="crime_info">Offense date: <span>10/10/2022</span></p>
+              <p class="crime_info">Offense Time: <span>10:15 PM</span></p>
+              <p class="status">Active</p>
+              <button class="see_detail">See detail</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW CASE DETAIL MODAL=============VIEW CASE DETAIL MODAL -->
+
+    <div class="case_modal " *ngIf="case_modal">
+      <div class="case_card">
+        <button
+        (click)="case_modal=false"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <div class="section">
+          <h1 class="crime_type">{{oneCrime.crimeType}} <span class="status">{{oneCrime.status}}</span></h1>
+          <div class="sub_info d-flex">
+            <p class="crime_info">Offense date: <span>{{oneCrime.crimeDate}}</span></p>
+            <p class="crime_info">Offense Time: <span>{{oneCrime.crimeTime}}</span></p>
+            <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt}}</span></p>
+            <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
+            <p class="crime_info">
+              Officer Assigned: <span>{{oneCrime.personnelId}}</span>
+            </p>
+          </div>
+          <p class="statement">
+            Statement:
+            <span class="d-block"
+              >{{oneCrime.statementOfOffense}}</span
+            >
+          </p>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Suspect and Accomplice(s)</h4>
+
+          <div class="suspect_list">
+            <div *ngFor="let item of criminalDatas" class="suspect">
+              <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+              <p class="name">{{item.firstName +' '+item.lastName}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Victim(s)</h4>
+
+          <div class="suspect_list">
+            <div *ngFor="let item of criminalDatas" class="suspect">
+              <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+              <p class="name">{{item.firstName +' '+item.lastName}}</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h4 class="section_title">Evidence - Vehicle</h4>
+
+          <div  *ngFor=" let i of vehicle " class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4 class="section_title">Evidence - Weapon</h4>
+
+          <div  *ngFor=" let i of weapon" class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">{{i.brand +' ' }}</p>
+              <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
+            </div>
+          </div>
+        </div>
+        <div  class="section">
+          <h4   class="section_title">Evidence - Media files</h4>
+
+          <div *ngFor=" let i of media"class="vehicle_list">
+            <div class="vehicle">
+              <p class="vehicle_info">{{i.name }}</p>
+              <img  [src]="i.image" [alt]="" class="sus_img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE CRIMINAL PROFILE ===============CREATE CRIMINAL PROFILE -->
+  <div *ngIf="createModal" class="main_reg">
+    <div class="stepper-container">
+      <div class="step_count d-flex align-items-center">
+        <a
+          [ngClass]="{ active: stepper === 0 }"
+          (click)="stepper = 0"
+          class="btn step_btn"
+          ><span>1</span>Primary information</a
+        >
+        <a
+          [ngClass]="{ active: stepper === 1 }"
+          (click)="stepper = 1"
+          class="btn step_btn"
+          ><span>2</span>Contact</a
+        >
+        <a
+          [ngClass]="{ active: stepper === 2 }"
+          (click)="stepper = 2"
+          class="btn step_btn"
+          ><span>3</span>Physical Features</a
+        >
+      </div>
+    </div>
+    <form [formGroup]="CriminalInfo" action="">
+      <!-- Primary info starts here -->
+      <div *ngIf="stepper === 0" class="primary_info">
+        <div class="d-flex w-100 justify-content-between name_container">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">First name</label>
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+              placeholder="First name"
+            />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Last name</label>
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+              placeholder="Last name"
+            />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Middle name</label>
+            <input
+              formControlName="middleName"
+              type="text"
+              class="form-control"
+              placeholder="Middle name"
+            />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Alias</label>
+            <input
+              formControlName="alias"
+              type="text"
+              class="form-control"
+              placeholder="Alias"
+            />
+          </div>
+        </div>
+
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Date of Birth</label>
+          <input
+            formControlName="dateOfBirth"
+            type="text"
+            class="form-control"
+            placeholder="Date of Birth"
+          />
+        </div>
+
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Place of Birth</label>
+          <input
+            formControlName="birthPlace"
+            type="text"
+            class="form-control"
+            placeholder="Place of Birth"
+          />
+        </div>
+
+        <div class="d-flex w-100 justify-content-between occupation">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">State of Origin</label>
+            <select
+              formControlName="stateOfOrigin"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option value="">Select</option>
+            </select>
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">LGA of Origin</label>
+            <select
+              formControlName="lgaOfOrigin"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option value="">Select</option>
+              <option value="">Public</option>
+              <option value="">Private</option>
+            </select>
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Country</label>
+            <select
+              formControlName="countryOfOrigin"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option [defaultSelected]="'Nigeria'" value="">Select</option>
+              <option value="">Public</option>
+              <option value="">Private</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex origin">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Occupation</label>
+            <input
+              formControlName="occupation"
+              type="text"
+              class="form-control"
+              placeholder="Occupation"
+            />
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Highest Education</label>
+            <input
+              formControlName="education"
+              type="text"
+              class="form-control"
+              placeholder="Highest Education"
+            />
+          </div>
+        </div>
+
+        <a (click)="stepper = stepper + 1" class="btn btn-success">Next</a>
+      </div>
+
+      <!-- step 2 (contact information) -->
+
+      <div *ngIf="stepper === 1" class="contact_information">
+        <div class="input_container mb-3">
+          <label for="" class="d-block">NIN</label>
+          <input
+            formControlName="nin"
+            type="text"
+            class="form-control"
+            placeholder="NIN"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            placeholder=" Email"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Phone number</label>
+          <input
+            formControlName="phone"
+            type="tel"
+            class="form-control"
+            placeholder="Phone number"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Address</label>
+          <input
+            formControlName="address"
+            type="text"
+            class="form-control"
+            placeholder=" Address"
+          />
+        </div>
+        <div class="d-flex origin">
+          <div class="input_container mb-3">
+            <label for="" class="d-block">State</label>
+            <select
+              formControlName="state"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option value="">Select</option>
+            </select>
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">LGA</label>
+            <select
+              formControlName="lga"
+              name=""
+              id=""
+              class="form-control selected"
+            >
+              <option value="">Select</option>
+              <option value="">Public</option>
+              <option value="">Private</option>
+            </select>
+          </div>
+        </div>
+        <a (click)="stepper = stepper - 1" class="btn border-success"
+          >Previous</a
+        >
+        <a (click)="stepper = stepper + 1" class="btn btn-success">Next</a>
+      </div>
+
+      <!-- step 3 (Physical Attribute) -->
+
+      <div *ngIf="stepper === 2" class="contact_information">
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Gender</label>
+          <input
+            formControlName="gender"
+            type="text"
+            class="form-control"
+            placeholder="Hair Color"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Hair Color</label>
+          <input
+            formControlName="hairColor"
+            type="text"
+            class="form-control"
+            placeholder="Hair Color"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Eye Color</label>
+          <input
+            formControlName="eyeColor"
+            type="text"
+            class="form-control"
+            placeholder="Eye Color"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Height</label>
+          <input
+            formControlName="height"
+            type="text"
+            class="form-control"
+            placeholder="Height"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Weight</label>
+          <input
+            formControlName="height"
+            type="text"
+            class="form-control"
+            placeholder="Weight"
+          />
+        </div>
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Photo capture</label>
+          <input
+            (formdata)="(fileData)"
+            (change)="upload($event)"
+            type="file"
+            class="form-control"
+            placeholder="Photo capture"
+          />
+          <img
+            [src]="criminalImg"
+            *ngIf="criminalImg"
+            height="200"
+            class="passport"
+          />
+        </div>
+
+        <a (click)="stepper = stepper - 1" class="btn border-success"
+          >Previous</a
+        >
+        <a (click)="onCreate()" class="btn btn-success">Submit</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -6,4 +6,5 @@ export class DivisionInfoDTO{
     officeName:string;
     rank:string;
     caseFileId: string;
+    subscriberId: string;
 }

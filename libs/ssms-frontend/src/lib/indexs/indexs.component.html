@@ -1,58 +1,77 @@
-
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">SSMS</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Feature</a>
-            </li>
-          </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> SSMS  </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse w-75" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Feature</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              API
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">API</a></li>
+              <li><a class="dropdown-item" href="#">Research</a></li>
+            </ul>
+          </li>
+        </ul>
 
-          <div class="d-flex"> 
-            <button class="btn btn-success me-2">Sign in</button>
-            <button class="btn btn-outline-success">Register</button>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div id="" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="carousel-item active d-lg-flex justify-content-lg-center align-items-lg-center">
-          <div class="caption_container">
-            <h1 class="main_caption">SMART CRIME  <span class="d-block">MANAGEMENT SYSTEM</span></h1>
-            <p class="sub_caption">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum earum, totam incidunt deserunt tempora
-              necessitatibus hic provident doloribus nam tenetur!
-            </p>
-            <button class="btn btn-success mt-5">START</button>
-          </div>
-          <img src="assets/Animated-3.svg" class="d-block w-50 mt-3" alt="..." />
-        </div>
-        <div class="carousel-item">
-          <img src="..." class="d-block w-100" alt="..." />
-        </div>
-        <div class="carousel-item">
-          <img src="..." class="d-block w-100" alt="..." />
-        </div>
+        <button routerLink="../login" class="btn btn-success me-2">Sign in</button>
+        <button class="btn btn-outline-success">Subscribe</button>
       </div>
     </div>
-  </header>
+  </nav>
+  <div id="" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active d-lg-flex justify-content-lg-center align-items-lg-center">
+        <div class="caption_container">
+          <h1 class="main_caption">Main Caption <span class="d-block">Goes Here</span></h1>
+          <p class="sub_caption">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum earum, totam incidunt deserunt tempora
+            necessitatibus hic provident doloribus nam tenetur!
+          </p>
+          <button routerLink="../report" class="btn btn-success mt-5">Report anonymously</button>
+        </div>
+        <img src="assets/Animated-3.svg" class="d-block w-50 mt-3" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="..." />
+      </div>
+    </div>
+  </div>
+</header>

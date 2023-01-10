@@ -1,0 +1,1120 @@
+.dashboard_container {
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+
+  .dashboard_nav {
+    width: 100%;
+    height: 100%; 
+    border-right: 1px solid rgb(231, 231, 231);
+
+    .logo_container {
+      height: 15%;
+      .logo {
+        font-size: 2.5rem;
+        font-weight: normal;
+      }
+    }
+
+    .menu_container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .menu_btn {
+        font-size: 1.4rem;
+        outline: none !important;
+        padding: 1rem 1.6rem;
+
+        &:not(:last-of-type) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .active {
+        background: rgb(46, 46, 46);
+        color: rgb(235, 235, 235);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .top_nav {
+    padding: 0 3rem;
+    justify-content: space-between;
+
+    .btn-success {
+      font-size: 1.4rem;
+      padding: 1rem;
+    }
+    .search_container {
+      margin-left: 3rem;
+      width: 30%;
+      input {
+        font-size: 1.4rem;
+        background: rgb(253, 253, 253);
+        padding: 0.76rem 1rem;
+        width: 80%;
+      }
+      .btn {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  .main_dashboard {
+    height: 100%;
+    overflow: auto;
+
+    .stat_container {
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+
+      .stat_card {
+        background: white;
+        box-shadow: 0 0 10px rgb(219, 219, 219);
+        width: 12rem;
+        min-width: 12rem;
+        height: 12rem;
+        min-height: 12rem;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        margin-right: 4rem;
+
+        .stat_title {
+          font-size: 1.4rem;
+          color: rgb(145, 145, 145);
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          font-weight: 500;
+          color: rgb(69, 69, 243);
+        }
+
+        .digit {
+          font-size: 3rem;
+        }
+      }
+
+      .btn {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .personnel_management {
+    .filter_section {
+      display: flex;
+      align-items: center;
+      padding: 1rem 3rem;
+      .filter_container {
+        display: flex;
+        align-items: center;
+        width: 60%;
+        .input_container {
+          width: 30%;
+          margin-left: 1rem;
+
+          &:last-of-type {
+            margin-right: 1rem;
+          }
+          label {
+            font-size: 1.3rem;
+          }
+
+          input,
+          select {
+            border: none;
+            font-size: 1.4rem;
+            background: #eee;
+            padding: 1rem;
+            width: 100%;
+          }
+          .selected {
+            border: none;
+            color: rgb(0, 0, 34);
+            cursor: pointer;
+            font-weight: 700;
+            padding: 0;
+            background: rgb(245, 245, 245);
+            padding: 0.375rem 0.75rem;
+          }
+        }
+      }
+
+      .btn {
+        padding: 1rem 1.2rem;
+        font-size: 1.4rem;
+      }
+    }
+    .table-responsive {
+      padding: 0 3rem;
+      height: 80vh;
+      overflow: auto;
+    }
+    .table {
+      tr {
+        th,
+        td {
+          font-size: 1.3rem;
+          position: relative;
+
+          .actions {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 0 10px #eee;
+            border-radius: 5px;
+            z-index: 10;
+
+            button {
+              width: 100%;
+              text-align: left;
+              font-size: 1.3rem;
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+
+    .personnel_reg-form {
+      flex-direction: column;
+      align-items: center;
+      .form_title {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        width: 50%;
+      }
+
+      .form_container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        form {
+          width: 50%;
+        }
+
+        .step_1,
+        .step_2 {
+          width: 100%;
+          .input_container {
+            label {
+              font-size: 1.3rem;
+            }
+
+            input,
+            select {
+              font-size: 1.4rem;
+              background: #eee;
+              padding: 1rem;
+            }
+            .selected {
+              border: none;
+              color: rgb(0, 0, 34);
+              cursor: pointer;
+              font-weight: 700;
+              padding: 0;
+              background: rgb(175, 175, 175);
+              padding: 1rem;
+            }
+          }
+
+          .name_container {
+            .input_container {
+              width: 33%;
+            }
+          }
+
+          .selection-container {
+            width: 100%;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            .input_container {
+              width: 33%;
+            }
+          }
+
+          .division {
+            .input_container {
+              width: 49.5%;
+            }
+          }
+
+          .sign_in-btn {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            padding: 1rem 1.3rem;
+          }
+        }
+      }
+    }
+
+    .personnel_profile {
+      padding: 2rem 3rem;
+
+      .first_row {
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
+
+        .user_img-container {
+          img {
+            width: 100%;
+            height: 20rem;
+            object-fit: contain;
+          }
+        }
+        .user_primary-info {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          .user_info-container {
+            .info_label {
+              font-size: 1.2rem;
+              color: grey;
+              margin-bottom: 0;
+              font-weight: 600;
+            }
+
+            .data {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .criminal_mgt {
+    .suspect_list {
+      display: flex;
+      padding: 2rem 3rem;
+      width: 100%;
+      flex-wrap: wrap;
+
+      .suspect {
+        text-align: center;
+        background: white;
+        box-shadow: 0 0 10px #eee;
+        width: 19%;
+        .sus_img {
+          width: 20rem;
+          height: 23rem;
+          object-fit: contain;
+        }
+
+        .name {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+
+        .crime {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .main_reg {
+      padding: 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .welcome {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      .info {
+        font-size: 1.3rem;
+        color: grey;
+      }
+
+      form {
+        .input_container {
+          label {
+            font-size: 1.3rem;
+          }
+
+          input,
+          select {
+            font-size: 1.4rem;
+            background: #eee;
+            padding: 1rem;
+          }
+          .selected {
+            border: none;
+            color: rgb(0, 0, 34);
+            cursor: pointer;
+            font-weight: 700;
+            padding: 0;
+            background: rgb(245, 245, 245);
+            padding: 0.375rem 0.75rem;
+          }
+        }
+
+        .name_container {
+          .input_container {
+            width: 24.5%;
+          }
+        }
+
+        .origin {
+          justify-content: space-between;
+          .input_container {
+            width: 49.5%;
+          }
+        }
+
+        .occupation {
+          justify-content: space-between;
+          .input_container {
+            width: 33%;
+          }
+        }
+
+        .btn {
+          padding: 1rem 1.2rem;
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .criminal_profile {
+      padding: 2rem 3rem;
+
+      .first_row {
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
+
+        .user_img-container {
+          img {
+            width: 100%;
+            height: 20rem;
+            object-fit: contain;
+          }
+        }
+
+        .user_primary-info {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          .user_info-container {
+            .info_label {
+              font-size: 1.2rem;
+              color: grey;
+              margin-bottom: 0;
+              font-weight: 600;
+            }
+
+            .data {
+              font-size: 1.4rem;
+            }
+          }
+        }
+
+        .title-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 2rem 0;
+
+          .section_title {
+            span {
+              background: rgb(3, 101, 192);
+              padding: 0.5rem 0.7rem;
+              font-size: 1.4rem;
+              border-radius: 5px;
+              color: white;
+            }
+          }
+
+          .create_record {
+            font-size: 1.4rem;
+            padding: 1rem;
+          }
+        }
+
+        .case_list {
+          .case {
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.4rem;
+            padding: 0.5rem;
+            span,
+            p {
+              width: 20%;
+              margin-bottom: 0;
+            }
+
+            .status {
+              font-weight: bold;
+            }
+
+            button {
+              background: white;
+              outline: none;
+              border: none;
+              padding: 1rem;
+              box-shadow: 0 0 10px rgb(163, 163, 163);
+              border-radius: 5px;
+            }
+          }
+
+          .active {
+            background: rgb(136, 199, 160);
+          }
+
+          .closed {
+            background: rgb(199, 136, 136);
+          }
+        }
+      }
+    }
+  }
+  .case_modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.911);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .case_card {
+      background: rgb(250, 250, 250);
+      height: 90%;
+      padding: 2rem;
+      width: 70%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgb(0, 0, 0);
+      overflow-y: auto;
+      position: relative;
+
+      .btn-close {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: 1.7rem;
+      }
+
+      .section {
+        .crime_type {
+          font-size: 3rem;
+          display: flex;
+          align-items: center;
+
+          span {
+            font-size: 1.4rem;
+            padding: 0.7rem;
+            background: rgb(211, 69, 69);
+            border-radius: 0.5rem;
+            color: #fefefe;
+            margin-left: 0.5rem;
+          }
+        }
+
+        .sub_info {
+          .crime_info {
+            font-size: 1.4rem;
+            margin-right: 2rem;
+            font-weight: 600;
+            span {
+              font-weight: normal;
+              color: rgb(46, 46, 46);
+            }
+          }
+        }
+
+        .statement {
+          font-weight: 600;
+          font-size: 2rem;
+          span {
+            font-weight: normal;
+            font-size: 1.3rem;
+            color: rgb(46, 46, 46);
+          }
+        }
+
+        &_title {
+          font-size: 1.8rem;
+          margin: 4rem 0 0 0;
+          border-bottom: 1px solid rgb(216, 216, 216);
+          padding: 1rem;
+        }
+
+        .suspect_list {
+          display: flex;
+
+          .suspect {
+            text-align: center;
+            .sus_img {
+              width: 20rem;
+              height: 23rem;
+              object-fit: contain;
+            }
+
+            .name {
+              font-size: 1.3rem;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .vehicle_list {
+          .vehicle {
+            padding: 2rem;
+            .vehicle_info {
+              font-size: 1.3rem;
+              margin-bottom: 0;
+
+              &:first-of-type {
+                font-weight: 700;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+      }
+
+      .message {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .main_reg {
+    padding: 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .welcome {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .info {
+      font-size: 1.3rem;
+      color: grey;
+    }
+
+    form {
+      .input_container {
+        label {
+          font-size: 1.3rem;
+        }
+
+        input,
+        select,
+        textarea {
+          font-size: 1.4rem;
+          background: #eee;
+          padding: 1rem;
+          border: none;
+          border-radius: 5px;
+        }
+
+        .date {
+          width: fit-content;
+          width: -moz-fit-content;
+        }
+        select {
+          width: 100%;
+        }
+
+        textarea {
+          width: 100%;
+          resize: none;
+        }
+        .selected {
+          border: none;
+          color: rgb(0, 0, 34);
+          cursor: pointer;
+          font-weight: 700;
+          padding: 0;
+          background: rgb(245, 245, 245);
+          padding: 0.375rem 0.75rem;
+        }
+      }
+
+      .name_container {
+        .input_container {
+          width: 24.5%;
+        }
+      }
+
+      .origin {
+        justify-content: space-between;
+        .input_container {
+          width: 49.5%;
+        }
+      }
+
+      .occupation {
+        justify-content: space-between;
+        .input_container {
+          width: 33%;
+        }
+      }
+
+      .btn {
+        padding: 1rem 1.2rem;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .case_management {
+    .case_preview {
+      padding: 2rem 3rem;
+      height: 90vh;
+      overflow-y: auto;
+      .section {
+        .crime_type {
+          font-size: 3rem;
+          display: flex;
+          align-items: center;
+
+          span {
+            font-size: 1.4rem;
+            padding: 0.7rem;
+            background: rgb(211, 69, 69);
+            border-radius: 0.5rem;
+            color: #fefefe;
+            margin-left: 0.5rem;
+          }
+        }
+
+        .sub_info {
+          .crime_info {
+            font-size: 1.4rem;
+            margin-right: 2rem;
+            font-weight: 600;
+            span {
+              font-weight: normal;
+              color: rgb(46, 46, 46);
+            }
+          }
+        }
+
+        .statement {
+          font-weight: 600;
+          font-size: 2rem;
+          span {
+            font-weight: normal;
+            font-size: 1.3rem;
+            color: rgb(46, 46, 46);
+          }
+        }
+
+        &_title {
+          font-size: 1.8rem;
+          margin: 4rem 0 0 0;
+          border-bottom: 1px solid rgb(216, 216, 216);
+          padding: 1rem;
+        }
+
+        .suspect_list {
+          display: flex;
+
+          .suspect {
+            text-align: center;
+            .sus_img {
+              width: 20rem;
+              height: 23rem;
+              object-fit: contain;
+            }
+
+            .name {
+              font-size: 1.3rem;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .vehicle_list {
+          .vehicle {
+            padding: 2rem;
+            .vehicle_info {
+              font-size: 1.3rem;
+              margin-bottom: 0;
+
+              &:first-of-type {
+                font-weight: 700;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .search_nin-container {
+      margin-bottom: 1rem;
+      input {
+        font-size: 1.4rem;
+        background: rgb(253, 253, 253);
+        padding: 0.76rem 1rem;
+        width: 100%;
+      }
+      .btn {
+        font-size: 1.4rem;
+      }
+    }
+
+    .name_container {
+      .input_container {
+        width: 33% !important;
+      }
+    }
+
+    .criminal_list {
+      height: 49vh;
+      display: flex;
+      .criminal_card {
+        width: 18%;
+        height: 20rem;
+        background: white;
+        box-shadow: 0 0 10px #eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 8px;
+        margin-right: 1rem;
+        position: relative;
+
+        .more_btn {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .more_container {
+          display: flex;
+          flex-direction: column;
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0 10px #eee;
+          position: absolute;
+          right: 0rem;
+          top: 4rem;
+        }
+        .sus_img {
+          width: 100%;
+          height: 80%;
+          object-fit: contain;
+        }
+
+        .name {
+          font-size: 1.4rem;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .evidence_list {
+      display: flex;
+      height: 45vh;
+      padding-top: 2rem;
+
+      .evidence {
+        margin-right: 2rem;
+        background: white;
+        box-shadow: 0 0 10px #eee;
+        padding: 1rem;
+        width: 25%;
+        height: 7rem;
+        position: relative;
+
+        p {
+          font-size: 1.3rem;
+
+          &:first-of-type {
+            font-weight: 700;
+          }
+        }
+
+        button {
+          position: absolute;
+          right: 1rem;
+          top: 1rem;
+        }
+      }
+    }
+  }
+
+  .stepper-container {
+    margin: 2rem 0;
+    .step_count {
+      width: 70%;
+      margin-bottom: 2rem;
+      .step_btn {
+        padding: 0;
+        white-space: nowrap;
+        color: rgb(146, 146, 146);
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        &:not(:last-of-type) {
+          &::after {
+            content: '';
+            height: 0.2rem;
+            width: 15rem;
+            background: rgb(23, 204, 69);
+            display: inline-block;
+            margin: 0 1rem;
+          }
+        }
+
+        span {
+          height: 4rem;
+          width: 4rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // padding: .5rem;
+          border-radius: 100px;
+          background: rgb(230, 230, 230);
+          color: #2c2c2c;
+          margin-right: 0.5rem;
+          font-size: 1.4rem;
+        }
+      }
+
+      .active {
+        color: green;
+        span {
+          background: green;
+          color: #fefefe;
+        }
+      }
+    }
+  }
+
+  .all_crime {
+    height: 95vh;
+    .input_container {
+      input,
+      select {
+        font-size: 1.4rem;
+        background: #eee;
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1.4rem;
+        border-radius: 5px;
+      }
+    }
+
+    .case_table {
+      padding: 0 3rem;
+      height: 90%;
+      .table {
+        tr {
+          padding: 1rem;
+          td,
+          th {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+  .reference_container {
+    height: 90vh;
+    width: 100%;
+
+
+    .input_container {
+      width: 25%;
+      margin-right: 1rem;
+      label {
+        font-size: 1.3rem;
+      }
+
+      input,
+      select {
+        font-size: 1.4rem;
+        background: #eee;
+        padding: 1rem;
+        border: none;
+        width: 100%;
+      }
+      .selected {
+        border: none;
+        color: rgb(0, 0, 34);
+        cursor: pointer;
+        font-weight: 700;
+        padding: 0;
+        background: rgb(245, 245, 245);
+        padding: 0.375rem 0.75rem;
+      }
+    }
+
+    .reference {
+      padding: 2rem 3rem;
+      .new_ref {
+        button {
+          font-size: 1.3rem;
+          padding: 1rem;
+        }
+      }
+
+
+      .reference_table {
+        height: 85%;
+        width: 100%;
+
+        .table {
+          tr {
+            padding: 1rem;
+            td,
+            th {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .getting_started {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.671);
+    .white_card {
+      width: 50%;
+      height: 90%;
+      background: white;
+      border-radius: 5px;
+
+      .top_part {
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid rgb(221, 220, 220);
+        h2 {
+          font-size: 1.7rem;
+          font-weight: 600;
+          color: rgb(39, 39, 39);
+        }
+      }
+
+      .main_reg {
+        padding: 2rem 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .welcome {
+          font-size: 2.5rem;
+          font-weight: 700;
+        }
+
+        .info {
+          font-size: 1.3rem;
+          color: grey;
+        }
+
+        form {
+          .input_container {
+            label {
+              font-size: 1.3rem;
+            }
+
+            input,
+            select {
+              font-size: 1.4rem;
+              background: #eee;
+              padding: 1rem;
+            }
+            .selected {
+              border: none;
+              color: rgb(0, 0, 34);
+              cursor: pointer;
+              font-weight: 700;
+              padding: 0;
+              background: rgb(245, 245, 245);
+              padding: 0.375rem 0.75rem;
+            }
+          }
+
+          .btn {
+            padding: 1rem 1.2rem;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+
+  .view_report-sec {
+    .reference_table {
+      height: 85%;
+      width: 100%;
+
+      .table {
+        tr {
+          padding: 1rem;
+          td,
+          th {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+
+    .the_view {
+      padding: 2rem;
+      .uploads_container {
+        img {
+          width: 20rem;
+          height: 15rem;
+          object-fit: cover;
+        }
+      }
+
+      .crime_title {
+        font-size: 2rem;
+        margin: 2rem 0;
+        font-weight: 600;
+      }
+
+      .primary_detail {
+        .tag {
+          font-weight: 600;
+          font-size: 1.3rem;
+          margin-right: 2rem;
+          .info {
+            font-weight: normal;
+          }
+        }
+      }
+
+      .detail {
+        font-size: 1.3rem;
+      }
+
+      .btn {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
