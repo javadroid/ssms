@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
+const apiUrl = `http://localhost:3322/`;
 @Injectable({
   providedIn: 'root',
 })
@@ -15,38 +16,38 @@ export class ServiceApi {
   constructor(private http: HttpClient) {}
 
   find(model: string): Observable<any> {
-    return this.http.get(`http://localhost:3333/api/${model}/`);
+    return this.http.get(`${apiUrl}api/${model}/`);
   }
 
   findAny(model: string, field: string, value: string): Observable<any> {
     return this.http.get(
-      `http://localhost:3333/api/${model}/${field}/${value}`
+      `${apiUrl}api/${model}/${field}/${value}`
     );
   }
 
   findOne(model: string, id: string): Observable<any> {
-    return this.http.get(`http://localhost:3333/api/${model}/${id}`);
+    return this.http.get(`${apiUrl}api/${model}/${id}`);
   }
 
   update(model: string, id: string, update: any): Observable<any> {
-    return this.http.patch(`http://localhost:3333/api/${model}/${id}`, update);
+    return this.http.patch(`${apiUrl}api/${model}/${id}`, update);
   }
 
   create(model: string, create: any): Observable<any> {
-    return this.http.post(`http://localhost:3333/api/${model}`, create);
+    return this.http.post(`${apiUrl}api/${model}`, create);
   }
 
   upload(model: string, file: any): Observable<any> {
-    return this.http.post(`http://localhost:3333/api/${model}`, file);
+    return this.http.post(`${apiUrl}api/${model}`, file);
   }
 
   delete(model: string, id: string): Observable<any> {
-    return this.http.delete(`http://localhost:3333/api/${model}/${id}`);
+    return this.http.delete(`${apiUrl}api/${model}/${id}`);
   }
 
   login(model: string, login: any): Observable<any> {
     return this.http
-      .post(`http://localhost:3333/api/${model}/login`, login)
+      .post(`${apiUrl}api/${model}/login`, login)
       .pipe(
         tap((x: any) => {
           localStorage.setItem('token', x.access_token);
@@ -59,7 +60,7 @@ export class ServiceApi {
       );
   }
   profile(model: string): Observable<any> {
-    return this.http.get(`http://localhost:3333/api/${model}/profile`).pipe(
+    return this.http.get(`${apiUrl}api/${model}/profile`).pipe(
       tap((x: any) => {
         if (x.user === 'organization')
           this.signedOrg$ = new BehaviorSubject(true);
@@ -80,12 +81,12 @@ export class ServiceApi {
 
   resetpassword(model: string, pass: any): Observable<any> {
     return this.http.patch(
-      `http://localhost:3333/api/${model}/resetpassword`,
+      `${apiUrl}api/${model}/resetpassword`,
       pass
     );
   }
 
   sendMail(model: string,data:any): Observable<any>{
-    return this.http.post(`http://localhost:3333/api/${model}`,data)
+    return this.http.post(`${apiUrl}api/${model}`,data)
   }
 }
