@@ -39,9 +39,9 @@ export class FileuploadController {
     files.forEach((file) => {
       const name = file.originalname.split('.')[0];
       const path = `document/${file.path.split('\\')[1]}`;
-
+      const API_URL=process.env.NX_API_URL
       names.push(
-        'http://localhost:3333/api/document/' + file.path.split('\\')[1]
+      `${API_URL}document/` + file.path.split('\\')[1]
       );
     });
     return names;
