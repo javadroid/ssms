@@ -1,7 +1,7 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@ssms/api-interfaces';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ssms-root',
