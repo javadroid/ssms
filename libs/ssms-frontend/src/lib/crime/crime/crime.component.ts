@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './../../../../../ref-front/src/lib/api.service';
 import { Component } from '@angular/core';
 import { ServiceApi } from '../../shared/service/service-api';
-
+import { environment } from '@env-api/environment'
 @Component({
   selector: 'ssms-crime',
   templateUrl: './crime.component.html',
@@ -41,7 +41,7 @@ export class CrimeComponent {
       for (let i = 0; i < e.media.length; i++) {
         s = {
           image: e.media[i],
-          name: e.media[i].split('http://localhost:3333/api/document/')[1],
+          name: e.media[i].split(`${environment.apiLink}/document/`)[1],
         };
         this.media.push(s);
 

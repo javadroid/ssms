@@ -27,5 +27,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "@env-api/environment": ["apps/api/src/environments/environment.ts"],
+"@env-webapp/environment": ["apps/webapp/src/environments/environment.ts"],
 }

@@ -19,7 +19,9 @@
       "@ssms/api-models": ["libs/api-models/src/index.ts"],
       "@ssms/ref": ["libs/ref/src/index.ts"],
       "@ssms/ref-front": ["libs/ref-front/src/index.ts"],
-      "@ssms/ssms-frontend": ["libs/ssms-frontend/src/index.ts"]
+      "@ssms/ssms-frontend": ["libs/ssms-frontend/src/index.ts"],
+      "@env-api/environment": ["apps/ssms/src/environments/environment.ts"],
+
     }
   },
   "exclude": ["node_modules", "tmp"]

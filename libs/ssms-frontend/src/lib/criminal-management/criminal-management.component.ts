@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
-
+import { environment } from '@env-api/environment'
 @Component({
   selector: 'ssms-criminal-management',
   templateUrl: './criminal-management.component.html',
@@ -154,7 +154,7 @@ export class CriminalManagementComponent implements OnInit {
     for (let i = 0; i < item.media.length; i++) {
       s = {
         image: item.media[i],
-        name: item.media[i].split('http://localhost:3333/api/document/')[1],
+        name: item.media[i].split(`${environment.apiLink}/document/`)[1],
       };
       this.media.push(s);
 
