@@ -241,10 +241,10 @@
             </div>
 
             <div class="input_container mb-3">
-              <label for="" class="d-block">Station</label>
+              <label for="" class="d-block">Country</label>
               <select  name="" id="" class="form-control">
-                <option>Select station</option>
-                <option *ngFor="let item of stationDetails"  [value]="item.stationName">{{ item.stationName }}</option>
+                <option>Select Country</option>
+                <option *ngFor="let item of countryDetails"  [value]="item.countryName">{{ item.countryName }}</option>
               </select>
             </div>
           </div>
@@ -290,6 +290,36 @@
                     <option>Select Division head</option>
                   </select>
                 </div> -->
+
+
+          </div>
+
+          <div
+            class="selection-container d-flex align-items-center justify-content-between"
+          >
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Lat</label>
+              <input
+                formControlName="lat"
+                type="text"
+                class="form-control"
+                placeholder="latitude"
+              />
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Long</label>
+              <input
+                formControlName="long"
+                type="text"
+                class="form-control"
+                placeholder="longitude"
+              />
+            </div>
+
+            <div class="input_container mb-3">
+              <label for="" class="d-block">Open map</label>
+              <button (click)="getLocation()" class="btn form-control"></button>
+            </div>
           </div>
           <button
             class="sign_in-btn btn btn-success"

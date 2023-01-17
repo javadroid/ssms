@@ -16,7 +16,7 @@ export class PersonnelRegisterComponent implements OnInit {
   PersonnelRegisterForm!: FormGroup;
   PersonnelDetail: any[] = [];
   rankDetails: any[] = [];
-stationDetails: any[] = [];
+countryDetails: any[] = [];
   stateDetails: any[] = [];
   lgaDetails: any[] = [];
   departmentDetails: any[] = [];
@@ -137,7 +137,7 @@ stationDetails: any[] = [];
   }
   loadStation() {
     this.http.find('station').subscribe((m) => {
-      this.stationDetails = m.filter(
+      this.countryDetails = m.filter(
         (n: { subscriberId: string }) =>
           n.subscriberId === this.organizationID
       );
@@ -303,10 +303,15 @@ stationDetails: any[] = [];
       pass = pass + options[opt][choose];
       options.splice(opt, 1);
     }
-    console.log(pass);
+
 
     this.PersonnelRegisterForm.patchValue({
       password: pass,
     });
+  }
+
+  getLocation(){
+
+ console.log('pass');
   }
 }

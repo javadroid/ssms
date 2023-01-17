@@ -16,6 +16,9 @@ export class ReportComponent implements OnInit {
   message!:any
   step='TYPE'
   pickone=''
+
+  GPSlocation:any[]=[]
+  getlocated=''
   addreport=''
 reportType=[] as any
 reportCategories=[] as any
@@ -26,6 +29,7 @@ reportForm = new FormGroup({
   title: new FormControl('', [Validators.required, Validators.maxLength(20)]),
   details: new FormControl('', []),
   location: new FormControl('', []),
+  GPSlocation: new FormControl(),
   state: new FormControl('', []),
   media:new FormControl(  ),
   reportType:new FormControl( []),
@@ -35,6 +39,8 @@ reportForm = new FormGroup({
 });
 fileData = new FormData();
   ngOnInit(): void {
+    // console.log("dd",this.location.length)
+    this.getlocated=this.GPSlocation.length ===0? 'Please allow us locate you':'Location Captured✅'
     this.http.find('state').subscribe(e=>{
 this.state=e
     })
@@ -135,6 +141,15 @@ this.pickone=type
       this.route.navigate(['../index']);
     });
 
+  }
+
+  getLocation(){
+    navigator.geolocation.getCurrentPosition(location => {
+      this.GPSlocation=[location.coords]
+      this.getlocated='Location Captured✅'
+      this.reportForm.patchValue({GPSlocation:this.GPSlocation})
+       console.log( this.GPSlocation)
+    })
   }
 
 }

@@ -28,6 +28,8 @@ export class Report {
     phone: string
     @Prop()
     email: string
+    @Prop()
+    GPSlocation: []
 
 
 
