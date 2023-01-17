@@ -8,6 +8,7 @@ import { CanAuth } from '../shared/guard/can.guard';
 import { DashboardComponent } from './dashboard.component';
 import { CrimeComponent } from '../crime/crime/crime.component';
 import { CreateCrimeComponent } from '../crime/create-crime/create-crime.component';
+import { ViewReportComponent } from '../view-report/view-report.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'crime',
         component: CrimeComponent,
+      },
+      {
+        path: 'report',
+        component: ViewReportComponent,
       },
       { path: 'create-crime', component: CreateCrimeComponent },
       {

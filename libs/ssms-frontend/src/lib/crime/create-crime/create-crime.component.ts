@@ -338,6 +338,7 @@ export class CreateCrimeComponent implements OnInit {
             )
             .subscribe((e) => {
               setTimeout(() => {
+
                 this.apiService
                   .create('criminal-info', {
                     dateOfBirth: e.birthDate,

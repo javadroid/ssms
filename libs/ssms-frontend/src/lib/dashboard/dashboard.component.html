@@ -12,7 +12,7 @@
         <a [routerLink]="['./personnel']"  [routerLinkActive]="['active']" class="btn menu_btn">Personnel management</a>
         <a [routerLink]="['./crime']"  [routerLinkActive]="['active']"  class="btn menu_btn">Crime Management</a>
         <a [routerLink]="['./criminal']"  [routerLinkActive]="['active']"  class="btn menu_btn">Criminal Management</a>
-        <a class="btn menu_btn">Report management</a>
+        <a [routerLink]="['./report']"  [routerLinkActive]="['active']"   class="btn menu_btn">Report management</a>
         <a [routerLink]="['./ref']"  [routerLinkActive]="['active']" class="btn menu_btn">Ref management</a>
         <a (click)="logout()" class="btn menu_btn btn-outline-danger">Logout</a>
       </div>

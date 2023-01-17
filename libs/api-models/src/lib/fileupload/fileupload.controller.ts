@@ -41,7 +41,7 @@ export class FileuploadController {
       const path = `document/${file.path.split('\\')[1]}`;
 
       names.push(
-        'http://localhost:3333/api/document/' + file.path.split('\\')[1]
+        `${process.env['NX_API_URL']}/document/` + file.path.split('\\')[1]
       );
     });
     return names;
