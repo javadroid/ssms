@@ -167,9 +167,11 @@
         <div class="step_1" *ngIf="!stepperFirstInfo">
           <div class="input_container mb-3">
             <label for="" class="d-block">Rank</label>
-            <select   name="" id="" class="form-control">
+            <select name="" id="" class="form-control">
               <option>Select Rank</option>
-              <option *ngFor="let item of rankDetails" [value]="item.rank">{{ item.rank }}</option>
+              <option *ngFor="let item of rankDetails" [value]="item.rank">
+                {{ item.rank }}
+              </option>
             </select>
           </div>
 
@@ -204,50 +206,7 @@
             </div>
           </div>
 
-          <div
-            class="selection-container d-flex align-items-center justify-content-between"
-          >
-            <div class="input_container mb-3">
-              <label for="" class="d-block">State of service</label>
-              <select
-                name=""
-                id=""
-                class="form-control"
-                #state
-                (change)="onStateChange($event.target)"
-                formControlName="stateofservice"
-              >
-                <option>Select State</option>
-                <option
-                  *ngFor="let state of stateDetails"
-                  [value]="state.nameOfState"
-                >
-                  {{ state.nameOfState }}
-                </option>
-              </select>
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">L.G.A of service</label>
-              <select
-                name=""
-                id=""
-                formControlName="lgaofservice"
-                class="form-control selected"
-              >
-                <option *ngFor="let lga of lgaDetails" [value]="lga.lgaName">
-                  {{ lga.lgaName }}
-                </option>
-              </select>
-            </div>
 
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Country</label>
-              <select  name="" id="" class="form-control">
-                <option>Select Country</option>
-                <option *ngFor="let item of countryDetails"  [value]="item.countryName">{{ item.countryName }}</option>
-              </select>
-            </div>
-          </div>
           <div class="input_container mb-3">
             <label for="" class="d-block">Department</label>
             <select
@@ -275,7 +234,7 @@
                 formControlName="divisionhead"
                 class="form-control selected"
               >
-                <option>Select Division head</option>
+                <option>Select Division </option>
                 <option
                   *ngFor="let branch of branchDetails"
                   [value]="branch.branchName"
@@ -290,37 +249,9 @@
                     <option>Select Division head</option>
                   </select>
                 </div> -->
-
-
           </div>
 
-          <div
-            class="selection-container d-flex align-items-center justify-content-between"
-          >
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Lat</label>
-              <input
-                formControlName="lat"
-                type="text"
-                class="form-control"
-                placeholder="latitude"
-              />
-            </div>
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Long</label>
-              <input
-                formControlName="long"
-                type="text"
-                class="form-control"
-                placeholder="longitude"
-              />
-            </div>
 
-            <div class="input_container mb-3">
-              <label for="" class="d-block">Open map</label>
-              <button (click)="getLocation()" class="btn form-control"></button>
-            </div>
-          </div>
           <button
             class="sign_in-btn btn btn-success"
             (click)="onNext(steps[1])"

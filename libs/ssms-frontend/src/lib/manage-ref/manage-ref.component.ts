@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceApi } from '../shared/service/service-api';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Country, State, City }  from 'country-state-city';
+import { LgaList } from '../shared/lga';
+
 
 @Component({
   selector: 'ssms-manage-ref',
@@ -11,6 +14,7 @@ export class ManageRefComponent implements OnInit {
   constructor(private http: ServiceApi) {}
   branch = [] as any;
   department = [] as any;
+  countryCode=''
   division = [] as any;
   organizationCategory = [] as any;
   organizationName = [] as any;
@@ -19,6 +23,9 @@ export class ManageRefComponent implements OnInit {
   station = [] as any;
   organizationData=[]as any[]
   crimetype=[]as any[]
+  countryDetails: any[] = [];
+  stateDetails: any[] = [];
+  lgaDetails: any[] = [];
  section=['branch', 'department', 'division', 'organizationCategory', 'policy','rank', 'station', 'organizationName','crimetype']
   show='branch'
 
@@ -28,6 +35,9 @@ export class ManageRefComponent implements OnInit {
     divisionName: new FormControl(''),
     departmentName: new FormControl(''),
     policy: new FormControl(''),
+    state: new FormControl(''),
+    lga: new FormControl(''),
+    country: new FormControl('Nigeria'),
     crimetype: new FormControl(''),
     rank: new FormControl(''),
     stationName: new FormControl(''),
@@ -49,6 +59,10 @@ export class ManageRefComponent implements OnInit {
     this.http.find('policy').subscribe(e=>{this.policy=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('rank').subscribe(e=>{this.rank=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('station').subscribe(e=>{this.station=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
+    this.countryDetails= Country.getAllCountries()
+    this.stateDetails  = State.getStatesOfCountry('NG')
+
+  console.log(" this.countryDetails", this.countryDetails)
   }
 
   onselect(event:any){
@@ -200,4 +214,65 @@ export class ManageRefComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  onStateChange(event: any) {
+    // this.loadLGA(event.value);
+    this.Form.patchValue({state:event.value.split(',')[0]})
+    let state =event.value.split(',')[0]
+    const stateCode =event.value.split(',')[1]
+
+    if(this.countryCode==='NG' ||this.countryCode===''){
+
+      if(state==="Abuja Federal Capital Territory"){
+        state ="FCT"
+     }
+      //@ts-ignore
+      this.lgaDetails=LgaList[state]
+
+    }else{
+
+      this.lgaDetails = City.getCitiesOfState(this.countryCode,stateCode)
+
+ const lgaDetail=[]
+      // this.lgaDetails.forEach((city) =>{this.lgaDetails=city.name})
+      for (let i = 0; i < this.lgaDetails.length; i++) {
+
+        lgaDetail.push(this.lgaDetails[i].name)
+      }
+      this.lgaDetails=lgaDetail
+
+
+    }
+    console.log(stateCode, this.lgaDetails,state)
+
+
+  }
+  onCountryChange(event: any) {
+    // this.loadstate(event.value);
+    this.Form.patchValue({country:event.value.split(',')[1]})
+this.countryCode = event.value.split(',')[0]
+    this.stateDetails  = State.getStatesOfCountry(event.value.split(',')[0])
+    console.log(event.value,  this.stateDetails)
+  }
+  // loadstate(stateId: any) {
+  //   this.http.find('lga').subscribe((m) => {
+  //     this.lgaDetails = m.filter(
+  //       (n: { stateId: any }) => n.stateId === stateId
+  //     );
+  //     console.log('state', this.stateDetails);
+  //   });
+  // }
+  // loadLGA(stateId: any) {
+  //   this.http.find('lga').subscribe((m) => {
+  //     this.lgaDetails = m.filter(
+  //       (n: { stateId: any }) => n.stateId === stateId
+  //     );
+  //     console.log('state', this.stateDetails);
+  //   });
+  // }
+
+  getLocation(){
+
+    console.log('pass');
+     }
 }

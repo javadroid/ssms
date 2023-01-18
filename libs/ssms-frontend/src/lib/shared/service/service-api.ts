@@ -79,6 +79,10 @@ export class ServiceApi {
     return this.http.get(`https://dummyjson.com/users/${id}`);
   }
 
+  lga(id: string): Observable<any> {
+    return this.http.get(`https://api.facts.ng/v1/states/lagos`);
+  }
+
   resetpassword(model: string, pass: any): Observable<any> {
     return this.http.patch(
       `${apiUrl}api/${model}/resetpassword`,

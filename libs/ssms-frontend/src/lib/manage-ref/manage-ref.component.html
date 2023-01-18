@@ -29,21 +29,92 @@
       <div class="input_container mb-3">
         <label for="" class="d-block">Branch</label>
         <input
-          [formControl]="Form.controls.branchName"
+
+        [formControl]="Form.controls.branchName"
           type="text"
           class="form-control"
           placeholder="Branch"
         />
       </div>
-      <!-- <div class="input_container mb-3">
-          <label for="" class="d-block">Last name</label>
-          <select>
-            <option value="">Select option</option>
-          </select>
-        </div> -->
-      <!-- <div class="input_container mb-3">
-          <label for="" class="d-block">Middle name</label>
-          <input type="text" class="form-control" placeholder="Last name" />
+      <div
+            class="selection-container d-flex align-items-center justify-content-between"
+          >
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Country</label>
+            <select (change)="onCountryChange($event.target)" name="" id="" class="form-control">
+              <option value="NG">Nigeria</option>
+              <option
+                *ngFor="let item of countryDetails"
+                [value]="[item.isoCode, item.name]"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">State</label>
+              <select
+                name=""
+                id=""
+                class="form-control"
+                #state
+                (change)="onStateChange($event.target)"
+
+
+              >
+                <option>Select State</option>
+                <option
+                  *ngFor="let state of stateDetails"
+                  [value]="[state.name,state.isoCode]"
+                >
+                  {{ state.name }}
+                </option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">L.G.A </label>
+              <select
+                name=""
+                id=""
+                [formControl]="Form.controls.lga"
+                class="form-control selected"
+              >
+                <option *ngFor="let lga of lgaDetails" [value]="lga">
+                  {{ lga }}
+                </option>
+              </select>
+            </div>
+
+
+          </div>
+          <!-- <div
+          class="selection-container d-flex align-items-center justify-content-between"
+        >
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Lat</label>
+            <input
+              formControlName="lat"
+              type="text"
+              class="form-control"
+              placeholder="latitude"
+            />
+          </div>
+          <div class="input_container mb-3">
+            <label for="" class="d-block">Long</label>
+            <input
+              formControlName="long"
+              type="text"
+              class="form-control"
+              placeholder="longitude"
+            />
+          </div>
+
+          <div class="input_container mb-3">
+            <button (click)="getLocation()" class="form-control">
+              Open map
+            </button>
+          </div>
         </div> -->
 
       <button (click)="createbranch()" class="btn btn-primary">Add</button>
@@ -55,6 +126,9 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Branch</th>
+            <th scope="col">lga</th>
+             <th scope="col">state</th>
+             <th scope="col">country</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -64,6 +138,9 @@
           <tr *ngFor="let i of branch">
             <th scope="row">1</th>
             <td>{{ i.branchName }}</td>
+            <td>{{ i.lga }}</td>
+            <td>{{ i.state }}</td>
+            <td>{{ i.country }}</td>
             <!-- <td>Otto</td>
               <td>@mdo</td> -->
             <td>
