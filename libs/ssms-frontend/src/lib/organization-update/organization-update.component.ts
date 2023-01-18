@@ -1,4 +1,4 @@
-import { Component,Output,EventEmitter } from '@angular/core';
+import { Component,Output,EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -9,19 +9,19 @@ import { HotToastService } from '@ngneat/hot-toast';
   templateUrl: './organization-update.component.html',
   styleUrls: ['./organization-update.component.css'],
 })
-export class OrganizationUpdateComponent {
+export class OrganizationUpdateComponent implements OnInit {
 
   organizationForm = new FormGroup({
     address:new FormControl('', [Validators.required]),
     descriptionOfRole:new FormControl('', [Validators.required]),
-
     landline:new FormControl('', [Validators.required]),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     middlename: new FormControl('', [Validators.required]),
     rank: new FormControl('', [Validators.required]),
     officialphone: new FormControl('', [Validators.required]),
-    status: new FormControl('ACTIVE')
+    profile: new FormControl('COMPLETEDPROFILE')
+
   });
 
   step = 'organizationInfo';
@@ -36,15 +36,18 @@ export class OrganizationUpdateComponent {
     private apiService: ServiceApi,
     private toast: HotToastService,
     ) {}
+  ngOnInit(): void {
+    if(this.subcriber)
+    this.apiService.findOne('organization',this.subcriber).subscribe(data => {
+      this.organizationForm.patchValue(data)
+    })
+  }
 
     onNext(step: string) {
       this.step = step;
     }
 
   onSubmit() {
-
-
-
     if(this.subcriber){
     if(this.organizationForm.invalid) {
       this.toast.success('Please fill the required fields!', {
@@ -59,7 +62,7 @@ export class OrganizationUpdateComponent {
       });
       return
     }
-
+    this.organizationForm.patchValue({profile:"COMPLETEDPROFILE"})
     this.apiService.update('organization',this.subcriber ,this.organizationForm.value).pipe(
       this.toast.observe({
         loading: 'Updating organization...',

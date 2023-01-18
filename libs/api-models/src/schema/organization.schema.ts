@@ -13,8 +13,9 @@ export class Organization {
 
   @Prop()
     typeOfAgency: string
+     @Prop({default: 'NOTCOMPLETEDPROFILE'})
+     profile:string
      @Prop()
-
     categoryOfagency: string
      @Prop()
     organizationName: string
@@ -47,7 +48,7 @@ export class Organization {
 
 
 
-    @Prop({default: 'INACTIVE'})
+    @Prop({default: 'PENDING'})
     status: string
 
 }

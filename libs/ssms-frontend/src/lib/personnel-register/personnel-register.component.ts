@@ -238,9 +238,34 @@ countryDetails: any[] = [];
          e.email,
         'success'
       );
+      this.LoadAllpersonnel();
     });
 
-     this.LoadAllpersonnel();
+
+  }
+  onEnable(item: any) {
+    this.http.update('personnel', item._id,{status:"ACTIVE"}).subscribe((e) => {
+      Swal.fire(
+        'Enable!',
+         e.email,
+        'success'
+      );
+      this.LoadAllpersonnel();
+    });
+
+
+  }
+  onDisable(item: any) {
+    this.http.update('personnel', item._id,{status:"DISABLE"}).subscribe((e) => {
+      Swal.fire(
+        'Disable!',
+         e.email,
+        'success'
+      );
+      this.LoadAllpersonnel();
+    });
+
+
   }
 
   SubmitPersonnel() {

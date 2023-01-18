@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 const apiUrl = `http://localhost:3322/`;
 @Injectable({
@@ -70,10 +71,6 @@ export class ServiceApi {
     );
   }
 
-  // isAuthenticated(){
-
-  //   return this.isLoggedIn;
-  // }
 
   users(id: string): Observable<any> {
     return this.http.get(`https://dummyjson.com/users/${id}`);

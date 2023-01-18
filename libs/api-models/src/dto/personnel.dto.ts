@@ -25,4 +25,5 @@ export class PersonnelDTO {
   organizationId: string;
   personnelImage: string;
   sub: string;
+  status:string
 }

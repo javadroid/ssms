@@ -13,12 +13,15 @@ export class OrganizationAuthService {
       'organizationEmail',
       username
     );
-    console.log('sss', password);
+
     if (!user[0]) {
-      throw new NotFoundException('User not found');
+      return new NotFoundException('User not found');
     }
-    const isMatch = await bcrypt.compare(password, user[0].password);
-    console.log('useruser2', isMatch, user[0].password);
+    console.log('sss', password,user[0].password);
+    const pass=user[0].password
+
+    const isMatch = await bcrypt.compare(password, pass);
+    console.log('useruser2', isMatch);
     if (user[0] && isMatch) {
       return user[0];
     }
@@ -37,6 +40,7 @@ export class OrganizationAuthService {
       user_email: 'ORG-' + user.organizationEmail,
       isAuthenticated: true,
       user: 'organization',
+      status:user.status
     };
   }
 }

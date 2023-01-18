@@ -14,7 +14,7 @@ export class PersonnelAuthService {
     const user =await this.personnelService.findbyAny('email',username)
     console.log("useruser2",user)
     if(!user[0]){
-      throw new NotFoundException("User not found")
+      return new NotFoundException("User not found")
     }
 const isMatch = user[0]? await bcrypt.compare(password, user[0].password) :null;
 
@@ -29,6 +29,6 @@ const isMatch = user[0]? await bcrypt.compare(password, user[0].password) :null;
   async login(user:any){
     console.log("users",user)
     const payload ={personnelEmail:user.email,sub:user._id}
-    return {access_token: this.jwtService.sign(payload), id:user._id,user_email:'PER-'+user.email,isAuthenticated:true,user:'personnel'}
+    return {access_token: this.jwtService.sign(payload), status:user.status,id:user._id,user_email:'PER-'+user.email,isAuthenticated:true,user:'personnel'}
   }
 }

@@ -14,7 +14,7 @@ export class OrganizationManagementComponent implements OnInit {
   fileData = new FormData();
   fileSelected!: File;
   images!: string;
-  personnelImag!: any;
+  organizationImag!: any;
   showFilter = false;
   showfiltercriteria = false;
   selectindex!: any;
@@ -30,39 +30,24 @@ export class OrganizationManagementComponent implements OnInit {
   constructor(private http: ServiceApi) {}
 
   OrganizationsignUpForm = new FormGroup({
-    id: new FormControl('', []),
-    typeOfAgency: new FormControl('', []),
-    categoryOfagency: new FormControl('', []),
-    organizationName: new FormControl('', []),
-    address: new FormControl('', []),
-    descriptionOfRole: new FormControl('', []),
-    organizationEmail: new FormControl('', []),
-    landline: new FormControl('', []),
-    firstname: new FormControl('', []),
-    lastname: new FormControl('', []),
-    middlename: new FormControl('', []),
-    rank: new FormControl('', []),
-    officialemail: new FormControl('', []),
-    officialphone: new FormControl('', []),
-    state: new FormControl('', []),
-    lga: new FormControl('', []),
+    status:new FormControl('', []),
+    id:new FormControl('', []),
     password: new FormControl('', []),
   });
 
   ngOnInit(): void {
-
-
-    this.http.find('organizationName').subscribe(e=>{
-      this.organizationName=e
-    })
-
-    this.http.find('organizationcategory').subscribe(e=>{
-      this.organizationcategory=e
-    })
     this.LoadAll();
   }
-  showFilterList() {
+  showFilterDisplay() {
     this.showFilter = !this.showFilter;
+  }
+  showFilterList(data: any) {
+
+    this.http.find('organization').subscribe((m) => {
+      this.organizationData = m.filter((e: { status: any; })=> e.status === data.value);
+      // console.log("this.organizationID",this.organizationData[0]?._id)
+    });
+
   }
   showmenu(index: any) {
     this.selectindex = index;
@@ -83,7 +68,6 @@ export class OrganizationManagementComponent implements OnInit {
   }
 
   LoadAll() {
-
     this.LoadAllpersonnel();
   }
 
@@ -100,8 +84,8 @@ export class OrganizationManagementComponent implements OnInit {
     this.passwordGenerate();
 
     this.http
-      .resetpassword('organization', {
-        password: this.OrganizationsignUpForm.value,
+      .update('organization',  data._id,{
+        password: this.OrganizationsignUpForm.value.password,
       })
       .subscribe((e) => {
         Swal.fire(
@@ -133,16 +117,12 @@ export class OrganizationManagementComponent implements OnInit {
   }
 
   Edit(data: any) {
-    this.OrganizationsignUpForm.patchValue({
-      id: data._id,
-    });
-
-    this.OrganizationsignUpForm.patchValue(data);
-    this.personnelImag = data.personnelImage;
-    this.firstShow = false;
-
-    this.selectindex = null;
-    this.edits = true;
+    this.http
+      .update('organization', data._id, { profile: 'NOTCOMPLETEDPROFILE' })
+      .subscribe((e) => {
+        Swal.fire('Organization can proceed in editing their data!', e.organizationEmail, 'success');
+        this.LoadAllpersonnel();
+      });
   }
 
   update() {
@@ -167,32 +147,74 @@ export class OrganizationManagementComponent implements OnInit {
   onDelete(item: any) {
     this.http.delete('organization', item._id).subscribe((e) => {
       Swal.fire('Deleted!', e.organizationEmail, 'success');
+      this.LoadAllpersonnel();
     });
 
-    this.LoadAllpersonnel();
+
   }
 
-  // upload(event: any): void {
-  //   this.fileSelected = event.target.files[0];
-  //   const reader = new FileReader();
-  //   // this.personnelImag = reader.result;
-  //   const size = Math.round(event.target.files[0].size / 1024);
-  //   if (size > 100) {
-  //     Swal.fire(
-  //       'Warning!',
-  //       `The passport exceeded the maximum size, you provided ${size} KB, and the required size is 100 KB`,
-  //       'warning'
-  //     );
-  //     return;
-  //   }
-  //   reader.readAsDataURL(event.target.files[0]);
-  //   reader.onload = (_event) => {
-  //     this.personnelImag = reader.result;
-  //   };
-  //   console.log(this.fileSelected);
+  onDisable(item: any) {
+    this.http
+      .update('organization', item._id, { status: 'DISABLE' })
+      .subscribe((e) => {
+        Swal.fire('Disable!', e.organizationEmail, 'success');
+        this.LoadAllpersonnel();
+      });
+  }
 
-  //   this.fileData.append('file', this.fileSelected, this.fileSelected.name);
-  // }
+  onEnable(item: any) {
+    this.http
+      .update('organization', item._id, { status: 'ACTIVE' })
+      .subscribe((e) => {
+        Swal.fire('Enable!', e.organizationEmail, 'success');
+        this.LoadAllpersonnel();
+      });
+  }
+  View(item: any) {
+    this.showViewDetails=true;
+    this.showAllViewDetails=item
+  }
+  back(){
+    this.showViewDetails=false;
+  }
+  onRegister(item: any) {
+    this.http
+      .update('organization', item._id, { password: '', status: 'ACTIVE' })
+      .subscribe((e) => {
+        this.selectindex = null;
+        this.OrganizationsignUpForm.patchValue(item);
+        this.OrganizationsignUpForm.patchValue({ id: item._id });
+        this.passwordGenerate();
+        this.http
+          .update('organization', item._id, {
+            password: this.OrganizationsignUpForm.value.password,
+          })
+          .subscribe((e) => {
+            Swal.fire(
+              'Password Sent!',
+              'successfully to' +
+                ' ' +
+                e.organizationEmail +
+                '   ' +
+                this.OrganizationsignUpForm.value.password,
+              'success'
+            );
+
+            this.http
+              .sendMail('send-mail', {
+                name: e.organizationName,
+                email: e.organizationEmail,
+                password: this.OrganizationsignUpForm.value.password,
+              })
+              .subscribe((e1) => {
+                console.log('this.OrganizationsignUpForm.value', e1);
+              });
+          });
+
+          this.LoadAllpersonnel()
+      });
+  }
+
 
   onSubmit(): void {
     this.passwordGenerate();

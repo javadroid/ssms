@@ -57,6 +57,8 @@ export class Personnel {
   personnelImage: string;
   @Prop()
   subcriberID: string;
+  @Prop({default:"ACTIVE"})
+  status:string
 }
 
 export const PersonnelSchema = SchemaFactory.createForClass(Personnel);

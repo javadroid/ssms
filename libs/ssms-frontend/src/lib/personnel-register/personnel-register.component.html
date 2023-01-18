@@ -128,7 +128,9 @@
                 <button class="btn" (click)="SendPassword(item)">
                   Send Password
                 </button>
-                <button class="btn" (click)="onDelete(item)">Delete!</button>
+                <button  *ngIf="item.status==='ACTIVE'" class="btn" class="btn btn-warning" (click)="onDisable(item)">Disable</button>
+                <button  *ngIf="item.status==='DISABLE'" class="btn" class="btn btn-warning" (click)="onEnable(item)">Enable</button>
+                <button class="btn btn-danger" (click)="onDelete(item)">Delete!</button>
               </div>
             </td>
           </tr>

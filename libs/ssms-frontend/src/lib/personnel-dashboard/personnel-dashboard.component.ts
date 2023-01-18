@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceApi } from '../shared/service/service-api';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ssms-personnel-dashboard',
@@ -17,6 +18,18 @@ export class PersonnelDashboardComponent implements OnInit {
     console.log(this.id);
     if (this.id) {
       this.http.findOne('personnel', this.id).subscribe((e) => {
+
+        if(e.status=="DISABLE"){
+          localStorage.clear()
+          Swal.fire(
+            'Account Disable ',
+            'Contact your administrator'
+            ,
+            'success'
+          );
+          this.route.navigate(['/login'])
+          return
+        }
         console.log("e",e);
         this.personnelData=[e]
         this.http.findOne('organization', e.organizationId).subscribe(a=>{

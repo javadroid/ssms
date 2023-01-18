@@ -6,51 +6,24 @@
 
         <!-- PERSONNEL LIST BEGINS HERE===========PERSONNEL LIST BEGINS HERE -->
 
-        <div class="personnel_list-container">
+        <div class="personnel_list-container" *ngIf="!showViewDetails">
           <div class="filter_section">
-            <button class="btn btn-secondary" (click)="showFilterList()">
+            <button class="btn btn-secondary" (click)="showFilterDisplay()">
               <img src="images/filter_list_white_24dp.svg" alt="" />Filter list
             </button>
 
             <div class="filter_container" *ngIf="showFilter">
               <div class="input_container mb-3">
-                <label for="" class="d-block">Select state</label>
-                <select name="" id="">
-                  <option value="">Select option</option>
+                <label for="" class="d-block"></label>
+                <select (change)="showFilterList($event.target)" name="" id="">
+                  <option value="ACTIVE">Active Subscription</option>
+                  <option value="PENDING">Pending Subscription</option>
+                  <option value="DISABLE">Disabled Subscription</option>
                 </select>
               </div>
-              <div class="input_container mb-3">
-                <label for="" class="d-block">Select district</label>
-                <select name="" id="">
-                  <option value="">Select option</option>
-                </select>
-              </div>
-              <button class="btn btn-primary">Filter</button>
+
             </div>
 
-            <!-- <button
-              class="btn btn-success m-lg-2"
-              *ngIf="firstShow"
-              (click)="createNew()"
-            >
-              Create Organization
-            </button> -->
-            <button
-              *ngIf="showSecond || edits"
-              style="float: right"
-              (click)="Backward()"
-              class="sign_in-btn btn btn-success"
-            >
-              Back
-            </button>
-            <button
-              *ngIf="showViewDetails"
-              style="float: right"
-              (click)="Backward()"
-              class="sign_in-btn btn btn-success"
-            >
-              Back
-            </button>
           </div>
           <div class="table-responsive" *ngIf="firstShow">
             <table class="table">
@@ -78,13 +51,13 @@
                       <img src="../assets/more_vert_black_24dp.svg" alt="" />
                     </button>
 
-                    <div (click)="$event.stopPropagation()"  class="actions" *ngIf="selectindex === i && showfiltercriteria">
-
-                      <button class="btn" (click)="Edit(item)">Edit</button>
-                      <button class="btn" (click)="SendPassword(item)">
-
-                        Send Password
-                      </button>
+                    <div  class="actions" *ngIf="selectindex === i && showfiltercriteria">
+                      <button class="btn" (click)="View(item)">View</button>
+                      <button *ngIf="item.status==='PENDING'" class="btn" (click)="onRegister(item)">Register</button>
+                      <button *ngIf="item.status==='ACTIVE'"class="btn" (click)="Edit(item)">Edit</button>
+                      <button *ngIf="item.status==='ACTIVE'" class="btn" (click)="SendPassword(item)">Send Password</button>
+                      <button *ngIf="item.status==='DISABLE'" class="btn" (click)="onEnable(item)">Enable</button>
+                      <button *ngIf="item.status==='ACTIVE'" class="btn" (click)="onDisable(item)">Disable</button>
                       <button class="btn " (click)="onDelete(item)">Delete!</button>
                     </div>
                   </td>
@@ -96,201 +69,90 @@
 
         <!-- PERSONNEL CREATION BEGINS HERE===========PERSONNEL CREATION BEGINS HERE -->
 
-        <div class="personnel_reg-form d-flex" *ngIf="showSecond">
-
-          <div class="form_container">
-            <!-- signup_form begins here -->
-
-            <h2 class="form_title">Create Organization</h2>
-
-            <form>
-
-                <!-- stepper btn container -->
-                <div class="stepper-container">
-                  <div class="step_count d-flex align-items-center">
-                    <a  class=" btn step_btn active">
-                      <span>1</span> Organizational information
-                    </a>
-                  </div>
-                </div>
-
-
-                <div  class="primary_info-container">
-                  <div
-                    class="selection-container d-flex align-items-center justify-content-between"
-                  >
-                    <div class="input_container mb-3">
-                      <label for="" class="d-block">Type of Agency</label>
-                      <select [formControl]="OrganizationsignUpForm.controls.typeOfAgency" name="" id="" class="form-control selected">
-                        <option value="">Select</option>
-                        <option value="">Public</option>
-                        <option value="">Private</option>
-                      </select>
-                    </div>
-                    <div class="input_container mb-3">
-                      <label for="" class="d-block">Category of org.</label>
-                      <select [formControl]="OrganizationsignUpForm.controls.categoryOfagency" name="" id="" class="form-control selected">
-                        <option  value="">Select</option>
-                        <option  *ngFor="let category of organizationcategory" [value]="category.organizationCategoryName">{{category.organizationCategoryName}}</option>
-                        <!-- <option value="">Intelligence Agency</option>
-                        <option value="">Law Enforcement</option>
-                        <option value="">Vigilante</option> -->
-                      </select>
-                    </div>
-
-                    <div class="input_container mb-3">
-                      <label for="" class="d-block">Name of Org.</label>
-                      <select [formControl]="OrganizationsignUpForm.controls.organizationName" name="" id="" class="form-control">
-                        <option value="">Select</option>
-                        <option *ngFor="let name of organizationName" [value]="name.organizationName">{{name.organizationName}}</option>
-                        <!-- <option value="">NIA, DIA</option>
-                        <option value="">EFCC, NDLEA</option>
-                        <option value="">AMOTEKUN, OSPAC</option> -->
-                      </select>
-                    </div>
-                  </div>
-
-
-
-                  <div class="input_container mb-3">
-                    <label for="" class="d-block">Organization Email</label>
-                    <input [formControl]="OrganizationsignUpForm.controls.organizationEmail" type="text" class="form-control" placeholder="Organization Email" />
-                  </div>
-
-                </div>
-
-                <label class="sign_in-btn btn btn-success" for="actual-btn">Upload</label>
-                <input id="actual-btn" hidden type="file" />
-                <a (click)="onSubmit()" class="sign_in-btn btn btn-success">Sign up</a>
-              </form>
-          </div>
-        </div>
-
-         <!-- PERSONNEL Updates BEGINS HERE===========PERSONNEL Updates BEGINS HERE -->
-
-         <div class="personnel_reg-form d-flex" *ngIf="edits">
-
-            <div class="form_container">
-              <!-- signup_form begins here -->
-
-              <h2 class="form_title">Update Organization</h2>
-
-              <form>
-
-                  <!-- stepper btn container -->
-                  <div class="stepper-container">
-                    <div class="step_count d-flex align-items-center">
-                      <a  class=" btn step_btn active">
-                        <span>1</span> Organizational information
-                      </a>
-                    </div>
-                  </div>
-
-
-                  <div  class="primary_info-container">
-                    <div
-                      class="selection-container d-flex align-items-center justify-content-between"
-                    >
-                      <div class="input_container mb-3">
-                        <label for="" class="d-block">Type of Agency</label>
-                        <select [formControl]="OrganizationsignUpForm.controls.typeOfAgency" name="" id="" class="form-control selected">
-                          <option value="">Select</option>
-                          <option value="">Public</option>
-                          <option value="">Private</option>
-                        </select>
-                      </div>
-                      <div class="input_container mb-3">
-                        <label for="" class="d-block">Category of org.</label>
-                        <select [formControl]="OrganizationsignUpForm.controls.categoryOfagency" name="" id="" class="form-control selected">
-                          <option  value="">Select</option>
-                          <option  *ngFor="let category of organizationcategory" [value]="category.organizationCategoryName">{{category.organizationCategoryName}}</option>
-                          <!-- <option value="">Intelligence Agency</option>
-                          <option value="">Law Enforcement</option>
-                          <option value="">Vigilante</option> -->
-                        </select>
-                      </div>
-
-                      <div class="input_container mb-3">
-                        <label for="" class="d-block">Name of Org.</label>
-                        <select [formControl]="OrganizationsignUpForm.controls.organizationName" name="" id="" class="form-control">
-                          <option value="">Select</option>
-                          <option *ngFor="let name of organizationName" [value]="name.organizationName">{{name.organizationName}}</option>
-                          <!-- <option value="">NIA, DIA</option>
-                          <option value="">EFCC, NDLEA</option>
-                          <option value="">AMOTEKUN, OSPAC</option> -->
-                        </select>
-                      </div>
-                    </div>
-
-
-
-                    <div class="input_container mb-3">
-                      <label for="" class="d-block">Organization Email</label>
-                      <input [formControl]="OrganizationsignUpForm.controls.organizationEmail" type="text" class="form-control" placeholder="Organization Email" />
-                    </div>
-
-                  </div>
-
-                  <label class="sign_in-btn btn btn-success" for="actual-btn">Upload</label>
-                  <input id="actual-btn" hidden type="file" />
-                  <a (click)="update()" class="sign_in-btn btn btn-success">Update</a>
-                </form>
-            </div>
-          </div>
 
         <!-- VIEW PERSONNEL ============== VIEW PERSONNEL========= VIEW PERSONNEL -->
 
         <div class="personnel_profile" *ngIf="showViewDetails">
+          <div class="filter_section">
+            <button class="btn btn-secondary" (click)="back()">
+              <img src="images/filter_list_white_24dp.svg" alt="" />Back
+            </button>
+            </div>
           <div class="first_row">
             <div class="user_img-container">
-              <img [src]="personnelImag" alt="" />
+              <img [src]="organizationImag" alt="" />
             </div>
-
             <div class="user_primary-info">
               <div class="user_info-container">
-                <p class="info_label">First name</p>
-                <p class="data">{{ showAllViewDetails.firstname }}</p>
+                <p class="info_label">Organization Name</p>
+                <p class="data">{{ showAllViewDetails.organizationName }}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Middle name</p>
-                <p class="data">{{ showAllViewDetails.middlename }}</p>
+                <p class="info_label">Organization Email</p>
+                <p class="data">{{ showAllViewDetails.organizationEmail }}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Last name</p>
-                <p class="data">{{ showAllViewDetails.lastname }}</p>
+                <p class="info_label">Organization Description</p>
+                <p class="data">{{ showAllViewDetails.descriptionOfRole }}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Phone number</p>
-                <p class="data">{{ showAllViewDetails.phone }}</p>
+                <p class="info_label">Status</p>
+                <p class="data">{{ showAllViewDetails.status }}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Home address</p>
-                <p class="data">{{ showAllViewDetails.address }}</p>
+                <p class="info_label">Profile</p>
+                <p class="data">{{ showAllViewDetails.profile }}</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Type Of Agency</p>
+                <p class="data">{{showAllViewDetails.typeOfAgency}}</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Category Of Agency</p>
+                <p class="data">{{showAllViewDetails.categoryOfagency}}</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Address</p>
+                <p class="data">{{showAllViewDetails.address}}</p>
               </div>
               <div class="user_info-container">
                 <p class="info_label">State</p>
-                <p class="data">Rivers State</p>
+                <p class="data">{{showAllViewDetails.state}}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">L.G.A</p>
-                <p class="data">Obio Akpor</p>
+                <p class="info_label">LGA</p>
+                <p class="data">{{showAllViewDetails.lga}}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Department</p>
-                <p class="data">Forensics</p>
+                <p class="info_label">Landline</p>
+                <p class="data">{{showAllViewDetails.landline}}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Rank</p>
-                <p class="data">Detective</p>
+                <p class="info_label">Contact Person First Name</p>
+                <p class="data">{{showAllViewDetails.firstname}}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Supervisor</p>
-                <p class="data">Joel Mbakwe Uzor</p>
+                <p class="info_label">Contact Person Last Name</p>
+                <p class="data">{{showAllViewDetails.lastname}}</p>
               </div>
               <div class="user_info-container">
-                <p class="info_label">Branch/Division</p>
-                <p class="data">Obio Akpor</p>
+                <p class="info_label">Contact Person Middle Name</p>
+                <p class="data">{{showAllViewDetails.middlename}}</p>
               </div>
+              <div class="user_info-container">
+                <p class="info_label">Contact Person Rank</p>
+                <p class="data">{{showAllViewDetails.rank}}</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Contact Person Official Email</p>
+                <p class="data">{{showAllViewDetails.officialemail}}</p>
+              </div>
+              <div class="user_info-container">
+                <p class="info_label">Contact Person Official Phone</p>
+                <p class="data">{{showAllViewDetails.officialphone}}</p>
+              </div>
+
+
             </div>
           </div>
         </div>
