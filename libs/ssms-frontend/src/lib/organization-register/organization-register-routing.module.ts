@@ -5,7 +5,8 @@ import { OrganizationRegisterComponent } from './organization-register.component
 import { ManageRefComponent } from '../manage-ref/manage-ref.component';
 
 const routes: Routes = [{path:'' ,component:OrganizationRegisterComponent,children:[
-  {path:'list' ,component:OrganizationManagementComponent},{path:'ref' ,component:ManageRefComponent},
+  {path:'list' ,component:OrganizationManagementComponent},
+  {path:'ref' ,component:ManageRefComponent},
 ]},
 ];
 

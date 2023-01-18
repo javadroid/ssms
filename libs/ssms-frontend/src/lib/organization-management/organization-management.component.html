@@ -28,13 +28,13 @@
               <button class="btn btn-primary">Filter</button>
             </div>
 
-            <button
+            <!-- <button
               class="btn btn-success m-lg-2"
               *ngIf="firstShow"
               (click)="createNew()"
             >
               Create Organization
-            </button>
+            </button> -->
             <button
               *ngIf="showSecond || edits"
               style="float: right"
@@ -59,9 +59,9 @@
                   <th scope="col">#</th>
 
                   <th scope="col">Name of Org</th>
-                  <th scope="col">Category of org.</th>
-                  <th scope="col">Type of Agency</th>
                   <th scope="col">Organization Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -69,9 +69,9 @@
                 <tr *ngFor="let item of organizationData; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ item.organizationName }}</td>
-                  <td>{{ item.categoryOfagency }}</td>
-                  <td>{{ item.typeOfAgency }}</td>
                   <td>{{ item.organizationEmail }}</td>
+                  <td>{{ item.officialPhone }}</td>
+                  <td>{{ item.status }}</td>
 
                   <td>
                     <button (click)="$event.stopPropagation()" class="btn p-0" (click)="showmenu(i)">

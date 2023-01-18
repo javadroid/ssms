@@ -37,13 +37,15 @@ export class Organization {
      @Prop()
     officialemail: string
      @Prop()
-    officialphone: string
+    officialPhone: string
      @Prop()
     state: string
      @Prop()
     lga: string
      @Prop()
     password: string
+
+
 
     @Prop({default: 'INACTIVE'})
     status: string
