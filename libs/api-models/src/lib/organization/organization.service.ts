@@ -14,29 +14,16 @@ export class OrganizationService {
   async create(createOrganization: OrganizationDTO): Promise<Organization> {
 
     const saltOrRounds = 10;
-    const password = createOrganization.password;
+    const password = createOrganization.password ?? 'welcome';
     const hash = await bcrypt.hash(password, saltOrRounds);
 
     try {
       const createdOrganization = await new this.organizationModel(
 
-        {  typeOfAgency: createOrganization.typeOfAgency,
-          categoryOfagency: createOrganization.categoryOfagency,
-          organizationName: createOrganization.organizationName,
-          address: createOrganization.address,
-          descriptionOfRole: createOrganization.descriptionOfRole,
-          organizationEmail: createOrganization.organizationEmail,
-          landline: createOrganization.landline,
-          firstname: createOrganization.firstname,
-          lastname: createOrganization.lastname,
-          middlename: createOrganization.middlename,
-          rank: createOrganization.rank,
-          officialemail: createOrganization.officialemail,
-          officialphone: createOrganization.officialphone,
-          state: createOrganization.state,
-          lga: createOrganization.lga,
+        {
+          ...createOrganization,
           password: hash,
-          status: createOrganization.status}
+          }
       );
 
       return await createdOrganization.save();
