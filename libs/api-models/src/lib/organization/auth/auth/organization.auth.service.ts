@@ -15,7 +15,7 @@ export class OrganizationAuthService {
     );
 
     if (!user[0]) {
-      return new NotFoundException('User not found');
+      throw new NotFoundException('User not found');
     }
     console.log('sss', password,user[0].password);
     const pass=user[0].password
