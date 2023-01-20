@@ -71,6 +71,18 @@ export class OrganizationService {
 
   async update(_id: string, updateOrganization: OrganizationDTO): Promise<Organization> {
     try {
+      console.log(updateOrganization)
+      const saltOrRounds = 17;
+
+
+      if(updateOrganization.password){
+        const pass =updateOrganization.password;
+      // console.log(_id,password)
+      const hash = await bcrypt.hash(pass, saltOrRounds);
+        updateOrganization.password=hash;
+      }
+
+
       return this.organizationModel.findByIdAndUpdate({ _id }, updateOrganization).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
