@@ -14,7 +14,7 @@ export class PersonnelAuthService {
     const user =await this.personnelService.findbyAny('email',username)
     console.log("useruser2",user)
     if(!user[0]){
-      return new NotFoundException("User not found")
+      throw new NotFoundException("User not found")
     }
 const isMatch = user[0]? await bcrypt.compare(password, user[0].password) :null;
 

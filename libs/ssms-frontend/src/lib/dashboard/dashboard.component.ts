@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(e);
+
         console.log(this.subcriber);
     if (this.subcriber) {
       this.http.findOne('organization', this.subcriber).subscribe((e) => {
