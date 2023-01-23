@@ -79,6 +79,15 @@ export class PersonnelService {
 
   async update(_id: string, updatePersonnel: PersonnelDTO): Promise<Personnel> {
     try {
+      const saltOrRounds = 17;
+
+
+      if(updatePersonnel.password){
+        const pass =updatePersonnel.password;
+      // console.log(_id,password)
+      const hash = await bcrypt.hash(pass, saltOrRounds);
+      updatePersonnel.password=hash;
+      }
       return this.personnelModel.findByIdAndUpdate({ _id }, updatePersonnel).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
