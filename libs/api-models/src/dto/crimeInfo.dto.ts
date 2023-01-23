@@ -18,7 +18,7 @@ export class CrimeInfoDTO{
     vehicleId!: [];
     reportId!: [];
     locationId!: [];
-
+    crimeTitle:string;
     status!:string
     media!: [];
     subscriberId:string

@@ -23,7 +23,11 @@ export class CreateCrimeComponent implements OnInit {
   showWeaponDetails = false;
   fileData = new FormData();
   fileSelected!: any[];
-
+  statements!:string
+  suspectsName=[] as any
+  victimsName=[]as any
+  evidencesName=[]as any
+  m=[]as any
   searchSuspect = new FormControl();
   suspects: any[] = [];
   isOpenSuspect = false;
@@ -41,6 +45,7 @@ export class CreateCrimeComponent implements OnInit {
   showFileInput = false;
   evidences: any[] = [];
   fileName!: string;
+  organizationData=[]as any
   evidenceTypes = [
     {
       _id: '1',
@@ -59,10 +64,12 @@ export class CreateCrimeComponent implements OnInit {
 
   crimeForm = new FormGroup({
     crimeId: new FormControl(this.crimeId),
+    crimeTitle:new FormControl('', [Validators.required]),
     crimeDate: new FormControl('', [Validators.required]),
     crimeTime: new FormControl('', [Validators.required]),
     crimeType: new FormControl('', [Validators.required]),
     statementOfOffense: new FormControl('', [Validators.required]),
+    statement:new FormControl('', []),
     criminalId: new FormArray<any>([]),
     victimId: new FormArray<any>([]),
     media: new FormArray<any>([]),
@@ -120,6 +127,12 @@ export class CreateCrimeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const p=localStorage.getItem('@personnel')
+    if(p)
+    if(this.personnelData.length===0){
+      this.personnelData=[JSON.parse(p)]
+    }
+    console.log("personnelData" ,this.personnelData)
     this.apiService.find('crime-type').subscribe((e) => {
       this.crimetype = e.filter((id: any) => {
         return id.subscriberId === this.personnelData[0].organizationId;
@@ -273,6 +286,7 @@ export class CreateCrimeComponent implements OnInit {
                 return;
               }
               this.suspects.push(e);
+
               console.log('suspects', e);
               console.log('suspectsmmm', this.suspects);
               // localStorage.clear()
@@ -469,12 +483,24 @@ export class CreateCrimeComponent implements OnInit {
   }
 
   onSubmit() {
+    const s=[]
+    for (let i = 0; i < this.suspects.length; i++) {
+      this.suspectsName.push('\n ',this.suspects[i].lastName+' '+this.suspects[i].firstName+' ('+this.suspects[i].nin+') ');
+
+
+    }
+    for (let i = 0; i < this.victims.length; i++) {
+      this.victimsName.push('\n',this.victims[i].lastName+' '+this.victims[i].firstName+' ('+this.victims[i].nin+') ');
+
+    }
+
     const files = [] as any[];
     const crimeForm = this.crimeForm.value;
     const criminalIds = this.suspects.map((suspect) => suspect._id);
     const victimIds = this.victims.map((victim) => victim._id);
     crimeForm['criminalId'] = criminalIds;
     crimeForm['victimId'] = victimIds;
+    crimeForm.statementOfOffense=this.statements
     crimeForm['evidence'] = this.evidences.filter((s: any) => {
       return s.type !== '3';
     });
@@ -487,15 +513,45 @@ export class CreateCrimeComponent implements OnInit {
         });
       }
     });
+    for (let i = 0; i < this.evidences.length; i++) {
+
+      if(this.evidences[i].name==='Media File'){
+        // console.log(files)
+        // this.evidencesName.push('\n',this.evidences[i].name+' (link to midia '+this.m+') ');
+      }else{
+        this.evidencesName.push('\n',this.evidences[i].name+' '+this.evidences[i].brand+this.evidences[i].modelNo+' '+this.evidences[i].license);
+      }
+
+
+    }
     crimeForm['media'] = files;
     crimeForm['personnelId']=this.personnelData[0]._id
     crimeForm['subscriberId']=this.personnelData[0].organizationId
+    this.statements=('**********************************************************************\n'+
+      'Case Title: '+ this.crimeForm.value.crimeTitle+
+      '\nCase Type: '+ this.crimeForm.value.crimeType+
+      '\nCase Date: '+ this.crimeForm.value.crimeDate+
+      '\nCase Time: '+ this.crimeForm.value.crimeTime+
+      '\nOfficer: '+ this.personnelData[0].lastname+" "+this.personnelData[0].firstname+
+      '\nSuspected Individuals are: '+
+      '\n'+this.suspectsName+
+      '\nVictims affected: '+
+      '\n'+this.victimsName+
+      '\n'+this.evidencesName+
+        '\n'+
+      '\n'+'Statement'+
+      '\n \t'+this.crimeForm.value.statement+
+      '\n **********************************************************************'
+
+      )
+    crimeForm.statementOfOffense=this.statements
+    // console.log("first",s.toString())
+    console.log('crimeForm', crimeForm);
+
 
 
     setTimeout(() => {
-      console.log('crimeForm', crimeForm.media.length);
-
-      this.apiService
+        this.apiService
         .create('crime-info', crimeForm)
         .pipe(
           this.toast.observe({
@@ -533,7 +589,7 @@ export class CreateCrimeComponent implements OnInit {
           localStorage.removeItem('suspects');
           localStorage.removeItem('victims');
           localStorage.removeItem('step');
-          this.router.navigate(['../crime']);
+          this.router.navigate(['./home/crime']);
         });
     }, 1000);
   }

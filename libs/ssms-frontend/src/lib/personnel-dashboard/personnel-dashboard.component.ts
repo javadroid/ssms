@@ -16,8 +16,10 @@ export class PersonnelDashboardComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(this.id);
+    localStorage.setItem("@isPersonnel","true")
     if (this.id) {
       this.http.findOne('personnel', this.id).subscribe((e) => {
+
 
         if(e.status=="DISABLE"){
           localStorage.clear()
@@ -31,9 +33,13 @@ export class PersonnelDashboardComponent implements OnInit {
           return
         }
         console.log("e",e);
+        localStorage.setItem("@personnel",JSON.stringify(e))
         this.personnelData=[e]
         this.http.findOne('organization', e.organizationId).subscribe(a=>{
           this.organizationData=[a]
+
+          localStorage.setItem("@organization",JSON.stringify(a))
+          console.log("o",a);
         })
 
 

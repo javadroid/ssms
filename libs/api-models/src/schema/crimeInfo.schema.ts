@@ -25,6 +25,8 @@ export class CrimeInfo {
     @Prop()
     crimeType:string;
     @Prop()
+    crimeTitle:string
+    @Prop()
     crimeDate: string;
     @Prop()
     crimeTime: string;
