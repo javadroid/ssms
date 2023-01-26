@@ -30,6 +30,10 @@ export class Report {
     email: string
     @Prop()
     GPSlocation: []
+    @Prop()
+    personnel: string
+    @Prop()
+    organization: string
 
 
 

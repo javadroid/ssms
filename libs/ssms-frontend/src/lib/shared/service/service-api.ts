@@ -2,8 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import Swal from 'sweetalert2';
+import { environment } from '@env-api/environment'
 
-const apiUrl = `http://localhost:3322/`;
+
+const apiUrl ='http://localhost:3322/api'
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,38 +21,38 @@ export class ServiceApi {
   constructor(private http: HttpClient) {}
 
   find(model: string): Observable<any> {
-    return this.http.get(`${apiUrl}api/${model}/`);
+    return this.http.get(`${apiUrl}/${model}/`);
   }
 
   findAny(model: string, field: string, value: string): Observable<any> {
     return this.http.get(
-      `${apiUrl}api/${model}/${field}/${value}`
+      `${apiUrl}/${model}/${field}/${value}`
     );
   }
 
   findOne(model: string, id: string): Observable<any> {
-    return this.http.get(`${apiUrl}api/${model}/${id}`);
+    return this.http.get(`${apiUrl}/${model}/${id}`);
   }
 
   update(model: string, id: string, update: any): Observable<any> {
-    return this.http.patch(`${apiUrl}api/${model}/${id}`, update);
+    return this.http.patch(`${apiUrl}/${model}/${id}`, update);
   }
 
   create(model: string, create: any): Observable<any> {
-    return this.http.post(`${apiUrl}api/${model}`, create);
+    return this.http.post(`${apiUrl}/${model}`, create);
   }
 
   upload(model: string, file: any): Observable<any> {
-    return this.http.post(`${apiUrl}api/${model}`, file);
+    return this.http.post(`${apiUrl}/${model}`, file);
   }
 
   delete(model: string, id: string): Observable<any> {
-    return this.http.delete(`${apiUrl}api/${model}/${id}`);
+    return this.http.delete(`${apiUrl}/${model}/${id}`);
   }
 
   login(model: string, login: any): Observable<any> {
     return this.http
-      .post(`${apiUrl}api/${model}/login`, login)
+      .post(`${apiUrl}/${model}/login`, login)
       .pipe(
         tap((x: any) => {
           localStorage.setItem('token', x.access_token);
@@ -61,7 +65,7 @@ export class ServiceApi {
       );
   }
   profile(model: string): Observable<any> {
-    return this.http.get(`${apiUrl}api/${model}/profile`).pipe(
+    return this.http.get(`${apiUrl}/${model}/profile`).pipe(
       tap((x: any) => {
         if (x.user === 'organization')
           this.signedOrg$ = new BehaviorSubject(true);
@@ -82,12 +86,12 @@ export class ServiceApi {
 
   resetpassword(model: string, pass: any): Observable<any> {
     return this.http.patch(
-      `${apiUrl}api/${model}/resetpassword`,
+      `${apiUrl}/${model}/resetpassword`,
       pass
     );
   }
 
   sendMail(model: string,data:any): Observable<any>{
-    return this.http.post(`${apiUrl}api/${model}`,data)
+    return this.http.post(`${apiUrl}/${model}`,data)
   }
 }

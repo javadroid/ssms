@@ -10,39 +10,36 @@ export class ViewReportComponent implements OnInit {
   constructor(private http: ServiceApi) {}
   showList = true;
   showView = false;
-  personnelData = [] as any[];
+
+  personnelData=[] as any
+  organizationData=[] as any
   isRelate=false
   reportType=[] as any
   reports=[] as any
   report=[] as any
-
+  personneldetails=[] as any
   ngOnInit(): void {
-    this.http.find('report').subscribe((e) => {
-      // this.http.find('crime-type').subscribe((a) => {
-      //   const crime_type = a.filter((id: any) => {
-      //     return id.subscriberId === this.personnelData[0].organizationId;
-      //   });
 
-      //   for (let i = 0; i < e.reportType.length; i++) {
-      //      this.isRelate = e.reportType.some((item:any) => crime_type.includes(item))
-      //   }
+    const type=localStorage.getItem("@isPersonnel")
+    const p=localStorage.getItem("@personnel")
+    const o=localStorage.getItem("@organization")
+    if(p&&o){
+    this.personnelData=[JSON.parse(p)]
+    this.organizationData=[JSON.parse(o)]
+    }
 
-
-      //     for (let j = 0; j < a.crimetype.length; j++) {
-
-      //       this.reportType.push(e.reportType.includes(a.crimetype[e]))
-      //     }
-
-      //     console.log(this.isRelate,this.reportType)
-
-
-
-
-      // });
-      this.reports=e
+    if(type==="true"){
+      this.http.find('report').subscribe((e) => {
+        console.log(e,this.personnelData,this.organizationData)
+        this.reports=e.filter((id:any)=> id.personnel===this.personnelData[0]._id)
+      });
+    }else{
+      this.http.find('report').subscribe((e) => {
+        this.reports=e.filter((id:any)=> id.organization===this.organizationData[0]._id)
+      });
+    }
 
 
-    });
   }
 
   ShowView(item:any){
@@ -50,5 +47,9 @@ export class ViewReportComponent implements OnInit {
     this.showView = true;
 
     this.report=item
+
+    this.http.findOne("personnel",item.personnel).subscribe(e=>{
+      this.personneldetails=e
+    })
   }
 }
