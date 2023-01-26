@@ -1,19 +1,19 @@
 <div class="field">
-    
+
   <input
     type="text"
     class="form-control text"
     id="exampleFormControlInput1"
     [placeholder]="placeholder"
     [formControl]="control"
-    
+
   />
   <ng-container *ngIf="control.touched && control.errors">
-    <div *ngIf="control.errors?.['required']">Title is required</div>
+    <div *ngIf="control.errors?.['required']">Title is Required</div>
     <div *ngIf="control.errors?.['maxlength']">
-      value you entered is
+      Value You Entered Is:
       {{ control.errors['maxlength'].actualLength}}
-      character long, but it must be most
+      Character Long, But It Must Be
       {{ control.errors['maxlength'].requiredLength}}
     </div>
   </ng-container>

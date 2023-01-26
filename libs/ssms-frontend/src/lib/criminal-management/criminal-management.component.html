@@ -4,7 +4,7 @@
     <div class="top_nav d-flex align-items-center">
       <ng-container *ngIf="createModal === false">
         <div (click)="createModal = true" class="btn btn-success">
-          Create profile
+          Create Profile
         </div>
       </ng-container>
       <ng-container *ngIf="createModal === true">
@@ -65,15 +65,15 @@
         <div class="criminal_info">
           <div class="user_primary-info">
             <div class="user_info-container">
-              <p class="info_label">First name</p>
+              <p class="info_label">First Name</p>
               <p class="data">{{ criminalData[0].firstName }}</p>
             </div>
             <div class="user_info-container">
-              <p class="info_label">Middle name</p>
+              <p class="info_label">Middle Name</p>
               <p class="data">{{ criminalData[0].lastName }}</p>
             </div>
             <div class="user_info-container">
-              <p class="info_label">Last name</p>
+              <p class="info_label">Last Name</p>
               <p class="data">{{ criminalData[0].middleName }}</p>
             </div>
             <div class="user_info-container">
@@ -137,7 +137,7 @@
               <p class="data">{{criminalData[0].weight}}</p>
             </div>
             <div class="user_info-container">
-              <p class="info_label">Phone number</p>
+              <p class="info_label">Phone Number</p>
               <p class="data">{{ criminalData[0].phone }}</p>
             </div>
             <div class="user_info-container">
@@ -195,7 +195,7 @@
             <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt}}</span></p>
             <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
             <p class="crime_info">
-              Officer Assigned: <span>{{oneCrime.personnelId}}</span>
+              Personnel Assigned: <span>{{oneCrime.personnelId}}</span>
             </p>
           </div>
           <p class="statement">
@@ -271,7 +271,7 @@
           [ngClass]="{ active: stepper === 0 }"
           (click)="stepper = 0"
           class="btn step_btn"
-          ><span>1</span>Primary information</a
+          ><span>1</span>Primary Information</a
         >
         <a
           [ngClass]="{ active: stepper === 1 }"
@@ -292,7 +292,7 @@
       <div *ngIf="stepper === 0" class="primary_info">
         <div class="d-flex w-100 justify-content-between name_container">
           <div class="input_container mb-3">
-            <label for="" class="d-block">First name</label>
+            <label for="" class="d-block">First Name</label>
             <input
               formControlName="firstName"
               type="text"
@@ -301,7 +301,7 @@
             />
           </div>
           <div class="input_container mb-3">
-            <label for="" class="d-block">Last name</label>
+            <label for="" class="d-block">Last Name</label>
             <input
               formControlName="lastName"
               type="text"
@@ -310,7 +310,7 @@
             />
           </div>
           <div class="input_container mb-3">
-            <label for="" class="d-block">Middle name</label>
+            <label for="" class="d-block">Middle Name</label>
             <input
               formControlName="middleName"
               type="text"
@@ -333,7 +333,7 @@
           <label for="" class="d-block">Date of Birth</label>
           <input
             formControlName="dateOfBirth"
-            type="text"
+            type="date"
             class="form-control"
             placeholder="Date of Birth"
           />
@@ -363,7 +363,7 @@
           </div>
 
           <div class="input_container mb-3">
-            <label for="" class="d-block">LGA of Origin</label>
+            <label for="" class="d-block">L.G.A of Origin</label>
             <select
               formControlName="lgaOfOrigin"
               name=""
@@ -437,7 +437,7 @@
           />
         </div>
         <div class="input_container mb-3">
-          <label for="" class="d-block">Phone number</label>
+          <label for="" class="d-block">Phone Number</label>
           <input
             formControlName="phone"
             type="tel"
@@ -468,7 +468,7 @@
           </div>
 
           <div class="input_container mb-3">
-            <label for="" class="d-block">LGA</label>
+            <label for="" class="d-block">L.G.A</label>
             <select
               formControlName="lga"
               name=""
@@ -492,12 +492,16 @@
       <div *ngIf="stepper === 2" class="contact_information">
         <div class="input_container mb-3">
           <label for="" class="d-block">Gender</label>
-          <input
-            formControlName="gender"
-            type="text"
-            class="form-control"
-            placeholder="Hair Color"
-          />
+          <select
+          aria-placeholder="elect Gender"
+          formControlName="gender"
+          class="form-control">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="others">Others</option>
+        </select>
+
+
         </div>
         <div class="input_container mb-3">
           <label for="" class="d-block">Hair Color</label>
@@ -536,7 +540,7 @@
           />
         </div>
         <div class="input_container mb-3">
-          <label for="" class="d-block">Photo capture</label>
+          <label for="" class="d-block">Upload Photograph</label>
           <input
             (formdata)="(fileData)"
             (change)="upload($event)"

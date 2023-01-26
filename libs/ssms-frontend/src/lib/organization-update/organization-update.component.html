@@ -15,7 +15,7 @@
 
         <div class="stepper-container">
           <div class="step_count d-flex align-items-center">
-            <button class="btn step_btn" [ngClass]="step === steps[0] ? 'active' : ''" (click)="onNext(steps[0])"><span>1</span> Organizational information</button>
+            <button class="btn step_btn" [ngClass]="step === steps[0] ? 'active' : ''" (click)="onNext(steps[0])"><span>1</span> Organizational Information</button>
             <button class="btn step_btn" [ngClass]="step === steps[1] ? 'active' : ''" (click)="onNext(steps[1])"><span>2</span>Contact Person's Information</button>
           </div>
         </div>
@@ -42,7 +42,7 @@
               organizationForm.get('descriptionOfRole')?.errors ? 'is-invalid' : ''"
                placeholder="Description of Role" />
                <div class="invalid-feedback">
-                Please provide role.
+                Please Provide Role.
               </div>
             </div>
 
@@ -55,7 +55,7 @@
               organizationForm.get('landline')?.errors ? 'is-invalid' : ''"
               placeholder="LandLine / Mobile" />
               <div class="invalid-feedback">
-                Please provide landline/mobile.
+                Please Provide Landline/Mobile.
               </div>
             </div>
             <button class="btn btn-success" (click)="onNext(steps[1])">Next</button>
@@ -66,36 +66,36 @@
           <div class="contact_information" *ngSwitchCase="'contactInfo'">
             <div class="d-flex w-100 justify-content-between name_container">
               <div class="input_container mb-3">
-                <label for="" class="d-block">First name</label>
+                <label for="" class="d-block">First Name</label>
                 <input type="text" class="form-control" formControlName="firstname"
                 [ngClass]="
                 f.submitted &&
                 organizationForm.get('firstname')?.errors ? 'is-invalid' : ''"
                 placeholder="First name" />
                 <div class="invalid-feedback">
-                  Please provide first name.
+                  Please Provide First Name.
                 </div>
               </div>
               <div class="input_container mb-3">
-                <label for="" class="d-block">Last name</label>
+                <label for="" class="d-block">Last Name</label>
                 <input type="text" class="form-control" formControlName="lastname"
                 [ngClass]="
                 f.submitted &&
                 organizationForm.get('lastname')?.errors ? 'is-invalid' : ''"
                 placeholder="Last name" />
                 <div class="invalid-feedback">
-                  Please provide last name.
+                  Please Provide Last Name.
                 </div>
               </div>
               <div class="input_container mb-3">
-                <label for="" class="d-block">Middle name</label>
+                <label for="" class="d-block">Middle Name</label>
                 <input type="text" class="form-control" formControlName="middlename"
                 [ngClass]="
                 f.submitted &&
                 organizationForm.get('middlename')?.errors ? 'is-invalid' : ''"
                 placeholder="Last name" />
                 <div class="invalid-feedback">
-                  Please provide middle name.
+                  Please Provide Middle Name.
                 </div>
               </div>
             </div>
@@ -107,19 +107,19 @@
               organizationForm.get('rank')?.errors ? 'is-invalid' : ''"
               placeholder="Rank / Designation" />
               <div class="invalid-feedback">
-                Please provide rank.
+                Please Provide Rank.
               </div>
             </div>
 
             <div class="input_container mb-3">
-              <label for="" class="d-block">Official Phone number</label>
+              <label for="" class="d-block">Official Phone Number</label>
               <input type="text" class="form-control" formControlName="officialphone"
               [ngClass]="
               f.submitted &&
               organizationForm.get('officialphone')?.errors ? 'is-invalid' : ''"
               placeholder="Official Phone number" />
               <div class="invalid-feedback">
-                Please provide official phone.
+                Please Provide Official Phne Number.
               </div>
             </div>
             <button class="btn border-success" (click)="onNext(steps[0])">Previous</button>

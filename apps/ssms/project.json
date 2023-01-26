@@ -17,7 +17,8 @@
         "assets": ["apps/ssms/src/favicon.ico", "apps/ssms/src/assets"],
         "styles": [
           "apps/ssms/src/styles.css",
-          "apps/ssms/src/sass/style.scss"
+          "apps/ssms/src/sass/style.scss",
+          "apps/ssms/src/css/style.css"
         ],
         "scripts": [],
         "allowedCommonJsDependencies": [
@@ -30,7 +31,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "18mb"
             },
             {
               "type": "anyComponentStyle",

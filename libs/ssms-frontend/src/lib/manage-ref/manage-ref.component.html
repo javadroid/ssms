@@ -15,9 +15,9 @@
 
 
     <div class="input_container mb-3">
-          <label for="" class="d-block">Select Ref</label>
+          <label for="" class="d-block">Select Reference</label>
           <select (change)="onselect($event)" name="" id="">
-            <option *ngFor="let item of section" [value]="item">{{ item }}</option>
+            <option *ngFor="let item of section" [value]="item">{{ item.toUpperCase() }}</option>
           </select>
         </div>
       <div class="input_container mb-3">
@@ -126,9 +126,9 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Branch</th>
-            <th scope="col">lga</th>
-             <th scope="col">state</th>
-             <th scope="col">country</th>
+            <th scope="col">L.G.A</th>
+             <th scope="col">State</th>
+             <th scope="col">Country</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -210,7 +210,7 @@
   <div *ngIf="show === 'department'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">department</label>
+        <label for="" class="d-block">Department</label>
         <input
           [formControl]="Form.controls.departmentName"
           type="text"
@@ -237,7 +237,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">department</th>
+            <th scope="col">Department</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -263,7 +263,7 @@
   <div *ngIf="show === 'station'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">station</label>
+        <label for="" class="d-block">Station</label>
         <input
           [formControl]="Form.controls.stationName"
           type="text"
@@ -281,7 +281,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">station</th>
+            <th scope="col">Station</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -307,7 +307,7 @@
   <div *ngIf="show === 'division'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">division</label>
+        <label for="" class="d-block">Division</label>
         <input
           [formControl]="Form.controls.divisionName"
           type="text"
@@ -334,7 +334,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">division</th>
+            <th scope="col">Division</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -360,7 +360,7 @@
   <div *ngIf="show === 'policy'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">policy</label>
+        <label for="" class="d-block">Policy</label>
         <input
           [formControl]="Form.controls.policy"
           type="text"
@@ -387,7 +387,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">policy</th>
+            <th scope="col">Policy</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -413,7 +413,7 @@
   <div *ngIf="show === 'organizationCategory'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">organizationCategory</label>
+        <label for="" class="d-block">Organization-Category</label>
         <input
           [formControl]="Form.controls.organizationCategoryName"
           type="text"
@@ -466,7 +466,7 @@
   <div *ngIf="show === 'organizationName'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">organizationName</label>
+        <label for="" class="d-block">Organization Name</label>
         <input
           [formControl]="Form.controls.organizationName"
           type="text"
@@ -493,7 +493,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">organizationName</th>
+            <th scope="col">Organization Name</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>
@@ -520,7 +520,7 @@
   <div *ngIf="show === 'crimetype'" class="reference">
     <div class="d-flex w-100 new_ref align-items-center">
       <div class="input_container mb-3">
-        <label for="" class="d-block">crimetype</label>
+        <label for="" class="d-block">Crime Type</label>
         <input
           [formControl]="Form.controls.crimetype"
           type="text"
@@ -547,7 +547,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">crimetype</th>
+            <th scope="col">Crime Type</th>
             <!-- <th scope="col">Last</th>
               <th scope="col">Handle</th> -->
             <th scope="col"></th>

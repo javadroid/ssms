@@ -13,21 +13,21 @@
             [ngClass]="step === steps[0] ? 'active' : ''"
             (click)="onNext(steps[0])"
           >
-            <span>1</span> Primary information
+            <span>1</span> Primary Information
           </button>
           <button
             class="btn step_btn"
             [ngClass]="step === steps[1] ? 'active' : ''"
             (click)="onNext(steps[1])"
           >
-            <span>2</span>Case suspect
+            <span>2</span>Case Suspect
           </button>
           <button
             class="btn step_btn"
             [ngClass]="step === steps[2] ? 'active' : ''"
             (click)="onNext(steps[2])"
           >
-            <span>3</span>Victims
+            <span>3</span>Victim(s)
           </button>
           <button
             class="btn step_btn"
@@ -194,12 +194,12 @@
             <!-- evidence selection=============evidence selection -->
             <ng-container formGroupName="evidence">
               <div class="input_container mb-3">
-                <label for="" class="d-block">Select item</label>
+                <label for="" class="d-block">Select Item</label>
                 <select
                   formControlName="type"
                   (change)="onSelectEvidenceType($event.target)"
                 >
-                  <option value="">Select item</option>
+                  <option value="">Select Item</option>
                   <option
                     *ngFor="let evidence of evidenceTypes"
                     [value]="evidence?._id"
@@ -233,7 +233,7 @@
                   />
                 </div>
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">Model No</label>
+                  <label for="" class="d-block">Model Number</label>
                   <input
                     type="text"
                     formControlName="modelNo"
@@ -246,7 +246,7 @@
                    <!-- describe evidence(based on what was earlier selected) -->
           <div class="d-flex w-100 justify-content-between name_container" *ngIf="showWeaponDetails">
             <div class="input_container mb-3">
-              <label for="" class="d-block">Weapon name</label>
+              <label for="" class="d-block">Weapon Name</label>
               <input type="text" formControlName="brand" class="form-control" placeholder="Weapon name" />
             </div>
             <div class="input_container mb-3">
@@ -263,7 +263,7 @@
                 *ngIf="showFileInput"
               >
                 <div class="input_container mb-3">
-                  <label for="" class="d-block">Model No</label>
+                  <label for="" class="d-block">Model Number</label>
                   <input
                   (formdata)="(fileData)"
             (change)="upload($event)"
@@ -331,8 +331,8 @@
               ></button>
 
               <p class="message">
-                Suspect not found in database, would you like to save your
-                entries to draft while you create this suspect?
+                Suspect Not Found in Database, Would You Like to Save Your
+                Entries to Draft While You Create This Suspect?
               </p>
               <div class="">
                 <button class="btn" (click)="closeNotFoundSuspect()">No</button>
@@ -356,8 +356,8 @@
               ></button>
 
               <p class="message">
-                Victim not found in database, would you like to save your
-                entries to draft while you create this suspect?
+                Victim Not Found in Database, Would You Like to Save Your
+                Entries to Draft While You Create This Victim?
               </p>
               <div class="">
                 <button class="btn" (click)="closeNotFoundSuspect()">No</button>

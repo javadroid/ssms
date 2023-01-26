@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CrimeHeaderComponent {
   @Output() searchEmit = new EventEmitter<string>();
+  @Input() label=''
  search = new FormControl('',[Validators.required]);
 
   onSubmit() {
