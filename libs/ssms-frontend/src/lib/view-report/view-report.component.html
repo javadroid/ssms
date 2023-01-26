@@ -14,7 +14,7 @@
         <tr (click)="ShowView(item)" *ngFor="let item of reports">
           <th scope="row">{{item.title}}</th>
 
-          <td >{{item.reportType[0]}}</td>
+          <td ><p style="display: inline-block;" *ngFor="let item2 of item.reportType"> {{item2}}, </p> </td>
           <td>{{item.location}}</td>
           <td>{{item.details}}</td>
         </tr>
@@ -32,14 +32,16 @@
     <h2 class="crime_title">{{report.title}}</h2>
     <div class="primary_detail d-flex">
 
-      <p class="tag">Report Category: <span class="info">{{report.reportType[0]}}</span></p>
-      <p class="tag">Location: <span class="info">{{report.location}}</span></p>
+      <p class="tag">Report Category:<td ><p class="info" style="display: inline-block;" *ngFor="let item2 of report.reportType"> {{item2}}, </p> </td>
+      <p class="tag">Location: <span class="info">{{report.location}} {{report.lga}} {{report.state}}, {{report.country}} </span></p>
+      <p class="tag">Personnel reported to: <span class="info">{{personneldetails.lastname}} {{personneldetails.firstname}} ID: {{personneldetails._id}} Branch: {{personneldetails.branch}} </span></p>
     </div>
+    <h4>Details:</h4>
     <p class="detail">
       {{report.details}}
     </p>
 
-    <button class="btn btn-primary">Escalate this case</button>
+    <button disabled class="btn btn-primary">Escalate this case</button>
     <button (click)=" showList = true;showView = false;" class="btn close">Close</button>
   </div>
 </div>

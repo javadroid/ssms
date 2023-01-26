@@ -9,5 +9,7 @@ export class ReportDTO{
     lga: string
     phone: string
     email: string
+    personnel: string
+    organization: string
     GPSlocation:[]
 }

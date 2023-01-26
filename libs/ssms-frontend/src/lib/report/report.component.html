@@ -44,23 +44,60 @@
 
         <div class="location_selection">
           <div class="input_container mb-3">
-            <label for="" class="d-block">Location of incident</label>
-            <input [formControl]="reportForm.controls.location" type="text" class="form-control" placeholder="Location of incident" />
+            <label for="" class="d-block">Address of incident</label>
+            <input [formControl]="reportForm.controls.location" type="text" class="form-control" placeholder="Address of incident" />
           </div>
-          <div class="input_container mb-3">
-            <label for="" class="d-block">State</label>
-            <select [formControl]="reportForm.controls.state">
-              <option value="">Select option</option>
-              <option *ngFor="let item of state" [value]="item.state">{{item.state}}</option>
-            </select>
 
-          </div>
+          <div
+            class="selection-container d-flex align-items-center justify-content-between"
+          >
+
           <div class="input_container mb-3">
-            <label for="" class="d-block">LGA</label>
-            <select  [formControl]="reportForm.controls.lga">
-              <option value="">Select option</option>
-              <option *ngFor="let item of lga" [value]="item.lga">{{item.lga}}</option>
+            <label for="" class="d-block">Country</label>
+            <select (change)="onCountryChange($event.target)" name="" id="" class="form-control">
+              <option value="NG">Nigeria</option>
+              <option
+                *ngFor="let item of countryDetails"
+                [value]="[item.isoCode, item.name]"
+              >
+                {{ item.name }}
+              </option>
             </select>
+          </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">State</label>
+              <select
+                name=""
+                id=""
+                class="form-control"
+                #state
+                (change)="onStateChange($event.target)"
+
+
+              >
+                <option>Select State</option>
+                <option
+                  *ngFor="let state of stateDetails"
+                  [value]="[state.name,state.isoCode]"
+                >
+                  {{ state.name }}
+                </option>
+              </select>
+            </div>
+            <div class="input_container mb-3">
+              <label for="" class="d-block">L.G.A </label>
+              <select
+                name=""
+                id=""
+                (change)="getBranch()"
+                [formControl]="reportForm.controls.lga"
+                class="form-control selected"
+              >
+                <option *ngFor="let lga of lgaDetails" [value]="lga">
+                  {{ lga }}
+                </option>
+              </select>
+            </div>
 
 
           </div>
@@ -72,16 +109,16 @@
 
           </div>
 
-          <!-- <div class="agency_list">
+          <div *ngIf="this.personnel.length>0" class="agency_list">
             <p class="info text-primary">
-              There are 2 agencies around the location of this incident which of them do you want to send this report?
+              There are {{this.personnel.length}} agencies around the location of this incident which of them do you want to send this report?
             </p>
 
             <div class="agencies">
-              <button class="btn agency">Elimgbu Police Station - 09027364739</button>
-              <button class="btn agency">Eneka Police Station - 09027364739</button>
+              <button [ngClass]="{'isselectBranch':isselectBranch===item._id}" (click)="selectBranch(item)" *ngFor="let item of this.personnel" class="btn agency">{{item.branch}} - {{item.organization.organizationName}} - {{item.officialphone}}</button>
+
             </div>
-          </div> -->
+          </div>
         </div>
 
         <div class="button_holder">
