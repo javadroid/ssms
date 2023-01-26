@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 
-const apiUrl = `http://localhost:3322/`;
+const apiUrl = `https://api.mrssms.com/`;
 @Injectable({
   providedIn: 'root',
 })
