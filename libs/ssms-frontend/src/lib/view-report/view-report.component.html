@@ -36,6 +36,9 @@
       <p class="tag">Location: <span class="info">{{report.location}} {{report.lga}} {{report.state}}, {{report.country}} </span></p>
       <p class="tag">Personnel reported to: <span class="info">{{personneldetails.lastname}} {{personneldetails.firstname}} ID: {{personneldetails._id}} Branch: {{personneldetails.branch}} </span></p>
     </div>
+    <div class="primary_detail d-flex">
+      <p class="tag">Reporter details: <span class="info">{{report.email}} {{report.phone}}  </span></p>
+    </div>
     <h4>Details:</h4>
     <p class="detail">
       {{report.details}}

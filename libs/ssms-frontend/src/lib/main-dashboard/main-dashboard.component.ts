@@ -25,7 +25,7 @@ export class MainDashboardComponent implements OnInit {
           n.organizationId ===this.organizationData[0]._id).length
   });
     this.http.find('crime-info').subscribe((e:any[])=>{this.totalCasefiles=e.filter((id:any)=>{ return id.subscriberId===this.organizationData[0]._id}).length; })
-    this.http.find('report').subscribe((e:any[])=>{this.totalReports=e.filter((id:any)=>{ return id.subscriberId===this.organizationData[0]._id}).length; })
+    this.http.find('report').subscribe((e:any[])=>{this.totalReports=e.filter((id:any)=> id.organization===this.organizationData[0]._id).length; })
 
   }
 }
