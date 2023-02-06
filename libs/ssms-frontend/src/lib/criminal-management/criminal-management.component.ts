@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ServiceApi } from '../shared/service/service-api';
 import { environment } from '@env-api/environment'
+import { Country, State, City }  from 'country-state-city';
+import { LgaList } from '../shared/lga';
 @Component({
   selector: 'ssms-criminal-management',
   templateUrl: './criminal-management.component.html',
@@ -11,6 +13,7 @@ export class CriminalManagementComponent implements OnInit {
   constructor(private http: ServiceApi) {}
   stepper = 0;
   createModal = false;
+  countryCode=''
   case_modal = false;
   criminal_profile = false;
   suspect_list = false;
@@ -27,7 +30,9 @@ export class CriminalManagementComponent implements OnInit {
 
   crimeData = [] as any[];
   oneCrime: any;
-
+  countryDetails: any[] = [];
+  stateDetails: any[] = [];
+  lgaDetails: any[] = [];
   imageurl = '';
   CriminalInfo = new FormGroup({
     dateOfBirth: new FormControl(),
@@ -62,6 +67,9 @@ export class CriminalManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.CriminalInfo.patchValue({});
+    this.countryDetails= Country.getAllCountries()
+    this.stateDetails  = State.getStatesOfCountry('NG')
+
   }
 
   onSearch() {
@@ -159,5 +167,45 @@ export class CriminalManagementComponent implements OnInit {
       this.media.push(s);
 
     }
+  }
+
+  onCountryChange(event: any) {
+    // this.loadstate(event.value);
+this.countryCode = event.value.split(',')[0]
+    this.stateDetails  = State.getStatesOfCountry(event.value.split(',')[0])
+    console.log(event.value,  this.stateDetails)
+  }
+
+  onStateChange(event: any) {
+    // this.loadLGA(event.value);
+
+    let state =event.value.split(',')[0]
+    const stateCode =event.value.split(',')[1]
+
+    if(this.countryCode==='NG' ||this.countryCode===''){
+
+      if(state==="Abuja Federal Capital Territory"){
+        state ="FCT"
+     }
+      //@ts-ignore
+      this.lgaDetails=LgaList[state]
+
+    }else{
+
+      this.lgaDetails = City.getCitiesOfState(this.countryCode,stateCode)
+
+ const lgaDetail=[]
+      // this.lgaDetails.forEach((city) =>{this.lgaDetails=city.name})
+      for (let i = 0; i < this.lgaDetails.length; i++) {
+
+        lgaDetail.push(this.lgaDetails[i].name)
+      }
+      this.lgaDetails=lgaDetail
+
+
+    }
+    console.log(stateCode, this.lgaDetails,state)
+
+
   }
 }

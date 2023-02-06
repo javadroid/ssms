@@ -348,7 +348,24 @@
             placeholder="Place of Birth"
           />
         </div>
-
+        <div class="input_container mb-3">
+          <label for="" class="d-block">Country</label>
+          <select
+          (change)="onCountryChange($event.target)"
+            formControlName="countryOfOrigin"
+            name=""
+            id=""
+            class="form-control selected"
+          >
+          <option value="NG">Nigeria</option>
+          <option
+            *ngFor="let item of countryDetails"
+            [value]="[item.isoCode, item.name]"
+          >
+            {{ item.name }}
+          </option>
+          </select>
+        </div>
         <div class="d-flex w-100 justify-content-between occupation">
           <div class="input_container mb-3">
             <label for="" class="d-block">State of Origin</label>
@@ -356,9 +373,16 @@
               formControlName="stateOfOrigin"
               name=""
               id=""
+              (change)="onStateChange($event.target)"
               class="form-control selected"
             >
-              <option value="">Select</option>
+            <option>Select State</option>
+            <option
+              *ngFor="let state of stateDetails"
+              [value]="[state.name,state.isoCode]"
+            >
+              {{ state.name }}
+            </option>
             </select>
           </div>
 
@@ -370,24 +394,12 @@
               id=""
               class="form-control selected"
             >
-              <option value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
+            <option *ngFor="let lga of lgaDetails" [value]="lga">
+              {{ lga }}
+            </option>
             </select>
           </div>
-          <div class="input_container mb-3">
-            <label for="" class="d-block">Country</label>
-            <select
-              formControlName="countryOfOrigin"
-              name=""
-              id=""
-              class="form-control selected"
-            >
-              <option [defaultSelected]="'Nigeria'" value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
-            </select>
-          </div>
+
         </div>
 
         <div class="d-flex origin">
@@ -458,12 +470,37 @@
           <div class="input_container mb-3">
             <label for="" class="d-block">State</label>
             <select
-              formControlName="state"
+            (change)="onCountryChange($event.target)"
               name=""
               id=""
               class="form-control selected"
             >
-              <option value="">Select</option>
+            <option value="NG">Nigeria</option>
+            <option
+              *ngFor="let item of countryDetails"
+              [value]="[item.isoCode, item.name]"
+            >
+              {{ item.name }}
+            </option>
+            </select>
+          </div>
+
+          <div class="input_container mb-3">
+            <label for="" class="d-block">State</label>
+            <select
+              formControlName="state"
+              name=""
+              id=""
+              (change)="onStateChange($event.target)"
+              class="form-control selected"
+            >
+            <option>Select State</option>
+            <option
+              *ngFor="let state of stateDetails"
+              [value]="[state.name,state.isoCode]"
+            >
+              {{ state.name }}
+            </option>
             </select>
           </div>
 
@@ -475,9 +512,9 @@
               id=""
               class="form-control selected"
             >
-              <option value="">Select</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
+            <option *ngFor="let lga of lgaDetails" [value]="lga">
+              {{ lga }}
+            </option>
             </select>
           </div>
         </div>

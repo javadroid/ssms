@@ -1,5 +1,5 @@
 <div class="top_nav d-flex align-items-center">
-    <div class="btn btn-success" routerLink="../create-crime">Create new case</div>
+    <button [disabled]="!isp" class="btn btn-success" routerLink="../create-crime"> {{isp? "Create new case":"..."}}</button>
     <div class="search_container d-flex">
       <input
         class="form-control me-2"
