@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output,Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CrimeHeaderComponent  implements OnInit {
   @Output() searchEmit = new EventEmitter<string>();
+  @Input() label=''
  search = new FormControl('',[Validators.required]);
 isp=false
  ngOnInit(): void{

@@ -5,7 +5,7 @@
       <div  *ngIf="step==='TYPE'" class="steps_container">
         <div class="top_greeting">
           <h1 class="welcome">Select Report Type and Category</h1>
-          <p class="info">Please select report type</p>
+          <p class="info">Please Select Report Type</p>
         </div>
 
         <div class="report_type-container">
@@ -21,7 +21,7 @@
 
         <!-- report category -->
         <div class="report_type-container">
-          <p class="sec_title">please select the category of this report</p>
+          <p class="sec_title">Please Select the Category of This Report</p>
           <button [ngClass]="{'select':reportType.includes(item)}" (click)="addreportCategories(item)" *ngFor="let item of reportCategories" class="card_type">
             <img src="assets/images.jpg" alt="" />
             <p class="title">{{item}}</p>
@@ -39,7 +39,7 @@
       <div *ngIf="step==='LOCATION'" class="steps_container ">
         <div class="top_greeting">
           <h1 class="welcome">Location of Incident</h1>
-          <p class="info">Please specify the location of selected incident</p>
+          <p class="info">Please Specify the Location of Selected Incident</p>
         </div>
 
         <div class="location_selection">
@@ -104,7 +104,7 @@
 
           <div class="input_container mb-3">
             <label for="" class="d-block">{{getlocated}}</label>
-           <button [disabled]="getlocated==='Location Captured✅'" (click)="getLocation()" class="btn btn-secondary"> get location</button>
+           <button [disabled]="getlocated==='Location Captured✅'" (click)="getLocation()" class="btn btn-secondary"> Get Location</button>
 
 
           </div>
@@ -132,7 +132,7 @@
       <div *ngIf="step==='DETAIL'" class="steps_container  ">
         <div class="top_greeting">
           <h1 class="welcome">Incident Detail</h1>
-          <p class="info">Please enter details of this incident in the form below</p>
+          <p class="info">Please Enter Details of this Incident in the Form Below</p>
         </div>
 
         <div class="detail_container">
@@ -149,11 +149,11 @@
             <input [formControl]="reportForm.controls.email" type="email" class="form-control" placeholder="Optional" />
           </div>
           <div class="input_container mb-3">
-            <label for="" class="d-block">Phone no.</label>
+            <label for="" class="d-block">Phone Number</label>
             <input [formControl]="reportForm.controls.phone" type="tel" class="form-control" placeholder="Optional" />
           </div>
           <div class="input_container mb-3">
-            <label for="" class="d-block">Upload file(s) related to incident</label>
+            <label for="" class="d-block">Upload File(s) Related to Incident</label>
             <input
             multiple
             (formdata)="(fileData)"

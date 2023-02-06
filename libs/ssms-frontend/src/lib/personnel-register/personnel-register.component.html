@@ -14,7 +14,7 @@
 
   <div class="stat_container">
     <div class="stat_card">
-      <p class="stat_title">Total personnel</p>
+      <p class="stat_title">Total Personnel</p>
       <div class="digit">20.3K</div>
     </div>
     <div class="stat_card">
@@ -22,11 +22,11 @@
       <div class="digit">20.3K</div>
     </div>
     <div class="stat_card">
-      <p class="stat_title">Total personnel</p>
+      <p class="stat_title">Total Personnel</p>
       <div class="digit">20.3K</div>
     </div>
     <div class="stat_card">
-      <p class="stat_title">Total personnel</p>
+      <p class="stat_title">Total Personnel</p>
       <div class="digit">20.3K</div>
     </div>
 
@@ -42,18 +42,18 @@
   <div class="personnel_list-container">
     <div class="filter_section">
       <button class="btn btn-secondary" (click)="showFilterList()">
-        <img src="images/filter_list_white_24dp.svg" alt="" />Filter list
+        <img src="images/filter_list_white_24dp.svg" alt="" />Filter List
       </button>
 
       <div class="filter_container" *ngIf="showFilter">
         <div class="input_container mb-3">
-          <label for="" class="d-block">Select state</label>
+          <label for="" class="d-block">Select State</label>
           <select name="" id="">
             <option>Select option</option>
           </select>
         </div>
         <div class="input_container mb-3">
-          <label for="" class="d-block">Select district</label>
+          <label for="" class="d-block">Select District</label>
           <select name="" id="">
             <option>Select option</option>
           </select>
@@ -90,10 +90,10 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Staff Ref Number</th>
-            <th scope="col">First name</th>
-            <th scope="col">Middle name</th>
-            <th scope="col">Last name</th>
+            <th scope="col">Personnel Reference Number</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone Number</th>
 
@@ -149,7 +149,7 @@
           [ngClass]="step === steps[0] ? 'active' : ''"
           (click)="onNext(steps[0])"
         >
-          <span>1</span> Primary information
+          <span>1</span> Primary Information
         </button>
         <button
           class="btn step_btn"
@@ -179,7 +179,7 @@
 
           <div class="d-flex w-100 justify-content-between name_container">
             <div class="input_container mb-3">
-              <label for="" class="d-block">First name</label>
+              <label for="" class="d-block">First Name</label>
               <input
                 formControlName="firstname"
                 type="text"
@@ -189,7 +189,7 @@
             </div>
 
             <div class="input_container mb-3">
-              <label for="" class="d-block">Middle name</label>
+              <label for="" class="d-block">Middle Name</label>
               <input
                 formControlName="middlename"
                 type="text"
@@ -198,7 +198,7 @@
               />
             </div>
             <div class="input_container mb-3">
-              <label for="" class="d-block">Last name</label>
+              <label for="" class="d-block">Last Name</label>
               <input
                 formControlName="lastname"
                 type="text"
@@ -229,7 +229,7 @@
 
           <div class="d-flex division justify-content-between">
             <div class="input_container mb-3">
-              <label for="" class="d-block">Branch/division</label>
+              <label for="" class="d-block">Branch/Division</label>
               <select
                 name=""
                 id=""
@@ -264,7 +264,7 @@
 
         <div class="step_2 contact_info" *ngIf="stepperFirstInfo">
           <div class="input_container mb-3">
-            <label for="" class="d-block">Ref number</label>
+            <label for="" class="d-block">Reference Number</label>
             <input
               type="text"
               formControlName="refNunmber"
@@ -281,7 +281,7 @@
             />
           </div>
           <div class="input_container mb-3">
-            <label for="" class="d-block">Phone number</label>
+            <label for="" class="d-block">Phone Number</label>
             <input
               formControlName="phone"
               type="number"
@@ -300,7 +300,7 @@
           </div>
 
           <div class="input_container mb-3">
-            <label for="" class="d-block">Image upload</label>
+            <label for="" class="d-block">Image Upload</label>
             <input
               (formdata)="(fileData)"
               (change)="upload($event)"
@@ -342,23 +342,23 @@
 
       <div class="user_primary-info">
         <div class="user_info-container">
-          <p class="info_label">First name</p>
+          <p class="info_label">First Name</p>
           <p class="data">{{ showAllViewDetails.firstname }}</p>
         </div>
         <div class="user_info-container">
-          <p class="info_label">Middle name</p>
+          <p class="info_label">Middle Name</p>
           <p class="data">{{ showAllViewDetails.middlename }}</p>
         </div>
         <div class="user_info-container">
-          <p class="info_label">Last name</p>
+          <p class="info_label">Last Name</p>
           <p class="data">{{ showAllViewDetails.lastname }}</p>
         </div>
         <div class="user_info-container">
-          <p class="info_label">Phone number</p>
+          <p class="info_label">Phone Number</p>
           <p class="data">{{ showAllViewDetails.phone }}</p>
         </div>
         <div class="user_info-container">
-          <p class="info_label">Home address</p>
+          <p class="info_label">Home Address</p>
           <p class="data">{{ showAllViewDetails.address }}</p>
         </div>
         <div class="user_info-container">

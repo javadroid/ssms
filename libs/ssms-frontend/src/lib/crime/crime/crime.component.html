@@ -3,15 +3,18 @@
     <!-- CASE MANAGEMENT ================ CASE MANAGEMENT ========= CASE MANAGEMENT -->
     <div class="case_management">
 
+
         <ssms-crime-header
         (searchEmit)="onSearch($event)"
         ></ssms-crime-header>
+
+
 
       <!-- CASE PREVIEW AFTER SEARCH HAS BEEN MADE =========== CASE PREVIEW AFTER SEARCH HAS BEEN MADE -->
 
       <div class="case_preview " *ngIf="crimeSearch">
         <div class="section">
-          <h1> <span  (click)="crimeSearch=!crimeSearch" class="status btn-warning ">Back</span></h1>
+          <h1> <span  (click)="crimeSearch=!crimeSearch" class="btn btn-success status ">Back</span></h1>
           <h1 class="crime_type">{{crime?.crimeType}} <span class="status">{{crime?.status}}</span></h1>
           <div class="sub_info d-flex">
             <p class="crime_info">Offense date: <span>{{crime?.crimeDate}}</span></p>
@@ -159,7 +162,7 @@
           <textarea [formControl]="statement" name="" id="" style="width: 100%; height: 100%;" cols="30" rows="10"></textarea>
           </div>
           <div class="modal-footer">
-            <button (click)="statementUpdate()"  type="button" class="btn btn-primary">Save changes</button>
+            <button (click)="statementUpdate()"  type="button" class="btn btn-primary">Save Changes</button>
             <button (click)="isStatementUpdate=!isStatementUpdate" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -222,7 +225,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button (click)="updateSuspect()"  type="button" class="btn btn-primary">Save changes</button>
+            <button (click)="updateSuspect()"  type="button" class="btn btn-primary">Save Changes</button>
             <button (click)="isSuspect=!isSuspect" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -280,7 +283,7 @@
 
           </div>
           <div class="modal-footer">
-            <button (click)="updateVictim()"  type="button" class="btn btn-primary">Save changes</button>
+            <button (click)="updateVictim()"  type="button" class="btn btn-primary">Save Changes</button>
             <button (click)="isVictim=!isVictim" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -302,12 +305,12 @@
           <!-- evidence selection=============evidence selection -->
 
             <div class="input_container mb-3">
-              <label for="" class="d-block">Select item</label>
+              <label for="" class="d-block">Select Item</label>
               <select
                  [formControl]="type"
                 (change)="onSelectEvidenceType($event.target)"
               >
-                <option value="">Select item</option>
+                <option value="">Select Item</option>
                 <option
                   *ngFor="let evidence of evidenceTypes"
                   [value]="evidence?._id"
@@ -341,7 +344,7 @@
                 />
               </div>
               <div class="input_container mb-3">
-                <label for="" class="d-block">Model No</label>
+                <label for="" class="d-block">Model Number</label>
                 <input
                   type="text"
                     [formControl]="modelNo"
@@ -354,7 +357,7 @@
                  <!-- describe evidence(based on what was earlier selected) -->
         <div class="d-flex w-100 justify-content-between name_container" *ngIf="showWeaponDetails">
           <div class="input_container mb-3">
-            <label for="" class="d-block">Weapon name</label>
+            <label for="" class="d-block">Weapon Name</label>
             <input type="text"  [formControl]="brand" class="form-control" placeholder="Weapon name" />
           </div>
           <div class="input_container mb-3">
@@ -371,7 +374,7 @@
               *ngIf="showFileInput"
             >
               <div class="input_container mb-3">
-                <label for="" class="d-block">Model No</label>
+                <label for="" class="d-block">Model Number</label>
                 <input
                 (formdata)="(fileData)"
           (change)="upload($event)"
@@ -422,7 +425,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button (click)="updateEvidence()"  type="button" class="btn btn-primary">Save changes</button>
+        <button (click)="updateEvidence()"  type="button" class="btn btn-primary">Save Changes</button>
         <button (click)="isEvidence=!isEvidence" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -445,8 +448,8 @@
       ></button>
 
       <p class="message">
-        Suspect not found in database, would you like to save your
-        entries to draft while you create this suspect?
+        Suspect Not Found in Database, Would You Like to Save Your
+        Entries to Draft While You Create This Suspect?
       </p>
       <div class="">
         <button class="btn" (click)="closeNotFoundSuspect()">No</button>
@@ -470,8 +473,8 @@
       ></button>
 
       <p class="message">
-        Victim not found in database, would you like to save your
-        entries to draft while you create this suspect?
+        Victim nNot Found in Database, Would You Like to Save Your
+        Entries to Draft While You Create This Victim?
       </p>
       <div class="">
         <button class="btn" (click)="closeNotFoundSuspect()">No</button>
@@ -487,16 +490,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Make transfer of case</h5>
+          <h5 class="modal-title">Make Transfer of Case</h5>
           <button (click)="isTransferCase=!isTransferCase" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="input_container mb-3">
-          <label for="" class="d-block">Select personnel to transfer case to...</label>
+          <label for="" class="d-block">Select Personnel to Transfer Case To...</label>
           <select [formControl]="persenelid">
-            <option value="">Select item</option>
+            <option value="">Select Item</option>
             <option *ngFor="let i of PersonnelDetail" [value]="i._id">{{i.lastname+" "+i.firstname}}</option>
           </select>
 
@@ -505,7 +508,7 @@
         <!-- <textarea [formControl]="statement" name="" id="" style="width: 100%; height: 100%;" cols="30" rows="10"></textarea> -->
         </div>
         <div class="modal-footer">
-          <button (click)="transferCase()"  type="button" class="btn btn-primary">Save changes</button>
+          <button (click)="transferCase()"  type="button" class="btn btn-primary">Save Changes</button>
           <button (click)="isTransferCase=!isTransferCase" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

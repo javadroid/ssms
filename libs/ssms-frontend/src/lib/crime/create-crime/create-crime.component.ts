@@ -334,7 +334,7 @@ export class CreateCrimeComponent implements OnInit {
     localStorage.setItem('suspects', JSON.stringify(this.suspects));
     localStorage.setItem('victims', JSON.stringify(this.victims));
     localStorage.setItem('step', this.step);
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/home/criminal');
   }
 
   onAddVictim() {

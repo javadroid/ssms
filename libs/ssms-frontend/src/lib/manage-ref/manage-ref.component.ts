@@ -52,6 +52,8 @@ export class ManageRefComponent implements OnInit {
     this.Form.patchValue({
       subscriberId:this.organizationData[0]._id
     })
+
+    // this.show.toLocaleUpperCase()
     this.http.find('crime-type').subscribe(e=>{this.crimetype=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('branch').subscribe(e=>{this.branch=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
     this.http.find('division-info').subscribe(e=>{this.division=e.filter((id:any)=>{ return id.subscriberId===this.Form.value.subscriberId}); })
