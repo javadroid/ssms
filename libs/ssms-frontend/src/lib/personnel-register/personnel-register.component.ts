@@ -127,7 +127,7 @@ countryDetails: any[] = [];
       );
     });
   }
-  loadBanch() {
+  loadBranch() {
     this.http.find('branch').subscribe((m) => {
       this.branchDetails = m.filter(
         (n: { subscriberId: string }) =>
@@ -169,7 +169,7 @@ countryDetails: any[] = [];
     this.loadState();
     this.LoadAllpersonnel();
     this.loadDepartment();
-    this.loadBanch();
+    this.loadBranch();
     this.loadStation()
     this.loadRank()
   }

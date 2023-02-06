@@ -1,6 +1,7 @@
 <main class="main_dashboard d-none">
   <div class="top_nav d-flex align-items-center">
     <h3 class="user">NIGERIAN POLICE FORCE</h3>
+
     <div class="search_container d-flex">
       <input
         class="form-control me-2"
@@ -363,27 +364,27 @@
         </div>
         <div class="user_info-container">
           <p class="info_label">State</p>
-          <p class="data">Rivers State</p>
+          <p class="data">{{ showAllViewDetails.state }}</p>
         </div>
         <div class="user_info-container">
           <p class="info_label">L.G.A</p>
-          <p class="data">Obio-Akpor</p>
+          <p class="data">{{ showAllViewDetails.lga }}</p>
         </div>
         <div class="user_info-container">
           <p class="info_label">Department</p>
-          <p class="data">Forensics</p>
+          <p class="data">{{ showAllViewDetails.department }}</p>
         </div>
         <div class="user_info-container">
           <p class="info_label">Rank</p>
-          <p class="data">Detective</p>
+          <p class="data">{{ showAllViewDetails.rank }}</p>
         </div>
         <div class="user_info-container">
           <p class="info_label">Supervisor</p>
-          <p class="data">Joel Mbakwe Uzor</p>
+          <p class="data">{{ showAllViewDetails.supervisor }}</p>
         </div>
         <div class="user_info-container">
           <p class="info_label">Branch/Division</p>
-          <p class="data">Obio-Akpor</p>
+          <p class="data">{{ showAllViewDetails.branch }}</p>
         </div>
       </div>
     </div>
