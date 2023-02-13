@@ -65,29 +65,30 @@ this.pickone=type
 
     if(type==='Crime'){
       this.reportCategories=[
-        'murder',
-        'robbery',
-        'theft',
-        'rape',
-        'fraud',
-        'assault',
-        'kidnap',
-        'impersonation',
-        'overspeeding',
-        'drinking while driving',
-        'intrusion',
-        'trespass',
+        'Murder',
+        'Robbery',
+        'Theft',
+        'Rape',
+        'Financial Fraud',
+        'Assault',
+        'Kidnap',
+        'Corruption',
+        'Overspeeding',
+        'Drinking while Driving',
+        'Intrusion',
+        'Trespass',
+        'Drug Abuse'
       ];
     }else if(type==='Emergency'){
       this.reportCategories=[
-        'fire',
-        'flood',
-        'climate change',
-        'accident',
-        'crashes',
-        'active shooter',
-        'terrorism',
-        'war',
+        'Fire',
+        'Flood',
+        'Climate Change',
+        'Accident',
+        'Crashes',
+        'Active Shooter',
+        'Terrorism',
+        'War',
       ];
     }
   }

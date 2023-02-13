@@ -12,7 +12,12 @@ const routes: Routes = [{path:'',component:PersonnelDashboardComponent,children:
    {path: 'criminal',component:CriminalManagementComponent},
    {path: 'crime',component:CrimeComponent},
    {path: 'create-crime',component:CreateCrimeComponent},
-   {path: 'report',component:ViewReportComponent}
+   {path: 'report',component:ViewReportComponent},
+   {
+    path: '**',
+    redirectTo: 'crime',
+    pathMatch: 'full',
+  },
 ]}];
 
 @NgModule({
