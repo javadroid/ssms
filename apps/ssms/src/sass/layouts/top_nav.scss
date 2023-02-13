@@ -2,11 +2,20 @@
   padding: 1.5rem 2rem;
   .navbar-brand {
     font-size: 2rem !important;
+    
   }
+ 
+.logo-img{
+  width: 70px;
+}
 
   .nav-link {
-    font-size: 1.5rem;
-    margin-right: 2rem;
+    font-size: 1.7rem;
+    color: white;
+    font-weight: bold;
+  }
+  .nav-link:hover{
+    color: rgb(199, 194, 194);
   }
 
   .btn {
@@ -14,3 +23,6 @@
     padding: 1rem 1.2rem;
   }
 }
+
+
+
