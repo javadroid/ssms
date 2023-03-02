@@ -17,6 +17,8 @@ export class CriminalManagementComponent implements OnInit {
   case_modal = false;
   criminal_profile = false;
   suspect_list = false;
+  statement_modal=false
+
   fileData = new FormData();
   fileSelected!: File;
   criminalImg!: any;
@@ -130,6 +132,17 @@ export class CriminalManagementComponent implements OnInit {
     this.fileData.append('file', this.fileSelected, this.fileSelected.name);
   }
 
+  viewStatement(){
+    this.case_modal = false;
+    this.statement_modal = true;
+
+
+  }
+  closeStatement(){
+    this.case_modal = true;
+    this.statement_modal = false;
+
+  }
   viewDetail(item: any) {
     this.case_modal = true;
     console.log(item);

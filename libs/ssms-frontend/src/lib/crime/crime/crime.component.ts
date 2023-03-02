@@ -28,6 +28,7 @@ export class CrimeComponent implements OnInit {
   isEvidence = false;
   isTransferCase = false;
   showFileInput = false;
+  statement_modal=false
   showWeaponDetails = false;
   showVehicleDetails = false;
   statement = new FormControl();
@@ -218,33 +219,7 @@ export class CrimeComponent implements OnInit {
     });
   }
 
-  statementUpdate() {
-    const time = new Date();
-    const s =
-      this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n Statement: ' +
-      this.statement.value +
-      '\n**********************************************************************';
 
-    this.apiService
-      .update('crime-info', this.crime._id, { statementOfOffense: s })
-      .subscribe((e) => {
-        Swal.fire('Statement Updated ', '', 'success');
-        this.ngOnInit();
-        this.isStatementUpdate = false;
-        this.statement.reset();
-        this.onSearch(this.crime._id);
-      });
-  }
 
   OpenSuspect(id: string) {
     this.selectedSuspectId = id;
@@ -360,7 +335,26 @@ export class CrimeComponent implements OnInit {
   closeNotFoundSuspect() {
     this.isOpenNotFoundSuspect = false;
   }
-
+  statementUpdate() {
+    const time = new Date();
+    const s =
+      this.crime.statementOfOffense +
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>Statement Updated</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          <h5>${'&emsp; '+this.statement.value}<h5>
+          `
+    this.apiService
+      .update('crime-info', this.crime._id, { statementOfOffense: s })
+      .subscribe((e) => {
+        Swal.fire('Statement Updated ', '', 'success');
+        this.ngOnInit();
+        this.isStatementUpdate = false;
+        this.statement.reset();
+        this.onSearch(this.crime._id);
+      });
+  }
   updateSuspect() {
     const suspectsName = [];
     const criminalName = [];
@@ -397,21 +391,13 @@ export class CrimeComponent implements OnInit {
 
     const s =
       this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n Suspect Changed from ' +
-      criminalName +
-      '\n to \n' +
-      suspectsName +
-      '\n**********************************************************************';
-    this.apiService
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>Suspect Changed</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          <h5>${'&emsp; Suspect Changed to : '+suspectsName}<h5>
+          `
+      this.apiService
       .update('crime-info', this.crime._id, {
         statementOfOffense: s,
         criminalId: criminalIds,
@@ -565,30 +551,14 @@ export class CrimeComponent implements OnInit {
 
   updateVictim() {
     const victimsName = [];
-    const victimName = [];
     const time = new Date();
     for (let i = 0; i < this.victims.length; i++) {
       victimsName.push(
-        '\n ',
-        this.victims[i].lastName +
-          ' ' +
-          this.victims[i].firstName +
-          ' (' +
-          this.victims[i].nin +
-          ') '
+        `<h5>${'&emsp;&emsp;'+ this.victims[i].lastName +' '+this.victims[i].firstName +' '+this.victims[i].nin}
+          </h5>`
       );
     }
-    for (let i = 0; i < this.victim.length; i++) {
-      victimName.push(
-        '\n ',
-        this.victim[i].lastName +
-          ' ' +
-          this.victim[i].firstName +
-          ' (' +
-          this.victim[i].nin +
-          ') '
-      );
-    }
+
     const criminalIds = this.victims.map(
       (suspect: { _id: any }) => suspect._id
     );
@@ -599,20 +569,12 @@ export class CrimeComponent implements OnInit {
 
     const s =
       this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n Victim Changed from ' +
-      victimName +
-      '\n to \n' +
-      victimsName +
-      '\n**********************************************************************';
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>Suspect Changed</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          <h5>${'&emsp; Suspect Changed to : '+victimsName}<h5>
+          `
     this.apiService
       .update('crime-info', this.crime._id, {
         statementOfOffense: s,
@@ -774,13 +736,8 @@ export class CrimeComponent implements OnInit {
         // this.evidencesName.push('\n',this.evidences[i].name+' (link to midia '+this.m+') ');
       } else {
         evidencesName.push(
-          '\n',
-          this.evidences[i].name +
-            ' ' +
-            this.evidences[i].brand +
-            this.evidences[i].modelNo +
-            ' ' +
-            this.evidences[i].license
+          `<h5> &emsp;&emsp;
+          ${this.evidences[i].name +' ' +this.evidences[i].brand + ' '+this.evidences[i].modelNo +' ' +this.evidences[i].license} </h5>`
         );
       }
     }
@@ -791,34 +748,27 @@ export class CrimeComponent implements OnInit {
         // this.evidencesName.push('\n',this.evidences[i].name+' (link to midia '+this.m+') ');
       } else {
         rEvidenceName.push(
-          '\n',
-          this.rEvidences[i].name +
+          `<h5> &emsp;&emsp;
+         ${ this.rEvidences[i].name +
             ' ' +
-            this.rEvidences[i].brand +
+            this.rEvidences[i].brand +' '+
             this.rEvidences[i].modelNo +
             ' ' +
-            this.rEvidences[i].license
+            this.rEvidences[i].license}
+            </h5>`
         );
       }
     }
 
     const s =
       this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n Evidence Changed from ' +
-      rEvidenceName +
-      '\n to\n' +
-      evidencesName +
-      '\n**********************************************************************';
-
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>Evidence Changed </strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          <h5>${'&emsp; Evidence Changed from : '+rEvidenceName}<h5>
+          <h5>${'&emsp; Evidence Changed to : '+evidencesName}<h5>
+          `
     console.log(
       'rEvidenceName',
       this.evidences,
@@ -842,19 +792,14 @@ export class CrimeComponent implements OnInit {
 
   closeCase() {
     const time = new Date();
+    console.log("first")
     const s =
       this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n\t************ CASE CLOSE ************' +
-      '\n**********************************************************************';
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>CASE CLOSED</strong><h4>Time: ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          `
     this.apiService
       .update('crime-info', this.crime._id, {
         statementOfOffense: s,
@@ -862,25 +807,21 @@ export class CrimeComponent implements OnInit {
       })
       .subscribe(() => {
         Swal.fire('Case closed', '', 'success');
+        this.onSearch(this.crime._id)
       });
   }
 
   openCase() {
     const time = new Date();
 
+
     const s =
       this.crime.statementOfOffense +
-      '\n\n\n**********************************************************************\n' +
-      'Date:' +
-      time.toDateString() +
-      '\n Time:' +
-      time.toLocaleTimeString() +
-      '\nOfficeer: ' +
-      this.personnelData[0].lastname +
-      ' ' +
-      this.personnelData[0].firstname +
-      '\n\t************ CASE REOPEN ************' +
-      '\n**********************************************************************';
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>CASE REOPEN</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          `
     this.apiService
       .update('crime-info', this.crime._id, {
         statementOfOffense: s,
@@ -888,6 +829,7 @@ export class CrimeComponent implements OnInit {
       })
       .subscribe(() => {
         Swal.fire('Case open', '', 'success');
+        this.onSearch(this.crime._id)
       });
   }
 
@@ -900,23 +842,12 @@ if(this.persenelid.value)
       .subscribe((e: any) => {
         const s =
           this.crime.statementOfOffense +
-          '\n\n\n**********************************************************************\n' +
-          'Date:' +
-          time.toDateString() +
-          '\n Time:' +
-          time.toLocaleTimeString() +
-          '\nOfficeer: ' +
-          e.lastname +
-          ' ' +
-          e.firstname +
-          '\n\t************ CASE TRASFERED TO ' +
-          a.lastname +
-          ' ' +
-          a.firstname +
-          '************' +
-          '\n with ID:' +
-          this.persenelid.value +
-          '\n**********************************************************************';
+          `<div>
+          <h3>**********************************************************************************************</h3>
+              <h3><strong>CASE TRANSFERED</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+
+              <h5>${'&emsp; Case Transfered to : '+a.lastname+' '+a.firstname+' with ID: '+ this.persenelid.value }<h5>
+              `
         this.apiService
           .update('crime-info', this.crime._id, {
             personnelId: this.persenelid.value,
@@ -930,5 +861,18 @@ Swal.fire('Case transfered', '', 'success');
       });
 
     })
+  }
+
+
+  viewStatement(){
+
+    this.statement_modal = true;
+
+
+  }
+  closeStatement(){
+
+    this.statement_modal = false;
+
   }
 }

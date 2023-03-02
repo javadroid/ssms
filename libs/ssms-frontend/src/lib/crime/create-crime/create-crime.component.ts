@@ -485,12 +485,18 @@ export class CreateCrimeComponent implements OnInit {
   onSubmit() {
     const s=[]
     for (let i = 0; i < this.suspects.length; i++) {
-      this.suspectsName.push('\n ',this.suspects[i].lastName+' '+this.suspects[i].firstName+' ('+this.suspects[i].nin+') ');
+      this.suspectsName.push(
+        `<h5>${'&emsp;&emsp;'+ this.suspects[i].lastName+' '
+          +this.suspects[i].firstName+' ('
+          +this.suspects[i].nin+') '}</h5>`
+          );
 
 
     }
     for (let i = 0; i < this.victims.length; i++) {
-      this.victimsName.push('\n',this.victims[i].lastName+' '+this.victims[i].firstName+' ('+this.victims[i].nin+') ');
+      this.victimsName.push(
+        `<h5>${'&emsp;&emsp;'+this.victims[i].lastName+' '+this.victims[i].firstName+' ('+this.victims[i].nin+') '}</h5>`
+          );
 
     }
 
@@ -519,7 +525,7 @@ export class CreateCrimeComponent implements OnInit {
         // console.log(files)
         // this.evidencesName.push('\n',this.evidences[i].name+' (link to midia '+this.m+') ');
       }else{
-        this.evidencesName.push('\n',this.evidences[i].name+' '+this.evidences[i].brand+this.evidences[i].modelNo+' '+this.evidences[i].license);
+        this.evidencesName.push( `<h5>${'&emsp;&emsp;'+this.evidences[i].name+' '+this.evidences[i].brand+this.evidences[i].modelNo+' '+this.evidences[i].license} </h5>`);
       }
 
 
@@ -527,23 +533,21 @@ export class CreateCrimeComponent implements OnInit {
     crimeForm['media'] = files;
     crimeForm['personnelId']=this.personnelData[0]._id
     crimeForm['subscriberId']=this.personnelData[0].organizationId
-    this.statements=('**********************************************************************\n'+
-      'Case Title: '+ this.crimeForm.value.crimeTitle+
-      '\nCase Type: '+ this.crimeForm.value.crimeType+
-      '\nCase Date: '+ this.crimeForm.value.crimeDate+
-      '\nCase Time: '+ this.crimeForm.value.crimeTime+
-      '\nOfficer: '+ this.personnelData[0].lastname+" "+this.personnelData[0].firstname+
-      '\nSuspected Individuals are: '+
-      '\n'+this.suspectsName+
-      '\nVictims affected: '+
-      '\n'+this.victimsName+
-      '\n'+this.evidencesName+
-        '\n'+
-      '\n'+'Statement'+
-      '\n \t'+this.crimeForm.value.statement+
-      '\n **********************************************************************'
-
-      )
+    const time = new Date
+    this.statements=(
+      `<div>
+      <h3>**********************************************************************************************</h3>
+          <h3><strong>CASE CREATED</strong><h4>Time ${ time.toLocaleTimeString()} Date: ${time.toDateString()} </h4> </h3>
+          <h4>Officer: ${this.personnelData[0].lastname +' ' +this.personnelData[0].firstname} </h4>
+          <h5>${'&emsp; Case Title : '+this.crimeForm.value.crimeTitle}<h5>
+          <h5>${'&emsp; Case Type : '+this.crimeForm.value.crimeType}<h5>
+          <h5>${'&emsp; Case Date : '+this.crimeForm.value.crimeDate}<h5>
+          <h5>${'&emsp; Suspected Individuals : '+this.suspectsName}<h5>
+          <h5>${'&emsp; Victims affected : '+this.victimsName}<h5>
+          <h5>${'&emsp; Evidence : '+this.evidencesName}<h5>
+          <h5>${'&emsp; Statement : '+this.crimeForm.value.statement}<h5>
+          `
+    )
     crimeForm.statementOfOffense=this.statements
     // console.log("first",s.toString())
     console.log('crimeForm', crimeForm);

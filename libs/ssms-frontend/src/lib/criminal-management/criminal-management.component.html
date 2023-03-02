@@ -192,7 +192,7 @@
           <div class="sub_info d-flex">
             <p class="crime_info">Offense date: <span>{{oneCrime.crimeDate}}</span></p>
             <p class="crime_info">Offense Time: <span>{{oneCrime.crimeTime}}</span></p>
-            <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt}}</span></p>
+            <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt.split('T')[0]}}</span></p>
             <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
             <p class="crime_info">
               Personnel Assigned: <span>{{oneCrime.personnelId}}</span>
@@ -200,9 +200,8 @@
           </div>
           <p class="statement">
             Statement:
-            <span class="d-block"
-              >{{oneCrime.statementOfOffense}}</span
-            >
+
+            <button class="btn btn-info" (click)="viewStatement()" >View</button>
           </p>
         </div>
 
@@ -259,6 +258,21 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="case_modal " *ngIf="statement_modal">
+      <div class="case_card">
+        <button
+        (click)="closeStatement()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <div [outerHTML]="oneCrime.statementOfOffense" class="section">
+        </div>
+
+
       </div>
     </div>
   </div>
