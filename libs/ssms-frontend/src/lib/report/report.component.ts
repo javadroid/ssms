@@ -77,7 +77,10 @@ this.pickone=type
         'Drinking while Driving',
         'Intrusion',
         'Trespass',
-        'Drug Abuse'
+        'Drug Abuse',
+        'War',
+        'Insurrection',
+        'Arm Smuggling'
       ];
     }else if(type==='Emergency'){
       this.reportCategories=[

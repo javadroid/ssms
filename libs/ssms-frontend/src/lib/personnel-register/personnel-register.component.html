@@ -170,7 +170,7 @@
         <div class="step_1" *ngIf="!stepperFirstInfo">
           <div class="input_container mb-3">
             <label for="" class="d-block">Rank</label>
-            <select name="" id="" class="form-control">
+            <select formControlName="rank" name="" id="" class="form-control">
               <option>Select Rank</option>
               <option *ngFor="let item of rankDetails" [value]="item.rank">
                 {{ item.rank }}
@@ -195,7 +195,7 @@
                 formControlName="middlename"
                 type="text"
                 class="form-control"
-                placeholder="Last name"
+                placeholder="Middle name"
               />
             </div>
             <div class="input_container mb-3">
@@ -362,14 +362,7 @@
           <p class="info_label">Home Address</p>
           <p class="data">{{ showAllViewDetails.address }}</p>
         </div>
-        <div class="user_info-container">
-          <p class="info_label">State</p>
-          <p class="data">{{ showAllViewDetails.stateofservice }}</p>
-        </div>
-        <div class="user_info-container">
-          <p class="info_label">L.G.A</p>
-          <p class="data">{{ showAllViewDetails.lgaofservice }}</p>
-        </div>
+
         <div class="user_info-container">
           <p class="info_label">Department</p>
           <p class="data">{{ showAllViewDetails.department }}</p>
@@ -378,10 +371,7 @@
           <p class="info_label">Rank</p>
           <p class="data">{{ showAllViewDetails.rank }}</p>
         </div>
-        <div class="user_info-container">
-          <p class="info_label">Supervisor</p>
-          <p class="data">{{ showAllViewDetails.supervisor }}</p>
-        </div>
+
         <div class="user_info-container">
           <p class="info_label">Branch/Division</p>
           <p class="data">{{ showAllViewDetails.branch }}</p>
