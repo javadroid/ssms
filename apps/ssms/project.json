@@ -20,7 +20,9 @@
           "apps/ssms/src/sass/style.scss",
           "apps/ssms/src/css/style.css"
         ],
-        "scripts": [],
+         "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ],
         "allowedCommonJsDependencies": [
           "sweetalert2"
        ]
