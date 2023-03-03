@@ -793,6 +793,10 @@ export class CrimeComponent implements OnInit {
   closeCase() {
     const time = new Date();
     console.log("first")
+    if(this.crime?.reportId){
+      this.apiService.update('report',this.crime?.reportId,{status:'CLOSED'}).subscribe();
+
+    }
     const s =
       this.crime.statementOfOffense +
       `<div>
@@ -814,7 +818,10 @@ export class CrimeComponent implements OnInit {
   openCase() {
     const time = new Date();
 
+if(this.crime?.reportId){
+  this.apiService.update('report',this.crime?.reportId,{status:'ACTIVE'}).subscribe();
 
+}
     const s =
       this.crime.statementOfOffense +
       `<div>
@@ -875,4 +882,18 @@ Swal.fire('Case transfered', '', 'success');
     this.statement_modal = false;
 
   }
+  checkStringContains(substringArray:any[], mainString:string){
+    for(let i=0; i<substringArray.length; i++){
+        if(mainString.includes(substringArray[i])){
+            return true;
+        }else  if(mainString.includes(substringArray[i].toUpperCase())){
+          return true;
+      }
+    }
+    return false;
+}
+
+openlink(url:string){
+  window.open(url, "_blank");
+}
 }

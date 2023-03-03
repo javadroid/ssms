@@ -18,7 +18,7 @@ export class CriminalManagementComponent implements OnInit {
   criminal_profile = false;
   suspect_list = false;
   statement_modal=false
-
+officer=''
   fileData = new FormData();
   fileSelected!: File;
   criminalImg!: any;
@@ -156,6 +156,12 @@ export class CriminalManagementComponent implements OnInit {
       this.criminalDatas=crime
     }
 
+    this.http.findOne('personnel',item.personnelId).subscribe(e=>{
+      this.officer=e.lastname+' ' +e.firstname
+      console.log("findpersonnel",e)
+
+    })
+
     for (let i = 0; i < item.victimId.length; i++) {
       this.http.findOne('criminal-info',item.victimId[i]).subscribe(e=> {
         victim.push(e);
@@ -221,4 +227,21 @@ this.countryCode = event.value.split(',')[0]
 
 
   }
+
+  checkStringContains(substringArray:any[], mainString:string){
+    for(let i=0; i<substringArray.length; i++){
+        if(mainString.includes(substringArray[i])){
+            return true;
+        }else  if(mainString.includes(substringArray[i].toUpperCase())){
+          return true;
+      }
+    }
+    return false;
+}
+
+openlink(url:string){
+  window.open(url, "_blank");
+}
+
+
 }

@@ -12,4 +12,6 @@ export class ReportDTO{
     personnel: string
     organization: string
     GPSlocation:[]
+    status:string
+     caseId: []
 }

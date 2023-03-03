@@ -162,19 +162,25 @@
             (change)="selectFiles($event)"
           />
           <div
-        *ngIf="message.length"
+        *ngIf="selectedFiles?.length"
         class="alert alert-secondary my-3"
         role="alert"
       >
-        <ul *ngFor="let msg of message; let i = index">
-          <li>{{ msg }}</li>
+        <ul style="display: flex; " *ngFor="let msg of selectedFiles; let i = index">
+          <div style="display: flex; flex-direction: row; justify-content: space-around;">
+            <li>{{ msg.name }}  </li>
+            <div (click)="deletefile(i)" style="margin-left: 20px; color: crimson;" >x</div>
+          </div>
+
         </ul>
+        <div class="btn btn-outline-success" (click)="uploadFiles()"> Upload Files</div>
       </div>
           </div>
         </div>
 
         <div class="button_holder">
-          <button  (click)="onSubmit()" class="btn btn-primary">Submit</button>
+          <button [disabled]="uploading" (click)="onSubmit()" class="btn btn-primary">{{uploading?'Uploading files...':'Submit'}}</button>
+          <button *ngIf="false" (click)="onSubmit()" class="btn btn-primary">Submit</button>
           <button (click)="step='LOCATION'"class="btn btn-secondary">Previous</button>
           <button routerLink="../index" class="btn btn-secondary">Cancel</button>
         </div>

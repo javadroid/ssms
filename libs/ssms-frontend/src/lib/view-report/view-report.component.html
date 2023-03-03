@@ -1,4 +1,4 @@
-<div class="view_report-sec">
+<div style="margin: 30;" class="view_report-sec m">
   <div *ngIf="showList" class="reference_table table-responsive ">
     <table class="table">
       <thead class="table-dark">
@@ -7,7 +7,8 @@
 
           <th scope="col">Category</th>
           <th scope="col">Reported Location</th>
-          <th scope="col">Detail</th>
+
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +17,8 @@
 
           <td><p style="display: inline-block;" *ngFor="let item2 of item.reportType"> {{item2}}, </p> </td>
           <td>{{item.location}}</td>
-          <td>{{item.details}}</td>
+
+          <td>{{item.status}}</td>
         </tr>
       </tbody>
     </table>
@@ -25,11 +27,11 @@
   <!-- SINGLE REPORT VIEW============SINGLE REPORT VIEW -->
 
   <div  *ngIf="showView" class="the_view">
-    <div class="uploads_container">
-      <img *ngFor="let item of report.media" [src]="item" [alt]="item" />
-    </div>
+
 
     <h2 class="crime_title">{{report.title}}</h2>
+    <button *ngIf="type==='true' && report.status==='PENDING'" (click)="escalateCase()" class="btn btn-primary">Escalate this case</button>
+    <button (click)=" showList = true;showView = false;" class="btn close">Close</button>
     <div class="primary_detail d-flex">
 
       <p class="tag">Report Category:<td ><p class="info" style="display: inline-block;" *ngFor="let item2 of report.reportType"> {{item2}}, </p> </td>
@@ -46,7 +48,139 @@
     <div class="primary_detail d-flex">
       <p class="tag"> Details: <span class="info">{{report.details}}</span></p>
     </div>
-    <button disabled class="btn btn-primary">Escalate this case</button>
-    <button (click)=" showList = true;showView = false;" class="btn close">Close</button>
+    <div style="width: 100%;" class="criminal_mgt">
+      <div class="search_container">
+    <div  class="criminal_profile ">
+      <div class="first_row incase_list">
+    <div class="criminal_info ">
+    <div class="title-container">
+      <h2 class="section_title">Case Record <span>{{caseData.length}}</span></h2>
+
+    </div>
+
+    <div  style="width: 100;" *ngFor="let item of caseData" class="case_list ">
+      <div [ngClass]="item.status==='CLOSED'? 'closed':'active'" class="case d-flex ">
+        <span class="crime">{{item.crimeType}}</span>
+        <p class="crime_info">Offense date: <span>{{item.crimeDate}}</span></p>
+        <p class="crime_info">Offense Time: <span>{{item.crimeTime}}</span></p>
+        <p class="status">{{item.status}}</p>
+        <button (click)="viewcaseDetail(item)" class="see_detail">See detail</button>
+      </div>
+    </div>
   </div>
+</div>
+  </div>
+    </div>
+  </div>
+
+    <div style="display: flex; margin-top: 20; align-items: center; flex-wrap: wrap; justify-content: space-between; flex-direction: row;" class="uploads_container">
+      <div  *ngFor="let item of report.media">
+        <img (click)="openlink(item)" width="250" height="250" *ngIf="checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png',],item)"  [src]="item" [alt]="item" />
+        <video (click)="openlink(item)" controls width="250" height="250" *ngIf="checkStringContains(['mp4','avi','mov','wmv','mkv','webm','mpeg','mp4',],item)" [src]="item"></video>
+        <div  class="btn" *ngIf="!checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png','mp4','avi','mov','wmv','mkv','webm','mpeg','mp4'],item)"  (click)="openlink(item)" style="width: 250; margin-left: 10; margin-right: 10; align-items: center; justify-content: center; flex: 1; height: 100%; background-color: rgb(197, 195, 199);"  ><h4 >Click to view file</h4></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="case_modal " *ngIf="case_modal">
+    <div class="case_card">
+      <button
+      (click)="case_modal=false"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+      <div class="section">
+        <h1 class="crime_type">{{oneCrime.crimeType}} <span class="status">{{oneCrime.status}}</span></h1>
+        <div class="sub_info d-flex">
+          <p class="crime_info">Offense date: <span>{{oneCrime.crimeDate}}</span></p>
+          <p class="crime_info">Offense Time: <span>{{oneCrime.crimeTime}}</span></p>
+          <p class="crime_info">Last Updated: <span>{{oneCrime.updatedAt.split('T')[0]}}</span></p>
+          <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
+          <p class="crime_info">
+            Personnel Assigned: <span>{{officer}}</span>
+          </p>
+        </div>
+        <p class="statement">
+          Statement:
+
+          <button class="btn btn-info" (click)="viewStatement()" >View</button>
+        </p>
+      </div>
+
+      <div class="section">
+        <h4 class="section_title">Suspect and Accomplice(s)</h4>
+
+        <div class="suspect_list">
+          <div *ngFor="let item of criminalDatas" class="suspect">
+            <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+            <p class="name">{{item.firstName +' '+item.lastName}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4 class="section_title">Victim(s)</h4>
+
+        <div class="suspect_list">
+          <div *ngFor="let item of criminalDatas" class="suspect">
+            <img [src]="item.image" [alt]="item.firstName +' '+item.lastName" class="sus_img" />
+            <p class="name">{{item.firstName +' '+item.lastName}}</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h4 class="section_title">Evidence - Vehicle</h4>
+
+        <div  *ngFor=" let i of vehicle " class="vehicle_list">
+          <div class="vehicle">
+            <p class="vehicle_info">{{i.brand +' ' }}</p>
+            <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4 class="section_title">Evidence - Weapon</h4>
+
+        <div  *ngFor=" let i of weapon" class="vehicle_list">
+          <div class="vehicle">
+            <p class="vehicle_info">{{i.brand +' ' }}</p>
+            <p class="vehicle_info">{{i.modelNo +' ' }} <span> {{i.license }}</span></p>
+          </div>
+        </div>
+      </div>
+      <div  class="section">
+        <h4   class="section_title">Evidence - Media files</h4>
+
+        <div class="vehicle_list" style="display: flex; margin-top: 20; align-items: center; flex-wrap: wrap; justify-content: space-between; flex-direction: row;" class="uploads_container">
+          <div class="vehicle"  *ngFor="let item of media">
+            <img (click)="openlink(item.image)" width="250" height="250" *ngIf="checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png',],item.image)"  [src]="item.image" [alt]="item.image" />
+            <video (click)="openlink(item.image)" controls width="250" height="250" *ngIf="checkStringContains(['mp4','avi','mov','wmv','mkv','webm','mpeg','mp4',],item.image)" [src]="item.image"></video>
+            <div  class="btn" *ngIf="!checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png','mp4','avi','mov','wmv','mkv','webm','mpeg','mp4'],item.image)"  (click)="openlink(item.image)" style="width: 250; margin-left: 10; margin-right: 10; align-items: center; justify-content: center; flex: 1; height: 100%; background-color: rgb(197, 195, 199);"  ><h4 >Click to view file</h4></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="case_modal " *ngIf="statement_modal">
+    <div class="case_card">
+      <button
+      (click)="closeStatement()"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+      <div [outerHTML]="oneCrime.statementOfOffense" class="section">
+      </div>
+
+
+    </div>
+  </div>
+
 </div>

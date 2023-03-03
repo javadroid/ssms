@@ -21,7 +21,10 @@
 
 
 
-          <a (click)="onSubmit()" class="sign_in-btn btn btn-success">Sign-In</a>
+          <a *ngIf="!loading" (click)="onSubmit()" class="sign_in-btn btn btn-success">Sign-In</a>
+          <a *ngIf="loading" class="sign_in-btn btn btn-success">
+            <img width="20" height="20" src="assets/spinner2.gif" alt="">
+          </a>
         </form>
       </div>
     </div>

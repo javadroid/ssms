@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', []),
     password: new FormControl('', [])
   });
+
+  loading=false
   constructor(private http:ServiceApi,private route:Router) {}
 
   async ngOnInit(): Promise<void> {
@@ -38,6 +40,7 @@ console.log('xs',localStorage.getItem('email'))
   }
 
 onSubmit(){
+  this.loading=true
   console.log(this.loginForm.value)
 
 
@@ -54,10 +57,12 @@ onSubmit(){
           ,
           'success'
         );
+        this.loading=false
 
       }else if(e.status=="ACTIVE"){
         localStorage.setItem('id', e._id);
       this.route.navigate(['/dashboard'])
+      this.loading=false
       }
 
     },err=>{
@@ -69,6 +74,7 @@ onSubmit(){
           ,
           'error'
         );
+        this.loading=false
       }
     })
   }else if(this.loginForm.controls.username.value?.split('-')[0]==='PER'){
@@ -81,11 +87,12 @@ onSubmit(){
           ,
           'success'
         );
-
+        this.loading=false
       }else if(e.status=="ACTIVE"){
         localStorage.setItem('id', e.id);
       this.route.navigate(['/home'])
       console.log(e)
+      this.loading=false
       }
 
     },err=>{
@@ -98,8 +105,17 @@ onSubmit(){
           ,
           'error'
         );
+        this.loading=false
       }
     })
+  }else{
+    Swal.fire(
+      'Incorrect Email or Password ',
+      'Contact your administrator'
+      ,
+      'error'
+    );
+    this.loading=false
   }
 
 

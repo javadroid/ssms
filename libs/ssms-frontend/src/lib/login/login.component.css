@@ -2,7 +2,7 @@
     margin-top: 0;
 
     padding: 0; }
-  
+
   body {
     height: 100vh;
     width: 100%;
@@ -11,7 +11,7 @@
     position: relative;
     background: #fffefd !important;
     color: #1b1c1e !important; }
-  
+
   .ball {
     background-image: linear-gradient(to bottom, #d4bdb9, #75087e);
     filter: blur(5rem);
@@ -19,46 +19,46 @@
     position: fixed;
     z-index: -1;
     border-radius: 1000px; }
-  
+
   .one {
     height: 80%;
     width: 40%;
     top: -50%;
     right: 30%; }
-  
+
   .two {
     height: 80%;
     width: 40%;
     bottom: -50%;
     left: -5%;
     filter: blur(2rem); }
-  
+
   .three {
     height: 40%;
     width: 20%;
     top: 15%;
     right: 2%;
     filter: blur(2rem); }
-  
+
   @font-face {
     font-family: old_english;
     src: url(/css/OLD.ttf); }
-  
+
   @font-face {
     font-family: nimbus;
     src: url(/css/Nimbus.ttf); }
-  
+
   @font-face {
     font-family: flo;
     src: url(/css/Florens.ttf); }
-  
+
   main {
     max-height: 93%;
     overflow-y: scroll; }
-  
+
   html {
     font-size: 62.5%; }
-  
+
   .right_content {
     width: 100%;
     height: 100%;
@@ -99,7 +99,7 @@
       filter: blur(80px);
       left: -20%;
       bottom: -30%; }
-  
+
   @keyframes shake {
     0% {
       transform: translate(1px, 1px) rotate(0deg); }
@@ -123,7 +123,7 @@
       transform: translate(1px, 2px) rotate(0deg); }
     100% {
       transform: translate(1px, -2px) rotate(-1deg); } }
-  
+
   .navbar {
     padding: 1.5rem 2rem; }
     .navbar .navbar-brand {
@@ -133,7 +133,7 @@
     .navbar .btn {
       font-size: 1.4rem;
       padding: 1rem 1.2rem; }
-  
+
   header {
     height: 100%;
     width: 100%; }
@@ -148,7 +148,7 @@
         font-size: 1.5rem;
         padding: 1.5rem 2rem;
         border-radius: 5px; }
-  
+
   .access_container {
     width: 100%;
     height: 100%; }
@@ -199,4 +199,4 @@
           margin-top: 2rem;
           font-size: 1.3rem;
           padding: 1rem 1.3rem; }
-  
+

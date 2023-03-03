@@ -18,9 +18,7 @@ export class OrganizationAuthService {
       throw new NotFoundException('User not found');
     }
     console.log('sss', password,user[0].password);
-    const pass=user[0].password
-
-    const isMatch = await bcrypt.compare(password, pass);
+    const isMatch = await bcrypt.compare(password, user[0].password);
     console.log('useruser2', isMatch);
     if (user[0] && isMatch) {
       return user[0];

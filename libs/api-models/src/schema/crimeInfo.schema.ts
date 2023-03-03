@@ -49,7 +49,7 @@ export class CrimeInfo {
     @Prop()
     vehicleId: [];
     @Prop()
-    reportId: [];
+    reportId: string;
     @Prop()
     locationId: [];
     @Prop()

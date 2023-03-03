@@ -15,13 +15,14 @@ import { LgaList } from '../shared/lga';
 export class ReportComponent implements OnInit {
   constructor(private http:ServiceApi, private route:Router) {}
   progressInfos!:any
-  selectedFiles!:any
-  message!:any
-  personnel=[]as any
+  selectedFiles=[] as any[]
+
+  personnel=[]as any[]
   step='TYPE'
   pickone=''
   isselectBranch=''
   countryCode=''
+  uploading =false
   GPSlocation:any[]=[]
   getlocated=''
   addreport=''
@@ -54,7 +55,7 @@ isorgBranchDetails=false;
   ngOnInit(): void {
     // console.log("dd",this.location.length)
     this.getlocated=this.GPSlocation.length ===0? 'Please allow us locate you':'Location Captured✅'
-
+    this.uploading =false
     this.countryDetails= Country.getAllCountries()
     this.stateDetails  = State.getStatesOfCountry('NG')
 
@@ -110,25 +111,31 @@ this.pickone=type
   }
 
   selectFiles(event: any): void {
-    this.message = [];
+
+    this.uploading =true
     this.progressInfos = [];
-    this.selectedFiles = event.target.files;
 
-    if (this.selectedFiles) {
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.message.push(this.selectedFiles[i].name);
-      }
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.selectedFiles.push(event.target.files[i])
+
     }
-  }
 
+  }
+  deletefile(id:number){
+console.log(id)
+this.selectedFiles=this.selectedFiles.filter((m,index)=>id!==index)
+
+  }
   uploadFiles(): void {
-    this.message = [];
 
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.upload(i, this.selectedFiles[i]);
       }
+
       this.reportForm.patchValue({media:this.url})
+      this.getLocation()
+      this.uploading =false
     }
   }
   upload(idx: number, file: File): void {
@@ -147,23 +154,30 @@ this.pickone=type
 
   onSubmit(){
 
-    this.uploadFiles();
-    console.log(this.reportForm.value);
-    this.http.create('report', this.reportForm.value).subscribe((e) => {
-      console.log("report",e);
-      Swal.fire('Reported successfully!', 'please hold for a response ' , 'success');
-      this.route.navigate(['../index']);
-    });
+     this.http.create('report', this.reportForm.value).subscribe((e) => {
+       console.log("report",e);
+       console.log(this.reportForm.value);
+       Swal.fire('Reported successfully!', 'please hold for a response ' , 'success');
+      //  this.route.navigate(['../index']);
+     });
+    }
 
-  }
+
+
 
   getLocation(){
     navigator.geolocation.getCurrentPosition(location => {
       this.GPSlocation=[location.coords]
       this.isorgBranchDetails=true
       this.getlocated='Location Captured✅'
-      this.reportForm.patchValue({GPSlocation:this.GPSlocation})
-       console.log( this.GPSlocation)
+      this.reportForm.patchValue({GPSlocation:[{accuracy: location.coords.accuracy,
+        altitude: location.coords.altitude,
+        altitudeAccuracy: location.coords.altitudeAccuracy,
+        heading: location.coords.heading,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        speed: location.coords.speed}]})
+       console.log( this.GPSlocation[0])
     })
   }
 
@@ -200,12 +214,12 @@ this.countryCode = event.value.split(',')[0]
   }
 
   getBranch(){
-
+    this.personnel=[]
     this.isorgBranchDetails=true
     let personnel=[]as any
     let branch=[]as any
     let crime_type=[] as any
-
+    const test=[] as any[]
     this.http.find("crime-type").subscribe(e=>{
       for (let i = 0; i < this.reportType.length; i++) {
         crime_type.push(e.filter((type: any) => type.crimetype.includes(this.reportType[i])))
@@ -214,7 +228,6 @@ this.countryCode = event.value.split(',')[0]
 
       for (let i = 0; i < crime_type.length; i++) {
       //  if(crime_type[i].subscriberId!==crime_type[i].subscriberId)
-        console.log(crime_type[i][0])
         if(crime_type[i][0]?.subscriberId){
           this.http.findOne("organization",crime_type[i][0]?.subscriberId).subscribe(a=>{
             this.http.find("personnel").subscribe(p=>{
@@ -226,14 +239,24 @@ this.countryCode = event.value.split(',')[0]
                     type.country===this.reportForm.value.country &&
                     type.state===this.reportForm.value.state &&
                     type.lga===this.reportForm.value.lga )
-                    console.log("personnel1",personnel)
                     for (let j = 0; j < personnel.length; j++) {
                       for (let k = 0; k < branch.length; k++) {
                         if(personnel[j].branch===branch[k].branchName){
+
+                          if(personnel[j]._id)
                           personnel[j]['organization']=a
                           personnel[j]["branchDetails"]=branch[k]
-                            console.log("personnel",personnel[j])
-                           this.personnel.push(personnel[j])
+
+                          if(test.length===0){
+                            test.push(JSON.stringify(personnel[j]));
+                            this.personnel.push(Object.preventExtensions(personnel[j]))
+                          }else {
+                            if (!test.includes(JSON.stringify(personnel[j]))) {
+                              test.push(JSON.stringify(personnel[j]));
+                            }
+                            this.personnel=(test.map(str => JSON.parse(str)))
+                          }
+
 
                         }
                       }
@@ -249,10 +272,10 @@ this.countryCode = event.value.split(',')[0]
 
 
       }
-
     })
 
   }
+
 
   selectBranch(item:any){
     this.isselectBranch=item._id

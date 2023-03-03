@@ -23,7 +23,7 @@
         <p class="crime_info">
           Offense Time: <span>{{ crime?.crimeTime }}</span>
         </p>
-        <p class="crime_info">Last Updated Time: <span>10:15 PM</span></p>
+        <!-- <p class="crime_info">Last Updated Time: <span>{{crime?.updatedAt}}</span></p> -->
         <!-- <p class="crime_info">Closed on: <span>20/12/2022</span></p> -->
         <p class="crime_info">
           Officer Assigned:
@@ -78,7 +78,7 @@
         </button>
       </h4>
 
-      <div *ngFor="let i of criminal" class="suspect_list">
+      <div *ngFor="let i of criminal" style="display: flex; flex-direction: row;" class="suspect_list">
         <div class="suspect">
           <img [src]="i.image" alt="" class="sus_img" />
           <p class="name">{{ i.firstName + ' ' + i.lastName }}</p>
@@ -160,12 +160,17 @@
         </button>
       </h4>
 
-      <div *ngFor="let i of media" class="vehicle_list">
-        <div class="vehicle">
-          <p class="vehicle_info">{{ i.name }}</p>
-          <img [src]="i.image" [alt]="" class="sus_img" />
+
+      <div class="vehicle_list" style="display: flex; margin-top: 20; align-items: center; flex-wrap: wrap; justify-content: space-between; flex-direction: row;" class="uploads_container">
+        <div class="vehicle"  *ngFor="let item of media">
+          <img (click)="openlink(item.image)" width="250" height="250" *ngIf="checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png',],item.image)"  [src]="item.image" [alt]="item.image" />
+          <video (click)="openlink(item.image)" controls width="250" height="250" *ngIf="checkStringContains(['mp4','avi','mov','wmv','mkv','webm','mpeg','mp4',],item.image)" [src]="item.image"></video>
+          <div  class="btn" *ngIf="!checkStringContains(['gif','webp','ico','bmp','svg','jpeg','jpg','png','mp4','avi','mov','wmv','mkv','webm','mpeg','mp4'],item.image)"  (click)="openlink(item.image)" style="width: 250; margin-left: 10; margin-right: 10; align-items: center; justify-content: center; flex: 1; height: 100%; background-color: rgb(197, 195, 199);"  ><h4 >Click to view file</h4></div>
         </div>
       </div>
+
+
+
     </div>
   </div>
 

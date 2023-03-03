@@ -34,6 +34,10 @@ export class Report {
     personnel: string
     @Prop()
     organization: string
+    @Prop()
+    caseId: []
+    @Prop({default:"PENDING"})
+    status: string
 
 
 

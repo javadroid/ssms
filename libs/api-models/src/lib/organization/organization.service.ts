@@ -33,10 +33,8 @@ export class OrganizationService {
   }
 
   async resetpassword(password:any): Promise<Organization> {
-    const saltOrRounds = 17;
-    const pass =password.password;
-    // console.log(_id,password)
-    const hash = await bcrypt.hash(pass, saltOrRounds);
+
+    const hash = await bcrypt.hash(password.password, 15);
     console.log(hash)
     try {
       return this.organizationModel.findByIdAndUpdate({ _id:password.id }, {password:hash}).exec();
