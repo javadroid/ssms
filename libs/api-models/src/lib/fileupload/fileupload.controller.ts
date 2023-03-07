@@ -41,7 +41,7 @@ export class FileuploadController {
       const path = `document/${file.path.split('\\')[1]}`;
 
       names.push(
-        `${process.env['NX_API_URL']}/document/` + file.path.split('\\')[1]
+        `https://api-mrssms.up.railway.app/api/document/` + file.path.split('\\')[1]
       );
     });
     return names;

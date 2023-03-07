@@ -6,7 +6,8 @@ import { environment } from '@env-api/environment'
 
 
 // const apiUrl ='https://api.mrssms.com/api'
-const apiUrl  ='http://localhost:3322/api'
+// const apiUrl  ='http://localhost:3322/api'
+const apiUrl  ='https://api-mrssms.up.railway.app/api'
 
 @Injectable({
   providedIn: 'root',
