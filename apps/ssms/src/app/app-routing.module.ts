@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { OrganizationAuthGuard, PersonnelAuthGuard } from '@ssms/ssms-frontend';
 import { AppComponent } from './app.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -85,5 +86,19 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  onstructor(router: Router) {
+    router.events.subscribe((val) => {
+        if (location.hash) {
+            const element = document.getElementById(location.hash.replace('#', ''));
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({block: "start", behavior: "smooth"});
+                }, 1);
+            }
+        }
+    });
+}
+}

@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 import { environment } from '@env-api/environment'
 
 
-const apiUrl ='http://localhost:3322/api'
-
+// const apiUrl ='https://api.mrssms.com/api'
+const apiUrl  ='http://localhost:3322/api'
 
 @Injectable({
   providedIn: 'root',
