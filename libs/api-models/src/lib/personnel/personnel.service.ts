@@ -104,7 +104,7 @@ export class PersonnelService {
 
 
   async resetpassword(password:any): Promise<Personnel> {
-    const saltOrRounds = 17;
+    const saltOrRounds = 10;
     const pass =password.password;
     // console.log(_id,password)
     const hash = await bcrypt.hash(pass, saltOrRounds);

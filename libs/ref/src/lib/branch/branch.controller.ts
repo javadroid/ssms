@@ -40,7 +40,7 @@ export class BranchController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: BranchDTO) {
       return this.branchService.update(_Id, updated);
     }

@@ -41,7 +41,7 @@ export class SecurityApparatusController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: SecurityApparatusDTO) {
       return this.securityApparatusService.update(_Id, updated);
     }

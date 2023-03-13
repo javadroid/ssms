@@ -40,7 +40,7 @@ export class OrganizationcategoryController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: OrganizationcategoryDTO) {
       return this.organizationacategoryService.update(_Id, updated);
     }

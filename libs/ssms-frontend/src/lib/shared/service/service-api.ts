@@ -6,8 +6,8 @@ import { environment } from '@env-api/environment'
 
 
 // const apiUrl ='https://api.mrssms.com/api'
-// const apiUrl  ='http://localhost:3322/api'
-const apiUrl  ='https://api-mrssms.up.railway.app/api'
+const apiUrl  ='http://localhost:3322/api'
+// const apiUrl  ='https://api-mrssms.up.railway.app/api'
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class ServiceApi {
   }
 
   update(model: string, id: string, update: any): Observable<any> {
-    return this.http.patch(`${apiUrl}/${model}/${id}`, update);
+    return this.http.post(`${apiUrl}/${model}/${id}`, update);
   }
 
   create(model: string, create: any): Observable<any> {
@@ -86,7 +86,7 @@ export class ServiceApi {
   }
 
   resetpassword(model: string, pass: any): Observable<any> {
-    return this.http.patch(
+    return this.http.post(
       `${apiUrl}/${model}/resetpassword`,
       pass
     );

@@ -41,7 +41,7 @@ export class LocationInfoController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: LocationInfoDTO) {
       return this.locationInfoService.update(_Id, updated);
     }

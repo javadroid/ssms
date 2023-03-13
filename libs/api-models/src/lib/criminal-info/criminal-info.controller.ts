@@ -59,7 +59,7 @@ export class CriminalInfoController {
     // }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: CriminalInfoDTO) {
     return this.criminalInfoService.update(_Id, updated);
   }

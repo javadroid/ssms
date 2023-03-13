@@ -40,7 +40,7 @@ export class PolicyController {
       }
     }
 
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: PolicyDTO) {
       return this.policyService.update(_Id, updated);
     }

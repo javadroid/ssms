@@ -21,7 +21,10 @@ import { RefModule } from '@ssms/ref';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+
+    }),
     MongooseModule.forRoot(process.env.MONGOOSE_LINK),
 
     ReportModule,

@@ -37,7 +37,7 @@ export class DivisionInfoController {
     }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: DivisionInfoDTO) {
     return this.divisionInfoService.update(_Id, updated);
   }

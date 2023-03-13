@@ -41,7 +41,7 @@ export class CaseFileInfoController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: CaseFileInfoDTO) {
       return this.caseFileInfoService.update(_Id, updated);
     }

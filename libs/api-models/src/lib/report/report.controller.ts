@@ -56,7 +56,7 @@ export class ReportController {
     }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: ReportDTO) {
     return this.reportService.update(_Id, updated);
   }

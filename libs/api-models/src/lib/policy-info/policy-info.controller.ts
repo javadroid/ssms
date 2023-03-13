@@ -39,7 +39,7 @@ export class PolicyInfoController {
     }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: PolicyInfoDTO) {
     return this.policyInfoService.update(_Id, updated);
   }

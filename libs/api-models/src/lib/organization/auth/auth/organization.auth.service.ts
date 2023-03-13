@@ -2,11 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { OrganizationService } from '../../organization.service';
 import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class OrganizationAuthService {
   constructor(
     private jwtService: JwtService,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private config: ConfigService
   ) {}
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.organizationService.findbyAny(
@@ -32,8 +34,9 @@ export class OrganizationAuthService {
       organizationEmail: user.organizationEmail,
       sub: user._id,
     };
+
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, {secret: this.config.get('JWT_CONSTANT_ORG')}),
       _id: user._id,
       user_email: 'ORG-' + user.organizationEmail,
       isAuthenticated: true,

@@ -40,7 +40,7 @@ export class StatesController {
       }
     }
 
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: StatesDTO) {
       return this.statesService.update(_Id, updated);
     }

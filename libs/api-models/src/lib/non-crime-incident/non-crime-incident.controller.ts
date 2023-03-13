@@ -40,7 +40,7 @@ export class NonCrimeIncidentController {
     }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: NonCrimeIncidentDto) {
     return this.nonCrimeIncidentService.update(_Id, updated);
   }

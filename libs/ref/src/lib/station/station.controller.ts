@@ -40,7 +40,7 @@ export class StationController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: StationDTO) {
       return this.stationService.update(_Id, updated);
     }

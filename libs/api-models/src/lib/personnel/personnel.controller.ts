@@ -39,7 +39,7 @@ export class PersonnelController {
   }
 
   @UseGuards(AuthGuard('jwt1'))
-  @Patch('resetpassword')
+  @Post('resetpassword')
   async reset(@Body() pass:any) {
     return this.personnelService.resetpassword(pass.password)
     // return req.user;
@@ -82,7 +82,7 @@ export class PersonnelController {
   }
 
   // @UseGuards(JwtAuthGuard)
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: PersonnelDTO) {
     return this.personnelService.update(_Id, updated);
   }

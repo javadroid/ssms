@@ -30,7 +30,7 @@ constructor(private organizationService:OrganizationService, private organizatio
   }
 
 
-  @Patch('resetpassword')
+  @Post('resetpassword')
   async reset(@Body() pass:any) {
     return this.organizationService.resetpassword(pass.password)
     // return req.user;
@@ -81,7 +81,7 @@ constructor(private organizationService:OrganizationService, private organizatio
     // }
   }
 
-  @Patch(':_id')
+  @Post(':_id')
   async update(@Param('_id') _Id: string, @Body() updated: OrganizationDTO) {
     return this.organizationService.update(_Id, updated);
   }

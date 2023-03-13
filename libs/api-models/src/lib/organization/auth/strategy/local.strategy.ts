@@ -18,7 +18,7 @@ export class LocalStrategy extends PassportStrategy(Strategy,"custom1"){
         username = username.split('-')[1]
 
         const user=await this.organizationAuthService.validateUser(username, password);
-
+        console.log("user",user)
         if(!user){
             throw new UnauthorizedException();
         }

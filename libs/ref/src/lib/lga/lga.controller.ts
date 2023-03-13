@@ -41,7 +41,7 @@ export class LgaController {
         }
       }
     
-      @Patch(':_id')
+      @Post(':_id')
       async update(@Param('_id') _Id: string, @Body() updated: LgaDTO) {
         return this.lgaService.update(_Id, updated);
       }

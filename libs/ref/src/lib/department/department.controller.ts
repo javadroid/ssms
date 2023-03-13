@@ -40,7 +40,7 @@ export class DepartmentController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: DepartmentDTO) {
       return this.departmentService.update(_Id, updated);
     }

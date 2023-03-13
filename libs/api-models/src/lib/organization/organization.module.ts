@@ -8,15 +8,22 @@ import { LocalStrategy } from './auth/strategy/local.strategy';
 import { OrganizationController } from './organization.controller';
 import { OrganizationService } from './organization.service';
 import { OrganizationAuthService } from './auth/auth/organization.auth.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 
 @Module({
 
   imports:[MongooseModule.forFeature([{ name: Organization.name, schema: OrganizationSchema }]),PassportModule,
-  JwtModule.register({
-  secret:process.env.JWT_CONSTANT_ORG,
-  signOptions:{expiresIn:'120000s'}
-}),PassportModule
+  PassportModule,
+JwtModule.registerAsync({
+  imports: [ConfigModule],
+  useFactory: async (configService: ConfigService) => {
+    return {
+      secret: configService.get<string>('JWT_CONSTANT_ORG'),
+    };
+  },
+  inject: [ConfigService],
+    })
 ],
 
 

@@ -40,7 +40,7 @@ export class RankController {
       }
     }
 
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: RankDTO) {
       return this.rankService.update(_Id, updated);
     }

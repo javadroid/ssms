@@ -40,7 +40,7 @@ export class WeaponInfoController {
         }
       }
     
-      @Patch(':_id')
+      @Post(':_id')
       async update(@Param('_id') _Id: string, @Body() updated: WeaponInfoDTO) {
         return this.weaponInfoService.update(_Id, updated);
       }

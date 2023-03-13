@@ -40,7 +40,7 @@ export class OrganizationnameController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: OrganizationnameDTO) {
       return this.organizationnameService.update(_Id, updated);
     }

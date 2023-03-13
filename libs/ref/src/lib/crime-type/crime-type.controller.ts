@@ -31,7 +31,7 @@ export class CrimeTypeController {
       }
     }
 
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: CrimeTypeDTO) {
       return this.crimeTypeService.update(_Id, updated);
     }

@@ -39,7 +39,7 @@ export class OfficerInfoController {
       }
     }
   
-    @Patch(':_id')
+    @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: OfficerInfoDTO) {
       return this.officerInfoService.update(_Id, updated);
     }
