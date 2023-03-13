@@ -1,4 +1,4 @@
-import { 
+import {
     Body,
     Controller,
     Delete,
@@ -25,12 +25,12 @@ export class OrganizationcategoryController {
     findAll() {
         return this.organizationacategoryService.findAll();
           }
-  
+
     @Get(':id')
     async findbyId(@Param('id') id: string) {
       return this.organizationacategoryService.findbyId(id);
     }
-  
+
     @Get(':id/:value')
     async findbyAny(@Param('id') id: string, @Param('value') value: string) {
       if (id === 'organizationCategoryName' || id === 'organizationcategoryId') {
@@ -39,15 +39,15 @@ export class OrganizationcategoryController {
         throw new NotFoundException("fleid '" + id + "' not found");
       }
     }
-  
+
     @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: OrganizationcategoryDTO) {
       return this.organizationacategoryService.update(_Id, updated);
     }
-  
-    @Delete(':_id')
+
+    @Post('delete/:_id')
     async delete(@Param('_id') _Id: string) {
       return this.organizationacategoryService.delete(_Id);
     }
-  
+
 }

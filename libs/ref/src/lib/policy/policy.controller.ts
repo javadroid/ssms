@@ -6,7 +6,7 @@ import {
     NotFoundException,
     Param,
     Patch,
-    Post, 
+    Post,
     } from '@nestjs/common';
 import { PolicyDTO } from '../../dto/policy.dto';
 import { PolicyService } from './policy.service';
@@ -45,7 +45,7 @@ export class PolicyController {
       return this.policyService.update(_Id, updated);
     }
 
-    @Delete(':_id')
+    @Post('delete/:_id')
     async delete(@Param('_id') _Id: string) {
       return this.policyService.delete(_Id);
     }

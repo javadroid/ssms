@@ -64,7 +64,7 @@ export class CriminalInfoController {
     return this.criminalInfoService.update(_Id, updated);
   }
 
-  @Delete(':_id')
+  @Post('delete/:_id')
   async delete(@Param('_id') _Id: string) {
     return this.criminalInfoService.delete(_Id);
   }

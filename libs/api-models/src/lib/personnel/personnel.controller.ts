@@ -88,7 +88,7 @@ export class PersonnelController {
   }
 
   @UseGuards(AuthGuard('jwt1'))
-  @Delete(':_id')
+  @Post('delete/:_id')
   async delete(@Param('_id') _Id: string) {
     return this.personnelService.delete(_Id);
   }

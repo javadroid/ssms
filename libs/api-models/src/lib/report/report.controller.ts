@@ -61,12 +61,12 @@ export class ReportController {
     return this.reportService.update(_Id, updated);
   }
 
-  @Delete(':_id')
+  @Post('delete/:_id')
   async delete(@Param('_id') _Id: string) {
     return this.reportService.delete(_Id);
   }
 
-  @Delete()
+  @Post('delete')
   async deleteMany(@Body() _id: string[]) {
     return this.reportService.deleteMany(_id);
   }

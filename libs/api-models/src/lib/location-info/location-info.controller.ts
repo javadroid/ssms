@@ -21,17 +21,17 @@ export class LocationInfoController {
     async create(@Body() createLocationInfo: LocationInfoDoc) {
       return this.locationInfoService.create(createLocationInfo);
     }
-  
+
     @Get()
     findAll() {
       return this.locationInfoService.findAll();
     }
-  
+
     @Get(':id')
     async findbyId(@Param('id') id: string) {
       return this.locationInfoService.findbyId(id);
     }
-  
+
     @Get(':id/:value')
     async findbyAny(@Param('id') id: string, @Param('value') value: string) {
       if (id === 'evidence' || id === 'reportDetail' || id === 'reporterId') {
@@ -40,17 +40,17 @@ export class LocationInfoController {
         throw new NotFoundException("fleid '" + id + "' not found");
       }
     }
-  
+
     @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: LocationInfoDTO) {
       return this.locationInfoService.update(_Id, updated);
     }
-  
-    @Delete(':_id')
+
+    @Post('delete/:_id')
     async delete(@Param('_id') _Id: string) {
       return this.locationInfoService.delete(_Id);
     }
-  
+
 
 
 }

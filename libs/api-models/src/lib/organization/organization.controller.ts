@@ -86,7 +86,7 @@ constructor(private organizationService:OrganizationService, private organizatio
     return this.organizationService.update(_Id, updated);
   }
 
-  @Delete(':_id')
+  @Post('delete/:_id')
   async delete(@Param('_id') _Id: string) {
 
     return this.organizationService.delete(_Id);

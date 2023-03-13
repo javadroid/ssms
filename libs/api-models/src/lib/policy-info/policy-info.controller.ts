@@ -44,12 +44,12 @@ export class PolicyInfoController {
     return this.policyInfoService.update(_Id, updated);
   }
 
-  @Delete(':_id')
+  @Post('delete/:_id')
   async delete(@Param('_id') _Id: string) {
     return this.policyInfoService.delete(_Id);
   }
 
-  @Delete()
+  @Post('delete')
   async deleteMany(@Body() _id: string[]) {
     return this.policyInfoService.deleteMany(_id);
   }

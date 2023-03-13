@@ -1,4 +1,4 @@
-import { 
+import {
     Body,
     Controller,
     Delete,
@@ -6,7 +6,7 @@ import {
     NotFoundException,
     Param,
     Patch,
-    Post, 
+    Post,
 } from '@nestjs/common';
 
 import { WeaponInfoDTO } from '../../dto/weaponInfo.dto';
@@ -20,17 +20,17 @@ export class WeaponInfoController {
     async create(@Body() createWeaponInfo: WeaponInfoDoc) {
         return this.weaponInfoService.create(createWeaponInfo);
       }
-    
+
       @Get()
       findAll() {
         return this.weaponInfoService.findAll();
       }
-    
+
       @Get(':id')
       async findbyId(@Param('id') id: string) {
         return this.weaponInfoService.findbyId(id);
       }
-    
+
       @Get(':id/:value')
       async findbyAny(@Param('id') id: string, @Param('value') value: string) {
         if (id === 'specification'||id === 'dateOfPurchase'||id === 'ownerName' || id === 'weaponName' || id === 'weaponId') {
@@ -39,15 +39,15 @@ export class WeaponInfoController {
           throw new NotFoundException("fleid '" + id + "' not found");
         }
       }
-    
+
       @Post(':_id')
       async update(@Param('_id') _Id: string, @Body() updated: WeaponInfoDTO) {
         return this.weaponInfoService.update(_Id, updated);
       }
-    
-      @Delete(':_id')
+
+      @Post('delete/:_id')
       async delete(@Param('_id') _Id: string) {
         return this.weaponInfoService.delete(_Id);
       }
-    
+
 }

@@ -1,4 +1,4 @@
-import { 
+import {
     Body,
     Controller,
     Delete,
@@ -25,12 +25,12 @@ export class BranchController {
     findAll() {
         return this.branchService.findAll();
           }
-  
+
     @Get(':id')
     async findbyId(@Param('id') id: string) {
       return this.branchService.findbyId(id);
     }
-  
+
     @Get(':id/:value')
     async findbyAny(@Param('id') id: string, @Param('value') value: string) {
       if (id === 'branchName' || id === 'branchId') {
@@ -39,15 +39,15 @@ export class BranchController {
         throw new NotFoundException("fleid '" + id + "' not found");
       }
     }
-  
+
     @Post(':_id')
     async update(@Param('_id') _Id: string, @Body() updated: BranchDTO) {
       return this.branchService.update(_Id, updated);
     }
-  
-    @Delete(':_id')
+
+    @Post('delete/:_id')
     async delete(@Param('_id') _Id: string) {
       return this.branchService.delete(_Id);
     }
-  
+
 }

@@ -45,7 +45,7 @@ export class StatesController {
       return this.statesService.update(_Id, updated);
     }
 
-    @Delete(':_id')
+    @Post('delete/:_id')
     async delete(@Param('_id') _Id: string) {
       return this.statesService.delete(_Id);
     }
