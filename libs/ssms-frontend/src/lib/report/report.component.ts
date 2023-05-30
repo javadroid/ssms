@@ -130,6 +130,7 @@ this.selectedFiles=this.selectedFiles.filter((m,index)=>id!==index)
 
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
+
         this.upload(i, this.selectedFiles[i]);
       }
 
@@ -147,6 +148,7 @@ this.selectedFiles=this.selectedFiles.filter((m,index)=>id!==index)
 
       this.http.upload('document', formdata).subscribe((e:any) => {
         this.url.push(e[0])
+        console.log("console.log(e[0])",e[0])
 
       });
     }
