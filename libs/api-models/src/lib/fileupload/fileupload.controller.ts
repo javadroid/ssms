@@ -43,13 +43,13 @@ export class FileuploadController {
       const host = request.headers.host;
       const protocol = request.protocol;
       const url = `${protocol}://${host}`;
-      console.log("file", file);
+      console.log("file", file,file.path.split('document/'));
       // names.push(
       //   `${url}/api/document/` + file.path.split('\\')[1]
       // );
 
       names.push(
-        `${url}/api/` + path
+        `${url}/api/document/` + file.path.split('document/')[1]
       );
     });
 

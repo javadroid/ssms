@@ -6,8 +6,8 @@ import { environment } from '@env-api/environment'
 
 
 // const apiUrl ='https://api.mrssms.com/api'
-const apiUrl  ='http://localhost:3322/api'
-// const apiUrl  ='https://api-ssms.onrender.com/api'
+// const apiUrl  ='http://localhost:3322/api'
+const apiUrl  ='https://api-ssms.onrender.com/api'
 
 @Injectable({
   providedIn: 'root',
