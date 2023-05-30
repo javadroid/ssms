@@ -3,6 +3,7 @@ import {
   Get,
   Param,
   Post,
+  Req,
   Res,
   UploadedFiles,
   UseInterceptors,
@@ -10,7 +11,7 @@ import {
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { join } from 'path';
-
+import { Request } from 'express';
 @Controller('document')
 export class FileuploadController {
   @Post()
@@ -33,15 +34,17 @@ export class FileuploadController {
       }),
     })
   )
-  async uploadMultiple(@UploadedFiles() files) {
+  async uploadMultiple(@UploadedFiles() files,@Req() request: Request) {
     console.log(files);
     const names = [];
     files.forEach((file) => {
       const name = file.originalname.split('.')[0];
       const path = `document/${file.path.split('\\')[1]}`;
-
+      const host = request.headers.host;
+      const protocol = request.protocol;
+      const url = `${protocol}://${host}`;
       names.push(
-        `https://api-mrssms.up.railway.app/api/document/` + file.path.split('\\')[1]
+        `${url}/api/document/` + file.path.split('\\')[1]
       );
     });
     return names;

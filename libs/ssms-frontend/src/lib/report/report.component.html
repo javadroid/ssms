@@ -115,7 +115,9 @@
             </p>
 
             <div class="agencies">
-              <button [ngClass]="{'isselectBranch':isselectBranch===item._id}" (click)="selectBranch(item)" *ngFor="let item of this.personnel" class="btn agency">{{item.branch}} - {{item.organization.organizationName}} - {{item.officialphone}}</button>
+              <button
+
+               [ngClass]="{'isselectBranch':isselectBranch===item._id}" (click)="selectBranch(item)" *ngFor="let item of this.personnel" class="btn agency">{{item.branch}} - {{item.organization.organizationName}} - {{item.officialphone}}</button>
 
             </div>
           </div>

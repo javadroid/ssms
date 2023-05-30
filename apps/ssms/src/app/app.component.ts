@@ -11,8 +11,7 @@ import { Route, Router } from '@angular/router';
 export class AppComponent {
 
   constructor(private http: Router) {
-
-console.log( " http.getCurrentNavigation()",http.url)
+    console.log(" http.getCurrentNavigation()", http.url)
   }
 
 
