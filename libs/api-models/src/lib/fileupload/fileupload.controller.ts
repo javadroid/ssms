@@ -60,6 +60,6 @@ export class FileuploadController {
   @Get(':id')
   findFile(@Param('id') id: string, @Res() res) {
     console.log(id);
-    return res.sendFile(join(process.cwd(), 'document\\' + id));
+    return res.sendFile(join(process.cwd(), 'document/' + id));
   }
 }
